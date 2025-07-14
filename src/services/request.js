@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const request = async ({ url = null, config = {} } = {}) => {
-  const baseURL = url || "https://fakestoreapiserver.reactbd.org/api/v1";
+  const baseURL = url || "https://api.escuelajs.co/api/v1/products";
 
   const axiosInstance = axios.create({
     baseURL,
