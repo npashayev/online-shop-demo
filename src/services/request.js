@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const request = async ({ url = null, config = {} } = {}) => {
-  const baseURL = url || "https://api.escuelajs.co/api/v1/products";
+  const baseURL = url || "https://dummyjson.com";
 
   const axiosInstance = axios.create({
     baseURL,
@@ -10,6 +10,7 @@ const request = async ({ url = null, config = {} } = {}) => {
     },
   });
 
+  
   try {
     const res = await axiosInstance.request(config);
     return {
@@ -20,7 +21,7 @@ const request = async ({ url = null, config = {} } = {}) => {
   } catch (error) {
     return {
       success: false,
-      message: "Error occurred, please try again later",
+      message: "An error occurred, please try again later",
     };
   }
 };
