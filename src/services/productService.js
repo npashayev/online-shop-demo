@@ -1,10 +1,13 @@
 import request from "./request";
 
-export const getAllProducts = () => {
+export const getAllProducts = (skipValue) => {
   return request({
     config: {
       method: "GET",
-      url: "/",
+      url: `/products?limit=60&skip=${skipValue}`,
     },
-  });
+  }).then((res) => ({
+    ...res,
+    data: res.data.products,
+  }));
 };

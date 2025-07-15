@@ -1,40 +1,86 @@
 main {
-    display: flex;
     padding: 3rem;
-    flex-wrap: wrap;
-    gap: 2.5rem;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7rem;
+
+    .productsContainer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        justify-content: center;
+
+        .product {
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+            border-radius: 1.8rem;
+            overflow: hidden;
+            width: 250px;
+            transition: transform .1s linear;
+            cursor: pointer;
+            background-color: white;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+
+            .imageContainer {
+                height: 250px;
+                margin-top: 1.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .image {
+                    height: 80%;
+                }
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: 2rem;
+                font-size: 1.6rem;
+                min-height: 115px;
 
 
-    .product {
-    box-shadow: 0 0 6px rgba(0,0,0,0.25);
-    border-radius: 2.4rem;
-    overflow: hidden;
-    width: 250px;
-    transition: transform .1s linear;
-    cursor: pointer;
+                .title {
+                    font-weight: bold;
+                    margin-bottom: 0.8rem;
+                }
 
-    &:hover {
-        transform: scale(1.05);
+                .price {
+                    font-style: italic;
+                }
+            }
+        }
     }
 
-    .image {
-        height: 250px;
+
+
+    button {
+        font-size: 1.8rem;
     }
 
-    .info {
-        padding: 2rem;
-        font-size: 1.6rem;
+    button:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
 
-        .title {
-            font-weight: bold;
-            margin-bottom: 0.8rem;
-        }
-
-        .price {
-            font-style: italic;
-        }
+    .spinner {
+        animation: spin .6s linear infinite;
+        font-size: 2.4rem;
     }
 }
-}
 
+
+@keyframes spin {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

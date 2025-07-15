@@ -1,41 +1,69 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getAllProducts } from "../../services/productService";
 import styles from "./products.module.scss";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const skipRef = useRef(0);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const res = await getAllProducts();
-      if (res.success) {
-        setProducts(res.data.slice(0, res.data.length - 9));
-        console.log(res.data[0]);
-      } else {
-        alert(res.message);
-      }
-    };
-
-    fetchProducts();
+    fetchProducts(skipRef.current);
   }, []);
+
+  const fetchProducts = async (skipValue) => {
+    if (loading) return
+
+    setLoading(true);
+    const res = await getAllProducts(skipValue);
+    if (res.success) {
+      setProducts((prev) => [...prev, ...res.data]);
+    } else {
+      alert(res.message);
+    }
+    setLoading(false);
+  };
 
   return (
     <main>
-      {products.length != 0 &&
-        products.map((product) => (
-          <div key={product.id} className={styles.product}>
-            <img
-              src={product.images[0]}
-              className={styles.image}
-              alt={product.title}
-            />
-
-            <div className={styles.info}>
-              <p className={styles.title}>{product.title}</p>
-              <p className={styles.price}>{product.price}$</p>
+      <div className={styles.productsContainer}>
+        {products.length !== 0 ? (
+          products.map((product) => (
+            <div key={product.id} className={styles.product}>
+              <div className={styles.imageContainer}>
+                <img
+                  src={product.images[0]}
+                  className={styles.image}
+                  alt={product.title}
+                />
+              </div>
+              <div className={styles.info}>
+                <p className={styles.title}>{product.title}</p>
+                <p className={styles.price}>{product.price}$</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          !loading && <p>No product found</p>
+        )}
+      </div>
+
+      <button
+        disabled={loading}
+        onClick={() => {
+          skipRef.current += 60;
+          fetchProducts(skipRef.current);
+          console.log(skipRef.current)
+        }}
+      >
+        {
+          loading
+            ? <FontAwesomeIcon icon={faSpinner} className={styles.spinner} />
+            : <span>Load More...</span>
+        }
+      </button>
     </main>
   );
 };
