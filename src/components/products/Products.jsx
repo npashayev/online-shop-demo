@@ -49,8 +49,8 @@ const Products = () => {
                 <div className={styles.titleCnr}>
                   <p className={styles.title}>{product.title}</p>
                   <div className={styles.ratingCnr}>
-                    <div className={styles.rating}>{product.rating}</div>
-                    <div className={styles.starsCnr} style={{ width: `${(product.rating / 5) * 100}%` }}>
+                    <div className={styles.rating}>{(product.rating).toFixed(1)}</div>
+                    <div className={styles.starsCnr} style={{ width: `${(Number(product.rating.toFixed(1)) / 5) * 60}px` }}>
                       <img src="/src/assets/star.png" alt="" className={styles.star} />
                       <img src="/src/assets/star.png" alt="" className={styles.star} />
                       <img src="/src/assets/star.png" alt="" className={styles.star} />
