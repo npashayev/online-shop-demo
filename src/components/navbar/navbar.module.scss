@@ -1,4 +1,4 @@
-nav {
+header {
     padding: 1rem 3rem;
     font-size: 1.8rem;
     display: flex;
@@ -23,21 +23,24 @@ nav {
         }
     }
 
-    .linksContainer {
-        list-style: none;
+    nav {
+        .linksContainer {
+            list-style: none;
 
-        .link {
-            padding: 0.6rem 1.4rem;
-            text-decoration: none;
-            color: black;
-            border: 1px solid transparent;
-            border-radius: 2rem;
-            transition: all .05s linear;
+            .link {
+                padding: 0.6rem 1.4rem;
+                text-decoration: none;
+                color: black;
+                border: 1px solid transparent;
+                border-radius: 2rem;
+                transition: all .05s linear;
 
-            &:hover {
-                background-color: #003566;
-                color: white;
+                &:hover {
+                    background-color: #003566;
+                    color: white;
+                }
             }
         }
     }
+
 }
