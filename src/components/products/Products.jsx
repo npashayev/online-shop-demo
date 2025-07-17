@@ -30,7 +30,7 @@ const Products = () => {
 
   return (
     <main>
-      <FilterBar setProducts={setProducts} originalProducts={originalProducts} />
+      <FilterBar products={products} setProducts={setProducts} originalProducts={originalProducts} />
 
       <div className={styles.productsCnr}>
         {products.length !== 0 ? (

@@ -98,7 +98,6 @@ main {
                         .starsCnr {
                             display: flex;
                             overflow: hidden;
-                            gap: 1px;
 
                             .star {
                                 display: block;
@@ -109,13 +108,14 @@ main {
                 }
 
                 .priceCnr {
+                    font-style: italic;
+
                     .oldPrice {
                         text-decoration: line-through;
                         opacity: .7;
                     }
 
                     .newPrice {
-                        font-style: italic;
                         font-size: 1.6rem;
                         color: darkred;
                         font-weight: bold;
