@@ -1,38 +1,44 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { getAllProducts } from "../../services/productService";
 import styles from "./products.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import FilterBar from "./FilterBar";
+
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const [originalProducts, setOriginalProducts] = useState([])
   const [loading, setLoading] = useState(false);
-  const skipRef = useRef(0);
+  const [error, setError] = useState("")
 
   useEffect(() => {
-    fetchProducts(skipRef.current);
+    fetchProducts();
   }, []);
 
-  const fetchProducts = async (skipValue) => {
-    if (loading) return
-
+  const fetchProducts = async () => {
     setLoading(true);
-    const res = await getAllProducts(skipValue);
-    if (res.success) {
-      setProducts((prev) => [...prev, ...res.data]);
-    } else {
-      alert(res.message);
+    setError("")
+    const { success, data } = await getAllProducts();
+    if (!success) {
+      setError("Error while fetching products")
     }
+    setProducts(data);
+    setOriginalProducts(data)
     setLoading(false);
   };
 
   return (
     <main>
-      <div className={styles.productsContainer}>
+      <FilterBar setProducts={setProducts} originalProducts={originalProducts} />
+
+      <div className={styles.productsCnr}>
         {products.length !== 0 ? (
           products.map((product) => (
             <div key={product.id} className={styles.product}>
-              <div className={styles.imageContainer}>
+              <p className={styles.brand}>{product.brand}</p>
+              <div className={styles.discountPercentage}>-{product.discountPercentage.toFixed(0)}%</div>
+              <div className={styles.imageCnr}>
                 <img
                   src={product.images[0]}
                   className={styles.image}
@@ -40,30 +46,46 @@ const Products = () => {
                 />
               </div>
               <div className={styles.info}>
-                <p className={styles.title}>{product.title}</p>
-                <p className={styles.price}>{product.price}$</p>
+                <div className={styles.titleCnr}>
+                  <p className={styles.title}>{product.title}</p>
+                  <div className={styles.ratingCnr}>
+                    <div className={styles.rating}>{product.rating}</div>
+                    <div className={styles.starsCnr} style={{ width: `${(product.rating / 5) * 100}%` }}>
+                      <img src="/src/assets/star.png" alt="" className={styles.star} />
+                      <img src="/src/assets/star.png" alt="" className={styles.star} />
+                      <img src="/src/assets/star.png" alt="" className={styles.star} />
+                      <img src="/src/assets/star.png" alt="" className={styles.star} />
+                      <img src="/src/assets/star.png" alt="" className={styles.star} />
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles.priceCnr}>
+                  <p className={styles.oldPrice}>{(product.price / (1 - product.discountPercentage / 100)).toFixed(2)}$</p>
+                  <p className={styles.newPrice}>{product.price}$</p>
+                </div>
               </div>
+
+
             </div>
           ))
         ) : (
-          !loading && <p>No product found</p>
+          <p>
+            {
+              error
+                ? error
+                : !loading && products.length === 0
+                  ? "No products found"
+                  : null
+            }
+          </p>
         )}
+
+        {
+          loading && <FontAwesomeIcon icon={faSpinner} className={styles.spinner} />
+        }
       </div>
 
-      <button
-        disabled={loading}
-        onClick={() => {
-          skipRef.current += 60;
-          fetchProducts(skipRef.current);
-          console.log(skipRef.current)
-        }}
-      >
-        {
-          loading
-            ? <FontAwesomeIcon icon={faSpinner} className={styles.spinner} />
-            : <span>Load More...</span>
-        }
-      </button>
     </main>
   );
 };
