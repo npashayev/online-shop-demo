@@ -16,12 +16,10 @@ const request = async ({ url = null, config = {} } = {}) => {
     return {
       success: true,
       data: res.data,
-      message: "",
     };
   } catch (error) {
     return {
       success: false,
-      message: "An error occurred, please try again later",
     };
   }
 };
