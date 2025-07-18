@@ -1,10 +1,10 @@
 import request from "./request";
 
-export const getAllProducts = () => {
+export const getAllProducts = (skipValue, sortBy, order, input) => {
   return request({
     config: {
       method: "GET",
-      url: `/products?limit=0`,
+      url: `/products/search?q=${input}&limit=30&skip=${skipValue}&sortBy=${sortBy}&order=${order}`,
     },
   }).then((res) => ({
     ...res,

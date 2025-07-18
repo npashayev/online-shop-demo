@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getAllProducts } from "../../services/productService";
 import styles from "./products.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,29 +8,46 @@ import FilterBar from "./FilterBar";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const [originalProducts, setOriginalProducts] = useState([])
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("")
+  const [sortBy, setSortBy] = useState("")
+  const [order, setOrder] = useState("")
+  const [input, setInput] = useState("")
+  const [skipValue, setSkipValue] = useState(0)
+
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    fetchProducts(skipValue, sortBy, order, input);
+    console.log("Fetched", skipValue)
+  }, [order, sortBy, skipValue]);
 
-  const fetchProducts = async () => {
+  const fetchProducts = async (skipValue, sortBy, order, input) => {
     setLoading(true);
     setError("")
-    const { success, data } = await getAllProducts();
+    const { success, data } = await getAllProducts(skipValue, sortBy, order, input);
     if (!success) {
       setError("Error while fetching products")
     }
-    setProducts(data);
-    setOriginalProducts(data)
+    setProducts(prev => [...prev, ...data]);
     setLoading(false);
   };
 
+
   return (
     <main>
-      <FilterBar products={products} setProducts={setProducts} originalProducts={originalProducts} />
+      <FilterBar
+        products={products}
+        setProducts={setProducts}
+        setOrder={setOrder}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        order={order}
+        setSkipValue={setSkipValue}
+        fetchProducts={fetchProducts}
+        input={input}
+        setInput={setInput}
+        skipValue={skipValue}
+      />
 
       <div className={styles.productsCnr}>
         {products.length !== 0 ? (
@@ -85,8 +102,9 @@ const Products = () => {
           loading && <FontAwesomeIcon icon={faSpinner} className={styles.spinner} />
         }
       </div>
-
-    </main>
+      <button onClick={() => setSkipValue(prev => prev + 30)}
+      >Load more</button>
+    </main >
   );
 };
 
