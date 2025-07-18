@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { getAllProducts } from "../../services/productService";
 import styles from "./products.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,16 +10,19 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("")
-  const [sortBy, setSortBy] = useState("")
-  const [order, setOrder] = useState("")
-  const [input, setInput] = useState("")
   const [skipValue, setSkipValue] = useState(0)
+
+  const [filters, setFilters] = useState({
+    sortBy: "",
+    order: "",
+    input: ""
+  })
 
 
   useEffect(() => {
-    fetchProducts(skipValue, sortBy, order, input);
+    fetchProducts(skipValue, filters);
     console.log("Fetched", skipValue)
-  }, [order, sortBy, skipValue]);
+  }, [filters, skipValue]);
 
   const fetchProducts = async (skipValue, sortBy, order, input) => {
     setLoading(true);
@@ -36,16 +39,11 @@ const Products = () => {
   return (
     <main>
       <FilterBar
-        products={products}
+        filters={filters}
+        setFilters={setFilters}
         setProducts={setProducts}
-        setOrder={setOrder}
-        sortBy={sortBy}
-        setSortBy={setSortBy}
-        order={order}
         setSkipValue={setSkipValue}
         fetchProducts={fetchProducts}
-        input={input}
-        setInput={setInput}
         skipValue={skipValue}
       />
 

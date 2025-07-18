@@ -1,6 +1,6 @@
 import request from "./request";
 
-export const getAllProducts = (skipValue, sortBy, order, input) => {
+export const getAllProducts = (skipValue, {sortBy="", order="", input=""}={}) => {
   return request({
     config: {
       method: "GET",
