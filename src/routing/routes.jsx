@@ -1,11 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
-import HomePage from "../components/homePage/HomePage";
-import ProductsPage from "../components/productsPage/ProductsPage";
+import HomePage from "../components/pages/home/HomePage";
+import ProductsPage from "../components/pages/products/ProductsPage";
+import Layout from "../components/pages/Layout";
 
 
 const router = createBrowserRouter([
-    { path: '/', element: <HomePage /> },
-    { path: '/products', element: <ProductsPage /> },
+    {
+        path: '/',
+        element: <Layout />,
+        children: [
+            { index: true, element: <HomePage /> },
+            { path: 'products', element: <ProductsPage /> },
+        ]
+    }
 ]);
 
 export default router;

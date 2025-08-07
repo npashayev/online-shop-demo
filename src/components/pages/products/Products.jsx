@@ -1,6 +1,6 @@
-import useProducts from '../../hooks/useProducts'
+import useProducts from '../../../hooks/useProducts'
 import styles from './products.module.scss'
-import Loading from '../Loading'
+import Loading from '../../Loading'
 
 
 
