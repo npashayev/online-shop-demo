@@ -14,7 +14,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-      <ReactQueryDevtools />
+      <div style={{ fontSize: "16px" }}><ReactQueryDevtools /></div>
     </QueryClientProvider>
   </StrictMode>,
 )
