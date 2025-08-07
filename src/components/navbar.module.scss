@@ -1,0 +1,46 @@
+header {
+    padding: 1rem 3rem;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    background-color: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+
+    .left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-weight: bold;
+
+        .logo {
+            height: 3.5rem;
+        }
+    }
+
+    nav {
+        .linksContainer {
+            list-style: none;
+
+            .link {
+                padding: 0.6rem 1.4rem;
+                text-decoration: none;
+                color: black;
+                border: 1px solid transparent;
+                border-radius: 2rem;
+                transition: all .05s linear;
+
+                &:hover {
+                    background-color: #003566;
+                    color: white;
+                }
+            }
+        }
+    }
+
+}
