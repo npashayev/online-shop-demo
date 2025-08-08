@@ -1,5 +1,6 @@
 main {
     padding: 3rem;
+    margin-top: 8rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,7 +15,7 @@ main {
         .product {
             position: relative;
             box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
-            border-radius: 1.8rem;
+            // border-radius: 0.6rem;
             overflow: hidden;
             width: 280px;
             transition: transform .1s linear;
