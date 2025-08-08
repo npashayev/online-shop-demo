@@ -1,11 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
 import { getProducts } from '../services/productService';
 
-const useProducts = () => {
+export const useProducts = (url, params) => {
     return useQuery({
-        queryKey: ['products'],
-        queryFn: getProducts
+        queryKey: ['products', params],
+        queryFn: () => getProducts(url, params)
     })
 }
-
-export default useProducts;
