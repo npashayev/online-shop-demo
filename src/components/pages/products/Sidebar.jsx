@@ -3,7 +3,7 @@ import styles from './sidebar.module.scss'
 import Loading from '../../Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 
@@ -23,6 +23,11 @@ const Sidebar = ({ setUrl }) => {
         setActiveCategory(slug);
     }
 
+    useEffect(() => {
+        if (error)
+            console.log(error.message || 'An error occured while fetching categories')
+    }, [error])
+
     return (
         <aside>
             <div className={styles.categoriesContainer}>
@@ -31,7 +36,7 @@ const Sidebar = ({ setUrl }) => {
                 </div>
                 {
                     isLoading
-                        ? <Loading size='24px' />
+                        ? <Loading size='20px' />
                         : <div className={styles.categories}>
                             <div
                                 onClick={() => handleCategorySelection('all')}
