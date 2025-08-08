@@ -2,7 +2,7 @@ aside {
     font-size: 1.6rem;
     background-color: white;
     padding: 2.5rem;
-    min-width: 15%;
+    min-width: 25rem;
     min-height: 100vh;
 
     .categoriesContainer {
@@ -27,8 +27,6 @@ aside {
             }
 
             .activeCategory {
-                // text-decoration: underline;
-                // text-underline-offset: 0.3rem;
                 font-weight: 700;
             }
         }
