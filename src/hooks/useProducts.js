@@ -3,7 +3,7 @@ import { getCategories, getProducts } from '../services/productService';
 
 export const useProducts = (url, params) => {
     return useQuery({
-        queryKey: ['products', params],
+        queryKey: ['products', url, params],
         queryFn: () => getProducts(url, params)
     })
 }
