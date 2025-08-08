@@ -2,7 +2,7 @@ import styles from './products-page.module.scss'
 import Products from "./Products";
 import Sidebar from "./Sidebar";
 import FilterBar from './FilterBar';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useProducts } from '../../../hooks/useProducts';
 
 
@@ -11,6 +11,7 @@ const ProductsPage = () => {
     const [params, setParams] = useState({ q: '' })
 
     const productsData = useProducts(url, params)
+    useEffect(() => console.log(url), [url])
 
     return (
         <div className={styles.pageContainer}>
@@ -20,7 +21,7 @@ const ProductsPage = () => {
                 setParams={setParams}
             />
             <div className={styles.main}>
-                <Sidebar />
+                <Sidebar url={url} setUrl={setUrl} />
                 <Products productsData={productsData} />
             </div>
         </div>

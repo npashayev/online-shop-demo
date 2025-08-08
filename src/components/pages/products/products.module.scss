@@ -1,11 +1,11 @@
 main {
     padding: 3rem;
-    margin-top: 8rem;
+    padding-top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
     gap: 7rem;
-    background-color: #d32f2f;
 
     .productsCnr {
         display: flex;
