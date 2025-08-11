@@ -1,6 +1,6 @@
 import { useCategories } from '../../../hooks/useProducts'
 import styles from './sidebar.module.scss'
-import Loading from '../../Loading';
+import Loading from '../../common/Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
