@@ -1,0 +1,111 @@
+.product {
+    position: relative;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+    // border-radius: 0.6rem;
+    overflow: hidden;
+    width: 280px;
+    transition: transform .1s linear;
+    cursor: pointer;
+    background-color: white;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    .brand {
+        font-weight: bold;
+        font-size: 1.6rem;
+        padding: 2rem;
+        width: 70%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-height: 62px;
+    }
+
+    .discountPercentage {
+        font-size: 1.6rem;
+        color: white;
+        background-color: #d32f2f;
+        font-weight: bold;
+        width: max-content;
+        min-width: 50px;
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+        border-radius: 50%;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    .imageCnr {
+        height: 250px;
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .image {
+            height: 80%;
+        }
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1.5rem 2rem;
+        font-size: 1.4rem;
+        min-height: 140px;
+
+        .titleCnr {
+            .title {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-weight: 600;
+            }
+
+            .ratingCnr {
+                margin-top: .3rem;
+                width: max-content;
+                display: flex;
+                gap: 0.4rem;
+                align-items: flex-end;
+                font-size: 12px;
+
+                .rating {
+                    line-height: 1;
+                }
+
+                .starsCnr {
+                    display: flex;
+                    overflow: hidden;
+
+                    .star {
+                        display: block;
+                        height: 12px;
+                    }
+                }
+            }
+        }
+
+        .priceCnr {
+            font-style: italic;
+
+            .oldPrice {
+                text-decoration: line-through;
+                opacity: .7;
+            }
+
+            .newPrice {
+                font-size: 1.6rem;
+                color: darkred;
+                font-weight: bold;
+            }
+        }
+    }
+}
