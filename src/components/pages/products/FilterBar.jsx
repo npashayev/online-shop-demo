@@ -1,42 +1,56 @@
 import styles from './filter-bar.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass, faSort } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-const FilterBar = ({ setUrl, params, setParams, showSearchbar = true }) => {
+const FilterBar = ({ showSearchbar = true }) => {
 
+    const [searchParams, setSearchParams] = useSearchParams();
     const [searchText, setSearchText] = useState('');
-    const [selectorValue, setSelectorValue] = useState('')
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        setSearchText(searchParams.get('q') || '')
+    }, [searchParams])
+
+    const selectorValue = searchParams.get('sortBy') && searchParams.get('order')
+        ? `${searchParams.get('sortBy')}-${searchParams.get('order')}`
+        : ''
+
 
     const handleSearch = (e) => {
         e.preventDefault();
-        if (searchText.trim().length == 0) {
-            setParams({ ...params, q: '' });
-            setUrl('/products')
+
+        const trimmed = searchText.trim();
+
+        if (!trimmed) {
+            navigate('/products')
             return
         }
-        setUrl('/products/search')
-        setParams({ ...params, q: searchText });
+
+        const newParams = new URLSearchParams(searchParams);
+        newParams.set('q', trimmed);
+        navigate(`/products/search?${newParams.toString()}`)
     }
 
     const handleOptionChange = (e) => {
-        const value = e.target.value
-        setSelectorValue(value)
+        const value = e.target.value;
 
-        if (value.length == 0) {
-            setParams({ q: searchText })
-            return
-        }
+        setSearchParams(prev => {
+            const newParams = new URLSearchParams(prev)
 
-        const arr = value.split('-');
-
-        setParams({
-            ...params,
-            sortBy: arr[0],
-            order: arr[1]
+            if (!value) {
+                newParams.delete('sortBy')
+                newParams.delete('order')
+            } else {
+                const [sortBy, order] = value.split('-')
+                newParams.set('sortBy', sortBy)
+                newParams.set('order', order)
+            }
+            return newParams
         })
-
-        console.log(arr)
     }
 
     return (
