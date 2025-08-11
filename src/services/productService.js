@@ -1,9 +1,14 @@
 import apiClient from "./apiClient";
 
-export const getProducts = (url, params) =>
+export const getProducts = (params) =>
     apiClient
-        .get(url, { params })
+        .get('/products', { params })
         .then(res => res.data.products);
+
+export const searchProducts = (params) =>
+    apiClient
+        .get('/products/search', { params })
+        .then(res => res.data.products)
 
 export const getCategories = () =>
     apiClient

@@ -1,10 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
-import { getCategories, getProducts } from '../services/productService';
+import { getCategories, getProducts, searchProducts } from '../services/productService';
 
-export const useProducts = (url, params) => {
+export const useProducts = (params) => {
     return useQuery({
-        queryKey: ['products', url, params],
-        queryFn: () => getProducts(url, params)
+        queryKey: ['products', params],
+        queryFn: () => getProducts(params)
+    })
+}
+
+export const useSearchProducts = (params) => {
+    return useQuery({
+        queryKey: ['products', 'search', params],
+        queryFn: () => searchProducts(params)
     })
 }
 
