@@ -1,27 +1,16 @@
-import styles from './products.module.scss'
-import Loading from '../../common/Loading'
-import ProductCard from './ProductCard';
+import { useSearchParams } from 'react-router-dom';
+import { useProducts } from '../../../hooks/useProducts';
+import ProductsList from './ProductsList';
 
 
-const AllProducts = ({ productsData }) => {
+const AllProducts = () => {
+    const [searchParams] = useSearchParams();
+    const params = Object.fromEntries(searchParams.entries());
+    const allProducts = useProducts(params);
 
-    const { data: products, isLoading, error } = productsData;
+    if (allProducts.error) return <main>An error occurred while fetching products</main>
 
-    if (error) return <main>An error occurred while fetching products</main>
-
-    return (
-        <main>
-            <div className={styles.productsCnr}>
-                {
-                    isLoading ? <Loading size={'30px'} />
-                        : products?.length > 0
-                            ? products.map(product => <ProductCard key={product.id} product={product} />)
-                            : <p>No products found</p>
-                }
-            </div>
-
-        </main >
-    )
+    return <ProductsList productsData={allProducts} />
 }
 
 export default AllProducts;
