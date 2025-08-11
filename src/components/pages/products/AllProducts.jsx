@@ -1,8 +1,8 @@
 import styles from './products.module.scss'
-import Loading from '../../Loading'
+import Loading from '../../common/Loading'
 
 
-const Products = ({ productsData }) => {
+const AllProducts = ({ productsData }) => {
 
     const { data: products, isLoading, error } = productsData;
 
@@ -69,4 +69,4 @@ const Products = ({ productsData }) => {
     )
 }
 
-export default Products;
+export default AllProducts;
