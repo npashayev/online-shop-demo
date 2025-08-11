@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass, faSort } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
 
-const FilterBar = ({ setUrl, params, setParams }) => {
+const FilterBar = ({ setUrl, params, setParams, showSearchbar = true }) => {
 
     const [searchText, setSearchText] = useState('');
     const [selectorValue, setSelectorValue] = useState('')
 
-    const handleSubmit = (e) => {
+    const handleSearch = (e) => {
         e.preventDefault();
         if (searchText.trim().length == 0) {
             setParams({ ...params, q: '' });
@@ -42,7 +42,12 @@ const FilterBar = ({ setUrl, params, setParams }) => {
     return (
         <div className={styles.main}>
             <div className={styles.selectCnr}>
-                <select name="sorter" value={selectorValue} className={styles.selector} onChange={handleOptionChange}>
+                <select
+                    name="sorter"
+                    value={selectorValue}
+                    className={styles.selector}
+                    onChange={handleOptionChange}
+                >
                     <option value="">Default</option>
                     <option value="price-asc">Price Ascending</option>
                     <option value="price-desc">Price Descending</option>
@@ -52,12 +57,20 @@ const FilterBar = ({ setUrl, params, setParams }) => {
                 <FontAwesomeIcon icon={faSort} className={styles.sortIcon} />
             </div>
 
-            <form onSubmit={handleSubmit}>
-                <input type="text" value={searchText} className={styles.searchBar} onChange={(e) => setSearchText(e.target.value)} />
-                <button type='submit'>
-                    <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchIcon} />
-                </button>
-            </form>
+            {
+                showSearchbar &&
+                <form onSubmit={handleSearch}>
+                    <input
+                        type="text"
+                        value={searchText}
+                        className={styles.searchBar}
+                        onChange={(e) => setSearchText(e.target.value)}
+                    />
+                    <button type='submit'>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchIcon} />
+                    </button>
+                </form>
+            }
         </div>
     )
 }
