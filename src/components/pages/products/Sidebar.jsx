@@ -3,30 +3,17 @@ import styles from './sidebar.module.scss'
 import Loading from '../../common/Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 
 
-const Sidebar = ({ setUrl }) => {
+const Sidebar = () => {
 
-    const { data: categories, isLoading, error } = useCategories();
-    const [activeCategory, setActiveCategory] = useState('all')
 
-    const handleCategorySelection = (slug) => {
-        if (slug === 'all') {
-            setUrl('/products');
-            setActiveCategory('all');
-            return;
-        }
+    const { category } = useParams();
+    const activeCategory = category ?? 'all';
 
-        setUrl(`/products/category/${slug}`);
-        setActiveCategory(slug);
-    }
-
-    useEffect(() => {
-        if (error)
-            console.log(error.message || 'An error occured while fetching categories')
-    }, [error])
+    const { data: categories, isLoading } = useCategories();
 
     return (
         <aside>
@@ -38,8 +25,8 @@ const Sidebar = ({ setUrl }) => {
                     isLoading
                         ? <Loading size='20px' />
                         : <div className={styles.categories}>
-                            <div
-                                onClick={() => handleCategorySelection('all')}
+                            <Link
+                                to={'/products'}
                                 className={
                                     activeCategory === 'all'
                                         ? `${styles.activeCategory} ${styles.category}`
@@ -47,12 +34,12 @@ const Sidebar = ({ setUrl }) => {
                                 }
                             >
                                 <FontAwesomeIcon icon={faChevronRight} size='xs' /> All
-                            </div>
+                            </Link>
 
                             {
                                 categories?.map(category =>
-                                    <div
-                                        onClick={() => handleCategorySelection(category.slug)}
+                                    <Link
+                                        to={`/products/category/${category.slug}`}
                                         key={category.slug}
                                         className={
                                             activeCategory === category.slug
@@ -61,7 +48,7 @@ const Sidebar = ({ setUrl }) => {
                                         }
                                     >
                                         <FontAwesomeIcon icon={faChevronRight} size='xs' /> {category.name}
-                                    </div>
+                                    </Link>
                                 )
                             }
                         </div>

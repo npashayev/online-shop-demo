@@ -16,9 +16,13 @@ aside {
         }
 
         .categories {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
 
             .category {
-                margin-top: 0.5rem;
+                text-decoration: none;
+                color: black;
 
                 &:hover {
                     text-decoration: underline;
