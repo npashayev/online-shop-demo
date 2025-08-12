@@ -4,6 +4,7 @@ import ProductsPage from "../components/pages/products/ProductsPage";
 import Layout from "../components/pages/Layout";
 import AllProducts from "../components/pages/products/AllProducts";
 import SearchProducts from "../components/pages/products/SearchProducts";
+import ProductsByCategory from "../components/pages/products/ProductsByCategory";
 
 
 const router = createBrowserRouter([
@@ -17,7 +18,8 @@ const router = createBrowserRouter([
                 element: <ProductsPage />,
                 children: [
                     { index: true, element: <AllProducts /> },
-                    { path: 'search', element: <SearchProducts /> }
+                    { path: 'search', element: <SearchProducts /> },
+                    { path: 'category/:category', element: <ProductsByCategory /> }
                 ]
             },
         ]
