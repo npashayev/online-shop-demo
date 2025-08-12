@@ -3,9 +3,11 @@ aside {
     background-color: white;
     padding: 2.5rem;
     min-width: 28rem;
-    min-height: 100vh;
+    height: max-content;
     border-radius: 1rem;
     margin-left: 1.5rem;
+    position: sticky;
+    top: 14rem;
 
     .categoriesContainer {
 
