@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { getCategories, getProducts, searchProducts } from '../services/productService';
+import { getCategories, getProducts, getProductsByCategory, searchProducts } from '../services/productService';
 
 export const useProducts = (params) => {
     return useQuery({
@@ -19,5 +19,13 @@ export const useCategories = () => {
     return useQuery({
         queryKey: ['categories'],
         queryFn: getCategories
+    })
+}
+
+export const useProductsByCategory = (category, params) => {
+    return useQuery({
+        queryKey: ['products', category, params],
+        queryFn: () => getProductsByCategory(category, params),
+        enabled: Boolean(category)
     })
 }
