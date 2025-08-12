@@ -48,6 +48,10 @@
             border-radius: 6px;
             width: 350px;
             font-size: 1.6rem;
+
+            &::placeholder {
+                font-style: italic;
+            }
         }
 
         button {

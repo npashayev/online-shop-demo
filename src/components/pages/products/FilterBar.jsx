@@ -79,6 +79,7 @@ const FilterBar = ({ showSearchbar = true }) => {
                         value={searchText}
                         className={styles.searchBar}
                         onChange={(e) => setSearchText(e.target.value)}
+                        placeholder='Search for products...'
                     />
                     <button type='submit'>
                         <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchIcon} />
