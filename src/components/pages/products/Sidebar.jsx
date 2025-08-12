@@ -16,7 +16,7 @@ const Sidebar = () => {
     const { data: categories, isLoading } = useCategories();
 
     return (
-        <aside>
+        <aside className={styles.sidebar}>
             <div className={styles.categoriesContainer}>
                 <div className={styles.categoriesHeading}>
                     Categories
