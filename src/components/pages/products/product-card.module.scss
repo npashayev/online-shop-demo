@@ -7,6 +7,8 @@
     transition: transform .1s linear;
     cursor: pointer;
     background-color: white;
+    text-decoration: none;
+    color: black;
 
     &:hover {
         transform: scale(1.05);
@@ -20,7 +22,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        min-height: 62px;
+        min-height: 6.2rem;
     }
 
     .discountPercentage {

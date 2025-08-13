@@ -1,11 +1,18 @@
+import { Link } from 'react-router-dom';
 import styles from './product-card.module.scss'
 
 const ProductCard = ({ product }) => {
     const discountPercentage = Math.floor(product.discountPercentage);
+    const productRating = Math.round(product.rating * 10) / 10;
 
     return (
-        <div className={styles.product}>
-            <p className={styles.brand}>{product.brand}</p>
+        <Link to={`/products/${product.id}`} className={styles.product}>
+            <p
+                title={product.brand}
+                className={styles.brand}
+            >
+                {product.brand}
+            </p>
             {
                 discountPercentage > 0 &&
                 <div className={styles.discountPercentage}>
@@ -21,10 +28,15 @@ const ProductCard = ({ product }) => {
             </div>
             <div className={styles.info}>
                 <div className={styles.titleCnr}>
-                    <p className={styles.title}>{product.title}</p>
+                    <p
+                        title={product.title}
+                        className={styles.title}
+                    >
+                        {product.title}
+                    </p>
                     <div className={styles.ratingCnr}>
-                        <div className={styles.rating}>{(product.rating).toFixed(1)}</div>
-                        <div className={styles.starsCnr} style={{ width: `${(Number(product.rating.toFixed(1)) / 5) * 60}px` }}>
+                        <div className={styles.rating}>{productRating}</div>
+                        <div className={styles.starsCnr} style={{ width: `${(productRating / 5) * 60}px` }}>
                             <img src="/src/assets/star.png" alt="" className={styles.star} />
                             <img src="/src/assets/star.png" alt="" className={styles.star} />
                             <img src="/src/assets/star.png" alt="" className={styles.star} />
@@ -43,7 +55,7 @@ const ProductCard = ({ product }) => {
                     <p className={styles.newPrice}>{product.price}$</p>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 
