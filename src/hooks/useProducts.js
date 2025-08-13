@@ -8,34 +8,30 @@ const getNextPage = (lastPage, pages) => {
     return loadedItems >= lastPage.total ? undefined : loadedItems;
 };
 
-export const useProducts = (params) => {
-    return useInfiniteQuery({
+export const useProducts = (params) =>
+    useInfiniteQuery({
         queryKey: ['products', params],
         queryFn: ({ pageParam = 0 }) => getProducts({ ...params, limit: LIMIT, skip: pageParam }),
         getNextPageParam: getNextPage
     })
-}
 
-export const useSearchProducts = (params) => {
-    return useInfiniteQuery({
+export const useSearchProducts = (params) =>
+    useInfiniteQuery({
         queryKey: ['products', 'search', params],
         queryFn: ({ pageParam = 0 }) => searchProducts({ ...params, limit: LIMIT, skip: pageParam }),
         getNextPageParam: getNextPage
     })
-}
 
-export const useCategories = () => {
-    return useQuery({
+export const useCategories = () =>
+    useQuery({
         queryKey: ['categories'],
         queryFn: getCategories
     })
-}
 
-export const useProductsByCategory = (category, params) => {
-    return useInfiniteQuery({
+export const useProductsByCategory = (category, params) =>
+    useInfiniteQuery({
         queryKey: ['products', category, params],
         queryFn: ({ pageParam = 0 }) => getProductsByCategory(category, { ...params, limit: LIMIT, skip: pageParam }),
         getNextPageParam: getNextPage,
         enabled: Boolean(category)
     })
-}
