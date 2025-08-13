@@ -1,5 +1,5 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
-import { getCategories, getProducts, getProductsByCategory, searchProducts } from '../services/productService';
+import { getCategories, getProductById, getProducts, getProductsByCategory, searchProducts } from '../services/productService';
 
 const LIMIT = 30;
 
@@ -34,4 +34,10 @@ export const useProductsByCategory = (category, params) =>
         queryFn: ({ pageParam = 0 }) => getProductsByCategory(category, { ...params, limit: LIMIT, skip: pageParam }),
         getNextPageParam: getNextPage,
         enabled: Boolean(category)
+    })
+
+export const useProductById = (id) =>
+    useQuery({
+        queryKey: ['products', id],
+        queryFn: () => getProductById(id)
     })

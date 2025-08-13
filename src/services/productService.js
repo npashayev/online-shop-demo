@@ -19,3 +19,8 @@ export const getProductsByCategory = (category, params) =>
     apiClient
         .get(`/products/category/${category}`, { params })
         .then(res => res.data)
+
+export const getProductById = (id) =>
+    apiClient
+        .get(`/products/${id}`)
+        .then(res => res.data)
