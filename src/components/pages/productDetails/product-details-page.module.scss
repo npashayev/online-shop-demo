@@ -1,0 +1,18 @@
+.pageContainer {
+    padding: 3rem 14rem;
+    font-size: 1.6rem;
+    background-color: white;
+    min-height: calc(100vh - 5.5rem);
+
+    .categoryContainer {
+        color: #98A2B3;
+        font-size: 1.8rem;
+
+        .categoryName {
+            color: #39B856;
+            font-weight: bold;
+        }
+    }
+
+    .mainInfo {}
+}
