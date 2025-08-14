@@ -2,6 +2,7 @@ import { useProductById } from "../../../hooks/useProducts"
 import { useParams } from "react-router-dom"
 import styles from './product-details-page.module.scss'
 import Loading from "../../common/Loading"
+import ProductGallery from "./ProductGallery"
 
 const ProductDetailsPage = () => {
 
@@ -21,6 +22,7 @@ const ProductDetailsPage = () => {
             </div>
 
             <div className={styles.mainInfo}>
+                <ProductGallery product={product} />
             </div>
         </main>
     )
