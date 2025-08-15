@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import styles from './product-card.module.scss'
+import star from "/src/assets/star.png"
 
 const ProductCard = ({ product }) => {
     const discountPercentage = Math.floor(product.discountPercentage);
     const productRating = Math.round(product.rating * 10) / 10;
+    const oldPrice = (product.price / (1 - discountPercentage / 100)).toFixed(2)
 
     return (
         <Link to={`/products/${product.id}`} className={styles.product}>
@@ -37,11 +39,9 @@ const ProductCard = ({ product }) => {
                     <div className={styles.ratingCnr}>
                         <div className={styles.rating}>{productRating}</div>
                         <div className={styles.starsCnr} style={{ width: `${(productRating / 5) * 60}px` }}>
-                            <img src="/src/assets/star.png" alt="" className={styles.star} />
-                            <img src="/src/assets/star.png" alt="" className={styles.star} />
-                            <img src="/src/assets/star.png" alt="" className={styles.star} />
-                            <img src="/src/assets/star.png" alt="" className={styles.star} />
-                            <img src="/src/assets/star.png" alt="" className={styles.star} />
+                            {[...Array(5)].map((_, i) => (
+                                <img key={i} src={star} alt="star" className={styles.star} />
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@ const ProductCard = ({ product }) => {
                 <div className={styles.priceCnr}>
                     {discountPercentage > 0 &&
                         <p className={styles.oldPrice}>
-                            {(product.price / (1 - discountPercentage / 100)).toFixed(2)}$
+                            {oldPrice}$
                         </p>
                     }
                     <p className={styles.newPrice}>{product.price}$</p>

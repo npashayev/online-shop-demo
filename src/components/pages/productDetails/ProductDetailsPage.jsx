@@ -1,5 +1,5 @@
 import { useProductById } from "../../../hooks/useProducts"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import styles from './product-details-page.module.scss'
 import Loading from "../../common/Loading"
 import ProductGallery from "./ProductGallery"
@@ -19,14 +19,14 @@ const ProductDetailsPage = () => {
         product &&
         <main className={styles.pageContainer}>
             <div className={styles.categoryContainer}>
-                Category / <span className={styles.categoryName}>{product.category}</span>
+                Category / <Link to={`/products/category/${product.category}`} className={styles.categoryName}>{product.category}</Link>
             </div>
 
             <div className={styles.mainInfo}>
                 <ProductGallery product={product} />
                 <ProductInfo product={product} />
             </div>
-        </main>
+        </main >
     )
 }
 

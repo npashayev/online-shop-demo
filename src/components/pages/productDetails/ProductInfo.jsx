@@ -17,7 +17,7 @@ const ProductInfo = ({ product }) => {
                 <div className={styles.ratingCnr}>
                     <div className={styles.starsCnr} style={{ width: `${(productRating / 5) * 90}px` }}>
                         {[...Array(5)].map((_, i) => (
-                            <img key={i} src={star} alt="" className={styles.star} />
+                            <img key={i} src={star} alt="star" className={styles.star} />
                         ))}
                     </div>
 

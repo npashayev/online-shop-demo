@@ -12,6 +12,11 @@
         .categoryName {
             color: #39B856;
             font-weight: bold;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 
