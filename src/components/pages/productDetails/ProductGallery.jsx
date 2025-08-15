@@ -8,6 +8,21 @@ const ProductGallery = ({ product }) => {
 
     const [activeImageIndex, setActiveImageIndex] = useState(0);
 
+    const productStockInfo = product.availabilityStatus === "In Stock"
+        ? {
+            availabilityStatus: product.availabilityStatus,
+            color: "#4CAF50"
+        }
+        : product.availabilityStatus === "Low Stock"
+            ? {
+                availabilityStatus: `Last ${product.stock} products !`,
+                color: "#FF9800"
+            }
+            : {
+                availabilityStatus: product.availabilityStatus,
+                color: "#9E9E9E"
+            }
+
     const thumbnailsRef = useRef(null);
 
     const scrollThumbnails = (direction) => {
@@ -31,6 +46,14 @@ const ProductGallery = ({ product }) => {
 
     return (
         <div className={styles.productGallery}>
+            <div
+                className={styles.availability}
+                style={{ color: 'white', backgroundColor: productStockInfo.color }}
+            >
+                {
+                    productStockInfo.availabilityStatus
+                }
+            </div>
             <div className={styles.mainImageContainer}>
                 <img
                     src={product.images[activeImageIndex]}

@@ -1,62 +1,75 @@
-.productGallery {
-    border: 1px solid darkcyan;
-    border-radius: 2rem;
-    width: 54rem;
-
-    .mainImageContainer {
-        .mainImage {
-            width: 100%;
-            user-select: none;
-        }
-    }
-
-    .galleryFooter {
-        display: flex;
-        gap: 1.5rem;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem;
-
-        .arrowWrapper {
+        .productGallery {
             flex-shrink: 0;
-            box-shadow: 0 0 5px rgba(16, 24, 40, 0.15);
-            width: 35px;
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            border: 1px solid lightgray;
-            cursor: pointer;
+            border: 1px solid darkcyan;
+            border-radius: 2rem;
+            width: 54rem;
+            position: relative;
 
-            &:hover {
-                background-color: lightgrey;
+            .availability {
+                width: max-content;
+                padding: 1rem 2rem;
+                border-radius: 0.5rem;
+                position: absolute;
+                right: 2rem;
+                top: 2rem;
             }
 
-            .arrowIcon {
-                width: 16px;
+            .mainImageContainer {
+                border-bottom: 1px solid lightgrey;
+
+                .mainImage {
+                    width: 100%;
+                    user-select: none;
+                }
+            }
+
+            .galleryFooter {
+                display: flex;
+                gap: 1.5rem;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem;
+
+                .arrowWrapper {
+                    flex-shrink: 0;
+                    box-shadow: 0 0 5px rgba(16, 24, 40, 0.15);
+                    width: 35px;
+                    aspect-ratio: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    border: 1px solid lightgray;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: lightgrey;
+                    }
+
+                    .arrowIcon {
+                        width: 16px;
+                    }
+                }
+
+
+                .thumbnailsContainer {
+                    display: flex;
+                    justify-content: center;
+                    gap: 1.5rem;
+                    overflow: auto;
+                    scrollbar-width: none;
+                    cursor: pointer;
+                    user-select: none;
+
+                    .thumbnail {
+                        width: 13rem;
+                        border: 1px solid lightgray;
+                        border-radius: 1rem;
+                    }
+
+                    .activeThumbnail {
+                        border: 1px solid #1A432E;
+                    }
+                }
             }
         }
-
-
-        .thumbnailsContainer {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            overflow: auto;
-            scrollbar-width: none;
-            cursor: pointer;
-            user-select: none;
-
-            .thumbnail {
-                width: 13rem;
-                border: 1px solid lightgray;
-                border-radius: 1rem;
-            }
-
-            .activeThumbnail {
-                border: 1px solid #1A432E;
-            }
-        }
-    }
-}
