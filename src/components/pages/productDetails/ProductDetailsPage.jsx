@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import styles from './product-details-page.module.scss'
 import Loading from "../../common/Loading"
 import ProductGallery from "./ProductGallery"
+import ProductInfo from "./ProductInfo"
 
 const ProductDetailsPage = () => {
 
@@ -23,6 +24,7 @@ const ProductDetailsPage = () => {
 
             <div className={styles.mainInfo}>
                 <ProductGallery product={product} />
+                <ProductInfo product={product} />
             </div>
         </main>
     )

@@ -6,7 +6,8 @@
 
     .categoryContainer {
         color: #98A2B3;
-        font-size: 1.8rem;
+        font-size: 2.4rem;
+        margin-bottom: 2rem;
 
         .categoryName {
             color: #39B856;
@@ -14,5 +15,8 @@
         }
     }
 
-    .mainInfo {}
+    .mainInfo {
+        display: flex;
+        gap: 5rem;
+    }
 }

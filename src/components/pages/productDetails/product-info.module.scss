@@ -1,0 +1,131 @@
+.infoCnr {
+
+    .infoHeading {
+
+        .title {
+            font-size: 4rem;
+            font-weight: bold;
+        }
+
+        .ratingCnr {
+            width: max-content;
+            display: flex;
+            gap: 0.6rem;
+            font-size: 1.8rem;
+            margin-top: 0.4rem;
+
+            .starsCnr {
+                display: flex;
+                overflow: hidden;
+
+                .star {
+                    display: block;
+                    height: 18px;
+                }
+            }
+
+            .reviewCount {
+                line-height: 1;
+            }
+
+            .ratingSeparator {
+                height: 18px;
+                width: 1px;
+                background-color: lightgray;
+                margin-inline: 0.6rem;
+            }
+        }
+
+        .priceCnr {
+            margin-top: 2.4rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 3.2rem;
+
+            .oldPrice {
+                color: lightgrey;
+                text-decoration: line-through;
+                font-size: 2.4rem;
+            }
+
+            .newPrice {
+                color: #39B856;
+                font-weight: bold;
+                line-height: 1;
+                display: block;
+            }
+        }
+    }
+
+    .separator {
+        height: 1px;
+        background-color: lightgrey;
+        margin-block: 2.4rem;
+    }
+
+    .description {
+        font-size: 1.8rem;
+    }
+
+    .tagsHeading {
+        margin-bottom: 1rem;
+        font-weight: bold;
+        font-size: 1.8rem;
+    }
+
+    .tagsCnr {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        .tag {
+            background-color: #FFF3E0;
+            border-radius: 0.5rem;
+            padding: 0.6rem 1rem;
+        }
+    }
+
+    .additionalInfo {
+        width: max-content;
+
+        .headingsCnr {
+            display: flex;
+            gap: 1rem;
+            background-color: #EAECF0;
+            border-radius: 6rem;
+            padding: 0.5rem;
+            margin-bottom: 2rem;
+
+            .heading {
+                border-radius: 6rem;
+                padding: 0.6rem 2rem;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: lightcyan;
+                }
+            }
+
+            .activeHeading {
+                background-color: white;
+            }
+        }
+
+        .detailsCnr {
+
+            .detailRow {
+                display: flex;
+                gap: 5rem;
+                justify-content: space-between;
+                border-bottom: 1px solid lightgrey;
+                padding-block: 0.7rem;
+
+                .detailName {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
