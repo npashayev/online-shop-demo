@@ -1,17 +1,11 @@
-import { useState } from 'react';
+import AdditionalInfo from './AdditionalInfo';
 import styles from './product-info.module.scss'
+import star from "/src/assets/star.png"
 
 const ProductInfo = ({ product }) => {
     const productRating = Math.round(product.rating * 10) / 10;
     const discountPercentage = Math.floor(product.discountPercentage);
-
-    const [activeTab, setActiveTab] = useState(1)
-
-    const tabs = [
-        { id: 1, label: "Product info" },
-        { id: 2, label: "Shipping info" },
-        { id: 3, label: "Warranty & Return policy" }
-    ];
+    const oldPrice = (product.price / (1 - discountPercentage / 100)).toFixed(2)
 
     return (
         <div className={styles.infoCnr}>
@@ -22,11 +16,9 @@ const ProductInfo = ({ product }) => {
 
                 <div className={styles.ratingCnr}>
                     <div className={styles.starsCnr} style={{ width: `${(productRating / 5) * 90}px` }}>
-                        <img src="/src/assets/star.png" alt="" className={styles.star} />
-                        <img src="/src/assets/star.png" alt="" className={styles.star} />
-                        <img src="/src/assets/star.png" alt="" className={styles.star} />
-                        <img src="/src/assets/star.png" alt="" className={styles.star} />
-                        <img src="/src/assets/star.png" alt="" className={styles.star} />
+                        {[...Array(5)].map((_, i) => (
+                            <img key={i} src={star} alt="" className={styles.star} />
+                        ))}
                     </div>
 
                     <div className={styles.ratingSeparator} />
@@ -38,7 +30,7 @@ const ProductInfo = ({ product }) => {
                     {
                         discountPercentage > 0 &&
                         <span className={styles.oldPrice}>
-                            {(product.price / (1 - discountPercentage / 100)).toFixed(2)}$
+                            {oldPrice}$
                         </span>
                     }
                     <span className={styles.newPrice}>{product.price}$</span>
@@ -62,66 +54,7 @@ const ProductInfo = ({ product }) => {
 
             <div className={styles.separator} />
 
-
-            <div className={styles.additionalInfo}>
-                <div className={styles.headingsCnr}>
-                    {
-                        tabs.map(tab => (
-                            <div
-                                key={tab.id}
-                                className={`${styles.heading} ${activeTab === tab.id ? styles.activeHeading : ""}`}
-                                onClick={() => setActiveTab(tab.id)}
-                            >
-                                {tab.label}
-                            </div>
-                        ))
-                    }
-                </div>
-
-                {
-                    activeTab == 1 &&
-                    <div className={styles.detailsCnr}>
-                        <div className={styles.detailRow}>
-                            <div className={styles.detailName}>Brand:</div>
-                            <div className={styles.detailInfo}>{product.brand}</div>
-                        </div>
-
-                        <div className={styles.detailRow}>
-                            <div className={styles.detailName}>Stock:</div>
-                            <div className={styles.detailInfo}>{product.stock}</div>
-                        </div>
-
-                        <div className={styles.detailRow}>
-                            <div className={styles.detailName}>Minimum order quantity:</div>
-                            <div className={styles.detailInfo}>{product.minimumOrderQuantity}</div>
-                        </div>
-                    </div>
-                }
-
-                {
-                    activeTab == 2 &&
-                    <div className={styles.detailsCnr}>
-                        <div className={styles.detailRow}>
-                            <div className={styles.detailInfo}>{product.shippingInformation}</div>
-                        </div>
-                    </div>
-                }
-
-                {
-                    activeTab == 3 &&
-                    <div className={styles.detailsCnr}>
-                        <div className={styles.detailRow}>
-                            <div className={styles.detailName}>Warranty information:</div>
-                            <div className={styles.detailInfo}>{product.warrantyInformation}</div>
-                        </div>
-
-                        <div className={styles.detailRow}>
-                            <div className={styles.detailName}>Return policy</div>
-                            <div className={styles.detailInfo}>{product.returnPolicy}</div>
-                        </div>
-                    </div>
-                }
-            </div>
+            <AdditionalInfo product={product} />
         </div >
     )
 }
