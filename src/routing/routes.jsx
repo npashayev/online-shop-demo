@@ -6,6 +6,7 @@ import AllProducts from "../components/pages/products/AllProducts";
 import SearchProducts from "../components/pages/products/SearchProducts";
 import ProductsByCategory from "../components/pages/products/ProductsByCategory";
 import ProductDetails from "../components/pages/productDetails/ProductDetailsPage";
+import LoginPage from "../components/pages/login/LoginPage";
 
 
 const router = createBrowserRouter([
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
                 element: <ProductDetails />
             }
         ]
+    },
+
+    {
+        path: '/login',
+        element: <LoginPage />
     }
 ]);
 
