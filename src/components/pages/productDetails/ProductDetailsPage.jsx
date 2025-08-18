@@ -20,8 +20,7 @@ const ProductDetailsPage = () => {
         product &&
         <main className={styles.pageContainer}>
             <div className={styles.categoryContainer}>
-                Category /
-                <a href={`/products/category/${product.category}`}
+                Category / <a href={`/products/category/${product.category}`}
                     target="_blank"
                     className={styles.categoryName}
                 >
