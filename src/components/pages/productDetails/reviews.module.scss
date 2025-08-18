@@ -1,0 +1,62 @@
+.main {
+    margin-top: 7rem;
+
+    .heading {
+        font-size: 3.2rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .reviewsCnr {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 3.2rem;
+
+        .review {
+            width: 50rem;
+            padding: 2.4rem;
+            border: 1px solid #D0D5DD;
+            border-radius: 1.6rem;
+            font-size: 1.6rem;
+
+            .reviewHeading {
+                display: flex;
+                justify-content: space-between;
+
+                .userInfo {
+
+                    .userName {
+                        font-weight: bold;
+                    }
+
+                    .date {
+                        color: #667085;
+                        font-size: 1.4rem;
+                    }
+                }
+
+                .ratingCnr {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+
+                    .rating {
+                        font-size: 2rem;
+                        font-weight: bold;
+                    }
+
+                    .star {
+                        height: 16px;
+                    }
+                }
+            }
+
+            .body {
+                margin-top: 2.4rem;
+
+            }
+        }
+    }
+}

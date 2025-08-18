@@ -58,8 +58,6 @@ const ProductInfo = ({ product }) => {
 
                 <AdditionalInfo product={product} />
             </div >
-
-            <Reviews />
         </>
     )
 }

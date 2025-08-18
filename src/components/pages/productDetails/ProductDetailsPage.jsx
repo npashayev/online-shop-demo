@@ -4,6 +4,7 @@ import styles from './product-details-page.module.scss'
 import Loading from "../../common/Loading"
 import ProductGallery from "./ProductGallery"
 import ProductInfo from "./ProductInfo"
+import Reviews from "./Reviews"
 
 const ProductDetailsPage = () => {
 
@@ -19,13 +20,21 @@ const ProductDetailsPage = () => {
         product &&
         <main className={styles.pageContainer}>
             <div className={styles.categoryContainer}>
-                Category / <Link to={`/products/category/${product.category}`} className={styles.categoryName}>{product.category}</Link>
+                Category /
+                <a href={`/products/category/${product.category}`}
+                    target="_blank"
+                    className={styles.categoryName}
+                >
+                    {product.category}
+                </a>
             </div>
 
             <div className={styles.mainInfo}>
                 <ProductGallery product={product} />
                 <ProductInfo product={product} />
             </div>
+
+            <Reviews reviews={product.reviews} />
         </main >
     )
 }
