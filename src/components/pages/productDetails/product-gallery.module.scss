@@ -31,9 +31,10 @@
                 justify-content: center;
                 padding: 2rem;
 
-                .arrowWrapper {
+                .arrowButton {
                     flex-shrink: 0;
                     box-shadow: 0 0 5px rgba(16, 24, 40, 0.15);
+                    background-color: white;
                     width: 35px;
                     aspect-ratio: 1;
                     display: flex;

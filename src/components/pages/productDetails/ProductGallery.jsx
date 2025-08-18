@@ -36,7 +36,8 @@ const ProductGallery = ({ product }) => {
             if (thumbnail) {
                 thumbnail.scrollIntoView({
                     behavior: "smooth",
-                    inline: "center" // scrolls horizontally and centers the thumbnail
+                    inline: "center", // scrolls horizontally and centers the thumbnail
+                    block: "nearest"
                 });
             }
 
@@ -64,12 +65,12 @@ const ProductGallery = ({ product }) => {
             </div>
 
             <div className={styles.galleryFooter}>
-                <div
-                    className={styles.arrowWrapper}
+                <button
+                    className={styles.arrowButton}
                     onClick={() => scrollThumbnails("left")}
                 >
                     <FontAwesomeIcon icon={faArrowLeft} className={styles.arrowIcon} />
-                </div>
+                </button>
                 <div
                     ref={thumbnailsRef}
                     className={styles.thumbnailsContainer}
@@ -91,12 +92,12 @@ const ProductGallery = ({ product }) => {
                     }
                 </div>
 
-                <div
-                    className={styles.arrowWrapper}
+                <button
+                    className={styles.arrowButton}
                     onClick={() => scrollThumbnails("right")}
                 >
                     <FontAwesomeIcon icon={faArrowRight} className={styles.arrowIcon} />
-                </div>
+                </button>
             </div>
         </div>
     )
