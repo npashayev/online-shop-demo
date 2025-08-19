@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import styles from './login.module.scss'
 import { useLogin } from '../../../hooks/useAuth';
-import Loading from '/src/components/common/Loading'
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
     const [passwordVisible, setPasswordVisible] = useState(true);
     const [loginData, setLoginData] = useState({ username: '', password: '' });
     const [errorMessage, setErrorMessage] = useState('');
     const login = useLogin();
+    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         setErrorMessage("");
@@ -28,7 +29,12 @@ const LoginPage = () => {
             setErrorMessage('Please fill in all fields')
             return
         }
-        login.mutate(loginData);
+
+        login.mutate(loginData, {
+            onSuccess: () => {
+                navigate('/')
+            }
+        });
     }
 
     return (
