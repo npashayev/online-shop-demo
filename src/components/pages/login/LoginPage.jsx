@@ -5,7 +5,7 @@ import { useLogin } from '../../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-    const [passwordVisible, setPasswordVisible] = useState(true);
+    const [passwordVisible, setPasswordVisible] = useState(false);
     const [loginData, setLoginData] = useState({ username: '', password: '' });
     const [errorMessage, setErrorMessage] = useState('');
     const login = useLogin();
@@ -43,19 +43,20 @@ const LoginPage = () => {
                 <h1 className={styles.formHeaderText}>
                     Login
                 </h1>
+
                 {
                     (errorMessage || login.error) &&
                     <div className={styles.error}>
                         {errorMessage || login.error.response?.data?.message}
                     </div>
                 }
+
                 <div className={styles.inputField}>
                     <input
                         onChange={handleInputChange}
                         value={loginData.username}
                         type='text'
                         name='username'
-                        className={styles.username}
                         disabled={login.isPending}
                         required
                     />
@@ -68,12 +69,16 @@ const LoginPage = () => {
                         value={loginData.password}
                         name='password'
                         type={passwordVisible ? 'text' : 'password'}
-                        className={styles.password}
                         disabled={login.isPending}
                         required
                     />
                     <label className={login.isPending ? styles.submitting : ''}>Password</label>
-                    <button type='button' onClick={() => setPasswordVisible(prev => !prev)} className={styles.toggleBtn}>
+                    <button
+                        type='button'
+                        onClick={() => setPasswordVisible(prev => !prev)}
+                        disabled={login.isPending}
+                        className={styles.toggleBtn}
+                    >
                         {passwordVisible ? <FaRegEye /> : <FaRegEyeSlash />}
                     </button>
                 </div>

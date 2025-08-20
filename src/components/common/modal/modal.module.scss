@@ -14,13 +14,13 @@
 
     .modal {
         background-color: white;
-        max-width: 400px;
+        max-width: 600px;
         font-size: 1.6rem;
         display: flex;
         flex-direction: column;
         gap: 3rem;
         align-items: center;
-        padding: 3rem;
+        padding: 5rem;
         border-radius: 3rem;
         animation: fadeIn 0.2s ease forwards;
 
@@ -35,6 +35,10 @@
             background-color: red;
             color: white;
             cursor: pointer;
+
+            &:hover {
+                background-color: rgb(250, 64, 64);
+            }
         }
     }
 
