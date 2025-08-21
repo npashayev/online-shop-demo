@@ -8,6 +8,8 @@ import ProductsByCategory from "../components/pages/products/ProductsByCategory"
 import ProductDetails from "../components/pages/productDetails/ProductDetailsPage";
 import LoginPage from "../components/pages/login/LoginPage";
 import RegisterPage from "../components/pages/register/RegisterPage";
+import PrivateRoutes from "../components/pages/PrivateRoutes";
+import UserInfo from "../components/pages/user-info/UserInfo";
 
 
 const router = createBrowserRouter([
@@ -28,6 +30,15 @@ const router = createBrowserRouter([
             {
                 path: 'products/:id',
                 element: <ProductDetails />
+            },
+            {
+                element: <PrivateRoutes />,
+                children: [
+                    {
+                        path: 'user-info',
+                        element: <UserInfo />
+                    }
+                ]
             }
         ]
     },
