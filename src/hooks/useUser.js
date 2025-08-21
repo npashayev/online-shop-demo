@@ -1,5 +1,5 @@
-import { useMutation } from "@tanstack/react-query";
-import { login, register } from "../services/authService";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getCurrentUser, login, register } from "../services/userService";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/userSlice";
 
@@ -30,3 +30,9 @@ export const useRegister = () => {
         },
     })
 }
+
+export const useCurrentUser = () =>
+    useQuery({
+        queryKey: ['currentUser'],
+        queryFn: getCurrentUser
+    })
