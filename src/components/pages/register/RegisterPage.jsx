@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import styles from '../login/login.module.scss'
-import { useRegister } from '../../../hooks/useLogin';
+import { useRegister } from '../../../hooks/useUser';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../../common/modal/Modal';
 

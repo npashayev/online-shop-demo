@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import styles from './login.module.scss'
-import { useLogin } from '../../../hooks/useLogin';
+import { useLogin } from '../../../hooks/useUser';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
