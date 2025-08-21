@@ -4,21 +4,28 @@
     .btnCnr {
         height: 36px;
         aspect-ratio: 1;
-        background-color: red;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
-        background-color: #1D4ED8;
         cursor: pointer;
+        color: white;
+        overflow: hidden;
+    }
 
+    .loginBtnCnr {
+        background-color: #1D4ED8;
 
         &:hover {
             background-color: #1b399b;
         }
+    }
 
-        .loginButton {
-            color: white;
+    .userBtnCnr {
+        border: 1px solid lightgray;
+
+        .userImage {
+            height: 100%;
         }
     }
 
@@ -31,11 +38,13 @@
         background-color: white;
         border-radius: 0.4rem;
         overflow: hidden;
+        z-index: 50000;
 
         .item {
             color: black;
             text-decoration: none;
             width: 100%;
+            min-width: max-content;
             text-align: center;
             padding: 4px 12px;
 
