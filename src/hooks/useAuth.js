@@ -1,32 +1,12 @@
-import { useMutation } from "@tanstack/react-query";
-import { login, register } from "../services/authService";
-import { useDispatch } from "react-redux";
-import { setUser } from "../store/userSlice";
+import { useSelector } from "react-redux";
 
+const useAuth = () => {
+    const user = useSelector(state => state.user.user);
 
-export const useLogin = () => {
-    const dispatch = useDispatch();
+    return {
+        user,
+        isAuthenticated: !!user?.token, // "!!" is for converting the value into boolean
+    };
+};
 
-    return useMutation({
-        mutationFn: (data) => login(data),
-        onSuccess: (data) => {
-            dispatch(setUser(data));
-
-            //store tokens in local storage
-            localStorage.setItem("accessToken", data.accessToken)
-            localStorage.setItem("refreshToken", data.refreshToken)
-        }
-    })
-}
-
-export const useRegister = () => {
-    const dispatch = useDispatch();
-
-    return useMutation({
-        mutationFn: (data) => register(data),
-        onSuccess: (data) => {
-            dispatch(setUser(data));
-            console.log(data)
-        },
-    })
-}
+export default useAuth;
