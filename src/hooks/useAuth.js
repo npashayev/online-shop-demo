@@ -5,7 +5,7 @@ const useAuth = () => {
 
     return {
         user,
-        isAuthenticated: !!user?.token, // "!!" is for converting the value into boolean
+        isAuthenticated: !!user?.accessToken, // "!!" is for converting the value into boolean
     };
 };
 
