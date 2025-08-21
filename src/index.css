@@ -3,6 +3,11 @@
     font-family: "Nunito", sans-serif;
 }
 
+input,
+button {
+    font-family: "Nunito", sans-serif;
+}
+
 * {
     margin: 0;
     padding: 0;
