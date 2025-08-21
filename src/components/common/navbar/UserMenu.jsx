@@ -1,17 +1,48 @@
-import { useSelector } from "react-redux";
-import styles from './user-menu.module.scss'
+import styles from './dropdown.module.scss'
 import LoginMenu from "./LoginMenu";
+import { useEffect, useRef, useState } from 'react';
+import UserOptions from "./UserOptions";
+import useAuth from '/src/hooks/useAuth';
+
 
 
 const UserMenu = () => {
-    const user = useSelector((state) => state.user.user)
+
+    const { user } = useAuth();
+
+    const [isOpen, setIsOpen] = useState(false);
+    const menuRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+    }, [])
 
     return (
         <div className={styles.main}>
             {
                 user
-                    ? ""
-                    : <LoginMenu />
+                    ? <UserOptions
+                        isOpen={isOpen}
+                        setIsOpen={setIsOpen}
+                        menuRef={menuRef}
+                        user={user}
+                    />
+
+                    : <LoginMenu
+                        isOpen={isOpen}
+                        setIsOpen={setIsOpen}
+                        menuRef={menuRef}
+                    />
             }
         </div>
     )
