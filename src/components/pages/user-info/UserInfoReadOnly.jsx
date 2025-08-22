@@ -1,109 +1,69 @@
-import styles from "./user-info.module.scss"
+import styles from "./user-info.module.scss";
+
+const InfoField = ({ label, value }) => (
+    <div className={styles.inputCnr}>
+        <label>{label}</label>
+        <p className={styles.info}>{value || ''}</p>
+    </div>
+);
 
 const UserInfoReadOnly = ({ user }) => {
-
     return (
         user &&
         <div className={styles.componentContainer}>
+
+            {/* General Information */}
             <div className={styles.block}>
                 <div className={styles.heading}>General information</div>
-
                 <div className={styles.inputGroup}>
-                    <div className={styles.inputCnr}>
-                        <label>First name</label>
-                        <p className={styles.info}>{user.firstName}</p>
-                    </div>
-
-                    <div className={styles.inputCnr}>
-                        <label>Last name</label>
-                        <p className={styles.info}>{user.lastName}</p>
-                    </div>
-
-                    <div className={styles.inputCnr}>
-                        <label>Maiden name</label>
-                        <p className={styles.info}>{user.maidenName}</p>
-                    </div>
+                    <InfoField label="First name" value={user.firstName} />
+                    <InfoField label="Last name" value={user.lastName} />
+                    <InfoField label="Maiden name" value={user.maidenName} />
                 </div>
 
                 <div className={styles.inputGroup}>
-                    <div className={styles.inputCnr}>
-                        <label>Username</label>
-                        <p className={styles.info}>{user.username}</p>
-                    </div>
-
-                    <div className={styles.inputCnr}>
-                        <label>Email</label>
-                        <p className={styles.info}>{user.email}</p>
-                    </div>
+                    <InfoField label="Username" value={user.username} />
+                    <InfoField label="Email" value={user.email} />
                 </div>
 
                 <div className={styles.inputGroup}>
-                    <div className={styles.inputCnr}>
-                        <label>Phone</label>
-                        <p className={styles.info}>{user.phone}</p>
-                    </div>
+                    <InfoField label="Phone" value={user.phone} />
                 </div>
             </div>
 
+            {/* Address Information */}
             <div className={styles.block}>
                 <div className={styles.heading}>Address information</div>
-
                 <div className={styles.inputGroup}>
-                    <div className={styles.inputCnr}>
-                        <label>Address</label>
-                        <p className={styles.info}>{user.address?.address}</p>
-                    </div>
+                    <InfoField label="Address" value={user.address?.address} />
                 </div>
 
                 <div className={styles.inputGroup}>
-                    <div className={styles.inputCnr}>
-                        <label>City</label>
-                        <p className={styles.info}>{user.address?.city}</p>
-                    </div>
-
-                    <div className={styles.inputCnr}>
-                        <label>State</label>
-                        <p className={styles.info}>{user.address?.state}</p>
-                    </div>
+                    <InfoField label="City" value={user.address?.city} />
+                    <InfoField label="State" value={user.address?.state} />
                 </div>
 
                 <div className={styles.inputGroup}>
-                    <div className={styles.inputCnr}>
-                        <label>State code</label>
-                        <p className={styles.info}>{user.address?.stateCode}</p>
-                    </div>
-
-                    <div className={styles.inputCnr}>
-                        <label>Postal code</label>
-                        <p className={styles.info}>{user.address?.postalCode}</p>
-                    </div>
+                    <InfoField label="State code" value={user.address?.stateCode} />
+                    <InfoField label="Postal code" value={user.address?.postalCode} />
                 </div>
             </div>
 
+            {/* Card Information */}
             <div className={styles.block}>
                 <div className={styles.heading}>Card information</div>
-
                 <div className={styles.inputGroup}>
-                    <div className={styles.inputCnr}>
-                        <label>Card number</label>
-                        <p className={styles.info}>{user.bank?.cardNumber}</p>
-                    </div>
+                    <InfoField label="Card number" value={user.bank?.cardNumber} />
                 </div>
 
                 <div className={styles.inputGroup}>
-                    <div className={styles.inputCnr}>
-                        <label>Expiration date</label>
-                        <p className={styles.info}>{user.bank?.cardExpire}</p>
-                    </div>
-
-                    <div className={styles.inputCnr}>
-                        <label>Currency</label>
-                        <p className={styles.info}>{user.bank?.currency}</p>
-                    </div>
+                    <InfoField label="Expiration date" value={user.bank?.cardExpire} />
+                    <InfoField label="Currency" value={user.bank?.currency} />
                 </div>
             </div>
-        </div>
-    )
-}
 
-export default UserInfoReadOnly
+        </div>
+    );
+};
+
+export default UserInfoReadOnly;
