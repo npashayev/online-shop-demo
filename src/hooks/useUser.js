@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getCurrentUser, login, register } from "../services/userService";
+import { getCurrentUser, login, register, updateCurrentUser } from "../services/userService";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/userSlice";
 
@@ -35,4 +35,10 @@ export const useCurrentUser = () =>
     useQuery({
         queryKey: ['currentUser'],
         queryFn: getCurrentUser
+    })
+
+export const useUpdateCurrentUser = () =>
+    useMutation({
+        mutationFn: (data) => updateCurrentUser(data),
+        onSuccess: (data) => console.log("NEW data", data)
     })
