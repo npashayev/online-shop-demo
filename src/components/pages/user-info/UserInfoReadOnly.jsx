@@ -1,8 +1,6 @@
 import styles from "./user-info.module.scss"
 
-const UserInfoReadOnly = ({ userData }) => {
-
-    const { data: user } = userData;
+const UserInfoReadOnly = ({ user }) => {
 
     return (
         user &&
