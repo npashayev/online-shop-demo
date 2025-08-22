@@ -1,8 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './modal.module.scss'
 
 const Modal = ({ children }) => {
     const [isOpen, setIsOpen] = useState(true);
+
+    useEffect(() => {
+        // This prevents scrolling when modal is open
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isOpen]);
 
     return (
         isOpen &&
