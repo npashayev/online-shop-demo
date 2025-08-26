@@ -47,6 +47,11 @@
             min-width: max-content;
             text-align: center;
             padding: 4px 12px;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+
 
             &:first-child {
                 border-bottom: 1px solid lightgrey;

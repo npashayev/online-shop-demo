@@ -9,7 +9,6 @@ const InfoField = ({ label, value }) => (
 
 const UserInfoReadOnly = ({ user }) => {
     return (
-        user &&
         <div className={styles.componentContainer}>
 
             {/* General Information */}
