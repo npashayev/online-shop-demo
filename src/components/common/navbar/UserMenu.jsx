@@ -11,14 +11,16 @@ const UserMenu = () => {
     const { user } = useAuth();
 
     const [isOpen, setIsOpen] = useState(false);
+
     const menuRef = useRef(null);
 
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (menuRef.current && !menuRef.current.contains(event.target)) {
-                setIsOpen(false);
-            }
+    const handleClickOutside = (event) => {
+        if (menuRef.current && !menuRef.current.contains(event.target)) {
+            setIsOpen(false);
         }
+    }
+
+    useEffect(() => {
 
         document.addEventListener("mousedown", handleClickOutside);
 
