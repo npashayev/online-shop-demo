@@ -8,11 +8,11 @@ const ProductsByCategory = () => {
     const [searchParams] = useSearchParams();
     const params = useMemo(() => Object.fromEntries(searchParams.entries()), [searchParams]);
 
-    const { category } = useParams();
+    const { productCategory } = useParams();
 
-    const productsByCategory = useProductsByCategory(category, params);
+    const productsByCategory = useProductsByCategory(productCategory, params);
 
-    if (productsByCategory.error) return <main>An error occurred while searching for products in '{category}' category</main>
+    if (productsByCategory.error) return <main>An error occurred while searching for products in '{productCategory}' category</main>
 
     return <ProductsList productsData={productsByCategory} />
 }

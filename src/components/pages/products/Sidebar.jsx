@@ -10,8 +10,8 @@ import { Link, useParams } from 'react-router-dom';
 const Sidebar = () => {
 
 
-    const { category } = useParams();
-    const activeCategory = category ?? 'all';
+    const { productCategory } = useParams();
+    const activeCategory = productCategory ?? 'all';
 
     const { data: categories, isLoading } = useCategories();
 

@@ -24,18 +24,18 @@ const router = createBrowserRouter([
                 children: [
                     { index: true, element: <AllProducts /> },
                     { path: 'search', element: <SearchProducts /> },
-                    { path: 'category/:category', element: <ProductsByCategory /> }
+                    { path: 'category/:productCategory', element: <ProductsByCategory /> }
                 ]
             },
             {
-                path: 'products/:id',
+                path: 'products/:productId',
                 element: <ProductDetails />
             },
             {
                 element: <PrivateRoutes />,
                 children: [
                     {
-                        path: 'user-info/:id',
+                        path: 'user-info/:userId',
                         element: <UserInfo />
                     }
                 ]

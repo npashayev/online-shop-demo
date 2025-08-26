@@ -5,12 +5,12 @@ import { Navigate, Outlet, useParams } from 'react-router-dom'
 const PrivateRoutes = () => {
     const { isAuthenticated, user } = useAuth();
 
-    const { id } = useParams();
+    const { userId } = useParams();
 
 
     if (!isAuthenticated) return <Navigate to="/login" replace />
 
-    if (id !== String(user.id)) {
+    if (userId !== String(user.id)) {
         return <NotAuthorized />;
     }
 

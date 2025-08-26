@@ -8,9 +8,9 @@ import Reviews from "./Reviews"
 
 const ProductDetailsPage = () => {
 
-    const { id } = useParams();
+    const { productId } = useParams();
 
-    const { data: product, isLoading, error } = useProductById(id);
+    const { data: product, isLoading, error } = useProductById(productId);
 
     if (error) return <div>An error occurred while fetching product</div>
 
