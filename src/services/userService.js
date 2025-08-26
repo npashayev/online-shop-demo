@@ -15,7 +15,7 @@ export const getCurrentUser = () =>
         .get('/user/me')
         .then(res => res.data)
 
-export const updateCurrentUser = (data) =>
+export const updateCurrentUser = (id, data) =>
     apiClient
-        .post('/users/add', data)
+        .put(`/users/${id}`, data)
         .then(res => res.data)

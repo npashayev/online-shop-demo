@@ -15,7 +15,7 @@ const UserOptions = ({ isOpen, setIsOpen, menuRef, user }) => {
             isOpen &&
             <div className={styles.dropdown}>
                 <Link
-                    to="/user-info"
+                    to={`/user-info/${user.id}`}
                     onClick={() => setIsOpen(false)}
                     className={styles.item}
                 >
@@ -23,7 +23,7 @@ const UserOptions = ({ isOpen, setIsOpen, menuRef, user }) => {
                 </Link>
             </div>
         }
-    </div>
+    </div >
 }
 
 export default UserOptions

@@ -35,7 +35,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoutes />,
                 children: [
                     {
-                        path: 'user-info',
+                        path: 'user-info/:id',
                         element: <UserInfo />
                     }
                 ]

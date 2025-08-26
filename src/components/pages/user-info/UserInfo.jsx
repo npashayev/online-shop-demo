@@ -5,23 +5,26 @@ import { useEffect, useState } from "react";
 import EditUserInfo from "./EditUserInfo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { produce } from "immer";
 import { useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import useAuth from "hooks/useAuth";
 import { setUser } from "/src/store/userSlice";
 import Modal from "components/common/modal/Modal";
 import Loading from "components/common/Loading";
+import { updateNestedState } from "utils/updateNestedState";
 
 const UserInfo = () => {
 
     const [editMode, setEditMode] = useState(false);
 
-    const { data: userData, isPending, error } = useCurrentUser(); // This gets the whole info about current user
+    // This gets the user info stored in redux persist
+    const { user: persistedUser } = useAuth();
 
-    const [currentUser, setCurrentUser] = useState(() => userData || {}) // This state is used to control input values and pass the data in user update function
+    // This gets the whole info about current user
+    const { data: userData, isPending, error } = useCurrentUser();
 
-    const { user: persistedUser } = useAuth(); // This gets the user info stored in redux persist
+    // This state is used to control input values and pass the data in user update function
+    const [currentUser, setCurrentUser] = useState(() => userData || {})
 
     useEffect(() => setCurrentUser(userData || {}), [userData])
 
@@ -29,32 +32,19 @@ const UserInfo = () => {
 
     let dispatch = useDispatch();
 
-    const { mutate, isPending: isUpdating } = useUpdateCurrentUser(); // User updater hook
+    const { mutate, isPending: isUpdating } = useUpdateCurrentUser(persistedUser.id); // User updater hook
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
 
-        setCurrentUser(prev =>
-            produce(prev, draft => {
-                const keys = name.split(".");
-                let temp = draft;
-
-                keys.forEach((key, index) => {
-                    if (index === keys.length - 1) {
-                        temp[key] = value; // set the final property
-                    } else {
-                        if (!temp[key]) temp[key] = {}; //create nested object is missing
-                        temp = temp[key]; // go deeper
-                    }
-                })
-            })
-        );
+        setCurrentUser(prev => updateNestedState(prev, name, value));
     }
 
     const handleUpdate = () => {
         mutate(currentUser, {
             onSuccess: (data) => {
                 queryClient.setQueryData(["currentUser"], data)
+
                 dispatch(setUser({
                     ...persistedUser,
                     username: data.username,
@@ -63,6 +53,7 @@ const UserInfo = () => {
                     lastName: data.lastName,
                 }))
 
+                console.log(data)
                 setEditMode(false)
             }
         })
@@ -74,11 +65,11 @@ const UserInfo = () => {
 
     return (
         <>
-            {/* <Modal>
+            <Modal>
                 Updating a user will not update it into the server.
                 It will simulate a PUT/PATCH request and will return updated user with modified data.
                 If you refresh the page or log out and log back in, all changes will be lost.
-            </Modal> */}
+            </Modal>
 
             {
                 editMode
