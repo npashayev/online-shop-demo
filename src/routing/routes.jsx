@@ -10,12 +10,14 @@ import LoginPage from "../components/pages/login/LoginPage";
 import RegisterPage from "../components/pages/register/RegisterPage";
 import PrivateRoutes from "../components/pages/PrivateRoutes";
 import UserInfo from "../components/pages/user-info/UserInfo";
+import ErrorPage from "components/pages/error-page/ErrorPage";
 
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Layout />,
+        errorElement: <ErrorPage />,
         children: [
             { index: true, element: <HomePage /> },
             {
