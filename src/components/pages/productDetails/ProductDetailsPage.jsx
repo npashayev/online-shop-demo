@@ -12,7 +12,7 @@ const ProductDetailsPage = () => {
 
     const { data: product, isLoading, error } = useProductById(productId);
 
-    if (error) return <div>An error occurred while fetching product</div>
+    if (error) return <div>{error.response?.data?.message || "An error occurred while fetching the product"}</div>
 
     if (isLoading) return <Loading size="50px" />
 
