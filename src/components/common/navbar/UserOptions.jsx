@@ -2,6 +2,8 @@ import { useDispatch } from 'react-redux';
 import styles from './dropdown.module.scss'
 import { Link, useNavigate } from "react-router-dom";
 import { setUser } from 'store/userSlice';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const UserOptions = ({ isOpen, setIsOpen, menuRef, user }) => {
@@ -10,8 +12,9 @@ const UserOptions = ({ isOpen, setIsOpen, menuRef, user }) => {
     const navigate = useNavigate();
 
     return <div ref={menuRef} className={styles.main}>
-        <div className={`${styles.btnCnr} ${styles.userBtnCnr}`} onClick={() => setIsOpen(prev => !prev)}>
-            <img src={user.image} alt={user.username} className={styles.userImage} />
+        <div className={styles.userName} onClick={() => setIsOpen(prev => !prev)}>
+            {user.firstName + " " + user.lastName}
+            <FontAwesomeIcon icon={faUser} className={styles.userIcon} />
         </div>
 
 

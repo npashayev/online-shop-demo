@@ -1,5 +1,19 @@
 .main {
     position: relative;
+    display: flex;
+    align-items: center;
+
+    .userName {
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        cursor: pointer;
+
+        .userIcon {
+            color: gray;
+        }
+    }
 
     .btnCnr {
         height: 36px;
