@@ -2,13 +2,10 @@ import styles from './dropdown.module.scss'
 import LoginMenu from "./LoginMenu";
 import { useEffect, useRef, useState } from 'react';
 import UserOptions from "./UserOptions";
-import useAuth from '/src/hooks/useAuth';
 
 
 
-const UserMenu = () => {
-
-    const { user } = useAuth();
+const UserMenu = ({ user }) => {
 
     const [isOpen, setIsOpen] = useState(false);
 

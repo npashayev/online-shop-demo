@@ -1,8 +1,13 @@
 import styles from "./navbar.module.scss";
 import { NavLink } from "react-router-dom";
 import UserMenu from "./UserMenu";
+import UserBasket from "./UserBasket";
+import useAuth from "hooks/useAuth";
+
 
 const Navbar = () => {
+
+    const { user } = useAuth();
 
     return (
         <header>
@@ -26,7 +31,8 @@ const Navbar = () => {
                     </ul>
                 </nav>
 
-                <UserMenu />
+                <UserBasket user={user} />
+                <UserMenu user={user} />
             </div>
         </header>
     );
