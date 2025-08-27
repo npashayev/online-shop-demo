@@ -1,0 +1,30 @@
+.main {
+    width: 300px;
+    min-height: 300px;
+    position: absolute;
+    right: 100px;
+    top: 55px;
+    background-color: white;
+    padding: 1rem;
+
+    .cart {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+
+        .cartItem {
+            padding: 0.4rem;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 15px;
+
+            .imageCnr {
+
+                .thumbnail {
+                    height: 80px;
+                    border-radius: 8px;
+                }
+            }
+        }
+
+    }
+}
