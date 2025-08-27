@@ -40,5 +40,4 @@ export const useCurrentUser = () =>
 export const useUpdateCurrentUser = (id) =>
     useMutation({
         mutationFn: (data) => updateCurrentUser(id, data),
-        onSuccess: (data) => console.log("NEW data", data)
     })
