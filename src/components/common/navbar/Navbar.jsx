@@ -12,7 +12,7 @@ const Navbar = () => {
             </div>
 
             <div className={styles.right}>
-                <nav>
+                <nav className={styles.navigation}>
                     <ul className={styles.linksContainer}>
                         <li>
                             <NavLink to="/" className={({ isActive }) => isActive ? `${styles.link} ${styles.active}` : styles.link}>
