@@ -11,13 +11,14 @@ import RegisterPage from "../components/pages/register/RegisterPage";
 import PrivateRoutes from "../components/pages/PrivateRoutes";
 import UserInfo from "../components/pages/user-info/UserInfo";
 import ErrorPage from "components/pages/error-page/ErrorPage";
+import CartsPage from "components/pages/carts/CartsPage";
 
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Layout />,
-        errorElement: <ErrorPage />,
+        // errorElement: <ErrorPage />,
         children: [
             { index: true, element: <HomePage /> },
             {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
                     {
                         path: 'user-info/:userId',
                         element: <UserInfo />
+                    },
+                    {
+                        path: ':userId/carts',
+                        element: <CartsPage />
                     }
                 ]
             }
