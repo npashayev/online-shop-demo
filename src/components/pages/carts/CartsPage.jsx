@@ -4,6 +4,7 @@ import useAuth from 'hooks/useAuth'
 import Loading from 'components/common/Loading';
 import { useQueryClient } from '@tanstack/react-query';
 import Cart from './Cart';
+import CartsPageHeader from './CartsPageHeader';
 
 const CartsPage = () => {
 
@@ -44,15 +45,36 @@ const CartsPage = () => {
         )
     }
 
+    const handleProductDelete = (cartId, product) => {
+        const updatedCart = cartsData.carts.find(cart => cart.id === cartId)
+        const updatedProductsArray = updatedCart.products.filter(p => p.id !== product.id)
+        console.log(updatedProductsArray);
+
+        updateUserCart.mutate({
+            cartId,
+            data: {
+                products: updatedProductsArray
+            }
+        },
+            {
+                onSuccess: (updatedCart) => queryClient.setQueryData(["currentUser", "carts"], cachedCartsData => ({
+                    ...cachedCartsData,
+                    carts: cachedCartsData.carts.map(cachedCart => cachedCart.id === updatedCart.id
+                        ? updatedCart
+                        : cachedCart
+                    )
+                }))
+            }
+        )
+    }
+
     if (error) return <div className={styles.main}>Error happened while fetching cart</div>
 
     if (isLoading) return <div className={styles.main}><Loading /></div>
 
     return (
         <main className={styles.main}>
-            <div className={styles.mainHeading}>
-                <div className={styles.headingText}>You have {cartsData.total} carts in your basket</div>
-            </div>
+            <CartsPageHeader cartsData={cartsData} />
 
             {
                 cartsData.carts.map((cart, index) => <Cart
@@ -61,6 +83,7 @@ const CartsPage = () => {
                     index={index}
                     handleQuantityChange={handleQuantityChange}
                     updateUserCart={updateUserCart}
+                    handleProductDelete={handleProductDelete}
                 />)
             }
         </main >

@@ -1,7 +1,7 @@
 import styles from './carts.module.scss'
 import ProductItem from './ProductItem';
 
-const Cart = ({ cart, index, handleQuantityChange, updateUserCart }) => {
+const Cart = ({ cart, index, handleQuantityChange, updateUserCart, handleProductDelete }) => {
     return (
         <div className={styles.cart}>
             <div className={styles.cartHeader}>
@@ -21,6 +21,7 @@ const Cart = ({ cart, index, handleQuantityChange, updateUserCart }) => {
                             handleQuantityChange={handleQuantityChange}
                             updateUserCart={updateUserCart}
                             cartId={cart.id}
+                            handleProductDelete={handleProductDelete}
                         />
                     })
                 }

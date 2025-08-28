@@ -5,9 +5,23 @@
 
 
     .mainHeading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3rem;
 
         .headingText {
             font-weight: bold;
+        }
+
+        .addCartBtn {
+            background: none;
+            border: none;
+            background-color: green;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 1rem;
+            cursor: pointer;
         }
     }
 
@@ -78,8 +92,13 @@
                     font-weight: bold;
                 }
 
-                .trashCan {
-                    cursor: pointer;
+                .trashCanButton {
+                    background: none;
+                    border: none;
+
+                    .trashCanIcon {
+                        cursor: pointer;
+                    }
                 }
             }
         }
