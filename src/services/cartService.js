@@ -7,8 +7,5 @@ export const getUserCarts = (id) =>
 
 export const updateUserCart = ({ cartId, data }) =>
     apiClient
-        .put(`/carts/${cartId}`, {
-            merge: true,
-            ...data
-        })
+        .put(`/carts/${cartId}`, data)
         .then(res => res.data)
