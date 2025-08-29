@@ -5,6 +5,9 @@ import Loading from 'components/common/Loading';
 import { useQueryClient } from '@tanstack/react-query';
 import Cart from './Cart';
 import CartsPageHeader from './CartsPageHeader';
+import { useAddNewUserCart } from 'hooks/useUserCarts'
+import { useEffect } from 'react';
+
 
 const CartsPage = () => {
 
@@ -16,9 +19,37 @@ const CartsPage = () => {
 
     const queryClient = useQueryClient();
 
+    const addNewCart = useAddNewUserCart();
+
+    const handleAddNewUserCart = () => {
+        addNewCart.mutate({
+            userId: user.id,
+            products: [{}]
+        },
+            {
+                onSuccess: (newUserCart) => queryClient.setQueryData(["currentUser", "carts"], cachedCartsData => {
+                    if (cachedCartsData?.carts?.some(cart => cart.id === newUserCart.id)) {
+                        alert("You cannot add more new carts!")
+                        return cachedCartsData
+                    }
+
+                    return {
+                        ...cachedCartsData,
+                        carts: [...cachedCartsData.carts, newUserCart]
+                    }
+                })
+            })
+    }
+
+    useEffect(() => {
+        if (cartsData?.carts?.length === 0) {
+            handleAddNewUserCart()
+        }
+    }, [cartsData?.carts?.length])
+
     const handleQuantityChange = (cartId, product, isIncrease = false) => {
         const changeValue = isIncrease ? 1 : -1;
-        const updatedCart = cartsData.carts.find(cart => cart.id === cartId)
+        const updatedCart = cartsData?.carts?.find(cart => cart.id === cartId)
         const updatedProductsArray = updatedCart.products.map(p => p.id === product.id
             ? ({
                 id: product.id,
@@ -36,7 +67,7 @@ const CartsPage = () => {
             {
                 onSuccess: (updatedCart) => queryClient.setQueryData(["currentUser", "carts"], cachedCartsData => ({
                     ...cachedCartsData,
-                    carts: cachedCartsData.carts.map(cachedCart => cachedCart.id === updatedCart.id
+                    carts: cachedCartsData?.carts?.map(cachedCart => cachedCart.id === updatedCart.id
                         ? updatedCart
                         : cachedCart
                     )
@@ -46,7 +77,7 @@ const CartsPage = () => {
     }
 
     const handleProductDelete = (cartId, product) => {
-        const updatedCart = cartsData.carts.find(cart => cart.id === cartId)
+        const updatedCart = cartsData?.carts?.find(cart => cart.id === cartId)
         const updatedProductsArray = updatedCart.products.filter(p => p.id !== product.id)
         console.log(updatedProductsArray);
 
@@ -59,7 +90,7 @@ const CartsPage = () => {
             {
                 onSuccess: (updatedCart) => queryClient.setQueryData(["currentUser", "carts"], cachedCartsData => ({
                     ...cachedCartsData,
-                    carts: cachedCartsData.carts.map(cachedCart => cachedCart.id === updatedCart.id
+                    carts: cachedCartsData?.carts?.map(cachedCart => cachedCart.id === updatedCart.id
                         ? updatedCart
                         : cachedCart
                     )
@@ -78,17 +109,19 @@ const CartsPage = () => {
                 cartsData={cartsData}
                 user={user}
                 queryClient={queryClient}
+                handleAddNewUserCart={handleAddNewUserCart}
             />
 
             {
-                cartsData.carts.map((cart, index) => <Cart
-                    key={cart.id}
-                    cart={cart}
-                    index={index}
-                    handleQuantityChange={handleQuantityChange}
-                    updateUserCart={updateUserCart}
-                    handleProductDelete={handleProductDelete}
-                />)
+                cartsData?.carts?.map((cart, index) =>
+                    <Cart
+                        key={cart.id}
+                        cart={cart}
+                        index={index}
+                        handleQuantityChange={handleQuantityChange}
+                        updateUserCart={updateUserCart}
+                        handleProductDelete={handleProductDelete}
+                    />)
             }
         </main >
     )

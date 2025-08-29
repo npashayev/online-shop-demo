@@ -10,20 +10,22 @@ const Cart = ({ cart, index, handleQuantityChange, updateUserCart, handleProduct
 
             <div className={styles.productsCnr}>
                 {
-                    cart.products.map(product => {
+                    cart.products.length > 0
+                        ? cart.products.map(product => {
 
-                        const totalPrice = ((product.price - product.price * product.discountPercentage / 100) * product.quantity).toFixed(2)
+                            const totalPrice = ((product.price - product.price * product.discountPercentage / 100) * product.quantity).toFixed(2)
 
-                        return <ProductItem
-                            key={product.id}
-                            product={product}
-                            totalPrice={totalPrice}
-                            handleQuantityChange={handleQuantityChange}
-                            updateUserCart={updateUserCart}
-                            cartId={cart.id}
-                            handleProductDelete={handleProductDelete}
-                        />
-                    })
+                            return <ProductItem
+                                key={product.id}
+                                product={product}
+                                totalPrice={totalPrice}
+                                handleQuantityChange={handleQuantityChange}
+                                updateUserCart={updateUserCart}
+                                cartId={cart.id}
+                                handleProductDelete={handleProductDelete}
+                            />
+                        })
+                        : <div>There is no product added to this cart</div>
                 }
             </div>
 
