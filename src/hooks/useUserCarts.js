@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getUserCarts, updateUserCart } from "services/cartService";
+import { addNewUserCart, getUserCarts, updateUserCart } from "services/cartService";
 
 export const useUserCarts = (id) =>
     useQuery({
@@ -10,4 +10,9 @@ export const useUserCarts = (id) =>
 export const useUpdateUserCart = () =>
     useMutation({
         mutationFn: (data) => updateUserCart(data)
+    })
+
+export const useAddNewUserCart = () =>
+    useMutation({
+        mutationFn: (data) => addNewUserCart(data)
     })
