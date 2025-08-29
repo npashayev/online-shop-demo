@@ -11,7 +11,7 @@ import RegisterPage from "../components/pages/register/RegisterPage";
 import PrivateRoutes from "../components/pages/PrivateRoutes";
 import UserInfo from "../components/pages/user-info/UserInfo";
 import ErrorPage from "components/pages/error-page/ErrorPage";
-import CartsPage from "components/pages/carts/CartsPage";
+import CartsPage from "components/pages/cart/CartsPage";
 
 
 const router = createBrowserRouter([
