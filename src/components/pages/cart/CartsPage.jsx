@@ -74,7 +74,11 @@ const CartsPage = () => {
 
     return (
         <main className={styles.main}>
-            <CartsPageHeader cartsData={cartsData} />
+            <CartsPageHeader
+                cartsData={cartsData}
+                user={user}
+                queryClient={queryClient}
+            />
 
             {
                 cartsData.carts.map((cart, index) => <Cart
