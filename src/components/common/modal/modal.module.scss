@@ -28,17 +28,35 @@
             text-align: center;
         }
 
-        button {
-            padding: 1rem 2rem;
-            border-radius: 1rem;
-            border: none;
-            background-color: red;
-            color: white;
-            cursor: pointer;
+        .buttonsContainer {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
 
-            &:hover {
-                background-color: rgb(250, 64, 64);
+            button {
+                padding: 1rem 2rem;
+                border-radius: 1rem;
+                border: none;
+                color: white;
+                cursor: pointer;
             }
+
+            .confirmButton {
+                background-color: blue;
+
+                &:hover {
+                    background-color: rgb(59, 59, 255);
+                }
+            }
+
+            .closeButton {
+                background-color: red;
+
+                &:hover {
+                    background-color: rgb(250, 64, 64);
+                }
+            }
+
         }
     }
 

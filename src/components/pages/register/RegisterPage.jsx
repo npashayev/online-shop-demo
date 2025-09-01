@@ -3,7 +3,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import styles from '../login/login.module.scss'
 import { useRegister } from '../../../hooks/useUser';
 import { useNavigate } from 'react-router-dom';
-import Modal from '../../common/modal/Modal';
+import InformationModal from '../../common/modal/InformationModal';
 
 const RegisterPage = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -50,12 +50,12 @@ const RegisterPage = () => {
 
     return (
         <main className={styles.pageCnr}>
-            <Modal>
+            <InformationModal>
                 Registering a new user will not actually add it to the server.
                 This will simulate a POST request and return the newly created user with a generated ID.
                 To log in, use a username and password from the dummyjson database.
                 After a successful registration, you will be redirected to the login page.
-            </Modal>
+            </InformationModal>
             <form className={styles.form} onSubmit={handleSubmit}>
                 <h1 className={styles.formHeaderText}>
                     Register

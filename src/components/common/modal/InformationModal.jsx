@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import styles from './modal.module.scss'
 
-const Modal = ({ children }) => {
+const InformationModal = ({ children }) => {
     const [isOpen, setIsOpen] = useState(true);
 
     useEffect(() => {
@@ -25,10 +25,12 @@ const Modal = ({ children }) => {
                 <div className={styles.body}>
                     {children}
                 </div>
-                <button onClick={() => setIsOpen(false)}>Close</button>
+                <div className={styles.buttonsContainer}>
+                    <button onClick={() => setIsOpen(false)} className={styles.closeButton}>Close</button>
+                </div>
             </div>
         </div>
     )
 }
 
-export default Modal
+export default InformationModal
