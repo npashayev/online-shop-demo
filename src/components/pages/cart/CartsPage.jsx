@@ -1,4 +1,4 @@
-import { useUpdateUserCart, useUserCarts } from 'hooks/useUserCarts'
+import { useDeleteUserCart, useUpdateUserCart, useUserCarts } from 'hooks/useUserCarts'
 import styles from './carts.module.scss'
 import useAuth from 'hooks/useAuth'
 import Loading from 'components/common/Loading';
@@ -6,10 +6,12 @@ import { useQueryClient } from '@tanstack/react-query';
 import Cart from './Cart';
 import CartsPageHeader from './CartsPageHeader';
 import { useAddNewUserCart } from 'hooks/useUserCarts'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import ConfirmationModal from 'components/common/modal/ConfirmationModal';
 
 
 const CartsPage = () => {
+    const [cartToDelete, setCartToDelete] = useState(null);
 
     const { user } = useAuth();
 
@@ -20,6 +22,8 @@ const CartsPage = () => {
     const queryClient = useQueryClient();
 
     const addNewCart = useAddNewUserCart();
+
+    const deleteCart = useDeleteUserCart();
 
     const handleAddNewUserCart = () => {
         addNewCart.mutate({
@@ -136,12 +140,43 @@ const CartsPage = () => {
         )
     }
 
+    const handleCartDelete = (cartId) => {
+        deleteCart.mutate(cartId, {
+            onSuccess: (deletedCart) => queryClient.setQueryData(["currentUser", "carts"], cachedCartsData => ({
+                ...cachedCartsData,
+                carts: cachedCartsData?.carts?.filter(cachedCart => cachedCart.id !== deletedCart.id)
+            })),
+
+            onError: (error, deletedCartId) => {
+                console.log(deletedCartId)
+                if (deletedCartId === 51) {
+                    queryClient.setQueryData(["currentUser", "carts"], cachedCartsData => ({
+                        ...cachedCartsData,
+                        carts: cachedCartsData?.carts?.filter(cachedCart => cachedCart.id !== deletedCartId)
+                    }))
+                }
+            },
+
+            onSettled: () => setCartToDelete(null)
+        })
+    }
+
     if (error) return <div className={styles.main}>Error happened while fetching cart</div>
 
     if (isLoading) return <div className={styles.main}><Loading /></div>
 
     return (
         <main className={styles.main}>
+            {
+                cartToDelete &&
+                <ConfirmationModal
+                    onConfirm={() => handleCartDelete(cartToDelete)}
+                    onCancel={() => setCartToDelete(null)}
+                >
+                    Are you sure to delete this cart?
+                </ConfirmationModal>
+            }
+
             <CartsPageHeader
                 cartsData={cartsData}
                 user={user}
@@ -158,6 +193,8 @@ const CartsPage = () => {
                         handleQuantityChange={handleQuantityChange}
                         updateUserCart={updateUserCart}
                         handleProductDelete={handleProductDelete}
+                        handleCartDelete={handleCartDelete}
+                        setCartToDelete={setCartToDelete}
                     />)
             }
         </main >

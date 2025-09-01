@@ -1,11 +1,19 @@
 import styles from './carts.module.scss'
 import ProductItem from './ProductItem';
 
-const Cart = ({ cart, index, handleQuantityChange, updateUserCart, handleProductDelete }) => {
+const Cart = ({ cart, index, handleQuantityChange, updateUserCart, handleProductDelete, setCartToDelete }) => {
     return (
         <div className={styles.cart}>
             <div className={styles.cartHeader}>
-                Shopping cart {index + 1}
+                <div className={styles.headerText}>Shopping cart {index + 1}</div>
+                <button
+                    onClick={() => {
+                        setCartToDelete(cart.id)
+                    }}
+                    className={styles.deleteCartBtn}
+                >
+                    Delete this cart
+                </button>
             </div>
 
             <div className={styles.productsCnr}>
