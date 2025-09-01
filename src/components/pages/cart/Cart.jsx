@@ -10,7 +10,7 @@ const Cart = ({ cart, index, handleQuantityChange, updateUserCart, handleProduct
 
             <div className={styles.productsCnr}>
                 {
-                    cart.products.length > 0
+                    cart?.products?.length > 0
                         ? cart.products.map(product => {
 
                             const totalPrice = ((product.price - product.price * product.discountPercentage / 100) * product.quantity).toFixed(2)

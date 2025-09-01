@@ -43,15 +43,43 @@
         right: 20px;
     }
 
-    .imageCnr {
+    .variableContentBox {
         height: 250px;
         margin-top: 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
+        overflow: auto;
 
         .image {
             height: 80%;
+        }
+
+        .cartList {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 80%;
+
+            .addCartBtn {
+                background: none;
+                border: none;
+                cursor: pointer;
+
+                .cartListElement {
+                    font-size: 1.6rem;
+                    background-color: rgb(255, 36, 36);
+                    padding: 1rem 2rem;
+                    border-radius: 1rem;
+                    color: white;
+                    text-align: center;
+
+                    &:hover {
+                        background-color: rgb(255, 118, 118);
+                    }
+                }
+            }
         }
     }
 
@@ -95,18 +123,56 @@
             }
         }
 
-        .priceCnr {
-            font-style: italic;
+        .footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-            .oldPrice {
-                text-decoration: line-through;
-                opacity: .7;
+            .priceCnr {
+                font-style: italic;
+
+                .oldPrice {
+                    text-decoration: line-through;
+                    opacity: .7;
+                }
+
+                .newPrice {
+                    font-size: 1.6rem;
+                    color: darkred;
+                    font-weight: bold;
+                }
             }
 
-            .newPrice {
-                font-size: 1.6rem;
-                color: darkred;
-                font-weight: bold;
+
+
+            .basketButton {
+                background-color: goldenrod;
+                border-radius: 8px;
+                border: none;
+                cursor: pointer;
+
+                &>.buttonText {
+                    display: none;
+                }
+
+                &:hover {
+                    background-color: rgb(163, 123, 21);
+
+                    &>.basketIcon {
+                        display: none;
+                    }
+
+                    &>.buttonText {
+                        display: block;
+                        padding: 0.8rem 1rem;
+                        color: white;
+                    }
+                }
+
+                .basketIcon {
+                    padding: 1rem;
+                    color: white;
+                }
             }
         }
     }

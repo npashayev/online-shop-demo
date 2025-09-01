@@ -71,7 +71,30 @@ const CartsPage = () => {
                         ? updatedCart
                         : cachedCart
                     )
-                }))
+                })),
+
+                onError: (error, updatedCart) => {
+                    if (updatedCart.cartId === 51) {
+                        const updatedProduct = {
+                            ...product,
+                            quantity: product.quantity + changeValue
+                        }
+
+                        queryClient.setQueryData(["currentUser", "carts"], cachedCartsData => ({
+                            ...cachedCartsData,
+                            carts: cachedCartsData?.carts?.map(cachedCart => cachedCart.id === updatedCart.cartId
+                                ? {
+                                    ...cachedCart,
+                                    products: cachedCart.products.map(p => p.id === product.id
+                                        ? updatedProduct
+                                        : p
+                                    )
+                                }
+                                : cachedCart
+                            )
+                        }))
+                    }
+                }
             }
         )
     }
@@ -79,7 +102,6 @@ const CartsPage = () => {
     const handleProductDelete = (cartId, product) => {
         const updatedCart = cartsData?.carts?.find(cart => cart.id === cartId)
         const updatedProductsArray = updatedCart.products.filter(p => p.id !== product.id)
-        console.log(updatedProductsArray);
 
         updateUserCart.mutate({
             cartId,
@@ -94,7 +116,22 @@ const CartsPage = () => {
                         ? updatedCart
                         : cachedCart
                     )
-                }))
+                })),
+
+                onError: (error, updatedCart) => {
+                    if (updatedCart.cartId === 51) {
+                        queryClient.setQueryData(["currentUser", "carts"], cachedCartsData => ({
+                            ...cachedCartsData,
+                            carts: cachedCartsData?.carts?.map(cachedCart => cachedCart.id === updatedCart.cartId
+                                ? {
+                                    ...cachedCart,
+                                    products: updatedProductsArray
+                                }
+                                : cachedCart
+                            )
+                        }))
+                    }
+                }
             }
         )
     }
