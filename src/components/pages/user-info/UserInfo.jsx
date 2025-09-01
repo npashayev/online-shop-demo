@@ -9,7 +9,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import useAuth from "hooks/useAuth";
 import { setUser } from "/src/store/userSlice";
-import Modal from "components/common/modal/Modal";
+import InformationModal from "components/common/modal/InformationModal";
 import Loading from "components/common/Loading";
 import { updateNestedState } from "utils/updateNestedState";
 
@@ -32,7 +32,7 @@ const UserInfo = () => {
 
     let dispatch = useDispatch();
 
-    const { mutate, isPending: isUpdating } = useUpdateCurrentUser(persistedUser.id); // User updater hook
+    const { mutate, isPending: isUpdating } = useUpdateCurrentUser();
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -41,22 +41,26 @@ const UserInfo = () => {
     }
 
     const handleUpdate = () => {
-        mutate(currentUser, {
-            onSuccess: (data) => {
-                queryClient.setQueryData(["currentUser"], data)
+        mutate({
+            userId: persistedUser.id,
+            currentUser
+        },
+            {
+                onSuccess: (data) => {
+                    queryClient.setQueryData(["currentUser"], data)
 
-                dispatch(setUser({
-                    ...persistedUser,
-                    username: data.username,
-                    email: data.email,
-                    firstName: data.firstName,
-                    lastName: data.lastName,
-                }))
+                    dispatch(setUser({
+                        ...persistedUser,
+                        username: data.username,
+                        email: data.email,
+                        firstName: data.firstName,
+                        lastName: data.lastName,
+                    }))
 
-                console.log(data)
-                setEditMode(false)
-            }
-        })
+                    console.log(data)
+                    setEditMode(false)
+                }
+            })
     }
 
     if (isPending) return <main className={styles.main}><Loading size="32px" /></main>
@@ -65,11 +69,11 @@ const UserInfo = () => {
 
     return (
         <>
-            <Modal>
+            <InformationModal>
                 Updating a user will not update it into the server.
                 It will simulate a PUT/PATCH request and will return updated user with modified data.
                 If you refresh the page or log out and log back in, all changes will be lost.
-            </Modal>
+            </InformationModal>
 
             {
                 editMode
