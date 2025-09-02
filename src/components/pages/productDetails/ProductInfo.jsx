@@ -1,9 +1,14 @@
 import AdditionalInfo from './AdditionalInfo';
 import styles from './product-info.module.scss'
-import Reviews from './Reviews';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import star from "/src/assets/star.png"
+import CartList from '../products/CartList';
+import { useState } from 'react';
 
 const ProductInfo = ({ product }) => {
+    const [isCartListOpen, setIsCartListOpen] = useState(false)
+
     const productRating = Math.round(product.rating * 10) / 10;
     const discountPercentage = Math.floor(product.discountPercentage);
     const oldPrice = (product.price / (1 - discountPercentage / 100)).toFixed(2)
@@ -37,6 +42,20 @@ const ProductInfo = ({ product }) => {
                         }
                         <span className={styles.newPrice}>{product.price}$</span>
                     </div>
+                </div>
+
+                <div className={styles.cartButtonCnr}>
+                    <button onClick={() => setIsCartListOpen(prev => !prev)} className={styles.cartButton}>
+                        <FontAwesomeIcon icon={faCartShopping} className={styles.basketIcon} />
+                        Add to cart
+                    </button>
+
+                    {
+                        isCartListOpen &&
+                        <div className={styles.cartListCnr}>
+                            <CartList product={product} />
+                        </div>
+                    }
                 </div>
 
                 <div className={styles.separator} />

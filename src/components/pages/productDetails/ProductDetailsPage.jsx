@@ -1,5 +1,5 @@
 import { useProductById } from "../../../hooks/useProducts"
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import styles from './product-details-page.module.scss'
 import Loading from "../../common/Loading"
 import ProductGallery from "./ProductGallery"
