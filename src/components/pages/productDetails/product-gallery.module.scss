@@ -1,78 +1,81 @@
-        .productGallery {
+.productGallery {
+    flex-shrink: 0;
+    border: 1px solid darkcyan;
+    border-radius: 2rem;
+    width: 54rem;
+    position: relative;
+
+    .availability {
+        width: max-content;
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        position: absolute;
+        right: 2rem;
+        top: 2rem;
+    }
+
+    .mainImageContainer {
+        border-bottom: 1px solid lightgrey;
+        padding: 3rem;
+
+        .mainImage {
+            width: 100%;
+            user-select: none;
+        }
+    }
+
+    .galleryFooter {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+
+        .arrowButton {
             flex-shrink: 0;
-            border: 1px solid darkcyan;
-            border-radius: 2rem;
-            width: 54rem;
-            position: relative;
+            box-shadow: 0 0 5px rgba(16, 24, 40, 0.15);
+            background-color: white;
+            width: 35px;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid lightgray;
+            cursor: pointer;
 
-            .availability {
-                width: max-content;
-                padding: 1rem 2rem;
-                border-radius: 0.5rem;
-                position: absolute;
-                right: 2rem;
-                top: 2rem;
+            &:hover {
+                background-color: lightgrey;
             }
 
-            .mainImageContainer {
-                border-bottom: 1px solid lightgrey;
-                padding: 3rem;
-
-                .mainImage {
-                    width: 100%;
-                    user-select: none;
-                }
-            }
-
-            .galleryFooter {
-                display: flex;
-                gap: 1.5rem;
-                align-items: center;
-                justify-content: center;
-                padding: 2rem;
-
-                .arrowButton {
-                    flex-shrink: 0;
-                    box-shadow: 0 0 5px rgba(16, 24, 40, 0.15);
-                    background-color: white;
-                    width: 35px;
-                    aspect-ratio: 1;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-radius: 50%;
-                    border: 1px solid lightgray;
-                    cursor: pointer;
-
-                    &:hover {
-                        background-color: lightgrey;
-                    }
-
-                    .arrowIcon {
-                        width: 16px;
-                    }
-                }
-
-
-                .thumbnailsContainer {
-                    display: flex;
-                    justify-content: center;
-                    gap: 1.5rem;
-                    overflow: auto;
-                    scrollbar-width: none;
-                    cursor: pointer;
-                    user-select: none;
-
-                    .thumbnail {
-                        width: 10rem;
-                        border: 1px solid lightgray;
-                        border-radius: 1rem;
-                        padding: 1.5rem;
-                    }
-
-                    .activeThumbnail {
-                        border: 1px solid #1A432E;
-                    }
-                }
+            .arrowIcon {
+                width: 16px;
             }
         }
+
+
+        .thumbnailsContainer {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            overflow: auto;
+            scrollbar-width: none;
+            cursor: pointer;
+            user-select: none;
+
+            .thumbnail {
+                width: 10rem;
+                min-height: 10rem;
+                overflow: hidden;
+                border: 1px solid lightgray;
+                border-radius: 1rem;
+                padding: 1.5rem;
+                font-size: 8px;
+            }
+
+            .activeThumbnail {
+                border: 1px solid #1A432E;
+            }
+        }
+    }
+}
