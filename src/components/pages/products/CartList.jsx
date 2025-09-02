@@ -16,7 +16,7 @@ const CartList = ({ product }) => {
 
     const cachedCartsData = queryClient.getQueryData(["currentUser", "carts"])
 
-    const { data: cartsData } = useUserCarts(user.id, !cachedCartsData)
+    const { data: cartsData, isLoading } = useUserCarts(user.id, !cachedCartsData)
 
 
     const handleAddNewUserCart = () => {
@@ -100,6 +100,8 @@ const CartList = ({ product }) => {
             handleAddNewUserCart()
         }
     }, [cartsData?.carts?.length])
+
+    if (isLoading) return <Loading />
 
     return (
         <ul className={styles.cartList}>
