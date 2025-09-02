@@ -2,6 +2,16 @@ import styles from './carts.module.scss'
 import ProductItem from './ProductItem';
 
 const Cart = ({ cart, index, handleQuantityChange, updateUserCart, handleProductDelete, setCartToDelete }) => {
+
+    const calcTotalPrice = (product) => Number(((product.price - product.price * product.discountPercentage / 100) * product.quantity).toFixed(2))
+
+    const totalInfo = {
+        discountedTotal: cart?.products?.reduce((acc, product) => acc + calcTotalPrice(product), 0),
+        totalProducts: cart?.products?.length,
+        totalQuantity: cart?.products?.reduce((acc, product) => acc + product.quantity, 0)
+    }
+
+
     return (
         <div className={styles.cart}>
             <div className={styles.cartHeader}>
@@ -21,7 +31,7 @@ const Cart = ({ cart, index, handleQuantityChange, updateUserCart, handleProduct
                     cart?.products?.length > 0
                         ? cart.products.map(product => {
 
-                            const totalPrice = ((product.price - product.price * product.discountPercentage / 100) * product.quantity).toFixed(2)
+                            const totalPrice = calcTotalPrice(product)
 
                             return <ProductItem
                                 key={product.id}
@@ -38,9 +48,9 @@ const Cart = ({ cart, index, handleQuantityChange, updateUserCart, handleProduct
             </div>
 
             <div className={styles.cartFooter}>
-                <div className={styles.totalPrice}>Total price: ${cart.discountedTotal}</div>
-                <div className={styles.totalProducts}>Total products: {cart.totalProducts}</div>
-                <div className={styles.totalQuantity}>Total quantity: {cart.totalQuantity}</div>
+                <div className={styles.totalPrice}>Total price: ${totalInfo.discountedTotal}</div>
+                <div className={styles.totalProducts}>Total products: {totalInfo.totalProducts}</div>
+                <div className={styles.totalQuantity}>Total quantity: {totalInfo.totalQuantity}</div>
             </div>
         </div>
     )
