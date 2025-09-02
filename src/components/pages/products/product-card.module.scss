@@ -54,33 +54,6 @@
         .image {
             height: 80%;
         }
-
-        .cartList {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            width: 80%;
-
-            .addCartBtn {
-                background: none;
-                border: none;
-                cursor: pointer;
-
-                .cartListElement {
-                    font-size: 1.6rem;
-                    background-color: rgb(255, 36, 36);
-                    padding: 1rem 2rem;
-                    border-radius: 1rem;
-                    color: white;
-                    text-align: center;
-
-                    &:hover {
-                        background-color: rgb(255, 118, 118);
-                    }
-                }
-            }
-        }
     }
 
     .info {

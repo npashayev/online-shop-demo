@@ -4,10 +4,12 @@ import star from "/src/assets/star.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-import Loading from 'components/common/Loading';
+import CartList from './CartList';
 
-const ProductCard = ({ product, cartsData, handleAddToCart, isAddingToCart }) => {
+const ProductCard = ({ product }) => {
+
     const [isCartListOpen, setIsCartListOpen] = useState(false)
+
     const discountPercentage = Math.floor(product.discountPercentage);
     const productRating = Math.round(product.rating * 10) / 10;
     const discountedPrice = (product.price - product.price * product.discountPercentage / 100).toFixed(2)
@@ -29,26 +31,7 @@ const ProductCard = ({ product, cartsData, handleAddToCart, isAddingToCart }) =>
             <div className={styles.variableContentBox}>
                 {
                     isCartListOpen
-                        ? <ul className={styles.cartList}>
-                            {
-                                cartsData?.carts?.map((cart, i) =>
-                                    <button
-                                        key={cart.id}
-                                        onClick={(e) => handleAddToCart(e, cart.id, product)}
-                                        className={styles.addCartBtn}
-                                        disabled={isAddingToCart}
-                                    >
-                                        <li className={styles.cartListElement}>
-                                            {
-                                                isAddingToCart
-                                                    ? <Loading />
-                                                    : `Add to cart ${i + 1}`
-                                            }
-                                        </li>
-                                    </button>
-                                )
-                            }
-                        </ul>
+                        ? <CartList product={product} />
                         : <img
                             src={product.images[0]}
                             className={styles.image}
