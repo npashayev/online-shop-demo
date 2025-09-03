@@ -6,17 +6,18 @@
     width: 80%;
 
     .addCartBtn {
-        background: none;
         border: none;
         cursor: pointer;
+        font-size: 1.6rem;
+        background-color: rgb(255, 36, 36);
+        padding: 1rem 2rem;
+        border-radius: 1rem;
+        color: white;
+        text-align: center;
+        width: 100%;
 
         .cartListElement {
-            font-size: 1.6rem;
-            background-color: rgb(255, 36, 36);
-            padding: 1rem 2rem;
-            border-radius: 1rem;
-            color: white;
-            text-align: center;
+
 
             &:hover {
                 background-color: rgb(255, 118, 118);

@@ -107,20 +107,20 @@ const CartList = ({ product }) => {
         <ul className={styles.cartList}>
             {
                 cartsData?.carts?.map((cart, i) =>
-                    <button
-                        key={cart.id}
-                        onClick={(e) => handleAddToCart(e, cart.id, product)}
-                        className={styles.addCartBtn}
-                        disabled={updateUserCart.isPending}
-                    >
-                        <li className={styles.cartListElement}>
+                    <li className={styles.cartListElement}>
+                        <button
+                            key={cart.id}
+                            onClick={(e) => handleAddToCart(e, cart.id, product)}
+                            className={styles.addCartBtn}
+                            disabled={updateUserCart.isPending}
+                        >
                             {
                                 updateUserCart.isPending
                                     ? <Loading />
                                     : `Add to cart ${i + 1}`
                             }
-                        </li>
-                    </button>
+                        </button>
+                    </li>
                 )
             }
         </ul>
