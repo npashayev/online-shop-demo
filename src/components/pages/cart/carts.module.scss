@@ -100,10 +100,9 @@
                 .trashCanButton {
                     background: none;
                     border: none;
+                    cursor: pointer;
 
-                    .trashCanIcon {
-                        cursor: pointer;
-                    }
+                    .trashCanIcon {}
                 }
             }
         }
