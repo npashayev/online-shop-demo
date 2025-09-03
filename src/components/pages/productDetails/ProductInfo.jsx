@@ -5,6 +5,7 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import star from "/src/assets/star.png"
 import CartList from '../products/CartList';
 import { useState } from 'react';
+import LikeButton from 'components/common/products/LikeButton';
 
 const ProductInfo = ({ product }) => {
     const [isCartListOpen, setIsCartListOpen] = useState(false)
@@ -44,7 +45,10 @@ const ProductInfo = ({ product }) => {
                     </div>
                 </div>
 
-                <div className={styles.cartButtonCnr}>
+                <div className={styles.buttonsCnr}>
+
+                    <LikeButton product={product} />
+
                     <button onClick={() => setIsCartListOpen(prev => !prev)} className={styles.cartButton}>
                         <FontAwesomeIcon icon={faCartShopping} className={styles.basketIcon} />
                         Add to cart
