@@ -13,7 +13,10 @@ const LikeButton = ({ product }) => {
 
 
     return <button
-        onClick={() => dispatch(toggleLike(product))}
+        onClick={(e) => {
+            e.preventDefault()
+            dispatch(toggleLike(product))
+        }}
         className={styles.likeButton}
     >
         <FontAwesomeIcon
