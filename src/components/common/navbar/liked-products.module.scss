@@ -9,9 +9,8 @@
     z-index: 50000;
     font-size: 1.6rem;
     overflow-y: auto;
-    overflow-y: visible;
     overscroll-behavior: contain;
-    scrollbar-width: none;
+    // scrollbar-width: none;
     display: flex;
     flex-direction: column;
     gap: 2rem;
