@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import UserMenu from "./UserMenu";
 import UserBasket from "./UserBasket";
 import useAuth from "hooks/useAuth";
+import LikedProductsToggle from "./LikedProductsToggle";
 
 
 const Navbar = () => {
@@ -31,6 +32,7 @@ const Navbar = () => {
                     </ul>
                 </nav>
 
+                <LikedProductsToggle />
                 <UserBasket user={user} />
                 <UserMenu user={user} />
             </div>
