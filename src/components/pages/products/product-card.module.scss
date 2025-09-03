@@ -118,33 +118,38 @@
 
 
 
-            .basketButton {
-                background-color: goldenrod;
-                border-radius: 8px;
-                border: none;
-                cursor: pointer;
+            .buttonsCnr {
+                display: flex;
+                gap: 1rem;
 
-                &>.buttonText {
-                    display: none;
-                }
+                .basketButton {
+                    background-color: goldenrod;
+                    border-radius: 8px;
+                    border: none;
+                    cursor: pointer;
 
-                &:hover {
-                    background-color: rgb(163, 123, 21);
-
-                    &>.basketIcon {
+                    &>.buttonText {
                         display: none;
                     }
 
-                    &>.buttonText {
-                        display: block;
-                        padding: 0.8rem 1rem;
+                    &:hover {
+                        background-color: rgb(163, 123, 21);
+
+                        &>.basketIcon {
+                            display: none;
+                        }
+
+                        &>.buttonText {
+                            display: block;
+                            padding: 0.8rem 1rem;
+                            color: white;
+                        }
+                    }
+
+                    .basketIcon {
+                        padding: 1rem;
                         color: white;
                     }
-                }
-
-                .basketIcon {
-                    padding: 1rem;
-                    color: white;
                 }
             }
         }

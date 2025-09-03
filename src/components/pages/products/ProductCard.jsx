@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import CartList from './CartList';
+import LikeButton from 'components/common/products/LikeButton';
 
 const ProductCard = ({ product }) => {
 
@@ -67,15 +68,19 @@ const ProductCard = ({ product }) => {
                         <p className={styles.newPrice}>{discountedPrice}$</p>
                     </div>
 
-                    <button
-                        className={styles.basketButton}
-                        onClick={(e) => {
-                            e.preventDefault();
-                            setIsCartListOpen(prev => !prev)
-                        }}>
-                        <FontAwesomeIcon icon={faBagShopping} className={styles.basketIcon} />
-                        <span className={styles.buttonText}>Add to cart</span>
-                    </button>
+                    <div className={styles.buttonsCnr}>
+                        <LikeButton product={product} />
+
+                        <button
+                            className={styles.basketButton}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setIsCartListOpen(prev => !prev)
+                            }}>
+                            <FontAwesomeIcon icon={faBagShopping} className={styles.basketIcon} />
+                            <span className={styles.buttonText}>Add to cart</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </Link>
