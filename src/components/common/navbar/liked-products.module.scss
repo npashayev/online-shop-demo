@@ -1,0 +1,80 @@
+.main {
+    background-color: white;
+    padding: 2rem;
+    position: fixed;
+    top: 55px;
+    right: 0;
+    height: calc(100vh - 55px);
+    min-width: 300px;
+    z-index: 50000;
+    font-size: 1.6rem;
+    box-shadow: -3px 0 5px rgba(0, 0, 0, 0.25);
+    overflow-y: auto;
+    overflow-y: visible;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .product {
+        padding: 0.8rem;
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        border-radius: 15px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+
+        .imageCnr {
+            .productImage {
+                height: 80px;
+                border-radius: 8px;
+                border: 1px solid lightgray;
+            }
+        }
+
+        .productMain {
+
+            .cartButtonCnr {
+                position: relative;
+                width: max-content;
+
+                .cartButton {
+                    padding: 0.5rem 1rem;
+                    border: none;
+                    background-color: red;
+                    color: white;
+                    border-radius: 0.8rem;
+                    margin-top: 1rem;
+                }
+
+                .cartListCnr {
+                    width: 280px;
+                    position: absolute;
+                    background-color: white;
+                    border-radius: 2rem;
+                    border: 1px solid lightgrey;
+                    z-index: 2;
+                    top: calc(100% + 1rem);
+                    left: 50%;
+                    transform: translateX(-50%);
+                    padding-block: 2rem;
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .totalPrice {
+            font-weight: bold;
+        }
+
+        .xButton {
+            background: none;
+            border: none;
+            cursor: pointer;
+
+            .xIcon {}
+        }
+    }
+}
