@@ -30,7 +30,7 @@ const LikedProductsToggle = () => {
                 <FontAwesomeIcon icon={faHeart} />
             </button>
 
-            {isSidebarOpen && <LikedProducts />}
+            {isSidebarOpen && <LikedProducts onClose={() => setIsSidebarOpen(false)} />}
         </div>
     )
 }
