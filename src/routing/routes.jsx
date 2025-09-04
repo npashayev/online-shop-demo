@@ -12,6 +12,8 @@ import PrivateRoutes from "../components/pages/PrivateRoutes";
 import UserInfo from "../components/pages/user-info/UserInfo";
 import ErrorPage from "components/pages/error-page/ErrorPage";
 import CartsPage from "components/pages/cart/CartsPage";
+import RoleRoutes from "components/pages/admin/pages/RoleRoutes";
+import ProductUpdatePage from "components/pages/admin/pages/product-update/ProductUpdatePage";
 
 
 const router = createBrowserRouter([
@@ -44,6 +46,15 @@ const router = createBrowserRouter([
                     {
                         path: ':userId/carts',
                         element: <CartsPage />
+                    },
+                    {
+                        element: <RoleRoutes roles={["admin", "moderator"]} />,
+                        children: [
+                            {
+                                path: 'update-product/:productId',
+                                element: <ProductUpdatePage />
+                            }
+                        ]
                     }
                 ]
             }
