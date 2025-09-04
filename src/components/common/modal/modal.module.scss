@@ -15,9 +15,12 @@
     .modal {
         background-color: white;
         max-width: 600px;
+        min-width: 350px;
+        min-height: 200px;
         font-size: 1.6rem;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         gap: 3rem;
         align-items: center;
         padding: 5rem;
@@ -59,10 +62,6 @@
 
         }
     }
-
-    .modal.closing {
-        animation: fadeOut 0.2s ease forwards;
-    }
 }
 
 @keyframes fadeIn {
@@ -74,17 +73,5 @@
     to {
         transform: scale(1);
         opacity: 1;
-    }
-}
-
-@keyframes fadeOut {
-    from {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    to {
-        transform: scale(0.8);
-        opacity: 0;
     }
 }
