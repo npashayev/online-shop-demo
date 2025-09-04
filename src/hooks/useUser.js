@@ -11,10 +11,6 @@ export const useLogin = () => {
         mutationFn: (data) => login(data),
         onSuccess: (data) => {
             dispatch(setUser(data));
-
-            //store tokens in local storage
-            localStorage.setItem("accessToken", data.accessToken)
-            localStorage.setItem("refreshToken", data.refreshToken)
         }
     })
 }
@@ -26,7 +22,6 @@ export const useRegister = () => {
         mutationFn: (data) => register(data),
         onSuccess: (data) => {
             dispatch(setUser(data));
-            console.log(data)
         },
     })
 }
