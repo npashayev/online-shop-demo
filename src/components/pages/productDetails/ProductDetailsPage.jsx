@@ -30,7 +30,7 @@ const ProductDetailsPage = () => {
                     </a>
                 </div>
 
-                <ProductAdminActions />
+                <ProductAdminActions product={product} />
             </div>
 
             <div className={styles.mainInfo}>
