@@ -1,0 +1,23 @@
+.buttonsCnr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+
+    &>button {
+        padding: 0.8rem 1.4rem;
+        border-radius: 1rem;
+        border: none;
+        font-size: 1.6rem;
+        color: white;
+        cursor: pointer;
+    }
+
+    .updateBtn {
+        background-color: green;
+    }
+
+    .deleteBtn {
+        background-color: red;
+    }
+}
