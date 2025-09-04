@@ -1,7 +1,7 @@
 import { useDeleteProduct } from 'hooks/useAdmin'
-import styles from './product-admin-actions.module.scss'
+import styles from './product-actions.module.scss'
 import { useQueryClient } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import ConfirmationModal from 'components/common/modal/ConfirmationModal';
 import LoadingModal from 'components/common/modal/LoadingModal';
@@ -46,14 +46,19 @@ const ProductActions = ({ product }) => {
             }
 
             <RoleOnly roles={["admin", "moderator"]}>
-                <button className={styles.updateBtn}>Update product</button>
+                <Link
+                    to={`/update-product/${product.id}`}
+                    className={`${styles.updateBtn} ${styles.button}`}
+                >
+                    Update product
+                </Link>
             </RoleOnly>
 
             <RoleOnly roles={["admin"]}>
                 <button
                     onClick={() => setProductToDelete(product.id)}
                     disabled={deleteProduct.isPending}
-                    className={styles.deleteBtn}
+                    className={`${styles.deleteBtn} ${styles.button}`}
                 >
                     Delete product
                 </button>
