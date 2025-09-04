@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import ConfirmationModal from 'components/common/modal/ConfirmationModal';
 import LoadingModal from 'components/common/modal/LoadingModal';
+import RoleOnly from './RoleOnly';
 
-const ProductAdminActions = ({ product }) => {
+const ProductActions = ({ product }) => {
     const [productToDelete, setProductToDelete] = useState(null);
-
     const deleteProduct = useDeleteProduct();
     const queryClient = useQueryClient();
     const nav = useNavigate();
@@ -23,6 +23,7 @@ const ProductAdminActions = ({ product }) => {
             onSettled: () => setProductToDelete(null)
         })
     }
+
 
     return (
         <div className={styles.buttonsCnr}>
@@ -44,13 +45,22 @@ const ProductAdminActions = ({ product }) => {
                 </LoadingModal>
             }
 
-            <button className={styles.updateBtn}>Update product</button>
+            <RoleOnly roles={["admin", "moderator"]}>
+                <button className={styles.updateBtn}>Update product</button>
+            </RoleOnly>
 
-            <button
-                onClick={() => setProductToDelete(product.id)}
-                className={styles.deleteBtn}>Delete product</button>
+            <RoleOnly roles={["admin"]}>
+                <button
+                    onClick={() => setProductToDelete(product.id)}
+                    disabled={deleteProduct.isPending}
+                    className={styles.deleteBtn}
+                >
+                    Delete product
+                </button>
+            </RoleOnly>
+
         </div >
     )
 }
 
-export default ProductAdminActions
+export default ProductActions

@@ -5,7 +5,7 @@ import Loading from "../../common/Loading"
 import ProductGallery from "./ProductGallery"
 import ProductInfo from "./ProductInfo"
 import Reviews from "./Reviews"
-import ProductAdminActions from "../admin/components/ProductAdminActions"
+import ProductActions from "../admin/components/ProductActions"
 
 const ProductDetailsPage = () => {
 
@@ -30,7 +30,7 @@ const ProductDetailsPage = () => {
                     </a>
                 </div>
 
-                <ProductAdminActions product={product} />
+                <ProductActions product={product} />
             </div>
 
             <div className={styles.mainInfo}>
