@@ -20,10 +20,14 @@ const likedProductsSlice = createSlice({
                 state.byId[id] = product;
                 state.allIds.push(id)
             }
+        },
+        resetLikedProducts: (state) => {
+            state.byId = {}
+            state.allIds = []
         }
     }
 })
 
 
-export const { toggleLike } = likedProductsSlice.actions;
+export const { toggleLike, resetLikedProducts } = likedProductsSlice.actions;
 export const likedProductsReducer = likedProductsSlice.reducer;

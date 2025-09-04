@@ -4,12 +4,30 @@ import { Link, useNavigate } from "react-router-dom";
 import { setUser } from 'store/userSlice';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { resetLikedProducts } from 'store/likedProductsSlice';
+import { persistor } from 'store/store';
 
 
 const UserOptions = ({ isOpen, setIsOpen, menuRef, user }) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const handleLogout = () => {
+        setIsOpen(false)
+        dispatch(setUser(null))
+        dispatch(resetLikedProducts())
+
+        // clear persisted redux state
+        persistor.purge()
+
+        // clear tokens from localStorage
+        localStorage.removeItem("accessToken")
+        localStorage.removeItem("refreshToken")
+
+        navigate('/login')
+    }
+
 
     return <div ref={menuRef} className={styles.main}>
         <div className={styles.userName} onClick={() => setIsOpen(prev => !prev)}>
@@ -29,19 +47,7 @@ const UserOptions = ({ isOpen, setIsOpen, menuRef, user }) => {
                     Edit user info
                 </Link>
 
-                <button
-                    onClick={
-                        () => {
-                            setIsOpen(false)
-                            dispatch(setUser(null))
-                            navigate('/login')
-                            console.log(user)
-                        }
-                    }
-                    className={styles.item}
-                >
-                    Log out
-                </button>
+                <button onClick={handleLogout} className={styles.item} >Log out</button>
             </div>
         }
     </div >
