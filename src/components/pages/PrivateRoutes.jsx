@@ -10,7 +10,7 @@ const PrivateRoutes = () => {
 
     if (!isAuthenticated) return <Navigate to="/login" replace />
 
-    if (userId !== String(user.id)) {
+    if (userId && userId !== String(user?.id)) {
         return <NotAuthorized />;
     }
 
