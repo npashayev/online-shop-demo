@@ -5,6 +5,7 @@ import Loading from "../../common/Loading"
 import ProductGallery from "./ProductGallery"
 import ProductInfo from "./ProductInfo"
 import Reviews from "./Reviews"
+import ProductAdminActions from "../admin/components/ProductAdminActions"
 
 const ProductDetailsPage = () => {
 
@@ -20,12 +21,16 @@ const ProductDetailsPage = () => {
         product &&
         <main className={styles.pageContainer}>
             <div className={styles.categoryContainer}>
-                Category / <a href={`/products/category/${product.category}`}
-                    target="_blank"
-                    className={styles.categoryName}
-                >
-                    {product.category}
-                </a>
+                <div>
+                    Category / <a href={`/products/category/${product.category}`}
+                        target="_blank"
+                        className={styles.categoryName}
+                    >
+                        {product.category}
+                    </a>
+                </div>
+
+                <ProductAdminActions />
             </div>
 
             <div className={styles.mainInfo}>
