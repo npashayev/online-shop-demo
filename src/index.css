@@ -4,7 +4,8 @@
 }
 
 input,
-button {
+button,
+textarea {
     font-family: "Nunito", sans-serif;
 }
 
