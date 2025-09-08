@@ -24,3 +24,8 @@ export const getProductById = (id) =>
     apiClient
         .get(`/products/${id}`)
         .then(res => res.data)
+
+export const updateProduct = (productId, updatedProduct) =>
+    apiClient
+        .patch(`/products/${productId}`, updatedProduct)
+        .then(res => res.data)

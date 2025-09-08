@@ -1,5 +1,5 @@
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
-import { getCategories, getProductById, getProducts, getProductsByCategory, searchProducts } from '../services/productService';
+import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query'
+import { getCategories, getProductById, getProducts, getProductsByCategory, searchProducts, updateProduct } from '../services/productService';
 
 const LIMIT = 30;
 
@@ -40,4 +40,9 @@ export const useProductById = (id) =>
     useQuery({
         queryKey: ['products', id],
         queryFn: () => getProductById(id)
+    })
+
+export const useUpdateProduct = (productId) =>
+    useMutation({
+        mutationFn: (data) => updateProduct(productId, data)
     })
