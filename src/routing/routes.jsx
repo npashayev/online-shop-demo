@@ -13,7 +13,7 @@ import UserInfo from "../components/pages/user-info/UserInfo";
 import ErrorPage from "components/pages/error-page/ErrorPage";
 import CartsPage from "components/pages/cart/CartsPage";
 import RoleRoutes from "components/pages/admin/pages/RoleRoutes";
-import ProductUpdatePage from "components/pages/admin/pages/product-update/ProductUpdatePage";
+import ProductUpdatePage from "components/pages/admin/pages/update-product/ProductUpdatePage";
 
 
 const router = createBrowserRouter([
