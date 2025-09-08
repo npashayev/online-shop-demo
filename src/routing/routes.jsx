@@ -14,6 +14,7 @@ import ErrorPage from "components/pages/error-page/ErrorPage";
 import CartsPage from "components/pages/cart/CartsPage";
 import RoleRoutes from "components/pages/admin/pages/RoleRoutes";
 import ProductUpdatePage from "components/pages/admin/pages/update-product/ProductUpdatePage";
+import AddProductPage from "components/pages/admin/pages/add-product/AddProductPage";
 
 
 const router = createBrowserRouter([
@@ -53,7 +54,11 @@ const router = createBrowserRouter([
                             {
                                 path: 'update-product/:productId',
                                 element: <ProductUpdatePage />
-                            }
+                            },
+                            {
+                                path: 'products/add-product',
+                                element: <AddProductPage />
+                            },
                         ]
                     }
                 ]
