@@ -1,4 +1,4 @@
-import styles from './product-info.module.scss'
+import styles from "../../components/product-info.module.scss";
 
 const InfoField = ({ label, value }) => (
     <div className={styles.inputCnr}>

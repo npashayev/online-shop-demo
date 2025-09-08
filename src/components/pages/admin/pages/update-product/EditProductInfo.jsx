@@ -1,4 +1,4 @@
-import styles from "./product-info.module.scss";
+import styles from "../../components/product-info.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from "react";
@@ -6,24 +6,15 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { useCategories, useUpdateProduct } from "hooks/useProducts";
 import Loading from "components/common/Loading";
 import { useQueryClient } from "@tanstack/react-query";
+import RHFInput from "../../components/RHFInput";
 
-const RHFInput = ({ label, name, register, type = "text" }) => (
-    <div className={styles.inputCnr}>
-        <label>{label}</label>
-        <input
-            type={type}
-            {...register(name)}
-            className={styles.info}
-        />
-    </div>
-)
 
 const EditProductInfo = ({ product, setIsEditMode }) => {
 
     const [newImageUrl, setNewImageUrl] = useState('')
     const [newTag, setNewTag] = useState('')
 
-    const { register, handleSubmit, reset, control, formState, setValue } = useForm({
+    const { register, handleSubmit, reset, control, formState } = useForm({
         defaultValues: {
             ...product,
             images: product.images?.map(url => ({ url })) || [],

@@ -1,4 +1,4 @@
-import styles from "./product-info.module.scss"
+import styles from "../../components/product-info.module.scss";
 import UserInfoReadOnly from "./ProductInfoReadOnly";
 import { useState } from "react";
 import InformationModal from "components/common/modal/InformationModal";
