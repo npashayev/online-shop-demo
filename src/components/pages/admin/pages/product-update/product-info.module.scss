@@ -1,0 +1,158 @@
+.main {
+    padding-top: 60px;
+
+    .buttonsCnr {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        background-color: white;
+        padding: 0.8rem 3rem;
+        border-bottom: 1px solid lightgray;
+        position: fixed;
+        top: 55px;
+        left: 0;
+        width: 100%;
+
+        button {
+            padding: 1rem 2rem;
+            background: none;
+            font-weight: bold;
+            border-radius: 1rem;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .editBtn {
+            background-color: rgb(185, 102, 0);
+        }
+
+        .crossBtn {
+            background-color: blue;
+        }
+
+        .updateBtn {
+            background-color: darkgreen;
+        }
+    }
+
+
+    .componentContainer {
+        font-size: 1.6rem;
+        margin: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .block {
+            display: flex;
+            flex-direction: column;
+            width: 1010px;
+            background-color: white;
+            padding: 3rem;
+            border: 1px solid lightgray;
+            border-radius: 2rem;
+            margin-bottom: 3rem;
+
+            .heading {
+                font-size: 2.2rem;
+                font-weight: bold;
+                color: #F7AA6C;
+            }
+
+            .inputGroup {
+                display: flex;
+                gap: 20px;
+                margin-top: 4rem;
+
+                .inputCnr {
+                    width: 100%;
+
+                    label {
+                        font-weight: 600;
+                        display: block;
+                        margin-bottom: 0.8rem;
+                    }
+
+                    .info {
+                        border: 1px solid lightgray;
+                        border-radius: 1rem;
+                        padding: 0.8rem 1.5rem;
+                        width: 300px;
+                        min-height: 4rem;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        outline: none;
+                        font-size: 1.6rem;
+                    }
+
+                    .textarea {
+                        resize: none;
+                        width: 100%;
+                        white-space: normal;
+                        overflow: visible;
+                        text-overflow: clip;
+                    }
+
+                    .descriptionInfo {
+                        width: 100%;
+                        white-space: normal;
+                        overflow: visible;
+                        text-overflow: clip;
+                    }
+                }
+
+                .addFieldCnr {
+                    display: flex;
+                    gap: 2rem;
+                    align-items: center;
+
+                    .addFieldBtn {
+                        padding: 0.8rem 1rem;
+                        background-color: goldenrod;
+                        color: white;
+                        border: none;
+                        border-radius: 1rem;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+
+            .imageList {
+                margin-top: 4rem;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+
+                .imageCnr {
+                    position: relative;
+
+                    .image {
+                        height: 200px;
+                        border: 1px solid lightgrey;
+                        border-radius: 2rem;
+                    }
+
+                    .iconCnr {
+                        height: 25px;
+                        width: 25px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 50%;
+                        position: absolute;
+                        right: 15px;
+                        top: 15px;
+                        cursor: pointer;
+
+                        .xIcon {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
