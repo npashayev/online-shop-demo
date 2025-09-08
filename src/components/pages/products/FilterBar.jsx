@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass, faSort } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import AddProductAction from '../admin/components/AddProductAction';
 
 const FilterBar = ({ showSearchbar = true }) => {
 
@@ -71,21 +72,25 @@ const FilterBar = ({ showSearchbar = true }) => {
                 <FontAwesomeIcon icon={faSort} className={styles.sortIcon} />
             </div>
 
-            {
-                showSearchbar &&
-                <form onSubmit={handleSearch}>
-                    <input
-                        type="text"
-                        value={searchText}
-                        className={styles.searchBar}
-                        onChange={(e) => setSearchText(e.target.value)}
-                        placeholder='Search for products...'
-                    />
-                    <button type='submit'>
-                        <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchIcon} />
-                    </button>
-                </form>
-            }
+            <div className={styles.right}>
+                {
+                    showSearchbar &&
+                    <form onSubmit={handleSearch} className={styles.form}>
+                        <input
+                            type="text"
+                            value={searchText}
+                            className={styles.searchBar}
+                            onChange={(e) => setSearchText(e.target.value)}
+                            placeholder='Search for products...'
+                        />
+                        <button type='submit'>
+                            <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchIcon} />
+                        </button>
+                    </form>
+                }
+
+                <AddProductAction />
+            </div>
         </div>
     )
 }

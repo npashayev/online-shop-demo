@@ -38,40 +38,46 @@
     }
 
 
-    form {
-        position: relative;
+    .right {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
 
-        input {
-            outline: none;
-            border: 1px lightgray solid;
-            padding: .8rem 8rem .8rem 1.2rem;
-            border-radius: 6px;
-            width: 350px;
-            font-size: 1.6rem;
+        .form {
+            position: relative;
 
-            &::placeholder {
-                font-style: italic;
+            input {
+                outline: none;
+                border: 1px lightgray solid;
+                padding: .8rem 8rem .8rem 1.2rem;
+                border-radius: 6px;
+                width: 350px;
+                font-size: 1.6rem;
+
+                &::placeholder {
+                    font-style: italic;
+                }
             }
-        }
 
-        button {
-            position: absolute;
-            right: 0;
-            height: 100%;
-            padding: 0 2.5rem;
-            color: white;
-            background-color: grey;
-            border-radius: 6px;
-            border: none;
-        }
+            button {
+                position: absolute;
+                right: 0;
+                height: 100%;
+                padding: 0 2.5rem;
+                color: white;
+                background-color: grey;
+                border-radius: 6px;
+                border: none;
+            }
 
-        button:hover {
-            background-color: darkgrey;
-            cursor: pointer;
-        }
+            button:hover {
+                background-color: darkgrey;
+                cursor: pointer;
+            }
 
-        button:active {
-            background-color: grey;
+            button:active {
+                background-color: grey;
+            }
         }
     }
 }
