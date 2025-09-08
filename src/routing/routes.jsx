@@ -52,7 +52,7 @@ const router = createBrowserRouter([
                         element: <RoleRoutes roles={["admin", "moderator"]} />,
                         children: [
                             {
-                                path: 'update-product/:productId',
+                                path: 'products/update-product/:productId',
                                 element: <ProductUpdatePage />
                             },
                             {
