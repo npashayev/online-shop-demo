@@ -44,7 +44,6 @@ const EditProductInfo = ({ product, setIsEditMode }) => {
     const updateProduct = useUpdateProduct(product.id);
     const { data: categories } = useCategories();
 
-    useEffect(() => console.log(categories), [categories])
     const queryClient = useQueryClient();
 
     useEffect(() => {
@@ -68,7 +67,8 @@ const EditProductInfo = ({ product, setIsEditMode }) => {
         };
 
         updateProduct.mutate(payload, {
-            onSuccess: (_, sentData) => queryClient.setQueryData(["products", String(id)], sentData)
+            onSuccess: (_, sentData) => queryClient.setQueryData(["products", String(id)], { id, ...sentData }),
+            onError: (error) => console.log(error)
         });
     }
 
