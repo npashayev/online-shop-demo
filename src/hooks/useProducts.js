@@ -1,5 +1,5 @@
 import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query'
-import { getCategories, getProductById, getProducts, getProductsByCategory, searchProducts, updateProduct } from '../services/productService';
+import { addNewProduct, getCategories, getProductById, getProducts, getProductsByCategory, searchProducts, updateProduct } from '../services/productService';
 
 const LIMIT = 30;
 
@@ -49,5 +49,5 @@ export const useUpdateProduct = (productId) =>
 
 export const useAddNewProduct = () =>
     useMutation({
-        mutationFn: (data) => updateProduct(data)
+        mutationFn: (data) => addNewProduct(data)
     })

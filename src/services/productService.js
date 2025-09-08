@@ -32,5 +32,5 @@ export const updateProduct = (productId, updatedProduct) =>
 
 export const addNewProduct = (newProduct) =>
     apiClient
-        .post(`/products/add`, newProduct)
+        .post('/products/add', newProduct)
         .then(res => res.data)
