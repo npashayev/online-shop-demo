@@ -46,3 +46,8 @@ export const useUpdateProduct = (productId) =>
     useMutation({
         mutationFn: (data) => updateProduct(productId, data)
     })
+
+export const useAddNewProduct = () =>
+    useMutation({
+        mutationFn: (data) => updateProduct(data)
+    })

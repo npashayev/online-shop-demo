@@ -29,3 +29,8 @@ export const updateProduct = (productId, updatedProduct) =>
     apiClient
         .patch(`/products/${productId}`, updatedProduct)
         .then(res => res.data)
+
+export const addNewProduct = (newProduct) =>
+    apiClient
+        .post(`/products/add`, newProduct)
+        .then(res => res.data)
