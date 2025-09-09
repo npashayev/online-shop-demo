@@ -10,7 +10,6 @@ export default function GradientText({
     const gradientStyle = {
         backgroundImage: `linear-gradient(to right, ${colors.join(', ')})`,
         animationDuration: `${animationSpeed}s`,
-        fontSize: "60px"
     };
 
     return (
