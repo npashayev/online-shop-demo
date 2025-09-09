@@ -31,7 +31,7 @@ const ProductInfo = ({ product }) => {
 
                         <div className={styles.ratingSeparator} />
 
-                        <div className={styles.reviewCount}>{product.reviews.length} reviews</div>
+                        <div className={styles.reviewCount}>{product?.reviews?.length} reviews</div>
                     </div>
 
                     <div className={styles.priceCnr}>

@@ -17,7 +17,7 @@ const Reviews = ({ reviews }) => {
             <div className={styles.reviewsCnr}>
                 {
                     reviews
-                        ? reviews.map((review, i) =>
+                        ? reviews?.map((review, i) =>
                             <div key={i} className={styles.review}>
                                 <div className={styles.reviewHeading}>
                                     <div className={styles.userInfo}>
