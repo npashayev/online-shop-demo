@@ -1,5 +1,5 @@
 :root {
-    font-size: 10px;
+    font-size: clamp(8px, 0.52vw, 12px);
     font-family: "Nunito", sans-serif;
 }
 
