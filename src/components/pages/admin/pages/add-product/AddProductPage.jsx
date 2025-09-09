@@ -7,6 +7,7 @@ import { useAddNewProduct, useCategories } from "hooks/useProducts";
 import Loading from "components/common/Loading";
 import { useQueryClient } from "@tanstack/react-query";
 import RHFInput from "../../components/RHFInput";
+import { useNavigate } from "react-router-dom";
 
 
 const AddProductPage = () => {
@@ -48,6 +49,8 @@ const AddProductPage = () => {
     const { data: categories } = useCategories();
     const queryClient = useQueryClient();
 
+    const navigate = useNavigate();
+
 
 
     const submitHandler = (data) => {
@@ -61,8 +64,8 @@ const AddProductPage = () => {
 
         addProduct.mutate(payload, {
             onSuccess: (data, sentData) => {
-                console.log(data)
                 queryClient.setQueryData(["products", String(data.id)], { id: data.id, ...sentData })
+                navigate(`/products/${data.id}`)
             },
             onError: (error) => console.log(error)
         });
