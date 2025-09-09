@@ -12,7 +12,7 @@ const ProductInfo = ({ product }) => {
 
     const productRating = Math.round(product.rating * 10) / 10;
     const discountPercentage = Math.floor(product.discountPercentage);
-    const oldPrice = (product.price / (1 - discountPercentage / 100)).toFixed(2)
+    const newPrice = (product.price - (product.price * product.discountPercentage / 100)).toFixed(2)
 
     return (
         <>
@@ -38,10 +38,10 @@ const ProductInfo = ({ product }) => {
                         {
                             discountPercentage > 0 &&
                             <span className={styles.oldPrice}>
-                                {oldPrice}$
+                                {product.price}$
                             </span>
                         }
-                        <span className={styles.newPrice}>{product.price}$</span>
+                        <span className={styles.newPrice}>{newPrice}$</span>
                     </div>
                 </div>
 
