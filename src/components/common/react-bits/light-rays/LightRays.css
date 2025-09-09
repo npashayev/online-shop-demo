@@ -5,4 +5,5 @@
     pointer-events: none;
     z-index: 3;
     overflow: hidden;
+    opacity: 0.8;
 }
