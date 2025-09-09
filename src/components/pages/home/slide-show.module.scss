@@ -1,0 +1,32 @@
+.link {
+    display: none;
+    width: max-content;
+    overflow: hidden;
+    border-radius: 3rem;
+    flex-shrink: 0;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+
+    .image {
+        background-color: white;
+        animation: fadeIn 0.6s linear;
+        height: 700px;
+        display: block;
+    }
+}
+
+.active {
+    display: block;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.8;
+        transform: scale(1.15) rotate(-8deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
