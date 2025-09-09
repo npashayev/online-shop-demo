@@ -3,6 +3,7 @@ import SlideShow from './SlideShow'
 import LightRays from '../../common/react-bits/light-rays/LightRays';
 import GradientText from '../../common/react-bits/gradient-text/GradientText'
 import { Link } from 'react-router-dom';
+import TextType from 'components/common/react-bits/text-type/TextType';
 
 const HomePage = () => {
     return (
@@ -17,9 +18,17 @@ const HomePage = () => {
                     Discover Products You’ll Love
                 </GradientText>
 
-                <p className={styles.body}>
-                    Explore our curated collection of top-quality products designed to make your life easier, stylish, and more enjoyable. From the latest tech to timeless classics, find exactly what you need with just a click.
-                </p>
+                <TextType
+                    text={[
+                        "Explore our carefully curated collection of top-quality products, each thoughtfully selected to make your life easier, more convenient, and enjoyable every day.",
+                        "From the latest cutting-edge technology to timeless classics, find exactly what you need with just a few clicks to enhance your home, work, or personal life with style and efficiency."
+                    ]}
+                    typingSpeed={75}
+                    pauseDuration={1500}
+                    showCursor={true}
+                    cursorCharacter="|"
+                    className={styles.body}
+                />
 
                 <Link to='/products' className={styles.exploreBtn}>Explore</Link>
             </div>
