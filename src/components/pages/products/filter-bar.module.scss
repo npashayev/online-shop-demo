@@ -7,36 +7,11 @@
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 8px 6px rgba(0, 0, 0, 0.1);
-    border-top: .2px solid lightgrey;
     position: fixed;
     right: 0;
-    z-index: 500;
+    z-index: var(--filter-bar-index);
     top: 55px;
     width: 100%;
-
-    .selectCnr {
-        position: relative;
-
-        .selector {
-            appearance: none;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            padding: .8rem 3.2rem .8rem 1rem;
-            color: #333;
-            cursor: pointer;
-            outline: none;
-        }
-
-        .sortIcon {
-            position: absolute;
-            right: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: gray;
-            pointer-events: none;
-        }
-    }
-
 
     .right {
         display: flex;
@@ -49,24 +24,33 @@
             input {
                 outline: none;
                 border: 1px lightgray solid;
-                padding: .8rem 8rem .8rem 1.2rem;
-                border-radius: 6px;
+                padding: 0.8rem 8rem 0.8rem 1.6rem;
+                border-radius: 3.2rem;
                 width: 350px;
                 font-size: 1.6rem;
 
                 &::placeholder {
                     font-style: italic;
                 }
+
+                &:focus {
+                    border: 1px darkgray solid;
+                }
             }
 
             button {
                 position: absolute;
-                right: 0;
-                height: 100%;
-                padding: 0 2.5rem;
+                right: 6px;
+                top: 50%;
+                transform: translateY(-50%);
+                height: 80%;
+                border-radius: 1.6rem;
+                width: 6.4rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 color: white;
-                background-color: grey;
-                border-radius: 6px;
+                background-color: rgb(189, 154, 108);
                 border: none;
             }
 

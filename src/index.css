@@ -11,6 +11,7 @@
     /* index variables */
     --navbar-index: 100;
     --liked-products-index: 99;
+    --filter-bar-index: 98;
 }
 
 @media (max-width: 1536px) {
