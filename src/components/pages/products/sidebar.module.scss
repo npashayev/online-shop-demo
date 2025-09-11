@@ -1,44 +1,45 @@
 .sidebar {
     font-size: 1.6rem;
     background-color: white;
-    padding: 2.5rem;
     min-width: 28rem;
     border-radius: 1rem;
     margin-left: 1.5rem;
+    // box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
     position: sticky;
     top: 14rem;
     height: calc(100vh - 18rem);
     overflow: auto;
+    overscroll-behavior: contain;
 
+    .categoriesHeading {
+        font-weight: bold;
+        font-size: 1.8rem;
+        border-bottom: 0.5px solid lightgrey;
+        padding-bottom: 0.8rem;
+        position: sticky;
+        top: 0;
+        padding: 1.7rem 2.5rem;
+        background-color: white;
+    }
 
-    .categoriesContainer {
+    .categories {
+        padding: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
 
-        .categoriesHeading {
-            font-weight: bold;
-            font-size: 1.8rem;
-            margin-bottom: 0.7rem;
-            border-bottom: 0.5px solid lightgrey;
-            padding-bottom: 0.8rem;
+        .category {
+            text-decoration: none;
+            color: black;
+
+            &:hover {
+                text-decoration: underline;
+                cursor: pointer;
+            }
         }
 
-        .categories {
-            display: flex;
-            flex-direction: column;
-            gap: .5rem;
-
-            .category {
-                text-decoration: none;
-                color: black;
-
-                &:hover {
-                    text-decoration: underline;
-                    cursor: pointer;
-                }
-            }
-
-            .activeCategory {
-                font-weight: 700;
-            }
+        .activeCategory {
+            font-weight: 700;
         }
     }
 }
