@@ -5,22 +5,22 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: white;
     border-bottom: 1px solid lightgrey;
+    background-color: white;
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: var(--navbar-index);
 
     .left {
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 12px;
         font-weight: bold;
 
         .logo {
-            height: 3.5rem;
+            height: 35px;
         }
     }
 
@@ -28,22 +28,19 @@ header {
         display: flex;
         align-items: center;
         gap: 3rem;
+        height: 100%;
 
         .navigation {
-            .linksContainer {
-                list-style: none;
+            .linksCnr {
+                display: flex;
+                gap: 20px;
 
                 .link {
-                    padding: 0.6rem 1.4rem;
-                    text-decoration: none;
-                    color: black;
-                    border: 1px solid transparent;
-                    border-radius: 2rem;
+                    border-radius: 20px;
                     transition: all .05s linear;
 
                     &:hover {
-                        background-color: #003566;
-                        color: white;
+                        color: rgb(173, 131, 23);
                     }
                 }
 
