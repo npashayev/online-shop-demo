@@ -16,21 +16,22 @@ const ProductsList = ({ productsData }) => {
         }
     }, [inView])
 
-
+    if (isLoading) return <main className={styles.main}>
+        <Loading style={{ fontSize: '42px' }} />
+    </main>
 
     return (
-        <main className={styles.productsContainer}>
+        <main className={styles.main}>
             <div className={styles.productsCnr}>
                 {
-                    isLoading ? <Loading style={{ fontSize: '30px' }} />
-                        : data?.pages?.length > 0
-                            // flatMap flattens the array of pages into a single array of products for rendering
-                            ? data?.pages?.flatMap((page) => page.products.map(product =>
-                                <ProductCard
-                                    key={product.id}
-                                    product={product}
-                                />))
-                            : <p>No products found</p>
+                    data?.pages?.length > 0
+                        // flatMap flattens the array of pages into a single array of products for rendering
+                        ? data?.pages?.flatMap((page) => page?.products?.map(product =>
+                            <ProductCard
+                                key={product.id}
+                                product={product}
+                            />))
+                        : <p>No products found</p>
                 }
             </div>
 
