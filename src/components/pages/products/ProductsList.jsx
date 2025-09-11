@@ -22,7 +22,7 @@ const ProductsList = ({ productsData }) => {
         <main className={styles.productsContainer}>
             <div className={styles.productsCnr}>
                 {
-                    isLoading ? <Loading size={'30px'} />
+                    isLoading ? <Loading style={{ fontSize: '30px' }} />
                         : data?.pages?.length > 0
                             // flatMap flattens the array of pages into a single array of products for rendering
                             ? data?.pages?.flatMap((page) => page.products.map(product =>
@@ -35,7 +35,7 @@ const ProductsList = ({ productsData }) => {
             </div>
 
             {
-                isFetchingNextPage && <Loading size={'30px'} />
+                isFetchingNextPage && <Loading style={{ fontSize: '30px' }} />
             }
 
             <div ref={ref} style={{ height: 1, width: 1 }} />

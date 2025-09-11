@@ -1,6 +1,11 @@
-.spinner {
-    animation: spin .6s linear infinite;
-    color: grey;
+.loadingCnr {
+    width: 100%;
+    text-align: center;
+
+    .spinner {
+        animation: spin .6s linear infinite;
+        color: grey;
+    }
 }
 
 

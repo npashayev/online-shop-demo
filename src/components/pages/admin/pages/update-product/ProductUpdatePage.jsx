@@ -14,7 +14,7 @@ const ProductUpdatePage = () => {
     const { productId } = useParams();
     const { data: productData, isPending, error } = useProductById(productId);
 
-    if (isPending) return <main className={styles.main}><Loading size="32px" /></main>
+    if (isPending) return <main className={styles.main}> <Loading style={{ fontSize: '32px' }} /></main>
 
     if (error) return <main className={styles.main}>An error occurred while getting user info</main>
 

@@ -23,7 +23,7 @@ const LoadingModal = ({ children }) => {
                     {children}
                 </div>
                 <div>
-                    <Loading size='32px' />
+                    <Loading style={{ fontSize: '32px' }} />
                 </div>
             </div>
         </div>

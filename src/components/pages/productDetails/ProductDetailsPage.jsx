@@ -15,7 +15,7 @@ const ProductDetailsPage = () => {
 
     if (error) return <div>{error.response?.data?.message || "An error occurred while fetching the product"}</div>
 
-    if (isLoading) return <Loading size="50px" />
+    if (isLoading) return <Loading style={{ fontSize: '50px' }} />
 
     return (
         product &&
