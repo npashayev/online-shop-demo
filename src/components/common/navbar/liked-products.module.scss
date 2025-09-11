@@ -1,84 +1,160 @@
 .main {
     background-color: white;
-    padding: 2rem;
+    padding-top: 0;
     position: fixed;
     top: 55px;
     right: 0;
+    transform: translateX(100%);
     height: calc(100vh - 55px);
-    min-width: 300px;
-    z-index: 50000;
+    z-index: var(--liked-products-index);
     font-size: 1.6rem;
     overflow-y: auto;
     overscroll-behavior: contain;
-    // scrollbar-width: none;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    border-left: 1px solid lightgrey;
+    width: 44rem;
+    transition: transform 0.3s ease-in-out;
 
-    .closeBtn {
-        background: none;
-        border: none;
-        width: max-content;
+    .closeBtnCnr {
+        background-color: white;
+        padding: 1.4rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+
+        .closeBtn {
+            font-size: 18px;
+
+            :hover {
+                color: rgb(0, 78, 78);
+            }
+        }
     }
 
-    .product {
-        padding: 0.8rem;
+    .productsList {
+        padding: 2rem;
         display: flex;
-        gap: 2rem;
-        align-items: center;
-        border-radius: 15px;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+        flex-direction: column;
+        gap: 14px;
 
-        .imageCnr {
-            .productImage {
-                height: 80px;
-                border-radius: 8px;
+        .messageCnr {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            align-items: center;
+
+            .exploreBtn {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+                justify-content: center;
                 border: 1px solid lightgray;
-            }
-        }
-
-        .productMain {
-
-            .cartButtonCnr {
-                position: relative;
+                padding: 0.8rem 1rem;
                 width: max-content;
+                border-radius: 1rem;
 
-                .cartButton {
-                    padding: 0.5rem 1rem;
-                    border: none;
-                    background-color: red;
-                    color: white;
-                    border-radius: 0.8rem;
-                    margin-top: 1rem;
-                }
-
-                .cartListCnr {
-                    width: 280px;
-                    position: absolute;
-                    background-color: white;
-                    border-radius: 2rem;
-                    border: 1px solid lightgrey;
-                    z-index: 2;
-                    top: calc(100% + 1rem);
-                    left: 50%;
-                    transform: translateX(-50%);
-                    padding-block: 2rem;
-                    display: flex;
-                    justify-content: center;
+                &:hover {
+                    border-color: black;
                 }
             }
         }
 
-        .totalPrice {
-            font-weight: bold;
-        }
+        .product {
+            padding: 1rem;
+            padding-right: 2rem;
+            display: flex;
+            gap: 3rem;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 1.5rem;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 
-        .xButton {
-            background: none;
-            border: none;
-            cursor: pointer;
+            .left {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
 
-            .xIcon {}
+                .imageCnr {
+                    border: 1px solid lightgrey;
+                    border-radius: 0.8rem;
+                    height: 8rem;
+                    width: 8rem;
+                    flex-shrink: 0;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .productImage {
+                        height: 100%;
+                    }
+                }
+
+                .productMain {
+                    padding-block: 0.4rem;
+
+                    .productTitle {
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+
+                    .cartButtonCnr {
+                        position: relative;
+                        width: max-content;
+
+                        .cartButton {
+                            padding: 0.5rem 1rem;
+                            border: none;
+                            background-color: red;
+                            color: white;
+                            border-radius: 0.8rem;
+                            margin-top: 1rem;
+                            font-size: 14px;
+
+                            &:hover {
+                                background-color: rgb(253, 49, 49);
+                            }
+                        }
+
+                        .cartListCnr {
+                            width: 28rem;
+                            position: absolute;
+                            background-color: white;
+                            border-radius: 2rem;
+                            border: 1px solid lightgrey;
+                            z-index: 1;
+                            top: calc(100% + 1rem);
+                            left: 50%;
+                            transform: translateX(-50%);
+                            padding-block: 2rem;
+                            display: flex;
+                            justify-content: center;
+                        }
+                    }
+                }
+            }
+
+            .right {
+                display: flex;
+                gap: 2rem;
+
+                .totalPrice {
+                    font-weight: bold;
+                }
+
+                .xButton {
+
+                    &:hover {
+                        color: rgb(0, 78, 78);
+                    }
+                }
+            }
         }
     }
+}
+
+.activeMain {
+    transform: translateX(0);
 }

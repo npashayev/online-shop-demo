@@ -1,9 +1,17 @@
 .main {
+    .toggleBtn {
+        font-size: 18px;
 
-    .toggleButton {
-        background: none;
-        border: none;
-        display: block;
-        font-size: 1.8rem;
+        &:hover {
+            color: red;
+        }
+
+        &:active {
+            transform: scale(0.9);
+        }
+    }
+
+    .active {
+        color: red;
     }
 }
