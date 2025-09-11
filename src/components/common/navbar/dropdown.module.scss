@@ -50,6 +50,7 @@
         overflow: hidden;
 
         .item {
+            white-space: nowrap;
             min-width: 100%;
             display: flex;
             justify-content: center;
