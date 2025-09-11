@@ -1,9 +1,26 @@
 import styles from './filter-bar.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass, faSort } from '@fortawesome/free-solid-svg-icons'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import AddProductAction from '../admin/components/AddProductAction';
+import Select from 'react-select'
+
+const options = [
+    { value: 'default', label: 'Default' },
+    { value: 'price-asc', label: 'Price Ascending' },
+    { value: 'price-desc', label: 'Price Descending' },
+    { value: 'rating-asc', label: 'Rating Ascending' },
+    { value: 'rating-desc', label: 'Rating Descending' },
+]
+
+const customStyles = {
+    control: (provided) => ({
+        ...provided,
+        width: "200px",
+        cursor: "pointer"
+    })
+};
 
 const FilterBar = ({ showSearchbar = true }) => {
 
@@ -12,14 +29,16 @@ const FilterBar = ({ showSearchbar = true }) => {
 
     const navigate = useNavigate();
 
+
     useEffect(() => {
         setSearchText(searchParams.get('q') || '')
     }, [searchParams])
 
     const selectorValue = searchParams.get('sortBy') && searchParams.get('order')
         ? `${searchParams.get('sortBy')}-${searchParams.get('order')}`
-        : ''
+        : 'default'
 
+    const selectedOption = options.find(opt => opt.value === selectorValue);
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -36,13 +55,13 @@ const FilterBar = ({ showSearchbar = true }) => {
         navigate(`/products/search?${newParams.toString()}`)
     }
 
-    const handleOptionChange = (e) => {
-        const value = e.target.value;
+    const handleOptionChange = (selectedOption) => {
+        const { value } = selectedOption;
 
         setSearchParams(prev => {
             const newParams = new URLSearchParams(prev)
 
-            if (!value) {
+            if (value == "default") {
                 newParams.delete('sortBy')
                 newParams.delete('order')
             } else {
@@ -56,21 +75,13 @@ const FilterBar = ({ showSearchbar = true }) => {
 
     return (
         <div className={styles.main}>
-            <div className={styles.selectCnr}>
-                <select
-                    name="sorter"
-                    value={selectorValue}
-                    className={styles.selector}
-                    onChange={handleOptionChange}
-                >
-                    <option value="">Default</option>
-                    <option value="price-asc">Price Ascending</option>
-                    <option value="price-desc">Price Descending</option>
-                    <option value="rating-asc">Rating Ascending</option>
-                    <option value="rating-desc">Rating Descending</option>
-                </select>
-                <FontAwesomeIcon icon={faSort} className={styles.sortIcon} />
-            </div>
+            <Select
+                options={options}
+                isSearchable={false}
+                value={selectedOption}
+                onChange={handleOptionChange}
+                styles={customStyles}
+            />
 
             <div className={styles.right}>
                 {
