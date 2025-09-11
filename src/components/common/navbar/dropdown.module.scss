@@ -2,6 +2,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    height: 100%;
 
     .userName {
         font-weight: bold;
@@ -9,13 +10,12 @@
         align-items: center;
         gap: 1rem;
         cursor: pointer;
+        font-size: 18px;
 
-        .userIcon {
-            color: gray;
-        }
+        .userIcon {}
     }
 
-    .btnCnr {
+    .btn {
         height: 36px;
         aspect-ratio: 1;
         display: flex;
@@ -27,7 +27,7 @@
         overflow: hidden;
     }
 
-    .loginBtnCnr {
+    .loginBtn {
         background-color: #1D4ED8;
 
         &:hover {
@@ -35,40 +35,32 @@
         }
     }
 
-    .userBtnCnr {
-        border: 1px solid lightgray;
-
-        .userImage {
-            height: 100%;
-        }
-    }
 
     .dropdown {
         position: absolute;
-        top: 36px;
+        top: 100%;
         right: 0;
+        min-width: 100%;
+        background-color: white;
+        border: 1px solid lightgray;
         display: flex;
         flex-direction: column;
-        background-color: white;
-        border-radius: 0.4rem;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
         overflow: hidden;
-        z-index: 50000;
 
         .item {
-            color: black;
-            text-decoration: none;
-            width: 100%;
-            min-width: max-content;
-            text-align: center;
+            min-width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
             padding: 4px 12px;
-            background: none;
-            border: none;
             font-size: 1.6rem;
-            cursor: pointer;
 
 
             &:first-child {
-                border-bottom: 1px solid lightgrey;
+                border-bottom: 1px solid lightgray;
             }
 
             &:hover {
