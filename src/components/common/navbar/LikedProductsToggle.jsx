@@ -23,14 +23,17 @@ const LikedProductsToggle = () => {
 
     return (
         <div ref={sideBarRef} className={styles.main} >
-            <button onClick={(e) => {
-                e.stopPropagation()
-                setIsSidebarOpen(prev => !prev)
-            }} className={styles.toggleButton}>
+            <button
+                onClick={(e) => {
+                    e.stopPropagation()
+                    setIsSidebarOpen(prev => !prev)
+                }}
+                className={`${styles.toggleBtn} ${isSidebarOpen ? styles.active : ""}`}
+            >
                 <FontAwesomeIcon icon={faHeart} />
             </button>
 
-            {isSidebarOpen && <LikedProducts onClose={() => setIsSidebarOpen(false)} />}
+            <LikedProducts onClose={() => setIsSidebarOpen(false)} isSidebarOpen={isSidebarOpen} />
         </div>
     )
 }
