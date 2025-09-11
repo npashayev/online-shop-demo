@@ -8,7 +8,7 @@ import LikedProductsToggle from "./LikedProductsToggle";
 
 const Navbar = () => {
 
-    const { user } = useAuth();
+    const { user, isAuthenticated } = useAuth();
 
     return (
         <header>
@@ -19,12 +19,13 @@ const Navbar = () => {
 
             <div className={styles.right}>
                 <nav className={styles.navigation}>
-                    <ul className={styles.linksContainer}>
+                    <ul className={styles.linksCnr}>
                         <li>
                             <NavLink to="/" className={({ isActive }) => isActive ? `${styles.link} ${styles.active}` : styles.link}>
                                 Home
                             </NavLink>
-
+                        </li>
+                        <li>
                             <NavLink to="/products" className={({ isActive }) => isActive ? `${styles.link} ${styles.active}` : styles.link}>
                                 Products
                             </NavLink>
@@ -33,7 +34,11 @@ const Navbar = () => {
                 </nav>
 
                 <LikedProductsToggle />
-                <UserBasket user={user} />
+
+                {
+                    isAuthenticated && <UserBasket user={user} />
+                }
+
                 <UserMenu user={user} />
             </div>
         </header>
