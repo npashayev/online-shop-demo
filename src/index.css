@@ -1,6 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 :root {
-    font-size: clamp(8px, 0.52vw, 12px);
+    font-size: 10px;
     font-family: "Nunito", sans-serif;
+
+    /* index variables */
+    --navbar-index: 100;
+    --liked-products-index: 99;
+}
+
+@media (max-width: 1536px) {
+    :root {
+        font-size: 9.5px;
+    }
+}
+
+@media (max-width: 1280px) {
+    :root {
+        font-size: 9px;
+    }
+}
+
+body {
+    /* background-color: #F7F5F5; */
+    padding-top: 55px;
 }
 
 input,
@@ -14,13 +41,16 @@ a {
     text-decoration: none;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
-body {
-    background-color: #F7F5F5;
-    padding-top: 55px;
+input {
+    outline: none;
+}
+
+ul {
+    list-style: none;
 }
