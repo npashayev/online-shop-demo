@@ -1,7 +1,7 @@
 import styles from './dropdown.module.scss'
-import LoginMenu from "./LoginMenu";
 import { useEffect, useRef, useState } from 'react';
 import UserOptions from "./UserOptions";
+import LoginButton from './LoginButton';
 
 
 
@@ -37,7 +37,7 @@ const UserMenu = ({ user }) => {
                         user={user}
                     />
 
-                    : <LoginMenu
+                    : <LoginButton
                         isOpen={isOpen}
                         setIsOpen={setIsOpen}
                         menuRef={menuRef}
