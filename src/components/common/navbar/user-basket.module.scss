@@ -1,0 +1,11 @@
+.main {
+    font-size: 18px;
+
+    &:hover {
+        color: rgb(173, 131, 23);
+    }
+
+    &:active {
+        transform: scale(0.9);
+    }
+}
