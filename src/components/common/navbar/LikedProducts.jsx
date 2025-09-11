@@ -22,6 +22,7 @@ const LikedProducts = ({ onClose, isSidebarOpen }) => {
                     likedProducts.length > 0
                         ? likedProducts.map(product => <LikedProductItem
                             key={product.id}
+                            onClose={onClose}
                             product={product}
                         />)
 

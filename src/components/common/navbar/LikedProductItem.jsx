@@ -8,13 +8,13 @@ import { toggleLike } from 'store/likedProductsSlice';
 import Loading from '../Loading';
 import { Link } from 'react-router-dom';
 
-const LikedProductItem = ({ product }) => {
+const LikedProductItem = ({ product, onClose }) => {
     const [isCartListOpen, setIsCartListOpen] = useState(false);
     const totalPrice = (product.price - product.price * product.discountPercentage / 100).toFixed(2)
     const dispatch = useDispatch();
 
     return (
-        <Link to={`/products/${product.id}`} className={styles.product}>
+        <Link onClick={onClose} to={`/products/${product.id}`} className={styles.product}>
             <div className={styles.left}>
                 <div className={styles.imageCnr}>
                     {
