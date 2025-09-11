@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     byId: {},
@@ -31,3 +31,13 @@ const likedProductsSlice = createSlice({
 
 export const { toggleLike, resetLikedProducts } = likedProductsSlice.actions;
 export const likedProductsReducer = likedProductsSlice.reducer;
+
+
+
+// Memorized selector
+const selectLikedProductsState = state => state.likedProducts;
+
+export const selectLikedProducts = createSelector(
+    [selectLikedProductsState],
+    likedProducts => likedProducts.allIds.map(id => likedProducts.byId[id])
+)
