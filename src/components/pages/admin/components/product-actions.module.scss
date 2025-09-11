@@ -16,6 +16,10 @@
     .updateBtn,
     .addBtn {
         background-color: green;
+
+        &:hover {
+            background-color: rgb(2, 153, 2);
+        }
     }
 
     .deleteBtn {
