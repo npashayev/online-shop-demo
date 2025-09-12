@@ -17,13 +17,13 @@ const AdditionalInfo = ({ product }) => {
             <div className={styles.headingsCnr}>
                 {
                     tabs.map(tab => (
-                        <div
+                        <button
                             key={tab.id}
                             className={`${styles.heading} ${activeTab === tab.id ? styles.activeHeading : ""}`}
                             onClick={() => setActiveTab(tab.id)}
                         >
                             {tab.label}
-                        </div>
+                        </button>
                     ))
                 }
             </div>
