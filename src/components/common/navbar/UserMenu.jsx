@@ -1,23 +1,20 @@
-import styles from './dropdown.module.scss'
-import { useEffect, useRef, useState } from 'react';
+import styles from './user-options.module.scss'
+import { useEffect, useRef } from 'react';
 import UserOptions from "./UserOptions";
 import LoginButton from './LoginButton';
 
 
 
-const UserMenu = ({ user }) => {
-
-    const [isOpen, setIsOpen] = useState(false);
+const UserMenu = ({ user, isDropdownOpen, setIsDropdownOpen, handleLogout }) => {
 
     const menuRef = useRef(null);
 
-    const handleClickOutside = (event) => {
-        if (menuRef.current && !menuRef.current.contains(event.target)) {
-            setIsOpen(false);
-        }
-    }
-
     useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setIsDropdownOpen(false);
+            }
+        }
 
         document.addEventListener("mousedown", handleClickOutside);
 
@@ -31,17 +28,14 @@ const UserMenu = ({ user }) => {
             {
                 user
                     ? <UserOptions
-                        isOpen={isOpen}
-                        setIsOpen={setIsOpen}
+                        isDropdownOpen={isDropdownOpen}
+                        setIsDropdownOpen={setIsDropdownOpen}
                         menuRef={menuRef}
                         user={user}
+                        handleLogout={handleLogout}
                     />
 
-                    : <LoginButton
-                        isOpen={isOpen}
-                        setIsOpen={setIsOpen}
-                        menuRef={menuRef}
-                    />
+                    : <LoginButton />
             }
         </div>
     )

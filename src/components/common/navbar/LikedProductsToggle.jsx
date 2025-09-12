@@ -1,18 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './liked-products-toggle.module.scss'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import { useEffect, useRef, useState } from 'react'
-import LikedProducts from './LikedProducts'
+import { useEffect, useRef } from 'react'
 
-const LikedProductsToggle = () => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+const LikedProductsToggle = ({ setIsMenuOpen, isLikedProductsOpen, setIsLikedProductsOpen }) => {
 
-    const sideBarRef = useRef(null);
+    const toggleBtnRef = useRef(null);
 
     useEffect(() => {
         const handleClickOutside = (e) => {
-            if (sideBarRef.current && !sideBarRef.current.contains(e.target)) {
-                setIsSidebarOpen(false);
+            if (toggleBtnRef.current && !toggleBtnRef.current.contains(e.target)) {
+                setIsLikedProductsOpen(false);
             }
         }
 
@@ -22,19 +20,17 @@ const LikedProductsToggle = () => {
     }, [])
 
     return (
-        <div ref={sideBarRef} className={styles.main} >
-            <button
-                onClick={(e) => {
-                    e.stopPropagation()
-                    setIsSidebarOpen(prev => !prev)
-                }}
-                className={`${styles.toggleBtn} ${isSidebarOpen ? styles.active : ""}`}
-            >
-                <FontAwesomeIcon icon={faHeart} />
-            </button>
-
-            <LikedProducts onClose={() => setIsSidebarOpen(false)} isSidebarOpen={isSidebarOpen} />
-        </div>
+        <button
+            ref={toggleBtnRef}
+            onClick={(e) => {
+                e.stopPropagation()
+                setIsLikedProductsOpen(prev => !prev)
+                setIsMenuOpen(false)
+            }}
+            className={`${styles.toggleBtn} ${isLikedProductsOpen ? styles.active : ""}`}
+        >
+            <FontAwesomeIcon icon={faHeart} />
+        </button>
     )
 }
 
