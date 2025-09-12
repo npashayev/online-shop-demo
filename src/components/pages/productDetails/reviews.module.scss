@@ -10,23 +10,39 @@
 
     .reviewsCnr {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 3.2rem;
+        flex-direction: column;
+        align-items: center;
+        gap: 2.4rem;
 
         .review {
-            width: 50rem;
+            width: 100%;
             padding: 2.4rem;
             border: 1px solid #D0D5DD;
             border-radius: 1.6rem;
             font-size: 1.6rem;
+            display: flex;
+            gap: 3.2rem;
 
-            .reviewHeading {
+            .ratingCnr {
                 display: flex;
-                justify-content: space-between;
+                align-items: center;
+                gap: 0.5rem;
+
+                .rating {
+                    font-size: 2rem;
+                    font-weight: bold;
+                }
+
+                .star {
+                    height: 16px;
+                }
+            }
+
+            .body {
+                border-left: 1px solid lightgray;
+                padding-left: 2.4rem;
 
                 .userInfo {
-
                     .userName {
                         font-weight: bold;
                     }
@@ -37,25 +53,9 @@
                     }
                 }
 
-                .ratingCnr {
-                    display: flex;
-                    align-items: center;
-                    gap: 0.5rem;
-
-                    .rating {
-                        font-size: 2rem;
-                        font-weight: bold;
-                    }
-
-                    .star {
-                        height: 16px;
-                    }
+                .comment {
+                    margin-top: 1.2rem;
                 }
-            }
-
-            .body {
-                margin-top: 2.4rem;
-
             }
         }
     }

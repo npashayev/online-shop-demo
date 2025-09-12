@@ -19,18 +19,18 @@ const Reviews = ({ reviews }) => {
                     reviews
                         ? reviews?.map((review, i) =>
                             <div key={i} className={styles.review}>
-                                <div className={styles.reviewHeading}>
+                                <div className={styles.ratingCnr}>
+                                    <img src={star} className={styles.star} />
+                                    <div className={styles.rating}>{review.rating}</div>
+                                </div>
+                                <div className={styles.body}>
                                     <div className={styles.userInfo}>
                                         <div className={styles.userName}>{review.reviewerName}</div>
                                         <div className={styles.date}>{formatDate(review.date)}</div>
                                     </div>
-                                    <div className={styles.ratingCnr}>
-                                        <img src={star} className={styles.star} />
-                                        <div className={styles.rating}>{review.rating}</div>
+                                    <div className={styles.comment}>
+                                        {review.comment}
                                     </div>
-                                </div>
-                                <div className={styles.body}>
-                                    {review.comment}
                                 </div>
                             </div>
                         )
