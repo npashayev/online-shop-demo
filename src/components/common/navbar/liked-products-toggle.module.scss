@@ -1,17 +1,15 @@
-.main {
-    .toggleBtn {
-        font-size: 18px;
+.toggleBtn {
+    font-size: 18px;
 
-        &:hover {
-            color: red;
-        }
-
-        &:active {
-            transform: scale(0.9);
-        }
-    }
-
-    .active {
+    &:hover {
         color: red;
     }
+
+    &:active {
+        transform: scale(0.9);
+    }
+}
+
+.active {
+    color: red;
 }

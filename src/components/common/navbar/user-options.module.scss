@@ -1,0 +1,42 @@
+.main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .userNameCnr {
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        cursor: pointer;
+        height: 100%;
+        font-size: 1.8rem;
+    }
+
+    .btn {
+        height: 36px;
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        cursor: pointer;
+        color: white;
+        overflow: hidden;
+    }
+
+    .loginBtn {
+        background-color: #1D4ED8;
+
+        &:hover {
+            background-color: #1b399b;
+        }
+    }
+}
+
+@media (max-width: 760px) {
+    .bigScreenDropdown {
+        display: none;
+    }
+}

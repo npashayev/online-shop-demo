@@ -24,31 +24,97 @@ header {
         }
     }
 
+    .burgerIcon {
+        display: none;
+    }
+
     .right {
-        display: flex;
-        align-items: center;
-        gap: 3rem;
         height: 100%;
+        background-color: white;
 
-        .navigation {
-            .linksCnr {
-                display: flex;
-                gap: 20px;
+        .rightItemsCnr {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            height: 100%;
 
-                .link {
-                    border-radius: 20px;
-                    transition: all .05s linear;
+            .smallScreenDropdown {
+                width: 100%;
+                display: none;
+            }
 
-                    &:hover {
-                        color: rgb(173, 131, 23);
+            .navigation {
+                .linksCnr {
+                    display: flex;
+                    gap: 20px;
+
+                    .link {
+                        transition: all .05s linear;
+
+                        &:hover {
+                            color: rgb(173, 131, 23);
+                        }
+                    }
+
+                    .active {
+                        font-weight: bold;
                     }
                 }
+            }
 
-                .active {
-                    font-weight: bold;
-                }
+            .userActionBtns {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                gap: 2.4rem;
             }
         }
     }
+}
 
+@media (max-width: 760px) {
+    header {
+        .burgerIcon {
+            display: block;
+        }
+
+        .right {
+            position: fixed;
+            top: 55px;
+            right: 0;
+            padding: 2rem 3rem;
+            overflow: auto;
+            height: calc(100vh - 55px);
+            border-left: 1px solid lightgray;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: var(--navigation-sidebar-index);
+
+            .rightItemsCnr {
+                flex-direction: column-reverse;
+                align-items: flex-end;
+                gap: 3rem;
+                height: auto;
+
+                .smallScreenDropdown {
+                    display: block;
+                }
+
+                .navigation {
+                    .linksCnr {
+                        flex-direction: column;
+                        align-items: flex-end;
+                    }
+                }
+
+                .userActionBtns {
+                    height: auto;
+                }
+            }
+        }
+
+        .activeRight {
+            transform: translateX(0);
+        }
+    }
 }
