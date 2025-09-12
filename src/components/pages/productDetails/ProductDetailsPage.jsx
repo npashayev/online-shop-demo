@@ -6,6 +6,7 @@ import ProductGallery from "./ProductGallery"
 import ProductInfo from "./ProductInfo"
 import Reviews from "./Reviews"
 import ProductActions from "../admin/components/ProductActions"
+import ProductInfoHeading from "./ProductInfoHeading"
 
 const ProductDetailsPage = () => {
 
@@ -15,14 +16,15 @@ const ProductDetailsPage = () => {
 
     if (error) return <div>{error.response?.data?.message || "An error occurred while fetching the product"}</div>
 
-    if (isLoading) return <Loading style={{ fontSize: '50px' }} />
+    if (isLoading) return <Loading style={{ fontSize: '42px', marginTop: '6rem' }} />
 
     return (
         product &&
-        <main className={styles.pageContainer}>
-            <div className={styles.categoryContainer}>
-                <div>
-                    Category / <a href={`/products/category/${product.category}`}
+        <main className={styles.main}>
+            <div className={styles.headLine}>
+                <div className={styles.categoryContainer}>
+                    Category / <a
+                        href={`/products/category/${product.category}`}
                         target="_blank"
                         className={styles.categoryName}
                     >
@@ -34,8 +36,17 @@ const ProductDetailsPage = () => {
             </div>
 
             <div className={styles.mainInfo}>
-                <ProductGallery product={product} />
-                <ProductInfo product={product} />
+                <div className={styles.gallery}>
+                    <ProductGallery product={product} />
+                </div>
+
+                <div className={styles.heading}>
+                    <ProductInfoHeading product={product} />
+                </div>
+
+                <div className={styles.info}>
+                    <ProductInfo product={product} />
+                </div>
             </div>
 
             <Reviews reviews={product.reviews} />
