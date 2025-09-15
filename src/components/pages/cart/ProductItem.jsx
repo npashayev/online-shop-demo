@@ -2,51 +2,59 @@ import styles from './carts.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleMinus, faCirclePlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import Loading from 'components/common/Loading';
+import { Link } from 'react-router-dom';
 
 const ProductItem = ({ product, totalPrice, handleQuantityChange, updateUserCart, cartId, handleProductDelete }) => {
     return (
-        <div className={styles.product}>
-            <div className={styles.imageCnr}>
-                <img src={product.thumbnail} className={styles.productImage} />
-            </div>
+        <Link to={`/products/${product.id}`} className={styles.product}>
+            <div className={styles.left}>
+                <div className={styles.imageCnr}>
+                    {
+                        product.thumbnail
+                            ? <img src={product.thumbnail} className={styles.productImage} />
+                            : <Loading />
+                    }
+                </div>
 
-            <div className={styles.orderInfo}>
-                <div className={styles.productTitle}>{product.title}</div>
-                <div className={styles.productQuantityCnr}>
+                <div className={styles.productMain}>
+                    <div className={styles.productTitle} title={product.title}>{product.title}</div>
+                    <div className={styles.productQuantityCnr}>
+                        <button
+                            onClick={(event) => handleQuantityChange(event, cartId, product)}
+                            disabled={product.quantity === 1 || updateUserCart.isPending}
+                            className={styles.counterButton}
+                        >
+                            <FontAwesomeIcon icon={faCircleMinus} className={styles.counterIcon} />
+                        </button>
 
-                    <button
-                        onClick={() => handleQuantityChange(cartId, product)}
-                        disabled={product.quantity === 1 || updateUserCart.isPending}
-                        className={styles.counterButton}
-                    >
-                        <FontAwesomeIcon icon={faCircleMinus} className={styles.counterIcon} />
-                    </button>
+                        <div className={styles.productQuantity}>
+                            {updateUserCart.isPending ? <Loading /> : product.quantity}
+                        </div>
 
-                    <div className={styles.productQuantity}>
-                        {updateUserCart.isPending ? <Loading /> : product.quantity}
+                        <button
+                            onClick={(event) => handleQuantityChange(event, cartId, product, true)}
+                            disabled={updateUserCart.isPending}
+                            className={styles.counterButton}
+                        >
+                            <FontAwesomeIcon icon={faCirclePlus} className={styles.counterIcon} />
+                        </button>
                     </div>
-
-                    <button
-                        onClick={() => handleQuantityChange(cartId, product, true)}
-                        disabled={updateUserCart.isPending}
-                        className={styles.counterButton}
-                    >
-                        <FontAwesomeIcon icon={faCirclePlus} className={styles.counterIcon} />
-                    </button>
                 </div>
             </div>
 
-            <div className={styles.totalPrice}>
-                ${totalPrice}
-            </div>
+            <div className={styles.right}>
+                <div className={styles.totalPrice}>
+                    ${totalPrice}
+                </div>
 
-            <button
-                onClick={() => handleProductDelete(cartId, product)}
-                className={styles.trashCanButton}
-            >
-                <FontAwesomeIcon icon={faTrashCan} className={styles.trashCanIcon} />
-            </button>
-        </div>
+                <button
+                    onClick={(event) => handleProductDelete(event, cartId, product)}
+                    className={styles.deleteBtn}
+                >
+                    <FontAwesomeIcon icon={faTrashCan} className={styles.deleteIcon} />
+                </button>
+            </div>
+        </Link>
     )
 }
 

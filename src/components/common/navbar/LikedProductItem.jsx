@@ -58,9 +58,9 @@ const LikedProductItem = ({ product, onClose }) => {
                         e.stopPropagation()
                         dispatch(toggleLike(product))
                     }}
-                    className={styles.xButton}
+                    className={styles.deleteBtn}
                 >
-                    <FontAwesomeIcon icon={faXmark} className={styles.xIcon} />
+                    <FontAwesomeIcon icon={faXmark} className={styles.deleteIcon} />
                 </button>
             </div>
         </Link>

@@ -1,7 +1,7 @@
 import styles from './carts.module.scss'
 import ProductItem from './ProductItem';
 
-const Cart = ({ cart, index, handleQuantityChange, updateUserCart, handleProductDelete, setCartToDelete }) => {
+const Cart = ({ cart, handleQuantityChange, updateUserCart, handleProductDelete }) => {
 
     const calcTotalPrice = (product) => Number(((product.price - product.price * product.discountPercentage / 100) * product.quantity).toFixed(2))
 
@@ -11,21 +11,8 @@ const Cart = ({ cart, index, handleQuantityChange, updateUserCart, handleProduct
         totalQuantity: cart?.products?.reduce((acc, product) => acc + product.quantity, 0)
     }
 
-
     return (
         <div className={styles.cart}>
-            <div className={styles.cartHeader}>
-                <div className={styles.headerText}>Shopping cart {index + 1}</div>
-                <button
-                    onClick={() => {
-                        setCartToDelete(cart.id)
-                    }}
-                    className={styles.deleteCartBtn}
-                >
-                    Delete this cart
-                </button>
-            </div>
-
             <div className={styles.productsCnr}>
                 {
                     cart?.products?.length > 0

@@ -11,18 +11,14 @@ import ConfirmationModal from 'components/common/modal/ConfirmationModal';
 
 
 const CartsPage = () => {
-    const [cartToDelete, setCartToDelete] = useState(null);
 
     const { user } = useAuth();
 
-    const { data: cartsData, isLoading, error } = useUserCarts(user.id)
+    const { data: cart, isLoading, error } = useUserCarts(user.id)
 
     const updateUserCart = useUpdateUserCart()
-
     const queryClient = useQueryClient();
-
     const addNewCart = useAddNewUserCart();
-
     const deleteCart = useDeleteUserCart();
 
     const handleAddNewUserCart = () => {
@@ -31,30 +27,27 @@ const CartsPage = () => {
             products: [{}]
         },
             {
-                onSuccess: (newUserCart) => queryClient.setQueryData(["currentUser", "carts"], cachedCartsData => {
-                    if (cachedCartsData?.carts?.some(cart => cart.id === newUserCart.id)) {
-                        alert("You cannot add more new carts!")
-                        return cachedCartsData
-                    }
-
-                    return {
-                        ...cachedCartsData,
-                        carts: [...cachedCartsData.carts, newUserCart]
-                    }
-                })
-            })
+                onSuccess: (newUserCart) => queryClient.setQueryData(["currentUser", "carts"], newUserCart)
+            }
+        )
     }
 
     useEffect(() => {
-        if (cartsData?.carts?.length === 0) {
+        if (!cart) {
             handleAddNewUserCart()
         }
-    }, [cartsData?.carts?.length])
+    }, [cart?.carts?.length])
 
-    const handleQuantityChange = (cartId, product, isIncrease = false) => {
+    const handleQuantityChange = (event, cartId, product, isIncrease = false) => {
+        event.stopPropagation();
+        event.preventDefault();
         const changeValue = isIncrease ? 1 : -1;
-        const updatedCart = cartsData?.carts?.find(cart => cart.id === cartId)
-        const updatedProductsArray = updatedCart.products.map(p => p.id === product.id
+
+        if (!isIncrease && product.quantity <= 1) {
+            alert("Quantity cannot go below 1");
+            return;
+        }
+        const updatedProductsArray = cart.products.map(p => p.id === product.id
             ? ({
                 id: product.id,
                 quantity: product.quantity + changeValue
@@ -69,13 +62,7 @@ const CartsPage = () => {
             }
         },
             {
-                onSuccess: (updatedCart) => queryClient.setQueryData(["currentUser", "carts"], cachedCartsData => ({
-                    ...cachedCartsData,
-                    carts: cachedCartsData?.carts?.map(cachedCart => cachedCart.id === updatedCart.id
-                        ? updatedCart
-                        : cachedCart
-                    )
-                })),
+                onSuccess: (updatedCart) => queryClient.setQueryData(["currentUser", "carts"], updatedCart),
 
                 onError: (error, updatedCart) => {
                     if (updatedCart.cartId === 51) {
@@ -84,17 +71,11 @@ const CartsPage = () => {
                             quantity: product.quantity + changeValue
                         }
 
-                        queryClient.setQueryData(["currentUser", "carts"], cachedCartsData => ({
-                            ...cachedCartsData,
-                            carts: cachedCartsData?.carts?.map(cachedCart => cachedCart.id === updatedCart.cartId
-                                ? {
-                                    ...cachedCart,
-                                    products: cachedCart.products.map(p => p.id === product.id
-                                        ? updatedProduct
-                                        : p
-                                    )
-                                }
-                                : cachedCart
+                        queryClient.setQueryData(["currentUser", "carts"], cachedCart => ({
+                            ...cachedCart,
+                            products: cachedCart.products.map(p => p.id === product.id
+                                ? updatedProduct
+                                : p
                             )
                         }))
                     }
@@ -103,9 +84,11 @@ const CartsPage = () => {
         )
     }
 
-    const handleProductDelete = (cartId, product) => {
-        const updatedCart = cartsData?.carts?.find(cart => cart.id === cartId)
-        const updatedProductsArray = updatedCart.products.filter(p => p.id !== product.id)
+    const handleProductDelete = (event, cartId, product) => {
+        event.stopPropagation();
+        event.preventDefault();
+
+        const updatedProductsArray = cart.products.filter(p => p.id !== product.id)
 
         updateUserCart.mutate({
             cartId,
@@ -114,51 +97,19 @@ const CartsPage = () => {
             }
         },
             {
-                onSuccess: (updatedCart) => queryClient.setQueryData(["currentUser", "carts"], cachedCartsData => ({
-                    ...cachedCartsData,
-                    carts: cachedCartsData?.carts?.map(cachedCart => cachedCart.id === updatedCart.id
-                        ? updatedCart
-                        : cachedCart
-                    )
-                })),
+                onSuccess: (updatedCart) => queryClient.setQueryData(["currentUser", "carts"], updatedCart),
 
                 onError: (error, updatedCart) => {
                     if (updatedCart.cartId === 51) {
-                        queryClient.setQueryData(["currentUser", "carts"], cachedCartsData => ({
-                            ...cachedCartsData,
-                            carts: cachedCartsData?.carts?.map(cachedCart => cachedCart.id === updatedCart.cartId
-                                ? {
-                                    ...cachedCart,
-                                    products: updatedProductsArray
-                                }
-                                : cachedCart
-                            )
-                        }))
+                        queryClient.setQueryData(["currentUser", "carts"], cachedCart => ({
+                            ...cachedCart,
+                            products: updatedProductsArray
+                        }
+                        ))
                     }
                 }
             }
         )
-    }
-
-    const handleCartDelete = (cartId) => {
-        deleteCart.mutate(cartId, {
-            onSuccess: (deletedCart) => queryClient.setQueryData(["currentUser", "carts"], cachedCartsData => ({
-                ...cachedCartsData,
-                carts: cachedCartsData?.carts?.filter(cachedCart => cachedCart.id !== deletedCart.id)
-            })),
-
-            onError: (error, deletedCartId) => {
-                console.log(deletedCartId)
-                if (deletedCartId === 51) {
-                    queryClient.setQueryData(["currentUser", "carts"], cachedCartsData => ({
-                        ...cachedCartsData,
-                        carts: cachedCartsData?.carts?.filter(cachedCart => cachedCart.id !== deletedCartId)
-                    }))
-                }
-            },
-
-            onSettled: () => setCartToDelete(null)
-        })
     }
 
     if (error) return <div className={styles.main}>Error happened while fetching cart</div>
@@ -167,36 +118,19 @@ const CartsPage = () => {
 
     return (
         <main className={styles.main}>
-            {
-                cartToDelete &&
-                <ConfirmationModal
-                    onConfirm={() => handleCartDelete(cartToDelete)}
-                    onCancel={() => setCartToDelete(null)}
-                >
-                    Are you sure to delete this cart?
-                </ConfirmationModal>
-            }
-
             <CartsPageHeader
-                cartsData={cartsData}
+                cart={cart}
                 user={user}
                 queryClient={queryClient}
                 handleAddNewUserCart={handleAddNewUserCart}
             />
 
-            {
-                cartsData?.carts?.map((cart, index) =>
-                    <Cart
-                        key={cart.id}
-                        cart={cart}
-                        index={index}
-                        handleQuantityChange={handleQuantityChange}
-                        updateUserCart={updateUserCart}
-                        handleProductDelete={handleProductDelete}
-                        handleCartDelete={handleCartDelete}
-                        setCartToDelete={setCartToDelete}
-                    />)
-            }
+            <Cart
+                cart={cart}
+                handleQuantityChange={handleQuantityChange}
+                updateUserCart={updateUserCart}
+                handleProductDelete={handleProductDelete}
+            />
         </main >
     )
 }
