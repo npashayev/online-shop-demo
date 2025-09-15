@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { addNewUserCart, deleteUserCart, getUserCarts, updateUserCart } from "services/cartService";
+import { addNewUserCart, getUserCarts, updateUserCart } from "services/cartService";
 
 export const useUserCarts = (id, isEnabled = true) =>
     useQuery({

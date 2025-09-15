@@ -15,8 +15,3 @@ export const addNewUserCart = (data) => {
         .post('/carts/add', data)
         .then(res => res.data)
 }
-
-export const deleteUserCart = (cartId) =>
-    apiClient
-        .delete(`/carts/${cartId}`)
-        .then(res => res.data)
