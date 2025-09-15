@@ -5,13 +5,14 @@ import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { selectLikedProducts } from 'store/likedProductsSlice';
+import { forwardRef } from 'react';
 
-const LikedProducts = ({ isLikedProductsOpen, setIsLikedProductsOpen }) => {
+const LikedProducts = forwardRef(({ isLikedProductsOpen, setIsLikedProductsOpen }, ref) => {
 
     const likedProducts = useSelector(selectLikedProducts);
 
     return (
-        <aside className={`${styles.main} ${isLikedProductsOpen ? styles.activeMain : ''}`}>
+        <aside ref={ref} className={`${styles.main} ${isLikedProductsOpen ? styles.activeMain : ''}`}>
             <div className={styles.closeBtnCnr}>
                 <button onClick={() => setIsLikedProductsOpen(false)} className={styles.closeBtn}>
                     <FontAwesomeIcon icon={faXmark} className={styles.xIcon} />
@@ -27,8 +28,8 @@ const LikedProducts = ({ isLikedProductsOpen, setIsLikedProductsOpen }) => {
                         />)
 
                         : <div className={styles.messageCnr}>
-                            <div className={styles.message}>"You haven’t liked any products yet."</div>
-                            <Link to='/products' className={styles.exploreBtn} onClick={setIsLikedProductsOpen}>
+                            <div className={styles.message}>You haven’t liked any products yet.</div>
+                            <Link to='/products' className={styles.exploreBtn} onClick={() => setIsLikedProductsOpen(false)}>
                                 Explore products
                                 <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchIcon} />
                             </Link>
@@ -37,6 +38,6 @@ const LikedProducts = ({ isLikedProductsOpen, setIsLikedProductsOpen }) => {
             </div>
         </aside>
     )
-}
+})
 
 export default LikedProducts

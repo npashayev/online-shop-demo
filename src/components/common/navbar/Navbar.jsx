@@ -27,19 +27,35 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     const menuRef = useRef(null);
+    const menuToggleRef = useRef(null);
+    const likedProductsToggleRef = useRef(null);
+    const likedProductsRef = useRef(null);
 
     useEffect(() => {
-
-        const handleMenuOutsideClick = (event) => {
-            if (menuRef.current && !menuRef.current.contains(event.target)) {
+        const handleClickOutside = (event) => {
+            if (
+                menuToggleRef.current
+                && !menuToggleRef.current.contains(event.target)
+                && menuRef.current
+                && !menuRef.current.contains(event.target)
+            ) {
                 setIsMenuOpen(false)
+            }
+
+            if (
+                likedProductsToggleRef.current
+                && !likedProductsToggleRef.current.contains(event.target)
+                && likedProductsRef.current
+                && !likedProductsRef.current.contains(event.target)
+            ) {
+                setIsLikedProductsOpen(false);
             }
         }
 
-        document.addEventListener("mousedown", handleMenuOutsideClick)
+        document.addEventListener("mousedown", handleClickOutside)
 
         return () => {
-            document.removeEventListener("mousedown", handleMenuOutsideClick)
+            document.removeEventListener('mousedown', handleClickOutside);
         }
     }, [])
 
@@ -67,17 +83,16 @@ const Navbar = () => {
                 <div className={styles.name}>Online Shop</div>
             </div>
 
-            <div ref={menuRef} className={styles.menuIconCnr}>
+            <button ref={menuToggleRef} className={styles.menuIconCnr}>
                 <FontAwesomeIcon
                     icon={faBars}
                     onClick={() => setIsMenuOpen(prev => !prev)}
-                    className={styles.burgerIcon}
+                    className={styles.menuIcon}
                 />
-            </div>
+            </button>
 
-            <div className={`${styles.right} ${isMenuOpen ? styles.activeRight : ''}`}>
+            <div ref={menuRef} className={`${styles.right} ${isMenuOpen ? styles.activeRight : ''}`}>
                 <div className={styles.rightItemsCnr}>
-
                     <div className={styles.smallScreenDropdown}>
                         <UserDropdown
                             user={user}
@@ -112,6 +127,7 @@ const Navbar = () => {
                             setIsMenuOpen={setIsMenuOpen}
                             isLikedProductsOpen={isLikedProductsOpen}
                             setIsLikedProductsOpen={setIsLikedProductsOpen}
+                            ref={likedProductsToggleRef}
                         />
 
                         {
@@ -135,6 +151,7 @@ const Navbar = () => {
             <LikedProducts
                 isLikedProductsOpen={isLikedProductsOpen}
                 setIsLikedProductsOpen={setIsLikedProductsOpen}
+                ref={likedProductsRef}
             />
         </header>
     );

@@ -24,8 +24,10 @@ header {
         }
     }
 
-    .burgerIcon {
+    .menuIcon {
         display: none;
+        cursor: pointer;
+        font-size: 1.8rem;
     }
 
     .right {
@@ -74,7 +76,7 @@ header {
 
 @media (max-width: 760px) {
     header {
-        .burgerIcon {
+        .menuIcon {
             display: block;
         }
 
