@@ -1,4 +1,4 @@
-import styles from "../../components/product-info.module.scss";
+import styles from "/src/styles/resource-form.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from "react";
@@ -6,7 +6,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { useCategories, useUpdateProduct } from "hooks/useProducts";
 import Loading from "components/common/Loading";
 import { useQueryClient } from "@tanstack/react-query";
-import RHFInput from "../../components/RHFInput";
+import { RHFInput } from "components/common/form-fields/FormFields";
 
 
 const EditProductInfo = ({ product, setIsEditMode }) => {

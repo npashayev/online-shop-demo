@@ -1,11 +1,5 @@
-import styles from "../../components/product-info.module.scss";
-
-const InfoField = ({ label, value }) => (
-    <div className={styles.inputCnr}>
-        <label>{label}</label>
-        <p className={styles.info}>{value || ''}</p>
-    </div>
-);
+import { InfoField } from "components/common/form-fields/FormFields";
+import styles from "/src/styles/resource-form.module.scss";
 
 const ProductInfoReadOnly = ({ product, setIsEditMode }) => {
     return (
