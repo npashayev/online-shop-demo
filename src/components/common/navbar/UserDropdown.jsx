@@ -7,7 +7,7 @@ const UserDropdown = ({ user, setIsDropdownOpen = null, setIsMenuOpen = null, ha
     return (
         <div className={styles.dropdown}>
             <Link
-                to={`/user-info/${user.id}`}
+                to={`/user-info/${user?.id}`}
                 onClick={() => {
                     setIsDropdownOpen && setIsDropdownOpen(false)
                     setIsMenuOpen && setIsMenuOpen(false)
