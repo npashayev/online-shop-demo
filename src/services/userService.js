@@ -34,7 +34,7 @@ export const getCurrentUser = () =>
         .get('/user/me')
         .then(res => res.data)
 
-export const updateCurrentUser = ({ userId, currentUser }) =>
+export const updateCurrentUser = ({ userId, formData }) =>
     apiClient
-        .put(`/users/${userId}`, currentUser)
+        .put(`/users/${userId}`, formData)
         .then(res => res.data)

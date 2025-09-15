@@ -1,35 +1,78 @@
-import styles from "./user-info.module.scss";
+import { useForm } from "react-hook-form";
+import styles from "/src/styles/resource-form.module.scss";
+import { useQueryClient } from "@tanstack/react-query";
+import { useDispatch } from "react-redux";
+import { useUpdateCurrentUser } from "hooks/useUser";
+import useAuth from "hooks/useAuth";
+import { useEffect } from "react";
+import { setUser } from "store/userSlice";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Loading from "components/common/Loading";
+import { RHFInput } from "components/common/form-fields/FormFields";
 
-// Reusable input field component
-const InputField = ({ label, name, value, onChange }) => (
-    <div className={styles.inputCnr}>
-        <label>{label}</label>
-        <input
-            name={name}
-            value={value || ''}
-            onChange={onChange}
-            className={styles.info}
-        />
-    </div>
-);
+const EditUserInfo = ({ user, setEditMode }) => {
 
-const EditUserInfo = ({ user, handleInputChange }) => {
+    const { register, handleSubmit, reset, formState: { isSubmitting, isDirty } } = useForm({
+        defaultValues: user
+    })
+
+    const queryClient = useQueryClient()
+    let dispatch = useDispatch();
+    const { mutate, isPending } = useUpdateCurrentUser();
+
+    const { user: persistedUser } = useAuth();
+
+    useEffect(() => {
+        if (user) {
+            reset(user);
+        }
+    }, [user, reset]);
+
+    const handleUpdateUser = (formData) => {
+        mutate({
+            userId: persistedUser.id,
+            formData
+        },
+            {
+                onSuccess: (data) => {
+                    queryClient.setQueryData(["currentUser"], data)
+                    dispatch(setUser({
+                        ...persistedUser,
+                        username: data.username,
+                        email: data.email,
+                        firstName: data.firstName,
+                        lastName: data.lastName,
+                    }))
+
+                    setEditMode(false)
+                }
+            })
+    }
+
     return (
-        <div className={styles.componentContainer}>
+        <form className={styles.componentContainer}>
+            <div className={styles.buttonsCnr}>
+                <button onClick={() => setEditMode(false)} className={styles.crossBtn}>
+                    <FontAwesomeIcon icon={faXmark} />
+                </button>
+                <button type="button" onClick={handleSubmit(handleUpdateUser)} disabled={!isDirty || isPending} className={styles.updateBtn}>{isPending ? <Loading /> : "Update"}</button>
+            </div>
+
             {/* General Information */}
             <div className={styles.block}>
                 <div className={styles.heading}>General information</div>
                 <div className={styles.inputGroup}>
-                    <InputField label="First name" name="firstName" value={user.firstName} onChange={handleInputChange} />
-                    <InputField label="Last name" name="lastName" value={user.lastName} onChange={handleInputChange} />
-                    <InputField label="Maiden name" name="maidenName" value={user.maidenName} onChange={handleInputChange} />
+                    <RHFInput label="First name" name="firstName" register={register} />
+                    <RHFInput label="Last name" name="lastName" register={register} />
+                    <RHFInput label="Maiden name" name="maidenName" register={register} />
                 </div>
                 <div className={styles.inputGroup}>
-                    <InputField label="Username" name="username" value={user.username} onChange={handleInputChange} />
-                    <InputField label="Email" name="email" value={user.email} onChange={handleInputChange} />
+                    <RHFInput label="Username" name="username" register={register} />
+                    <RHFInput label="Email" name="email" register={register} />
                 </div>
                 <div className={styles.inputGroup}>
-                    <InputField label="Phone" name="phone" value={user.phone} onChange={handleInputChange} />
+                    <RHFInput label="Phone" name="phone" register={register} />
                 </div>
             </div>
 
@@ -37,15 +80,15 @@ const EditUserInfo = ({ user, handleInputChange }) => {
             <div className={styles.block}>
                 <div className={styles.heading}>Address information</div>
                 <div className={styles.inputGroup}>
-                    <InputField label="Address" name="address.address" value={user.address?.address} onChange={handleInputChange} />
+                    <RHFInput label="Address" name="address.address" register={register} />
                 </div>
                 <div className={styles.inputGroup}>
-                    <InputField label="City" name="address.city" value={user.address?.city} onChange={handleInputChange} />
-                    <InputField label="State" name="address.state" value={user.address?.state} onChange={handleInputChange} />
+                    <RHFInput label="City" name="address.city" register={register} />
+                    <RHFInput label="State" name="address.state" register={register} />
                 </div>
                 <div className={styles.inputGroup}>
-                    <InputField label="State code" name="address.stateCode" value={user.address?.stateCode} onChange={handleInputChange} />
-                    <InputField label="Postal code" name="address.postalCode" value={user.address?.postalCode} onChange={handleInputChange} />
+                    <RHFInput label="State code" name="address.stateCode" register={register} />
+                    <RHFInput label="Postal code" name="address.postalCode" register={register} />
                 </div>
             </div>
 
@@ -53,14 +96,14 @@ const EditUserInfo = ({ user, handleInputChange }) => {
             <div className={styles.block}>
                 <div className={styles.heading}>Card information</div>
                 <div className={styles.inputGroup}>
-                    <InputField label="Card number" name="bank.cardNumber" value={user.bank?.cardNumber} onChange={handleInputChange} />
+                    <RHFInput label="Card number" name="bank.cardNumber" register={register} />
                 </div>
                 <div className={styles.inputGroup}>
-                    <InputField label="Expiration date" name="bank.cardExpire" value={user.bank?.cardExpire} onChange={handleInputChange} />
-                    <InputField label="Currency" name="bank.currency" value={user.bank?.currency} onChange={handleInputChange} />
+                    <RHFInput label="Expiration date" name="bank.cardExpire" register={register} />
+                    <RHFInput label="Currency" name="bank.currency" register={register} />
                 </div>
             </div>
-        </div>
+        </form>
     )
 }
 

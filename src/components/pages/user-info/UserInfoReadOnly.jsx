@@ -1,15 +1,12 @@
-import styles from "./user-info.module.scss";
+import { InfoField } from "components/common/form-fields/FormFields";
+import styles from "/src/styles/resource-form.module.scss";
 
-const InfoField = ({ label, value }) => (
-    <div className={styles.inputCnr}>
-        <label>{label}</label>
-        <p className={styles.info}>{value || ''}</p>
-    </div>
-);
-
-const UserInfoReadOnly = ({ user }) => {
+const UserInfoReadOnly = ({ user, setEditMode }) => {
     return (
         <div className={styles.componentContainer}>
+            <div className={styles.buttonsCnr}>
+                <button onClick={() => setEditMode(true)} className={styles.editBtn}>Edit</button>
+            </div>
 
             {/* General Information */}
             <div className={styles.block}>
