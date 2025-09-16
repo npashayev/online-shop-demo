@@ -8,12 +8,13 @@ const LoginPage = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [loginData, setLoginData] = useState({ username: '', password: '' });
     const [errorMessage, setErrorMessage] = useState('');
-    const login = useLogin();
+
+    const { mutate, error, reset, isPending } = useLogin();
     const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         setErrorMessage("");
-        if (login.error) login.reset(); // clear previous API error
+        if (error) reset(); // clear previous API error
         const { name, value } = e.target;
         setLoginData(prev => ({
             ...prev,
@@ -24,30 +25,34 @@ const LoginPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrorMessage('');
-        if (login.error) login.reset();
+        if (error) reset();
         if (!loginData.username || !loginData.password) {
             setErrorMessage('Please fill in all fields')
             return
         }
 
-        login.mutate(loginData, {
+        mutate(loginData, {
             onSuccess: () => {
                 navigate('/')
-            }
+            },
+            onError: (error) => setErrorMessage(error.message)
         });
     }
 
     return (
         <main className={styles.pageCnr}>
-            <form className={styles.form} onSubmit={handleSubmit}>
+            <form
+                className={styles.form}
+                onSubmit={handleSubmit}
+            >
                 <h1 className={styles.formHeaderText}>
                     Login
                 </h1>
 
                 {
-                    (errorMessage || login.error) &&
+                    errorMessage &&
                     <div className={styles.error}>
-                        {errorMessage || login.error.response?.data?.message}
+                        {errorMessage}
                     </div>
                 }
 
@@ -57,11 +62,11 @@ const LoginPage = () => {
                         value={loginData.username}
                         type='text'
                         name='username'
-                        disabled={login.isPending}
+                        disabled={isPending}
                         placeholder=' '
                         required
                     />
-                    <label className={login.isPending ? styles.submitting : ''}>Username</label>
+                    <label className={isPending ? styles.submitting : ''}>Username</label>
                 </div>
 
                 <div className={styles.inputField}>
@@ -69,25 +74,26 @@ const LoginPage = () => {
                         onChange={handleInputChange}
                         value={loginData.password}
                         name='password'
-                        type={passwordVisible ? 'text' : 'password'}
-                        disabled={login.isPending}
-                        placeholder=' '
                         required
+                        type={passwordVisible ? 'text' : 'password'}
+                        disabled={isPending}
+                        placeholder=' '
                     />
-                    <label className={login.isPending ? styles.submitting : ''}>Password</label>
+                    <label className={isPending ? styles.submitting : ''}>Password</label>
+
                     <button
-                        type='button'
-                        onClick={() => setPasswordVisible(prev => !prev)}
-                        disabled={login.isPending}
                         className={styles.toggleBtn}
+                        type='button'
+                        disabled={isPending}
+                        onClick={() => setPasswordVisible(prev => !prev)}
                     >
                         {passwordVisible ? <FaRegEye /> : <FaRegEyeSlash />}
                     </button>
                 </div>
 
                 <div className={styles.buttonContainer}>
-                    <button type="submit" disabled={login.isPending}>
-                        {login.isPending ? 'Logging in...' : 'Login'}
+                    <button type="submit" disabled={isPending}>
+                        {isPending ? 'Logging in...' : 'Login'}
                     </button>
                 </div>
             </form>
