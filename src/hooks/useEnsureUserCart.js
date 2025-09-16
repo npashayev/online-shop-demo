@@ -1,5 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { useAddNewUserCart } from "hooks/useUserCarts";
+import { useAddNewUserCart } from "hooks/useUserCart";
 
 const useEnsureUserCart = () => {
     const queryClient = useQueryClient();

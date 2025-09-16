@@ -1,19 +1,20 @@
-import { useUpdateUserCart, useUserCarts } from 'hooks/useUserCarts'
+import { useUpdateUserCart, useUserCart } from 'hooks/useUserCart'
 import styles from './carts.module.scss'
 import useAuth from 'hooks/useAuth'
 import Loading from 'components/common/Loading';
 import { useQueryClient } from '@tanstack/react-query';
 import Cart from './Cart';
-import CartsPageHeader from './CartsPageHeader';
+import CartPageHeader from './CartPageHeader';
 import { useEffect } from 'react';
 import useEnsureUserCart from 'hooks/useEnsureUserCart';
+import CardDetails from './CardDetails';
 
 
 const CartsPage = () => {
 
     const { user } = useAuth();
 
-    const { data: cart, isLoading, error } = useUserCarts(user.id)
+    const { data: cart, isLoading, error } = useUserCart(user.id)
     const calcTotalPrice = (product) => Number(((product.price - product.price * product.discountPercentage / 100) * product.quantity).toFixed(2))
 
     const totalCartInfo = {
@@ -28,11 +29,14 @@ const CartsPage = () => {
     const { createCart } = useEnsureUserCart()
 
     useEffect(() => {
-        if (!cart) {
+        if (cart === null && !isLoading && !error) {
+            console.log("Worked")
+            console.log("Cart value: ", cart)
             createCart(user.id)
         }
-    }, [cart, user.id])
+    }, [cart, user.id, isLoading, error])
 
+    console.log(cart)
     const handleQuantityChange = (event, cartId, product, isIncrease = false) => {
         event.stopPropagation();
         event.preventDefault();
@@ -113,16 +117,21 @@ const CartsPage = () => {
 
     return (
         <main className={styles.main}>
-            <CartsPageHeader />
+            <div className={styles.contentCnr}>
+                <div className={styles.cartCnr}>
+                    <CartPageHeader />
 
-            <Cart
-                cart={cart}
-                handleQuantityChange={handleQuantityChange}
-                updateUserCart={updateUserCart}
-                handleProductDelete={handleProductDelete}
-                totalCartInfo={totalCartInfo}
-                calcTotalPrice={calcTotalPrice}
-            />
+                    <Cart
+                        cart={cart}
+                        handleQuantityChange={handleQuantityChange}
+                        updateUserCart={updateUserCart}
+                        handleProductDelete={handleProductDelete}
+                        calcTotalPrice={calcTotalPrice}
+                    />
+                </div>
+
+                <CardDetails totalCartInfo={totalCartInfo} />
+            </div>
         </main >
     )
 }

@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
 import useAuth from 'hooks/useAuth';
-import { useUpdateUserCart, useUserCarts } from 'hooks/useUserCarts'
+import { useUpdateUserCart, useUserCart } from 'hooks/useUserCart'
 import React, { useEffect } from 'react'
 import useEnsureUserCart from 'hooks/useEnsureUserCart';
 import styles from './add-cart.module.scss'
@@ -16,7 +16,7 @@ const AddToCartButton = ({ product, style }) => {
 
     const cachedCart = queryClient.getQueryData(["currentUser", "cart"])
     const { createCart } = useEnsureUserCart();
-    const cart = useUserCarts(user.id, !cachedCart)
+    const cart = useUserCart(user.id, !cachedCart)
 
     useEffect(() => {
         if (!cachedCart) {

@@ -50,6 +50,7 @@ button {
 
 input {
     outline: none;
+    border: none;
 }
 
 ul {

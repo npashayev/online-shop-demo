@@ -1,0 +1,72 @@
+.main {
+    padding: 2rem;
+    padding-top: 3rem;
+    background-color: #565ABB;
+    border-radius: 2rem;
+    width: 50rem;
+    color: white;
+    font-size: 1.6rem;
+    height: max-content;
+
+    .header {
+        font-size: 2.2rem;
+        font-weight: bold;
+        margin-bottom: 2rem;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+
+        .inputCnr {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            width: 100%;
+
+            input {
+                padding: 1.1rem 1.8rem;
+                border-radius: 0.6rem;
+                background-color: #6268C6;
+                caret-color: white;
+                font-size: 1.6rem;
+
+                &::placeholder {
+                    color: white;
+                }
+            }
+        }
+
+        .inputGroup {
+            display: flex;
+            gap: 1rem;
+        }
+    }
+
+    .totalInfo {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        border-top: 2px solid #5F65C3;
+        padding-block: 2.5rem;
+        margin-top: 1rem;
+
+        .infoCnr {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    .checkoutBtn {
+        background-color: #4DE1C1;
+        color: white;
+        font-weight: bold;
+        padding: 1.8rem 4.5rem;
+        border-radius: 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        justify-content: center;
+    }
+}

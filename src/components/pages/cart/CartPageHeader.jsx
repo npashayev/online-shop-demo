@@ -3,9 +3,9 @@ import styles from './carts.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 
-const CartsPageHeader = () => {
 
 
+const CartPageHeader = () => {
     return (
         <div className={styles.mainHeading}>
             <div className={styles.backBtnCnr}>
@@ -18,4 +18,4 @@ const CartsPageHeader = () => {
     )
 }
 
-export default CartsPageHeader
+export default CartPageHeader
