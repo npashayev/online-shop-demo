@@ -1,4 +1,4 @@
-import { useDeleteProduct } from 'hooks/useAdmin'
+import { useDeleteProduct } from 'hooks/useAdminActions'
 import styles from './product-actions.module.scss'
 import { useQueryClient } from '@tanstack/react-query';
 import { Link, useNavigate } from 'react-router-dom';
