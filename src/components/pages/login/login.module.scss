@@ -36,6 +36,7 @@
                 border: 1px solid #999;
                 transition: border-color 0.2s ease-in-out;
                 font-size: max(1.6rem, 14px);
+                font-size: 1.6rem;
 
                 &:focus {
                     border-color: #007bff;
@@ -43,7 +44,8 @@
 
                 &:focus~label,
                 &:valid~label,
-                &~.submitting {
+                &~.submitting,
+                &:is(:-webkit-autofill, :autofill)~label {
                     top: -5px;
                     font-size: 1.2rem;
                     color: #007bff;
@@ -52,6 +54,7 @@
             }
 
             label {
+                padding: 0.3rem;
                 position: absolute;
                 top: 50%;
                 left: 1.8rem;

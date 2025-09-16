@@ -58,6 +58,7 @@ const LoginPage = () => {
                         type='text'
                         name='username'
                         disabled={login.isPending}
+                        placeholder=' '
                         required
                     />
                     <label className={login.isPending ? styles.submitting : ''}>Username</label>
@@ -70,6 +71,7 @@ const LoginPage = () => {
                         name='password'
                         type={passwordVisible ? 'text' : 'password'}
                         disabled={login.isPending}
+                        placeholder=' '
                         required
                     />
                     <label className={login.isPending ? styles.submitting : ''}>Password</label>
