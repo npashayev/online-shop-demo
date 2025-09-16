@@ -1,5 +1,5 @@
 .main {
-    min-height: calc(100vh - 55px);
+    min-height: calc(100vh - var(--navbar-height));
 
     .contentCnr {
         padding: 5rem;

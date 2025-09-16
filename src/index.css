@@ -13,6 +13,9 @@
     --liked-products-index: 99;
     --navigation-sidebar-index: 98;
     --filter-bar-index: 97;
+
+    /* other variables */
+    --navbar-height: 55px;
 }
 
 @media (max-width: 1536px) {
@@ -28,7 +31,7 @@
 }
 
 body {
-    padding-top: 55px;
+    padding-top: var(--navbar-height);
 }
 
 input,

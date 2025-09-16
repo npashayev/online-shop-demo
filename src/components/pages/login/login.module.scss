@@ -1,12 +1,10 @@
 .pageCnr {
-    height: calc(100vh - 55px);
+    height: calc(100vh - var(--navbar-height));
     display: flex;
     align-items: center;
     justify-content: center;
 
     .form {
-        margin-top: -55px;
-
         background-color: white;
         width: 400px;
         border-radius: 3rem;

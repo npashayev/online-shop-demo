@@ -10,7 +10,7 @@
     position: fixed;
     right: 0;
     z-index: var(--filter-bar-index);
-    top: 55px;
+    top: var(--navbar-height);
     width: 100%;
 
     .right {

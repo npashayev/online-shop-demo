@@ -1,6 +1,6 @@
 .main {
     padding: 3rem max(5vw, 20px);
-    height: calc(100vh - 55px);
+    height: calc(100vh - var(--navbar-height));
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -57,7 +57,7 @@
 
 @media (max-width: 896px) {
     .main {
-        min-height: calc(100vh - 55px);
+        min-height: calc(100vh - var(--navbar-height));
         height: max-content;
         flex-direction: column;
         justify-content: center;

@@ -82,11 +82,11 @@ header {
 
         .right {
             position: fixed;
-            top: 55px;
+            top: var(--navbar-height);
             right: 0;
             padding: 2rem 3rem;
             overflow: auto;
-            height: calc(100vh - 55px);
+            height: calc(100vh - var(--navbar-height));
             border-left: 1px solid lightgray;
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;

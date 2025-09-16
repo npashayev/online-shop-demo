@@ -2,10 +2,10 @@
     background-color: white;
     padding-top: 0;
     position: fixed;
-    top: 55px;
+    top: var(--navbar-height);
     right: 0;
     transform: translateX(100%);
-    height: calc(100vh - 55px);
+    height: calc(100vh - var(--navbar-height));
     z-index: var(--liked-products-index);
     font-size: 1.6rem;
     overflow-y: auto;

@@ -2,7 +2,7 @@
     padding: 3rem clamp(3rem, 8vw, 14rem);
     font-size: 1.6rem;
     background-color: white;
-    min-height: calc(100vh - 55px);
+    min-height: calc(100vh - var(--navbar-height));
 
     .headLine {
         color: #98A2B3;
