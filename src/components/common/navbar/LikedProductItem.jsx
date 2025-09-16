@@ -1,4 +1,4 @@
-import CartList from 'components/pages/products/CartList'
+import AddToCartButton from 'components/pages/products/AddToCartButton'
 import styles from './liked-products.module.scss'
 import { useState } from 'react'
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -26,24 +26,7 @@ const LikedProductItem = ({ product, onClose }) => {
 
                 <div className={styles.productMain}>
                     <div className={styles.productTitle} title={product.title}>{product.title}</div>
-                    <div className={styles.cartButtonCnr}>
-                        <button
-                            onClick={(e) => {
-                                e.preventDefault()
-                                e.stopPropagation()
-                                setIsCartListOpen(prev => !prev)
-                            }}
-                            className={styles.cartButton}
-                        >
-                            Add to cart
-                        </button>
-                        {
-                            isCartListOpen &&
-                            <div className={styles.cartListCnr}>
-                                <CartList product={product} />
-                            </div>
-                        }
-                    </div>
+                    <AddToCartButton product={product} style={{ fontSize: "12px", marginTop: "1rem" }} />
                 </div>
             </div>
 

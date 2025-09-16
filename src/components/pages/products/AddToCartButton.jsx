@@ -57,7 +57,6 @@ const AddToCartButton = ({ product, style }) => {
                             discountPercentage: product.discountPercentage,
                             thumbnail: product.thumbnail
                         }
-
                         queryClient.setQueryData(["currentUser", "cart"], cachedCart => ({
                             ...cachedCart,
                             products: [...cachedCart.products, updatedProduct]

@@ -3,7 +3,7 @@ import { addNewUserCart, getUserCarts, updateUserCart } from "services/cartServi
 
 export const useUserCarts = (id, isEnabled = true) =>
     useQuery({
-        queryKey: ['currentUser', 'carts'],
+        queryKey: ['currentUser', 'cart'],
         queryFn: () => getUserCarts(id),
         enabled: isEnabled
     })
@@ -16,9 +16,4 @@ export const useUpdateUserCart = () =>
 export const useAddNewUserCart = () =>
     useMutation({
         mutationFn: (data) => addNewUserCart(data)
-    })
-
-export const useDeleteUserCart = () =>
-    useMutation({
-        mutationFn: (cartId) => deleteUserCart(cartId)
     })

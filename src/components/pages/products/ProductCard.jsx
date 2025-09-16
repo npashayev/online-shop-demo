@@ -4,7 +4,7 @@ import star from "/src/assets/star.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-import CartList from './CartList';
+import AddToCartButton from './AddToCartButton';
 import LikeButton from 'components/common/products/LikeButton';
 
 const ProductCard = ({ product }) => {
@@ -32,7 +32,7 @@ const ProductCard = ({ product }) => {
             <div className={styles.variableContentBox}>
                 {
                     isCartListOpen
-                        ? <CartList product={product} />
+                        ? <AddToCartButton product={product} />
                         : <img
                             src={product.images[0]}
                             className={styles.image}

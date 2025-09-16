@@ -99,40 +99,6 @@
                         overflow: hidden;
                         text-overflow: ellipsis;
                     }
-
-                    .cartButtonCnr {
-                        position: relative;
-                        width: max-content;
-
-                        .cartButton {
-                            padding: 0.5rem 1rem;
-                            border: none;
-                            background-color: red;
-                            color: white;
-                            border-radius: 0.8rem;
-                            margin-top: 1rem;
-                            font-size: 14px;
-
-                            &:hover {
-                                background-color: rgb(253, 49, 49);
-                            }
-                        }
-
-                        .cartListCnr {
-                            width: 28rem;
-                            position: absolute;
-                            background-color: white;
-                            border-radius: 2rem;
-                            border: 1px solid lightgrey;
-                            z-index: 1;
-                            top: calc(100% + 1rem);
-                            left: 50%;
-                            transform: translateX(-50%);
-                            padding-block: 2rem;
-                            display: flex;
-                            justify-content: center;
-                        }
-                    }
                 }
             }
 
