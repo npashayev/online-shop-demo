@@ -40,7 +40,7 @@ const LoginPage = () => {
     }
 
     return (
-        <main className={styles.pageCnr}>
+        <main className={styles.page}>
             <form
                 className={styles.form}
                 onSubmit={handleSubmit}
@@ -91,7 +91,7 @@ const LoginPage = () => {
                     </button>
                 </div>
 
-                <div className={styles.buttonContainer}>
+                <div className={styles.buttonCnr}>
                     <button type="submit" disabled={isPending}>
                         {isPending ? 'Logging in...' : 'Login'}
                     </button>

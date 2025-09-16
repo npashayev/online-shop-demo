@@ -1,8 +1,10 @@
-.pageCnr {
+.page {
     height: calc(100vh - var(--navbar-height));
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 2rem;
+
 
     .form {
         background-color: white;
@@ -15,15 +17,15 @@
         justify-content: center;
 
         .formHeaderText {
-            font-size: 3.5rem;
-            margin-bottom: 30px;
+            font-size: 3.2rem;
+            margin-bottom: 3rem;
             color: #333;
             text-align: center;
         }
 
         .inputField {
             position: relative;
-            font-size: max(1.6rem, 14px);
+            font-size: 1.6rem;
             margin-bottom: 20px;
 
             input {
@@ -33,7 +35,6 @@
                 outline: none;
                 border: 1px solid #999;
                 transition: border-color 0.2s ease-in-out;
-                font-size: max(1.6rem, 14px);
                 font-size: 1.6rem;
 
                 &:focus {
@@ -64,32 +65,28 @@
             }
 
             .toggleBtn {
-                background: none;
-                border: none;
                 display: flex;
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
                 right: 15px;
-                cursor: pointer;
                 color: #555;
                 font-size: 1.6rem;
             }
         }
 
-        .buttonContainer {
+        .buttonCnr {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
 
             button {
-                font-size: max(1.6rem, 14px);
+                font-size: 1.6rem;
                 padding: 0.8rem 6rem;
                 border-radius: 1000px;
                 border: 0.5px solid #ccc;
                 background-color: #f4f4f9;
-                cursor: pointer;
                 position: relative;
                 display: flex;
                 align-items: center;
@@ -126,6 +123,15 @@
             font-size: 14px;
             text-align: center;
             margin-bottom: 15px;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .page {
+        .form {
+            padding: 6rem 3rem;
+            width: 100%;
         }
     }
 }
