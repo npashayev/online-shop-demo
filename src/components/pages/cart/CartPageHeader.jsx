@@ -1,5 +1,5 @@
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
-import styles from './carts.module.scss'
+import styles from './cart.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 

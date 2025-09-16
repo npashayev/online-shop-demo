@@ -1,5 +1,5 @@
 import { useUpdateUserCart, useUserCart } from 'hooks/useUserCart'
-import styles from './carts.module.scss'
+import styles from './cart.module.scss'
 import useAuth from 'hooks/useAuth'
 import Loading from 'components/common/Loading';
 import { useQueryClient } from '@tanstack/react-query';
