@@ -3,14 +3,10 @@ import styles from './product-card.module.scss'
 import star from "/src/assets/star.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
 import AddToCartButton from './AddToCartButton';
 import LikeButton from 'components/common/products/LikeButton';
 
 const ProductCard = ({ product }) => {
-
-    const [isCartListOpen, setIsCartListOpen] = useState(false)
-
     const discountPercentage = Math.floor(product.discountPercentage);
     const productRating = Math.round(product.rating * 10) / 10;
     const discountedPrice = (product.price - product.price * product.discountPercentage / 100).toFixed(2)
@@ -29,16 +25,12 @@ const ProductCard = ({ product }) => {
                     -{discountPercentage}%
                 </div>
             }
-            <div className={styles.variableContentBox}>
-                {
-                    isCartListOpen
-                        ? <AddToCartButton product={product} />
-                        : <img
-                            src={product.images[0]}
-                            className={styles.image}
-                            alt={product.title}
-                        />
-                }
+            <div className={styles.imageCnr}>
+                <img
+                    src={product.images[0]}
+                    className={styles.image}
+                    alt={product.title}
+                />
             </div>
             <div className={styles.info}>
                 <div className={styles.titleCnr}>
@@ -75,10 +67,11 @@ const ProductCard = ({ product }) => {
                             className={styles.basketButton}
                             onClick={(e) => {
                                 e.preventDefault();
-                                setIsCartListOpen(prev => !prev)
                             }}>
                             <FontAwesomeIcon icon={faBagShopping} className={styles.basketIcon} />
-                            <span className={styles.buttonText}>Add to cart</span>
+                            <div className={styles.buttonText}>
+                                <AddToCartButton product={product} style={{ fontSize: "12px", paddingBlock: "0.85em" }} />
+                            </div>
                         </button>
                     </div>
                 </div>

@@ -2,7 +2,6 @@ import { useQueryClient } from '@tanstack/react-query';
 import useAuth from 'hooks/useAuth';
 import { useUpdateUserCart, useUserCarts } from 'hooks/useUserCarts'
 import React, { useEffect } from 'react'
-import Loading from 'components/common/Loading';
 import useEnsureUserCart from 'hooks/useEnsureUserCart';
 import styles from './add-cart.module.scss'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
