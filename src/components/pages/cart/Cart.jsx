@@ -1,16 +1,7 @@
 import styles from './carts.module.scss'
 import ProductItem from './ProductItem';
 
-const Cart = ({ cart, handleQuantityChange, updateUserCart, handleProductDelete }) => {
-
-    const calcTotalPrice = (product) => Number(((product.price - product.price * product.discountPercentage / 100) * product.quantity).toFixed(2))
-
-    const totalInfo = {
-        discountedTotal: cart?.products?.reduce((acc, product) => acc + calcTotalPrice(product), 0),
-        totalProducts: cart?.products?.length,
-        totalQuantity: cart?.products?.reduce((acc, product) => acc + product.quantity, 0)
-    }
-
+const Cart = ({ cart, handleQuantityChange, updateUserCart, handleProductDelete, totalCartInfo, calcTotalPrice }) => {
     return (
         <div className={styles.cart}>
             <div className={styles.productsCnr}>
@@ -35,9 +26,9 @@ const Cart = ({ cart, handleQuantityChange, updateUserCart, handleProductDelete 
             </div>
 
             <div className={styles.cartFooter}>
-                <div className={styles.totalPrice}>Total price: ${totalInfo.discountedTotal}</div>
-                <div className={styles.totalProducts}>Total products: {totalInfo.totalProducts}</div>
-                <div className={styles.totalQuantity}>Total quantity: {totalInfo.totalQuantity}</div>
+                <div className={styles.totalPrice}>Total price: ${totalCartInfo.discountedTotal}</div>
+                <div className={styles.totalProducts}>Total products: {totalCartInfo.totalProducts}</div>
+                <div className={styles.totalQuantity}>Total quantity: {totalCartInfo.totalQuantity}</div>
             </div>
         </div>
     )

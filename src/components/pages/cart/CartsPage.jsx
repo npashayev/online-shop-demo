@@ -1,13 +1,12 @@
-import { useDeleteUserCart, useUpdateUserCart, useUserCarts } from 'hooks/useUserCarts'
+import { useUpdateUserCart, useUserCarts } from 'hooks/useUserCarts'
 import styles from './carts.module.scss'
 import useAuth from 'hooks/useAuth'
 import Loading from 'components/common/Loading';
 import { useQueryClient } from '@tanstack/react-query';
 import Cart from './Cart';
 import CartsPageHeader from './CartsPageHeader';
-import { useAddNewUserCart } from 'hooks/useUserCarts'
-import { useEffect, useState } from 'react';
-import ConfirmationModal from 'components/common/modal/ConfirmationModal';
+import { useEffect } from 'react';
+import useEnsureUserCart from 'hooks/useEnsureUserCart';
 
 
 const CartsPage = () => {
@@ -15,28 +14,24 @@ const CartsPage = () => {
     const { user } = useAuth();
 
     const { data: cart, isLoading, error } = useUserCarts(user.id)
+    const calcTotalPrice = (product) => Number(((product.price - product.price * product.discountPercentage / 100) * product.quantity).toFixed(2))
+
+    const totalCartInfo = {
+        discountedTotal: cart?.products?.reduce((acc, product) => acc + calcTotalPrice(product), 0),
+        totalProducts: cart?.products?.length,
+        totalQuantity: cart?.products?.reduce((acc, product) => acc + product.quantity, 0)
+    }
 
     const updateUserCart = useUpdateUserCart()
     const queryClient = useQueryClient();
-    const addNewCart = useAddNewUserCart();
-    const deleteCart = useDeleteUserCart();
 
-    const handleAddNewUserCart = () => {
-        addNewCart.mutate({
-            userId: user.id,
-            products: [{}]
-        },
-            {
-                onSuccess: (newUserCart) => queryClient.setQueryData(["currentUser", "carts"], newUserCart)
-            }
-        )
-    }
+    const { createCart } = useEnsureUserCart()
 
     useEffect(() => {
         if (!cart) {
-            handleAddNewUserCart()
+            createCart(user.id)
         }
-    }, [cart?.carts?.length])
+    }, [cart, user.id])
 
     const handleQuantityChange = (event, cartId, product, isIncrease = false) => {
         event.stopPropagation();
@@ -62,7 +57,7 @@ const CartsPage = () => {
             }
         },
             {
-                onSuccess: (updatedCart) => queryClient.setQueryData(["currentUser", "carts"], updatedCart),
+                onSuccess: (updatedCart) => queryClient.setQueryData(["currentUser", "cart"], updatedCart),
 
                 onError: (error, updatedCart) => {
                     if (updatedCart.cartId === 51) {
@@ -71,7 +66,7 @@ const CartsPage = () => {
                             quantity: product.quantity + changeValue
                         }
 
-                        queryClient.setQueryData(["currentUser", "carts"], cachedCart => ({
+                        queryClient.setQueryData(["currentUser", "cart"], cachedCart => ({
                             ...cachedCart,
                             products: cachedCart.products.map(p => p.id === product.id
                                 ? updatedProduct
@@ -97,11 +92,11 @@ const CartsPage = () => {
             }
         },
             {
-                onSuccess: (updatedCart) => queryClient.setQueryData(["currentUser", "carts"], updatedCart),
+                onSuccess: (updatedCart) => queryClient.setQueryData(["currentUser", "cart"], updatedCart),
 
                 onError: (error, updatedCart) => {
                     if (updatedCart.cartId === 51) {
-                        queryClient.setQueryData(["currentUser", "carts"], cachedCart => ({
+                        queryClient.setQueryData(["currentUser", "cart"], cachedCart => ({
                             ...cachedCart,
                             products: updatedProductsArray
                         }
@@ -118,18 +113,15 @@ const CartsPage = () => {
 
     return (
         <main className={styles.main}>
-            <CartsPageHeader
-                cart={cart}
-                user={user}
-                queryClient={queryClient}
-                handleAddNewUserCart={handleAddNewUserCart}
-            />
+            <CartsPageHeader />
 
             <Cart
                 cart={cart}
                 handleQuantityChange={handleQuantityChange}
                 updateUserCart={updateUserCart}
                 handleProductDelete={handleProductDelete}
+                totalCartInfo={totalCartInfo}
+                calcTotalPrice={calcTotalPrice}
             />
         </main >
     )
