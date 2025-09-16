@@ -1,6 +1,7 @@
 .link {
     display: none;
     width: 70rem;
+    max-height: 80%;
     overflow: hidden;
     border-radius: 3rem;
     flex-shrink: 0;
@@ -15,7 +16,9 @@
 }
 
 .active {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -40,5 +43,6 @@
 @media (max-width: 896px) {
     .link {
         width: min(90%, 500px);
+        max-height: none;
     }
 }

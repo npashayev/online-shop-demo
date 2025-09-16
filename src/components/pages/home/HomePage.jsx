@@ -7,13 +7,13 @@ import TextType from 'components/common/react-bits/text-type/TextType';
 
 const HomePage = () => {
     return (
-        <main className={styles.main}>
+        <main className={styles.page}>
             <div className={styles.text}>
                 <GradientText
+                    className={styles.heading}
                     colors={["#004d33", "#00194d", "#004d33", "#00194d", "#004d33"]}
                     animationSpeed={3}
                     showBorder={false}
-                    className={styles.heading}
                 >
                     Discover Products You’ll Love
                 </GradientText>
@@ -23,11 +23,11 @@ const HomePage = () => {
                         "Explore our carefully curated collection of top-quality products, each thoughtfully selected to make your life easier, more convenient, and enjoyable every day.",
                         "From the latest cutting-edge technology to timeless classics, find exactly what you need with just a few clicks to enhance your home, work, or personal life with style and efficiency."
                     ]}
+                    className={styles.body}
                     typingSpeed={75}
                     pauseDuration={1500}
                     showCursor={true}
                     cursorCharacter="|"
-                    className={styles.body}
                 />
 
                 <Link to='/products' className={styles.exploreBtn}>Explore</Link>
@@ -37,6 +37,7 @@ const HomePage = () => {
 
             <div className={styles.lightRaysCnr}>
                 <LightRays
+                    className="custom-rays"
                     raysOrigin="top-center"
                     raysColor="#00ffff"
                     raysSpeed={1.5}
@@ -46,7 +47,6 @@ const HomePage = () => {
                     mouseInfluence={0.1}
                     noiseAmount={0.1}
                     distortion={0.05}
-                    className="custom-rays"
                 />
             </div>
         </main>

@@ -33,15 +33,15 @@ const SlideShow = () => {
     return (
         slideShowImages.map((image, index) =>
             <Link
+                className={`${styles.link} ${activeIndex === index ? styles.active : ''}`}
                 key={index}
                 to={image.link}
-                className={`${styles.link} ${activeIndex === index ? styles.active : ''}`}
             >
                 <img
+                    className={styles.image}
                     src={image.src}
                     alt={image.title}
                     title={image.title}
-                    className={styles.image}
                 />
             </Link>
         )
