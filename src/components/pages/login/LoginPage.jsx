@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import styles from './login.module.scss'
+import styles from './login.module.scss';
 import { useLogin } from '../../../hooks/useUser';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from 'contexts/ToastContext';
 
 const LoginPage = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -11,6 +12,7 @@ const LoginPage = () => {
 
     const { mutate, error, reset, isPending } = useLogin();
     const navigate = useNavigate();
+    const { showToast } = useToast();
 
     const handleInputChange = (e) => {
         setErrorMessage("");
@@ -19,7 +21,7 @@ const LoginPage = () => {
         setLoginData(prev => ({
             ...prev,
             [name]: value
-        }))
+        }));
     }
 
     const handleSubmit = (e) => {
@@ -27,13 +29,14 @@ const LoginPage = () => {
         setErrorMessage('');
         if (error) reset();
         if (!loginData.username || !loginData.password) {
-            setErrorMessage('Please fill in all fields')
+            setErrorMessage('Please fill in all fields');
             return
         }
 
         mutate(loginData, {
             onSuccess: () => {
-                navigate('/')
+                showToast("Successfully logged in!");
+                navigate('/');
             },
             onError: (error) => setErrorMessage(error.message)
         });
@@ -101,4 +104,4 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage
+export default LoginPage;
