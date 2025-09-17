@@ -63,16 +63,12 @@ const ProductCard = ({ product }) => {
                     <div className={styles.buttonsCnr}>
                         <LikeButton product={product} />
 
-                        <button
-                            className={styles.basketButton}
-                            onClick={(e) => {
-                                e.preventDefault();
-                            }}>
+                        <div className={styles.basketButton}>
                             <FontAwesomeIcon icon={faBagShopping} className={styles.basketIcon} />
                             <div className={styles.buttonText}>
                                 <AddToCartButton product={product} style={{ fontSize: "12px", paddingBlock: "0.85em" }} />
                             </div>
-                        </button>
+                        </div>
                     </div>
                 </div>
             </div>
