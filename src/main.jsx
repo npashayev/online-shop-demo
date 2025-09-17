@@ -8,6 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import router from './routing/routes.jsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { ToastProvider } from 'contexts/ToastContext';
 
 
 const queryClient = new QueryClient({
@@ -22,9 +23,11 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <RouterProvider router={router} />
-        </PersistGate>
+        <ToastProvider>
+          <PersistGate loading={null} persistor={persistor}>
+            <RouterProvider router={router} />
+          </PersistGate>
+        </ToastProvider>
       </Provider>
       <div style={{ fontSize: "16px" }}><ReactQueryDevtools /></div>
     </QueryClientProvider>
