@@ -14,6 +14,8 @@ import { persistor } from 'store/store';
 import { useNavigate } from "react-router-dom";
 import { setUser } from 'store/userSlice';
 import UserDropdown from "./UserDropdown";
+import useEnsureUserCart from "hooks/useEnsureUserCart";
+import { useQueryClient } from "@tanstack/react-query";
 
 
 const Navbar = () => {
@@ -30,6 +32,16 @@ const Navbar = () => {
     const menuToggleRef = useRef(null);
     const likedProductsToggleRef = useRef(null);
     const likedProductsRef = useRef(null);
+
+    const queryClient = useQueryClient();
+    const cachedCart = queryClient.getQueryData(['currentUser', 'cart'])
+    const { createCart } = useEnsureUserCart()
+
+    useEffect(() => {
+        if (!cachedCart) {
+            createCart(user.id)
+        }
+    }, [cachedCart])
 
     useEffect(() => {
         const handleClickOutside = (event) => {
