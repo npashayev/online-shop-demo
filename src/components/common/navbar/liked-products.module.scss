@@ -1,17 +1,16 @@
 .main {
+    font-size: 1rem;
     background-color: white;
-    padding-top: 0;
     position: fixed;
     top: var(--navbar-height);
     right: 0;
     transform: translateX(100%);
     height: calc(100vh - var(--navbar-height));
     z-index: var(--liked-products-index);
-    font-size: 1.6rem;
     overflow-y: auto;
     overscroll-behavior: contain;
     border-left: 1px solid lightgrey;
-    width: 44rem;
+    width: 44em;
     transition: transform 0.3s ease-in-out;
 
     .closeBtnCnr {
@@ -31,15 +30,16 @@
     }
 
     .productsList {
-        padding: 2rem;
+        padding: 2em;
         display: flex;
         flex-direction: column;
-        gap: 14px;
+        gap: 1.4em;
 
         .messageCnr {
+            font-size: 1.6rem;
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
+            gap: 12px;
             align-items: center;
 
             .exploreBtn {
@@ -59,25 +59,25 @@
         }
 
         .product {
-            padding: 1rem;
-            padding-right: 2rem;
+            padding: 1em;
+            padding-right: 2em;
             display: flex;
-            gap: 3rem;
+            gap: 3em;
             justify-content: space-between;
             align-items: center;
-            border-radius: 1.5rem;
+            border-radius: 1.5em;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 
             .left {
                 display: flex;
                 align-items: center;
-                gap: 2rem;
+                gap: 2em;
 
                 .imageCnr {
                     border: 1px solid lightgrey;
-                    border-radius: 0.8rem;
-                    height: 8rem;
-                    width: 8rem;
+                    border-radius: 0.8em;
+                    height: 8em;
+                    width: 8em;
                     flex-shrink: 0;
                     overflow: hidden;
                     display: flex;
@@ -93,6 +93,7 @@
                     padding-block: 0.4rem;
 
                     .productTitle {
+                        font-size: 1.6em;
                         display: -webkit-box;
                         -webkit-line-clamp: 2;
                         -webkit-box-orient: vertical;
@@ -104,10 +105,11 @@
 
             .right {
                 display: flex;
-                gap: 2rem;
+                gap: 2em;
 
                 .totalPrice {
                     font-weight: bold;
+                    font-size: 1.6em;
                 }
 
                 .deleteBtn {
@@ -122,4 +124,20 @@
 
 .activeMain {
     transform: translateX(0);
+}
+
+@media (max-width: 500px) {
+    .main {
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    .main {
+        font-size: 0.95rem;
+
+        .productsList {
+            padding: 1em;
+        }
+    }
 }
