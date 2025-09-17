@@ -102,6 +102,7 @@
 @media (max-width: 700px) {
     .main {
         flex-direction: column-reverse;
+        padding-inline: 2rem;
         gap: 2rem;
 
         .left {
