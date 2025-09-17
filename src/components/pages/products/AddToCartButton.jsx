@@ -1,50 +1,44 @@
 import { useQueryClient } from '@tanstack/react-query';
-import useAuth from 'hooks/useAuth';
-import { useUpdateUserCart, useUserCart } from 'hooks/useUserCart'
-import React, { useEffect } from 'react'
-import useEnsureUserCart from 'hooks/useEnsureUserCart';
+import { useUpdateUserCart } from 'hooks/useUserCart'
+import React from 'react'
 import styles from './add-cart.module.scss'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useToast } from 'contexts/ToastContext';
 
 const AddToCartButton = ({ product, style }) => {
 
     const updateUserCart = useUpdateUserCart()
     const queryClient = useQueryClient();
+    const cachedCart = queryClient.getQueryData(["currentUser", "cart"]);
 
-    const { user } = useAuth();
+    const { showToast } = useToast();
 
-    const cachedCart = queryClient.getQueryData(["currentUser", "cart"])
-    const { createCart } = useEnsureUserCart();
-    const cart = useUserCart(user.id, !cachedCart)
-
-    useEffect(() => {
-        if (!cachedCart) {
-            createCart(user.id)
-        }
-    }, [cachedCart, user.id])
-    const handleAddToCart = (event, cartId, product) => {
+    const handleAddToCart = (event, product) => {
         event.preventDefault();
         event.stopPropagation();
-        console.log(cartId, product)
+
+        if (!cachedCart) showToast("You don't have a cart to add the product, please try again later", false)
 
         const alreadyInCart = cachedCart?.products?.find(p => p.id === product.id);
 
         if (alreadyInCart) {
-            alert("The product is already added to this cart!")
-            return
+            alert("The product is already added to this cart!");
+            return;
         }
 
-        const updatedProductsArray = [...cachedCart.products, { id: product.id }]
+        const updatedProductsArray = [...cachedCart.products, { id: product.id }];
 
         updateUserCart.mutate({
-            cartId,
+            cartId: cachedCart.id,
             data: {
                 products: updatedProductsArray
             },
         },
             {
-                onSuccess: (updatedCart) => queryClient.setQueryData(["currentUser", "cart"], updatedCart),
+                onSuccess: (updatedCart) => {
+                    queryClient.setQueryData(["currentUser", "cart"], updatedCart)
+                },
 
                 onError: (error, updatedCart) => {
                     if (updatedCart.cartId === 51) {
@@ -60,6 +54,8 @@ const AddToCartButton = ({ product, style }) => {
                             ...cachedCart,
                             products: [...cachedCart.products, updatedProduct]
                         }))
+                    } else {
+                        showToast(error.message, false);
                     }
                 }
             }
@@ -68,7 +64,7 @@ const AddToCartButton = ({ product, style }) => {
 
     return (
         <button
-            onClick={(event) => handleAddToCart(event, cachedCart.id, product)}
+            onClick={(event) => handleAddToCart(event, product)}
             style={style}
             className={styles.addCartBtn}>
             {

@@ -1,12 +1,5 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { addNewUserCart, getUserCart, updateUserCart } from "services/cartService";
-
-export const useUserCart = (id, isEnabled = true) =>
-    useQuery({
-        queryKey: ['currentUser', 'cart'],
-        queryFn: () => getUserCart(id),
-        enabled: isEnabled,
-    })
+import { useMutation } from "@tanstack/react-query";
+import { addNewUserCart, updateUserCart } from "services/cartService";
 
 export const useUpdateUserCart = () =>
     useMutation({

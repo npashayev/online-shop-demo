@@ -1,42 +1,37 @@
-import { useUpdateUserCart, useUserCart } from 'hooks/useUserCart'
+import { useUpdateUserCart } from 'hooks/useUserCart'
 import styles from './cart.module.scss'
-import useAuth from 'hooks/useAuth'
-import Loading from 'components/common/Loading';
 import { useQueryClient } from '@tanstack/react-query';
 import Cart from './Cart';
 import CartPageHeader from './CartPageHeader';
-import { useEffect } from 'react';
-import useEnsureUserCart from 'hooks/useEnsureUserCart';
+import { useEffect, useState } from 'react';
 import CardDetails from './CardDetails';
 
 
 const CartsPage = () => {
 
-    const { user } = useAuth();
+    const [, forceRender] = useState(0);
+    const queryClient = useQueryClient();
+    const cachedCart = queryClient.getQueryData(['currentUser', 'cart'])
 
-    const { data: cart, isLoading, error } = useUserCart(user.id)
     const calcTotalPrice = (product) => Number(((product.price - product.price * product.discountPercentage / 100) * product.quantity).toFixed(2))
-
     const totalCartInfo = {
-        discountedTotal: cart?.products?.reduce((acc, product) => acc + calcTotalPrice(product), 0),
-        totalProducts: cart?.products?.length,
-        totalQuantity: cart?.products?.reduce((acc, product) => acc + product.quantity, 0)
+        discountedTotal: cachedCart?.products?.reduce((acc, product) => acc + calcTotalPrice(product), 0),
+        totalProducts: cachedCart?.products?.length,
+        totalQuantity: cachedCart?.products?.reduce((acc, product) => acc + product.quantity, 0)
     }
 
-    const updateUserCart = useUpdateUserCart()
-    const queryClient = useQueryClient();
-
-    const { createCart } = useEnsureUserCart()
-
     useEffect(() => {
-        if (cart === null && !isLoading && !error) {
-            console.log("Worked")
-            console.log("Cart value: ", cart)
-            createCart(user.id)
-        }
-    }, [cart, user.id, isLoading, error])
+        // subscribe adds a listener to cache changes and returns an unsubscribe function.
+        // We store it in the `unsubscribe` variable so we can call it later to stop listening.
+        const unsubscribe = queryClient.getQueryCache().subscribe(() => {
+            forceRender(prev => prev + 1);
+        });
 
-    console.log(cart)
+        return () => unsubscribe();
+    }, [queryClient]);
+
+    const updateUserCart = useUpdateUserCart()
+
     const handleQuantityChange = (event, cartId, product, isIncrease = false) => {
         event.stopPropagation();
         event.preventDefault();
@@ -46,7 +41,7 @@ const CartsPage = () => {
             alert("Quantity cannot go below 1");
             return;
         }
-        const updatedProductsArray = cart.products.map(p => p.id === product.id
+        const updatedProductsArray = cachedCart.products.map(p => p.id === product.id
             ? ({
                 id: product.id,
                 quantity: product.quantity + changeValue
@@ -87,7 +82,7 @@ const CartsPage = () => {
         event.stopPropagation();
         event.preventDefault();
 
-        const updatedProductsArray = cart.products.filter(p => p.id !== product.id)
+        const updatedProductsArray = cachedCart.products.filter(p => p.id !== product.id)
 
         updateUserCart.mutate({
             cartId,
@@ -111,9 +106,7 @@ const CartsPage = () => {
         )
     }
 
-    if (error) return <div className={styles.main}>Error happened while fetching cart</div>
-
-    if (isLoading) return <div className={styles.main}><Loading /></div>
+    if (!cachedCart) return <div className={styles.main}>Error happened while creating cart</div>
 
     return (
         <main className={styles.main}>
@@ -122,7 +115,7 @@ const CartsPage = () => {
                     <CartPageHeader />
 
                     <Cart
-                        cart={cart}
+                        cart={cachedCart}
                         handleQuantityChange={handleQuantityChange}
                         updateUserCart={updateUserCart}
                         handleProductDelete={handleProductDelete}

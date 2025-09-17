@@ -1,10 +1,5 @@
 import apiClient from "./apiClient";
 
-export const getUserCart = (id) =>
-    apiClient
-        .get(`/users/${id}/carts`)
-        .then(res => res.data.carts[0])
-
 export const updateUserCart = ({ cartId, data }) =>
     apiClient
         .put(`/carts/${cartId}`, data)
