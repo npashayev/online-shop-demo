@@ -12,7 +12,8 @@
     --navbar-index: 100;
     --liked-products-index: 99;
     --navigation-sidebar-index: 98;
-    --filter-bar-index: 97;
+    --categories-sidebar-index: 97;
+    --filter-bar-index: 96;
 
     /* other variables */
     --navbar-height: 55px;
