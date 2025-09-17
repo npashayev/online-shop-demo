@@ -1,6 +1,5 @@
 import AddToCartButton from 'components/pages/products/AddToCartButton'
 import styles from './liked-products.module.scss'
-import { useState } from 'react'
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch } from 'react-redux';
@@ -9,7 +8,7 @@ import Loading from '../Loading';
 import { Link } from 'react-router-dom';
 
 const LikedProductItem = ({ product, onClose }) => {
-    const [isCartListOpen, setIsCartListOpen] = useState(false);
+
     const totalPrice = (product.price - product.price * product.discountPercentage / 100).toFixed(2)
     const dispatch = useDispatch();
 

@@ -1,6 +1,6 @@
-import styles from './liked-products.module.scss'
-import { useSelector } from 'react-redux'
-import LikedProductItem from './LikedProductItem'
+import styles from './liked-products.module.scss';
+import { useSelector } from 'react-redux';
+import LikedProductItem from './LikedProductItem';
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
@@ -12,7 +12,10 @@ const LikedProducts = forwardRef(({ isLikedProductsOpen, setIsLikedProductsOpen 
     const likedProducts = useSelector(selectLikedProducts);
 
     return (
-        <aside ref={ref} className={`${styles.main} ${isLikedProductsOpen ? styles.activeMain : ''}`}>
+        <aside
+            className={`${styles.main} ${isLikedProductsOpen ? styles.activeMain : ''}`}
+            ref={ref}
+        >
             <div className={styles.closeBtnCnr}>
                 <button onClick={() => setIsLikedProductsOpen(false)} className={styles.closeBtn}>
                     <FontAwesomeIcon icon={faXmark} className={styles.xIcon} />
@@ -38,6 +41,6 @@ const LikedProducts = forwardRef(({ isLikedProductsOpen, setIsLikedProductsOpen 
             </div>
         </aside>
     )
-})
+});
 
-export default LikedProducts
+export default LikedProducts;
