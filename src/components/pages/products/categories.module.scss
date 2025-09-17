@@ -1,7 +1,9 @@
 .sidebar {
     font-size: 1.6rem;
     background-color: white;
-    min-width: 28rem;
+    width: 28rem;
+    max-width: 30rem;
+    flex-shrink: 0;
     border-radius: 1rem;
     margin-left: 1.5rem;
     position: sticky;
