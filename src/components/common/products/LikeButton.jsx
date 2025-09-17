@@ -11,7 +11,6 @@ const LikeButton = ({ product }) => {
 
     const isLiked = useSelector(state => !!state.likedProducts.byId[product.id])
 
-
     return <button
         onClick={(e) => {
             e.preventDefault()

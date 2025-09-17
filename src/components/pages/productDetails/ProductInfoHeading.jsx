@@ -1,10 +1,7 @@
 import styles from './product-info-heading.module.scss'
 import star from "/src/assets/star.png"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import AddToCartButton from '../products/AddToCartButton';
 import LikeButton from 'components/common/products/LikeButton';
-
 
 const ProductInfoHeading = ({ product }) => {
 
