@@ -4,12 +4,13 @@
     min-width: 28rem;
     border-radius: 1rem;
     margin-left: 1.5rem;
-    // box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
     position: sticky;
     top: 14rem;
     height: calc(100vh - 18rem);
     overflow: auto;
     overscroll-behavior: contain;
+    z-index: var(--categories-sidebar-index);
+    border-right: 1px solid lightgray;
 
     .categoriesHeading {
         font-weight: bold;
@@ -20,6 +21,9 @@
         top: 0;
         padding: 1.7rem 2.5rem;
         background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .categories {
@@ -41,5 +45,22 @@
         .activeCategory {
             font-weight: 700;
         }
+    }
+}
+
+@media (max-width: 920px) {
+    .sidebar {
+        position: fixed;
+        top: var(--navbar-height);
+        left: 0;
+        margin-left: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        height: calc(100vh - var(--navbar-height));
+        border-radius: 0;
+    }
+
+    .activeSidebar {
+        transform: translateX(0);
     }
 }
