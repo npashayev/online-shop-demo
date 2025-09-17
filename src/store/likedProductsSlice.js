@@ -18,7 +18,7 @@ const likedProductsSlice = createSlice({
                 state.allIds = state.allIds.filter(pid => pid !== id)
             } else {
                 state.byId[id] = product;
-                state.allIds.push(id)
+                state.allIds.unshift(id)
             }
         },
         resetLikedProducts: (state) => {
