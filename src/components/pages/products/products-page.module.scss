@@ -1,10 +1,19 @@
-.pageContainer {
+.page {
     position: relative;
     background-color: #F7F5F5;
+    min-height: calc(100vh - var(--navbar-height));
 
-    .main {
+    .content {
         display: flex;
         gap: 1rem;
         padding-top: 10rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .page {
+        .content {
+            padding-top: 15rem;
+        }
     }
 }
