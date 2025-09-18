@@ -3,7 +3,7 @@ import styles from './cart-page.module.scss'
 import { useQueryClient } from '@tanstack/react-query';
 import Cart from './Cart';
 import CartPageHeader from './CartPageHeader';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CardDetails from './CardDetails';
 
 
@@ -106,6 +106,11 @@ const CartsPage = () => {
         )
     }
 
+    const inputRef = useRef();
+    const goCheckout = () => {
+        inputRef.current.focus()
+    }
+
     if (!cachedCart) return <div className={styles.main}>Error happened while creating cart</div>
 
     return (
@@ -113,17 +118,17 @@ const CartsPage = () => {
             <div className={styles.contentCnr}>
                 <div className={styles.cartCnr}>
                     <CartPageHeader />
-
                     <Cart
                         cart={cachedCart}
                         handleQuantityChange={handleQuantityChange}
                         updateUserCart={updateUserCart}
                         handleProductDelete={handleProductDelete}
                         calcTotalPrice={calcTotalPrice}
+                        goCheckout={goCheckout}
                     />
                 </div>
 
-                <CardDetails totalCartInfo={totalCartInfo} />
+                <CardDetails totalCartInfo={totalCartInfo} ref={inputRef} />
             </div>
         </main >
     )

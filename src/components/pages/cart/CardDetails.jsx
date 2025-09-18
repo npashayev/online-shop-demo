@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom'
 import styles from './card-details.module.scss'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { forwardRef } from 'react'
 
-const CardDetails = ({ totalCartInfo }) => {
+const CardDetails = forwardRef(({ totalCartInfo }, ref) => {
     return (
         <div className={styles.main}>
             <div className={styles.header}>Card Details</div>
@@ -11,7 +12,7 @@ const CardDetails = ({ totalCartInfo }) => {
             <form className={styles.form}>
                 <div className={styles.inputCnr}>
                     <label>Name on card</label>
-                    <input type="text" placeholder='Name' />
+                    <input ref={ref} type="text" placeholder='Name' />
                 </div>
                 <div className={styles.inputCnr}>
                     <label>Card number</label>
@@ -49,6 +50,6 @@ const CardDetails = ({ totalCartInfo }) => {
             </form>
         </div>
     )
-}
+})
 
 export default CardDetails

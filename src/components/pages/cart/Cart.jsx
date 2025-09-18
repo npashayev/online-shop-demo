@@ -1,7 +1,7 @@
 import styles from './cart-page.module.scss'
 import ProductItem from './ProductItem';
 
-const Cart = ({ cart, handleQuantityChange, updateUserCart, handleProductDelete, calcTotalPrice }) => {
+const Cart = ({ cart, handleQuantityChange, updateUserCart, handleProductDelete, calcTotalPrice, goCheckout }) => {
     return (
         <div className={styles.cart}>
             <div className={styles.productsCnr}>
@@ -23,6 +23,9 @@ const Cart = ({ cart, handleQuantityChange, updateUserCart, handleProductDelete,
                         })
                         : <div>There is no product added to this cart</div>
                 }
+            </div>
+            <div className={styles.cartFtr}>
+                <button className={styles.goBtn} onClick={goCheckout}>Go to checkout</button>
             </div>
         </div>
     )
