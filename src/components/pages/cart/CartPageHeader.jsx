@@ -5,15 +5,18 @@ import { Link } from 'react-router-dom'
 
 
 
-const CartPageHeader = () => {
+const CartPageHeader = ({ goCheckout }) => {
     return (
-        <div className={styles.mainHeading}>
+        <div className={styles.pageHeading}>
             <div className={styles.backBtnCnr}>
                 <Link to='/products'>
                     <FontAwesomeIcon icon={faChevronLeft} className={styles.backIcon} /> Continue Shopping
                 </Link>
             </div>
-            <div className={styles.headingText}>Shopping cart</div>
+            <div className={styles.headingText}>
+                Shopping cart
+                <button className={styles.goBtn} onClick={goCheckout}>Go to checkout</button>
+            </div>
         </div>
     )
 }

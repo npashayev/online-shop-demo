@@ -108,28 +108,29 @@ const CartsPage = () => {
 
     const inputRef = useRef();
     const goCheckout = () => {
-        inputRef.current.focus()
-    }
+        inputRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => {
+            inputRef.current.focus();
+        }, 200); // timeout added to let scrollIntoView work before focus
+    };
+
 
     if (!cachedCart) return <div className={styles.main}>Error happened while creating cart</div>
 
     return (
-        <main className={styles.main}>
-            <div className={styles.contentCnr}>
-                <div className={styles.cartCnr}>
-                    <CartPageHeader />
-                    <Cart
-                        cart={cachedCart}
-                        handleQuantityChange={handleQuantityChange}
-                        updateUserCart={updateUserCart}
-                        handleProductDelete={handleProductDelete}
-                        calcTotalPrice={calcTotalPrice}
-                        goCheckout={goCheckout}
-                    />
-                </div>
-
-                <CardDetails totalCartInfo={totalCartInfo} ref={inputRef} />
+        <main className={styles.page}>
+            <div className={styles.cartCnr}>
+                <CartPageHeader goCheckout={goCheckout} />
+                <Cart
+                    cart={cachedCart}
+                    handleQuantityChange={handleQuantityChange}
+                    updateUserCart={updateUserCart}
+                    handleProductDelete={handleProductDelete}
+                    calcTotalPrice={calcTotalPrice}
+                />
             </div>
+
+            <CardDetails totalCartInfo={totalCartInfo} ref={inputRef} />
         </main >
     )
 }
