@@ -4,7 +4,6 @@ export const login = async (data) => {
     try {
         let res = await apiClient.post('/user/login', data)
         let initialUser = res.data
-        console.log(initialUser)
 
         // save only after everything succeeded
         localStorage.setItem("accessToken", initialUser.accessToken)
