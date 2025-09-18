@@ -1,5 +1,5 @@
 import { useUpdateUserCart } from 'hooks/useUserCart'
-import styles from './cart.module.scss'
+import styles from './cart-page.module.scss'
 import { useQueryClient } from '@tanstack/react-query';
 import Cart from './Cart';
 import CartPageHeader from './CartPageHeader';

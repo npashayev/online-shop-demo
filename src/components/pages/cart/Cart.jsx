@@ -1,4 +1,4 @@
-import styles from './cart.module.scss'
+import styles from './cart-page.module.scss'
 import ProductItem from './ProductItem';
 
 const Cart = ({ cart, handleQuantityChange, updateUserCart, handleProductDelete, calcTotalPrice }) => {
