@@ -44,20 +44,6 @@ const UserInfoReadOnly = ({ user, setEditMode }) => {
                     <InfoField label="Postal code" value={user.address?.postalCode} />
                 </div>
             </div>
-
-            {/* Card Information */}
-            <div className={styles.block}>
-                <div className={styles.heading}>Card information</div>
-                <div className={styles.inputGroup}>
-                    <InfoField label="Card number" value={user.bank?.cardNumber} />
-                </div>
-
-                <div className={styles.inputGroup}>
-                    <InfoField label="Expiration date" value={user.bank?.cardExpire} />
-                    <InfoField label="Currency" value={user.bank?.currency} />
-                </div>
-            </div>
-
         </div>
     );
 };

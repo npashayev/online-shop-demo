@@ -91,18 +91,6 @@ const EditUserInfo = ({ user, setEditMode }) => {
                     <RHFInput label="Postal code" name="address.postalCode" register={register} />
                 </div>
             </div>
-
-            {/* Card Information */}
-            <div className={styles.block}>
-                <div className={styles.heading}>Card information</div>
-                <div className={styles.inputGroup}>
-                    <RHFInput label="Card number" name="bank.cardNumber" register={register} />
-                </div>
-                <div className={styles.inputGroup}>
-                    <RHFInput label="Expiration date" name="bank.cardExpire" register={register} />
-                    <RHFInput label="Currency" name="bank.currency" register={register} />
-                </div>
-            </div>
         </form>
     )
 }
