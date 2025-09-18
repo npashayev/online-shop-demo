@@ -1,6 +1,7 @@
 .link {
     display: none;
-    width: 70rem;
+    height: 70rem;
+    aspect-ratio: 1;
     max-height: 80%;
     overflow: hidden;
     border-radius: 3rem;
@@ -10,8 +11,8 @@
     .image {
         background-color: white;
         animation: fadeIn 0.6s linear;
-        width: 100%;
         display: block;
+        width: 100%;
     }
 }
 
@@ -43,6 +44,6 @@
 @media (max-width: 896px) {
     .link {
         width: min(90%, 500px);
-        max-height: none;
+        height: auto;
     }
 }

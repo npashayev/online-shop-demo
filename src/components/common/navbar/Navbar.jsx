@@ -89,10 +89,10 @@ const Navbar = () => {
     }
 
     return (
-        <header>
+        <header className={styles.navbar}>
             <div className={styles.left}>
                 <img className={styles.logo} src="/logo.png" alt="logo" />
-                <div className={styles.name}>Online Shop</div>
+                <div className={styles.name}>Aşağıyeri.com</div>
             </div>
 
             <button ref={menuToggleRef} className={styles.menuIconCnr}>

@@ -61,7 +61,7 @@
         height: max-content;
         flex-direction: column;
         justify-content: center;
-        gap: 8rem;
+        gap: 4.5rem;
         padding-block: 8rem;
 
         .text {
@@ -75,11 +75,13 @@
 
             .body {
                 font-size: 1.8rem;
+                min-height: 5lh;
             }
 
             .exploreBtn {
                 margin-left: auto;
                 margin-right: auto;
+                font-size: 1.6rem;
             }
         }
     }

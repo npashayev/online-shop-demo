@@ -1,6 +1,6 @@
-header {
+.navbar {
     height: 55px;
-    padding-inline: 3rem;
+    padding-inline: max(1.6vw, 15px);
     font-size: 1.8rem;
     display: flex;
     align-items: center;
@@ -75,7 +75,7 @@ header {
 }
 
 @media (max-width: 760px) {
-    header {
+    .navbar {
         .menuIcon {
             display: block;
         }
