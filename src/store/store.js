@@ -3,16 +3,18 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import userReducer from './userSlice';
 import { likedProductsReducer } from "./likedProductsSlice";
+import cartReducer from "./cartSlice";
 
 const persistConfig = {
     key: "root",
     storage,
-    whitelist: ["user", "likedProducts"] // only persist serializable user slice
+    whitelist: ["user", "likedProducts", "cart"] // only persist serializable user slice
 };
 
 const rootReducer = combineReducers({
     user: userReducer,
-    likedProducts: likedProductsReducer
+    likedProducts: likedProductsReducer,
+    cart: cartReducer
 });
 
 // Persist only the reducer, never any hooks/functions
