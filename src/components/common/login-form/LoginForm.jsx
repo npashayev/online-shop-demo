@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import styles from './login-form.module.scss';
-import { useLogin } from '../../../hooks/useUser';
 import { useToast } from 'contexts/ToastContext';
+import { useLogin } from 'hooks/useUser';
 
-const LoginForm = ({ navigate = null }) => {
+const LoginForm = ({ navigate, onSuccess, children }) => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [loginData, setLoginData] = useState({ username: '', password: '' });
     const [errorMessage, setErrorMessage] = useState('');
@@ -39,7 +39,8 @@ const LoginForm = ({ navigate = null }) => {
             {
                 onSuccess: () => {
                     showToast("Successfully logged in!");
-                    navigate && navigate();
+                    navigate?.();
+                    onSuccess?.()
                 },
                 onError: (error) => setErrorMessage(error.message)
             }
@@ -88,7 +89,7 @@ const LoginForm = ({ navigate = null }) => {
                 <label className={isPending ? styles.submitting : ''}>Password</label>
 
                 <button
-                    className={styles.toggleBtn}
+                    className={`${styles.toggleBtn} ${styles.btn}`}
                     type='button'
                     disabled={isPending}
                     onClick={() => setPasswordVisible(prev => !prev)}
@@ -97,10 +98,11 @@ const LoginForm = ({ navigate = null }) => {
                 </button>
             </div>
 
-            <div className={styles.buttonCnr}>
-                <button type="submit" disabled={isPending}>
+            <div className={styles.buttonsCnr}>
+                <button className={styles.btn} type="submit" disabled={isPending}>
                     {isPending ? 'Logging in...' : 'Login'}
                 </button>
+                {children}
             </div>
         </form>
     )
