@@ -7,9 +7,7 @@ import { useSelector } from 'react-redux';
 
 
 const CartsPage = () => {
-
-    const cart = useSelector(state => state.cart)
-
+    const cart = useSelector(state => state.cart);
     const inputRef = useRef();
     // scroll page smoothly to the checkout form
     const goCheckout = () => {
