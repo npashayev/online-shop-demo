@@ -22,7 +22,7 @@ const Navbar = () => {
     const [isLikedProductsOpen, setIsLikedProductsOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-    const { user, isAuthenticated } = useAuth();
+    const { user } = useAuth();
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -132,13 +132,10 @@ const Navbar = () => {
                             ref={likedProductsToggleRef}
                         />
 
-                        {
-                            isAuthenticated &&
-                            <UserBasket
-                                setIsMenuOpen={setIsMenuOpen}
-                                user={user}
-                            />
-                        }
+                        <UserBasket
+                            setIsMenuOpen={setIsMenuOpen}
+                            user={user}
+                        />
 
                         <UserMenu
                             user={user}
