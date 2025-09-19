@@ -1,0 +1,127 @@
+.form {
+    background-color: white;
+    width: 400px;
+    border-radius: 3rem;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .formHeaderText {
+        font-size: 3.2rem;
+        margin-bottom: 3rem;
+        color: #333;
+        text-align: center;
+    }
+
+    .inputField {
+        position: relative;
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+
+        input {
+            width: 100%;
+            padding: 1.4rem 5rem 1.4rem 1.5rem;
+            border-radius: 1.2rem;
+            outline: none;
+            border: 1px solid #999;
+            transition: border-color 0.2s ease-in-out;
+            font-size: 1.6rem;
+
+            &:focus {
+                border-color: #007bff;
+            }
+
+            &:focus~label,
+            &:valid~label,
+            &~.submitting,
+            &:is(:-webkit-autofill, :autofill)~label {
+                top: -5px;
+                font-size: 1.2rem;
+                color: #007bff;
+                background-color: #f4f4f9;
+            }
+        }
+
+        label {
+            padding: 0.3rem;
+            position: absolute;
+            top: 50%;
+            left: 1.8rem;
+            transform: translateY(-50%);
+            color: #666;
+            pointer-events: none;
+            transition: all 0.2s ease-in-out;
+            border-radius: 5px;
+        }
+
+        .toggleBtn {
+            display: flex;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 15px;
+            color: #555;
+            font-size: 1.6rem;
+        }
+    }
+
+    .buttonCnr {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        button {
+            font-size: 1.6rem;
+            padding: 0.8rem 6rem;
+            border-radius: 1000px;
+            border: 0.5px solid #ccc;
+            background-color: #f4f4f9;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button:hover {
+            z-index: 0;
+            color: white;
+            border-color: transparent;
+        }
+
+        button:active {
+            scale: 0.99;
+        }
+
+        button:active::after {
+            background-image: linear-gradient(to top left, #0264b4, #861296);
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            border-radius: inherit;
+            background-image: linear-gradient(to bottom right, #008cff, #e100ff);
+            z-index: -1;
+        }
+    }
+
+    .error {
+        color: red;
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .form {
+        padding: 6rem 3rem;
+        width: 100%;
+    }
+}
