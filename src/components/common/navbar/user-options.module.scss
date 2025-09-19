@@ -1,17 +1,21 @@
 .main {
     position: relative;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     height: 100%;
 
-    .userNameCnr {
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        cursor: pointer;
+    .userMenu {
         height: 100%;
-        font-size: 1.8rem;
+
+        .userNameCnr {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            height: 100%;
+            font-size: 18px;
+        }
     }
 
     .btn {
@@ -27,6 +31,7 @@
     }
 
     .loginBtn {
+        font-size: 18px;
         background-color: #1D4ED8;
 
         &:hover {

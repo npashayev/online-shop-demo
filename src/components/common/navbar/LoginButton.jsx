@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 const LoginButton = () => {
 
     return (
-        <Link>
-            <FontAwesomeIcon icon={faRightToBracket} className={styles.loginButton} />
+        <Link to='/login' className={`${styles.btn} ${styles.loginBtn}`}>
+            <FontAwesomeIcon icon={faRightToBracket} />
         </Link>
     )
 }

@@ -6,7 +6,7 @@ import UserDropdown from './UserDropdown';
 
 const UserOptions = ({ isDropdownOpen, setIsDropdownOpen, menuRef, user, handleLogout }) => {
 
-    return <div ref={menuRef} className={styles.main}>
+    return <div ref={menuRef} className={styles.userMenu}>
         <button className={styles.userNameCnr} onClick={() => setIsDropdownOpen(prev => !prev)}>
             <div className={styles.userName}>
                 {user.firstName + " " + user.lastName}
