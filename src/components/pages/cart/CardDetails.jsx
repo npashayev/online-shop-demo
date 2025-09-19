@@ -4,7 +4,7 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { forwardRef } from 'react'
 
-const CardDetails = forwardRef(({ totalCartInfo }, ref) => {
+const CardDetails = forwardRef(({ cart }, ref) => {
     return (
         <div className={styles.main}>
             <div className={styles.header}>Card Details</div>
@@ -32,15 +32,15 @@ const CardDetails = forwardRef(({ totalCartInfo }, ref) => {
                 <div className={styles.totalInfo}>
                     <div className={styles.infoCnr}>
                         <span>Total price:</span>
-                        <span>${totalCartInfo.discountedTotal}</span>
+                        <span>${cart.totalPrice}</span>
                     </div>
                     <div className={styles.infoCnr}>
                         <span>Total products:</span>
-                        <span>{totalCartInfo.totalProducts}</span>
+                        <span>{cart.totalProducts}</span>
                     </div>
                     <div className={styles.infoCnr}>
                         <span>Total quantity:</span>
-                        <span>{totalCartInfo.totalQuantity}</span>
+                        <span>{cart.totalQuantity}</span>
                     </div>
                 </div>
 

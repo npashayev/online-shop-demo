@@ -1,24 +1,16 @@
 import styles from './cart-page.module.scss'
 import ProductItem from './ProductItem';
 
-const Cart = ({ cart, handleQuantityChange, updateUserCart, handleProductDelete, calcTotalPrice }) => {
+const Cart = ({ cart }) => {
     return (
         <div className={styles.cart}>
             <div className={styles.productsCnr}>
                 {
-                    cart?.products?.length > 0
+                    cart.products.length > 0
                         ? cart.products.map(product => {
-
-                            const totalPrice = calcTotalPrice(product)
-
                             return <ProductItem
                                 key={product.id}
                                 product={product}
-                                totalPrice={totalPrice}
-                                handleQuantityChange={handleQuantityChange}
-                                updateUserCart={updateUserCart}
-                                cartId={cart.id}
-                                handleProductDelete={handleProductDelete}
                             />
                         })
                         : <div className={styles.message}>

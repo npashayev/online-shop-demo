@@ -3,40 +3,67 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleMinus, faCirclePlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import Loading from 'components/common/Loading';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { changeProductQuantity, deleteProduct } from 'store/cartSlice';
+import { useToast } from 'contexts/ToastContext';
 
-const ProductItem = ({ product, totalPrice, handleQuantityChange, updateUserCart, cartId, handleProductDelete }) => {
+const ProductItem = ({ product }) => {
+    const { id, title, thumbnail, quantity, totalPrice } = product;
+
+    const dispatch = useDispatch();
+    const { showToast } = useToast();
+
+    const handleProductDelete = (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        dispatch(deleteProduct(id));
+    }
+
+    const handleQuantityChange = (event, isIncrease = false) => {
+        event.stopPropagation();
+        event.preventDefault();
+
+        const changeValue = isIncrease ? 1 : -1;
+
+        if (!isIncrease && quantity <= 1) {
+            showToast("Quantity cannot go below 1", false);
+            return;
+        }
+
+        dispatch(changeProductQuantity({ productId: id, changeValue }));
+    }
+
     return (
-        <Link to={`/products/${product.id}`} className={styles.product}>
+        <Link to={`/products/${id}`} className={styles.product}>
             <div className={styles.left}>
                 <div className={styles.imageCnr}>
                     {
-                        product.thumbnail
-                            ? <img src={product.thumbnail} className={styles.productImage} />
+                        thumbnail
+                            ? <img src={thumbnail} className={styles.productImage} />
                             : <Loading />
                     }
                 </div>
 
                 <div className={styles.productMain}>
-                    <div className={styles.productTitle} title={product.title}>{product.title}</div>
+                    <div className={styles.productTitle} title={title}>{title}</div>
                     <div className={styles.productQuantityCnr}>
                         <button
-                            onClick={(event) => handleQuantityChange(event, cartId, product)}
-                            disabled={product.quantity === 1 || updateUserCart.isPending}
                             className={styles.counterButton}
+                            disabled={quantity === 1}
+                            onClick={(event) => handleQuantityChange(event)}
                         >
-                            <FontAwesomeIcon icon={faCircleMinus} className={styles.counterIcon} />
+                            <FontAwesomeIcon className={styles.counterIcon} icon={faCircleMinus} />
                         </button>
 
                         <div className={styles.productQuantity}>
-                            {updateUserCart.isPending ? <Loading /> : product.quantity}
+                            {quantity}
                         </div>
 
                         <button
-                            onClick={(event) => handleQuantityChange(event, cartId, product, true)}
-                            disabled={updateUserCart.isPending}
                             className={styles.counterButton}
+                            onClick={(event) => handleQuantityChange(event, true)}
                         >
-                            <FontAwesomeIcon icon={faCirclePlus} className={styles.counterIcon} />
+                            <FontAwesomeIcon className={styles.counterIcon} icon={faCirclePlus} />
                         </button>
                     </div>
                 </div>
@@ -48,8 +75,8 @@ const ProductItem = ({ product, totalPrice, handleQuantityChange, updateUserCart
                 </div>
 
                 <button
-                    onClick={(event) => handleProductDelete(event, cartId, product)}
                     className={styles.deleteBtn}
+                    onClick={handleProductDelete}
                 >
                     <FontAwesomeIcon icon={faTrashCan} className={styles.deleteIcon} />
                 </button>
@@ -58,4 +85,4 @@ const ProductItem = ({ product, totalPrice, handleQuantityChange, updateUserCart
     )
 }
 
-export default ProductItem
+export default ProductItem;
