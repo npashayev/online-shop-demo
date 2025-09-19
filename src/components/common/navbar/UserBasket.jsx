@@ -8,7 +8,7 @@ const UserBasket = ({ user, setIsMenuOpen }) => {
 
     return (
         <Link
-            to={`/${user.id}/carts`}
+            to={`/${user.id}/cart`}
             onClick={() => setIsMenuOpen(false)}
             className={styles.main}>
             <FontAwesomeIcon icon={faCartShopping} className={styles.basketIcon} />
