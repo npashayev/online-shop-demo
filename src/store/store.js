@@ -20,12 +20,21 @@ const rootReducer = combineReducers({
 // Persist only the reducer, never any hooks/functions
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+
 export const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: {
-                ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE']
+                // ignore all redux-persist actions that might contain non-serializable values
+                ignoredActions: [
+                    'persist/PERSIST',
+                    'persist/REHYDRATE',
+                    'persist/PAUSE',
+                    'persist/PURGE',
+                    'persist/FLUSH',
+                    'persist/REGISTER'
+                ]
             }
         })
 });
