@@ -4,7 +4,7 @@ import UserMenu from "./UserMenu";
 import UserBasket from "./UserBasket";
 import useAuth from "hooks/useAuth";
 import LikedProductsToggle from "./LikedProductsToggle";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LikedProducts from "./LikedProducts";
@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { setUser } from 'store/userSlice';
 import UserDropdown from "./UserDropdown";
 import { resetCart } from "store/cartSlice";
+import useClickOutside from "hooks/useClickOutside";
 
 
 const Navbar = () => {
@@ -32,35 +33,18 @@ const Navbar = () => {
     const likedProductsToggleRef = useRef(null);
     const likedProductsRef = useRef(null);
 
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (
-                menuToggleRef.current
-                && !menuToggleRef.current.contains(event.target)
-                && menuRef.current
-                && !menuRef.current.contains(event.target)
-            ) {
-                setIsMenuOpen(false)
-            }
-
-            if (
-                likedProductsToggleRef.current
-                && !likedProductsToggleRef.current.contains(event.target)
-                && likedProductsRef.current
-                && !likedProductsRef.current.contains(event.target)
-            ) {
-                setIsLikedProductsOpen(false);
-            }
+    useClickOutside([
+        {
+            contentRef: menuRef,
+            toggleRef: menuToggleRef,
+            onClickOutside: () => setIsMenuOpen(false)
+        },
+        {
+            contentRef: likedProductsRef,
+            toggleRef: likedProductsToggleRef,
+            onClickOutside: () => setIsLikedProductsOpen(false)
         }
-
-        document.addEventListener("mousedown", handleClickOutside)
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        }
-    }, [])
-
-
+    ]);
 
     const handleLogout = () => {
         setIsDropdownOpen(false)

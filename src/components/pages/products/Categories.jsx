@@ -4,6 +4,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import CategoriesContent from './CategoriesContent';
+import useClickOutside from 'hooks/useClickOutside';
 
 
 
@@ -12,16 +13,13 @@ const Categories = ({ isCategoriesOpen, closeCategories }) => {
     const activeCategory = productCategory ?? 'all';
     const categoriesRef = useRef(null);
 
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (categoriesRef.current && !categoriesRef.current.contains(event.target)) {
-                closeCategories();
-            }
-        };
 
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
+    useClickOutside([
+        {
+            contentRef: categoriesRef,
+            onClickOutside: closeCategories
+        }
+    ]);
 
     return (
         <aside
