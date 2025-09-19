@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 
-const Toast = ({ message, isSuccess = true }) => {
+const Toast = ({ message, isSuccess }) => {
 
     const icon = isSuccess ? faCircleCheck : faCircleExclamation;
     const backgroundColor = isSuccess ? '#388e3c' : '#f44336';
