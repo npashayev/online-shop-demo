@@ -9,6 +9,7 @@
     font-family: "Nunito", sans-serif;
 
     /* index variables */
+    --modal-index: 101;
     --navbar-index: 100;
     --liked-products-index: 99;
     --navigation-sidebar-index: 98;
