@@ -40,7 +40,7 @@ const ProductActions = ({ product }) => {
 
             {
                 deleteProduct.isPending &&
-                <LoadingModal>
+                <LoadingModal isOpen={deleteProduct.isPending}>
                     Product is being deleted...
                 </LoadingModal>
             }
