@@ -4,11 +4,11 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 
 
-const UserBasket = ({ user, setIsMenuOpen }) => {
+const UserBasket = ({ setIsMenuOpen }) => {
 
     return (
         <Link
-            to={`/${user.id}/cart`}
+            to='/cart'
             onClick={() => setIsMenuOpen(false)}
             className={styles.main}>
             <FontAwesomeIcon icon={faCartShopping} className={styles.basketIcon} />

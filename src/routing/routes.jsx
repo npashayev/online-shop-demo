@@ -38,15 +38,15 @@ const router = createBrowserRouter([
                 element: <ProductDetails />
             },
             {
+                path: '/cart',
+                element: <CartsPage />
+            },
+            {
                 element: <PrivateRoutes />,
                 children: [
                     {
                         path: 'user-info/:userId',
                         element: <UserInfo />
-                    },
-                    {
-                        path: ':userId/cart',
-                        element: <CartsPage />
                     },
                     {
                         element: <RoleRoutes roles={["admin", "moderator"]} />,
