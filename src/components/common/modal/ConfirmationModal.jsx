@@ -1,21 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styles from './modal.module.scss'
+import usePreventScroll from 'hooks/usePreventScroll';
 
 const ConfirmationModal = ({ children, onConfirm, onCancel }) => {
     const [isOpen, setIsOpen] = useState(true);
-
-    useEffect(() => {
-        // This prevents scrolling when modal is open
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-
-        return () => {
-            document.body.style.overflow = '';
-        };
-    }, [isOpen]);
+    usePreventScroll(isOpen)
 
     return (
         isOpen &&

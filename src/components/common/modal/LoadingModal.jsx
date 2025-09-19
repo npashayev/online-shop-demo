@@ -1,17 +1,9 @@
-import { useEffect } from 'react';
 import Loading from '../Loading'
 import styles from './modal.module.scss'
+import usePreventScroll from 'hooks/usePreventScroll';
 
-const LoadingModal = ({ children }) => {
-
-    useEffect(() => {
-        document.body.style.overflow = 'hidden';
-
-        return () => {
-            document.body.style.overflow = '';
-        };
-    }, []);
-
+const LoadingModal = ({ children, isOpen }) => {
+    usePreventScroll(isOpen)
     return (
         <div className={styles.main}>
             <div
