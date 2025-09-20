@@ -26,6 +26,10 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        .closeBtn {
+            display: none;
+        }
     }
 
     .categories {
@@ -60,6 +64,12 @@
         transition: transform 0.3s ease-in-out;
         height: calc(100vh - var(--navbar-height));
         border-radius: 0;
+
+        .categoriesHeading {
+            .closeBtn {
+                display: block;
+            }
+        }
     }
 
     .activeSidebar {
