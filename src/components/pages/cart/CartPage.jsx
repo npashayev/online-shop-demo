@@ -4,6 +4,7 @@ import CartPageHeader from './CartPageHeader';
 import { useRef } from 'react';
 import CardDetails from './CardDetails';
 import { useSelector } from 'react-redux';
+import InformationModal from 'components/common/modal/InformationModal';
 
 
 const CartsPage = () => {
@@ -19,6 +20,9 @@ const CartsPage = () => {
 
     return (
         <main className={styles.page}>
+            <InformationModal>
+                This is a demo cart page. The checkout form does not process real transactions and will redirect you to the homepage upon clicking 'Checkout'.
+            </InformationModal>
             <div className={styles.cartCnr}>
                 <CartPageHeader goCheckout={goCheckout} />
                 <Cart cart={cart} />
