@@ -20,7 +20,7 @@ const UserOptions = ({ isDropdownOpen, setIsDropdownOpen, menuRef, user, handleL
             <div className={styles.bigScreenDropdown}>
                 <UserDropdown
                     user={user}
-                    setIsOpen={setIsDropdownOpen}
+                    setIsDropdownOpen={setIsDropdownOpen}
                     handleLogout={handleLogout}
                 />
             </div>
