@@ -2,27 +2,43 @@
     position: relative;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
     border-radius: 0.6rem;
+    overflow: hidden;
     transition: transform 0.1s linear;
     background-color: white;
     font-size: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
 
     &:hover {
         transform: scale(1.05);
     }
 
-    .brand {
+    .heading {
+        background-color: #E28513;
+        width: 100%;
         font-weight: bold;
-        padding: 2rem;
-        width: 70%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         min-height: 1lh;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .brand {
+            max-width: calc(100% - 6rem);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-height: 1lh;
+        }
     }
 
     .discountPercentage {
         color: white;
-        background-color: #d32f2f;
+        background-color: #D1001F;
         font-weight: bold;
         width: max-content;
         min-width: 50px;
@@ -33,30 +49,36 @@
         padding: 0.5rem;
         border-radius: 50%;
         position: absolute;
-        top: 20px;
-        right: 20px;
+        top: 70px;
+        left: 30px;
     }
 
     .imageCnr {
-        height: 250px;
+        background-color: #D1001F;
         margin-top: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        width: 100%;
+        aspect-ratio: 1;
+        overflow: hidden;
 
         .image {
-            height: 80%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     }
 
     .info {
+        background-color: bisque;
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 1.5rem 2rem;
-        min-height: 140px;
+        gap: 1rem;
+        padding-top: 1.5rem;
 
         .titleCnr {
+            background-color: azure;
+
             .title {
                 white-space: nowrap;
                 overflow: hidden;
@@ -89,12 +111,18 @@
         }
 
         .footer {
+            background-color: aqua;
             display: flex;
             align-items: center;
             justify-content: space-between;
 
             .priceCnr {
                 font-style: italic;
+                background-color: burlywood;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
 
                 .oldPrice {
                     text-decoration: line-through;
@@ -105,45 +133,59 @@
                 .newPrice {
                     color: darkred;
                     font-weight: bold;
+                    background-color: antiquewhite;
                 }
             }
 
+            .basketButton {
+                background-color: #E28513;
+                border-radius: 8px;
+                border: none;
+                cursor: pointer;
 
+                &>.buttonText {
+                    display: none;
+                }
 
-            .buttonsCnr {
-                display: flex;
-                gap: 1rem;
+                &:hover {
+                    border-radius: 0;
+                    background: none;
 
-                .basketButton {
-                    background-color: goldenrod;
-                    border-radius: 8px;
-                    border: none;
-                    cursor: pointer;
-
-                    &>.buttonText {
+                    &>.basketIcon {
                         display: none;
                     }
 
-                    &:hover {
-                        border-radius: 0;
-                        background: none;
-
-                        &>.basketIcon {
-                            display: none;
-                        }
-
-                        &>.buttonText {
-                            display: block;
-                            color: white;
-                        }
-                    }
-
-                    .basketIcon {
-                        padding: 1rem;
+                    &>.buttonText {
+                        display: block;
                         color: white;
                     }
                 }
+
+                .basketIcon {
+                    padding: 1rem;
+                    color: white;
+                }
             }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .product {
+        font-size: 12px;
+
+        &:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .product {
+        &:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
         }
     }
 }
