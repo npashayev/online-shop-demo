@@ -13,12 +13,13 @@ const ProductCard = ({ product }) => {
 
     return (
         <Link to={`/products/${product.id}`} className={styles.product}>
-            <p
-                title={product.brand}
-                className={styles.brand}
-            >
-                {product.brand}
-            </p>
+            <div className={styles.heading} title={product.brand}>
+                <p className={styles.brand}>
+                    {product.brand}
+                </p>
+
+                <LikeButton product={product} />
+            </div>
             {
                 discountPercentage > 0 &&
                 <div className={styles.discountPercentage}>
@@ -60,14 +61,11 @@ const ProductCard = ({ product }) => {
                         <p className={styles.newPrice}>{discountedPrice}$</p>
                     </div>
 
-                    <div className={styles.buttonsCnr}>
-                        <LikeButton product={product} />
 
-                        <div className={styles.basketButton}>
-                            <FontAwesomeIcon icon={faBagShopping} className={styles.basketIcon} />
-                            <div className={styles.buttonText}>
-                                <AddToCartButton product={product} style={{ fontSize: "12px", paddingBlock: "0.85em" }} />
-                            </div>
+                    <div className={styles.basketButton}>
+                        <FontAwesomeIcon icon={faBagShopping} className={styles.basketIcon} />
+                        <div className={styles.buttonText}>
+                            <AddToCartButton product={product} style={{ fontSize: "12px", paddingBlock: "0.85em" }} />
                         </div>
                     </div>
                 </div>
