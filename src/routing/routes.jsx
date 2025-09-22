@@ -42,6 +42,15 @@ const router = createBrowserRouter([
                 element: <CartsPage />
             },
             {
+                path: '/login',
+                element: <LoginPage />
+            },
+
+            {
+                path: '/register',
+                element: <RegisterPage />
+            },
+            {
                 element: <PrivateRoutes />,
                 children: [
                     {
@@ -65,16 +74,6 @@ const router = createBrowserRouter([
             }
         ]
     },
-
-    {
-        path: '/login',
-        element: <LoginPage />
-    },
-
-    {
-        path: '/register',
-        element: <RegisterPage />
-    }
 ]);
 
 export default router;
