@@ -81,6 +81,7 @@
         }
 
         .right {
+            min-width: 320px;
             position: fixed;
             top: var(--navbar-height);
             right: 0;
