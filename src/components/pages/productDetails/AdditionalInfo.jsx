@@ -1,7 +1,6 @@
 import styles from './additional-info.module.scss'
 import { useState } from 'react';
 
-
 const tabs = [
     { id: 1, label: "Product info" },
     { id: 2, label: "Shipping info" },

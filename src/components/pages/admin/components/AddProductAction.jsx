@@ -10,7 +10,7 @@ const AddProductAction = () => {
                     to={'/products/add-product'}
                     className={`${styles.addBtn} ${styles.button}`}
                 >
-                    Add new product
+                    New product
                 </Link>
             </div >
         </RoleOnly>

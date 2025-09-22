@@ -2,7 +2,7 @@
     margin-top: 7rem;
 
     .heading {
-        font-size: 3.2rem;
+        font-size: 2.8rem;
         font-weight: bold;
         text-align: center;
         margin-bottom: 3rem;
@@ -12,7 +12,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 2.4rem;
+        gap: 1.8rem;
 
         .review {
             width: 100%;
@@ -40,7 +40,8 @@
 
             .body {
                 border-left: 1px solid lightgray;
-                padding-left: 2.4rem;
+                padding-left: 2rem;
+
 
                 .userInfo {
                     .userName {
@@ -54,7 +55,7 @@
                 }
 
                 .comment {
-                    margin-top: 1.2rem;
+                    margin-top: 0.6rem;
                 }
             }
         }

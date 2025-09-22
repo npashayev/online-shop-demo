@@ -15,12 +15,14 @@
     }
 
     .mainImageContainer {
-        border-bottom: 1px solid lightgrey;
-        padding: 3rem;
+        overflow: hidden;
+        border-radius: 2rem;
 
         .mainImage {
             background-color: white;
             width: 100%;
+            height: 100%;
+            object-fit: cover;
             user-select: none;
         }
     }
@@ -31,6 +33,8 @@
         align-items: center;
         justify-content: center;
         padding: 2rem;
+        border-top: 1px solid lightgrey;
+
 
         .arrowButton {
             flex-shrink: 0;
@@ -61,14 +65,21 @@
             cursor: pointer;
             user-select: none;
 
-            .thumbnail {
-                width: 10rem;
-                min-height: 10rem;
+            .thumbnailWrp {
+                width: clamp(55px, 5vh, 100px);
+                aspect-ratio: 1;
                 overflow: hidden;
                 border: 1px solid lightgray;
                 border-radius: 1rem;
-                padding: 1.5rem;
                 font-size: 8px;
+                overflow: hidden;
+
+                .thumbnail {
+                    object-fit: cover;
+                    height: 100%;
+                    width: 100%;
+                    border: none;
+                }
             }
 
             .activeThumbnail {
@@ -81,12 +92,5 @@
 @media (max-width: 640px) {
     .productGallery {
         width: 100%;
-    }
-}
-
-@media (max-width: 390px) {
-    .thumbnail {
-        width: 8rem;
-        min-height: 8rem;
     }
 }

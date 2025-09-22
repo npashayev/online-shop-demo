@@ -14,6 +14,7 @@
             border-radius: 6rem;
             padding: 0.6rem 2rem;
             font-weight: bold;
+            font-size: 1.6rem;
 
             &:hover {
                 background-color: lightcyan;
@@ -27,14 +28,19 @@
 
     .detailsCnr {
         .detailRow {
+            font-size: 14px;
             display: flex;
-            gap: 10rem;
+            gap: 5rem;
             justify-content: space-between;
             border-bottom: 1px solid lightgrey;
             padding: 0.7rem 1rem;
 
             .detailName {
                 font-weight: 600;
+            }
+
+            .detailInfo {
+                text-align: right;
             }
         }
     }
@@ -43,5 +49,18 @@
 @media (max-width: 1200px) {
     .additionalInfo {
         width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .additionalInfo {
+        .headingsCnr {
+            gap: 5px;
+
+            .heading {
+                font-size: 12px;
+                padding-inline: 1rem;
+            }
+        }
     }
 }
