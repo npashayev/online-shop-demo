@@ -5,7 +5,7 @@ import styles from './like-button.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleLike } from 'store/likedProductsSlice'
 
-const LikeButton = ({ product }) => {
+const LikeButton = ({ product, className }) => {
 
     const dispatch = useDispatch();
 
@@ -16,7 +16,7 @@ const LikeButton = ({ product }) => {
             e.preventDefault()
             dispatch(toggleLike(product))
         }}
-        className={styles.likeButton}
+        className={`${styles.likeButton} ${className}`}
     >
         <FontAwesomeIcon
             icon={isLiked ? solidHeart : regularHeart}
