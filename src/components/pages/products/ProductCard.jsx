@@ -18,7 +18,9 @@ const ProductCard = ({ product }) => {
                     {product.brand}
                 </p>
 
-                <LikeButton product={product} />
+                <div className={styles.likeBtnCnr}>
+                    <LikeButton product={product} />
+                </div>
             </div>
             {
                 discountPercentage > 0 &&

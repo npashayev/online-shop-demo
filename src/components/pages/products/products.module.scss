@@ -15,13 +15,21 @@
     }
 }
 
+@media (max-width: 900px) {
+    .main {
+        .productsCnr {
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 1.5rem;
+        }
+    }
+}
+
 @media (max-width: 600px) {
     .main {
         padding: 1.5rem;
 
         .productsCnr {
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.5rem;
         }
     }
 }

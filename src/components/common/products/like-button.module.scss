@@ -1,10 +1,12 @@
 .likeButton {
-    display: block;
-    border: none;
-    background: none;
-    cursor: pointer;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
     background-color: #f5f5f5;
-    padding: 1rem;
+    border: 1px solid lightgray;
+    padding: 0.5em;
     border-radius: 1rem;
 
     &:hover {
@@ -15,7 +17,10 @@
         transform: scale(0.9);
     }
 
-    .likeIcon {
-        font-size: 1.8rem;
+}
+
+@media (max-width: 550px) {
+    .likeButton {
+        font-size: 1.6rem;
     }
 }
