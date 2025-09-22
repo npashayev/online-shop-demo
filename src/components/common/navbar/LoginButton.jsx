@@ -7,7 +7,7 @@ const LoginButton = () => {
     const location = useLocation();
     return (
         location.pathname !== '/login' && location.pathname !== '/register' &&
-        <Link Link to='/login' className={`${styles.btn} ${styles.loginBtn}`}>
+        <Link to='/login' className={`${styles.btn} ${styles.loginBtn}`}>
             <FontAwesomeIcon icon={faRightToBracket} />
         </Link >
     )
