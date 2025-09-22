@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 3rem;
     z-index: var(--modal-index);
 
     .overlay {
@@ -24,7 +25,7 @@
         justify-content: center;
         gap: 3rem;
         align-items: center;
-        padding: 5rem;
+        padding: 3rem clamp(20px, 3vw, 50px);
         border-radius: 3rem;
         animation: fadeIn 0.2s ease forwards;
 
@@ -73,5 +74,13 @@
     to {
         transform: scale(1);
         opacity: 1;
+    }
+}
+
+@media (max-width: 500px) {
+    .main {
+        .modal {
+            min-width: 0;
+        }
     }
 }
