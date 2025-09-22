@@ -77,17 +77,16 @@ const ProductGallery = ({ product }) => {
                 >
                     {
                         product.images.map((image, i) =>
-                            <div className={styles.thumbnailWrp}>
+                            <div
+                                className={`${styles.thumbnailWrp} ${i == activeImageIndex ? styles.activeThumbnailWrp : ""}`}
+                                onClick={() => setActiveImageIndex(i)}
+                            >
                                 <img
                                     key={i}
                                     src={image}
                                     alt={`Thumbnail of ${product.title}`}
                                     title={product.title}
-                                    className={i == activeImageIndex
-                                        ? `${styles.activeThumbnail} ${styles.thumbnail}`
-                                        : styles.thumbnail
-                                    }
-                                    onClick={() => setActiveImageIndex(i)}
+                                    className={styles.thumbnail}
                                 />
                             </div>
                         )

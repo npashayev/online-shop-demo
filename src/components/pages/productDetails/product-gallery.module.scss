@@ -17,6 +17,7 @@
     .mainImageContainer {
         overflow: hidden;
         border-radius: 2rem;
+        padding: 1.5rem;
 
         .mainImage {
             background-color: white;
@@ -66,13 +67,15 @@
             user-select: none;
 
             .thumbnailWrp {
-                width: clamp(55px, 5vh, 100px);
+                width: clamp(55px, 5vw, 100px);
+                flex-shrink: 0;
                 aspect-ratio: 1;
                 overflow: hidden;
                 border: 1px solid lightgray;
                 border-radius: 1rem;
                 font-size: 8px;
                 overflow: hidden;
+                padding: 1rem;
 
                 .thumbnail {
                     object-fit: cover;
@@ -82,9 +85,10 @@
                 }
             }
 
-            .activeThumbnail {
+            .activeThumbnailWrp {
                 border: 1px solid #1A432E;
             }
+
         }
     }
 }
