@@ -58,6 +58,7 @@ const Navbar = () => {
         // clear tokens from localStorage
         localStorage.removeItem("accessToken")
         localStorage.removeItem("refreshToken")
+        setIsMenuOpen(false);
 
         navigate('/')
     }
@@ -126,6 +127,7 @@ const Navbar = () => {
                             isDropdownOpen={isDropdownOpen}
                             setIsDropdownOpen={setIsDropdownOpen}
                             handleLogout={handleLogout}
+                            setIsMenuOpen={setIsMenuOpen}
                         />
                     </div>
                 </div>

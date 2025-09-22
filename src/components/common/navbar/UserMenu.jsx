@@ -5,7 +5,7 @@ import LoginButton from './LoginButton';
 
 
 
-const UserMenu = ({ user, isDropdownOpen, setIsDropdownOpen, handleLogout }) => {
+const UserMenu = ({ user, isDropdownOpen, setIsDropdownOpen, handleLogout, setIsMenuOpen }) => {
 
     const menuRef = useRef(null);
     return (
@@ -20,7 +20,7 @@ const UserMenu = ({ user, isDropdownOpen, setIsDropdownOpen, handleLogout }) => 
                         handleLogout={handleLogout}
                     />
 
-                    : <LoginButton />
+                    : <LoginButton setIsMenuOpen={setIsMenuOpen} />
             }
         </div>
     )

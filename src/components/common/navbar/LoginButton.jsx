@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
 
-const LoginButton = () => {
+const LoginButton = ({ setIsMenuOpen }) => {
     const location = useLocation();
     return (
         location.pathname !== '/login' && location.pathname !== '/register' &&
-        <Link to='/login' className={`${styles.btn} ${styles.loginBtn}`}>
+        <Link to='/login' onClick={() => setIsMenuOpen(false)} className={`${styles.btn} ${styles.loginBtn}`}>
             <FontAwesomeIcon icon={faRightToBracket} />
         </Link >
     )
