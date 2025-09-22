@@ -3,6 +3,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import styles from './login-form.module.scss';
 import { useToast } from 'contexts/ToastContext';
 import { useLogin } from 'hooks/useUser';
+import { Link } from 'react-router-dom';
 
 const LoginForm = ({ navigate, onSuccess, children }) => {
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -103,6 +104,11 @@ const LoginForm = ({ navigate, onSuccess, children }) => {
                     {isPending ? 'Logging in...' : 'Login'}
                 </button>
                 {children}
+            </div>
+            <div className={styles.registerCnr}>
+                Don't have an account? <Link to='/register' className={styles.registerBtn}>
+                    Register
+                </Link>
             </div>
         </form>
     )

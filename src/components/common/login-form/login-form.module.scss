@@ -112,6 +112,20 @@
         }
     }
 
+    .registerCnr {
+        font-size: 1.6rem;
+        text-align: center;
+        margin-top: 2rem;
+
+        .registerBtn {
+            color: #1D4ED8;
+
+            &:hover {
+                color: rgb(16, 50, 145)
+            }
+        }
+    }
+
     .error {
         color: red;
         font-size: 14px;
