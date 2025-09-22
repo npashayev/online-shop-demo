@@ -71,13 +71,17 @@ const FilterBar = ({ openCategories }) => {
                     <FontAwesomeIcon className={styles.categoryIcon} icon={faList} />
                 </button>
 
-                <Select
-                    className={styles.selector}
-                    options={options}
-                    isSearchable={false}
-                    value={selectedOption}
-                    onChange={handleOptionChange}
-                />
+                <div className={styles.leftEnd}>
+                    <Select
+                        className={styles.selector}
+                        options={options}
+                        isSearchable={false}
+                        value={selectedOption}
+                        onChange={handleOptionChange}
+                    />
+
+                    <AddProductAction />
+                </div>
             </div>
 
             <div className={styles.right}>
@@ -97,7 +101,6 @@ const FilterBar = ({ openCategories }) => {
                     </button>
                 </form>
 
-                <AddProductAction />
             </div>
         </div>
     )
