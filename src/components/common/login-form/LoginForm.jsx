@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import styles from './login-form.module.scss';
+import styles from '../login-register-form.module.scss';
 import { useToast } from 'contexts/ToastContext';
 import { useLogin } from 'hooks/useUser';
 import { Link } from 'react-router-dom';
@@ -105,8 +105,8 @@ const LoginForm = ({ navigate, onSuccess, children }) => {
                 </button>
                 {children}
             </div>
-            <div className={styles.registerCnr}>
-                Don't have an account? <Link to='/register' className={styles.registerBtn}>
+            <div className={styles.linkCnr}>
+                Don't have an account? <Link to='/register' className={styles.link}>
                     Register
                 </Link>
             </div>

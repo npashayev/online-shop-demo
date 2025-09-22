@@ -112,13 +112,14 @@
         }
     }
 
-    .registerCnr {
+    .linkCnr {
         font-size: 1.6rem;
         text-align: center;
         margin-top: 2rem;
 
-        .registerBtn {
+        .link {
             color: #1D4ED8;
+            text-decoration: underline;
 
             &:hover {
                 color: rgb(16, 50, 145)
@@ -137,6 +138,9 @@
 @media (max-width: 500px) {
     .form {
         padding: 6rem 3rem;
-        width: 100%;
+        width: 80%;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
     }
 }
