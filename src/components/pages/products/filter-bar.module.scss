@@ -75,14 +75,15 @@
                 justify-content: center;
                 color: white;
                 background-color: #E28513;
-            }
 
-            button:hover {
-                background-color: darkgrey;
-            }
+                &:hover {
+                    background-color: #bd6d0c;
+                }
 
-            button:active {
-                background-color: grey;
+
+                &:active {
+                    background-color: #a15d09;
+                }
             }
         }
     }

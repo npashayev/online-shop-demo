@@ -1,12 +1,10 @@
 import React from 'react'
 import styles from './add-cart.module.scss'
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
 import { useToast } from 'contexts/ToastContext';
 import { addProduct, isProductExist } from 'store/cartSlice';
 
-const AddToCartButton = ({ product, style }) => {
+const AddToCartButton = ({ product, style, children, className }) => {
 
     const { showToast } = useToast();
     const dispatch = useDispatch();
@@ -34,12 +32,11 @@ const AddToCartButton = ({ product, style }) => {
 
     return (
         <button
-            className={styles.addCartBtn}
+            className={`${styles.addCartBtn} ${className}`}
             style={style}
             onClick={handleAddToCart}
         >
-            <FontAwesomeIcon icon={faCartShopping} className={styles.basketIcon} />
-            Add to cart
+            {children}
         </button>
     )
 }

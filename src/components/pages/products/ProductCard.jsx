@@ -64,12 +64,9 @@ const ProductCard = ({ product }) => {
                     </div>
 
 
-                    <div className={styles.basketButton}>
+                    <AddToCartButton product={product} className={styles.addToCartBtn}>
                         <FontAwesomeIcon icon={faBagShopping} className={styles.basketIcon} />
-                        <div className={styles.buttonText}>
-                            <AddToCartButton product={product} style={{ fontSize: "12px", paddingBlock: "0.85em" }} />
-                        </div>
-                    </div>
+                    </AddToCartButton>
                 </div>
             </div>
         </Link>

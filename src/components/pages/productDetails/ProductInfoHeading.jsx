@@ -2,6 +2,8 @@ import styles from './product-info-heading.module.scss'
 import star from "/src/assets/star.png"
 import AddToCartButton from '../products/AddToCartButton';
 import LikeButton from 'components/common/products/LikeButton';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ProductInfoHeading = ({ product }) => {
 
@@ -40,7 +42,10 @@ const ProductInfoHeading = ({ product }) => {
             <div className={styles.buttonsCnr}>
                 <LikeButton product={product} />
 
-                <AddToCartButton product={product} />
+                <AddToCartButton product={product} className={styles.addToCartBtn}>
+                    <FontAwesomeIcon icon={faCartShopping} className={styles.basketIcon} />
+                    Add to cart
+                </AddToCartButton>
             </div>
         </div>
     )

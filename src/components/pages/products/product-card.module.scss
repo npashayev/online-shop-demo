@@ -134,33 +134,18 @@
                 }
             }
 
-            .basketButton {
+            .addToCartBtn {
                 background-color: #E28513;
-                border-radius: 8px;
-                border: none;
-                cursor: pointer;
-
-                &>.buttonText {
-                    display: none;
-                }
+                padding: 1rem;
+                border-radius: 1rem;
+                aspect-ratio: 1;
 
                 &:hover {
-                    border-radius: 0;
-                    background: none;
-
-                    &>.basketIcon {
-                        display: none;
-                    }
-
-                    &>.buttonText {
-                        display: block;
-                        color: white;
-                    }
+                    background-color: #bd6d0c;
                 }
 
-                .basketIcon {
-                    padding: 1rem;
-                    color: white;
+                &:active {
+                    background-color: #a15d09;
                 }
             }
         }
