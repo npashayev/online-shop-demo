@@ -1,5 +1,5 @@
 import { InfoField } from "components/common/form-fields/FormFields";
-import styles from "/src/styles/resource-form.module.scss";
+import styles from "styles/resource-form.module.scss";
 
 const UserInfoReadOnly = ({ user, setEditMode }) => {
     return (
@@ -32,15 +32,15 @@ const UserInfoReadOnly = ({ user, setEditMode }) => {
                 <div className={styles.heading}>Address information</div>
                 <div className={styles.inputGroup}>
                     <InfoField label="Address" value={user.address?.address} />
-                </div>
-
-                <div className={styles.inputGroup}>
                     <InfoField label="City" value={user.address?.city} />
-                    <InfoField label="State" value={user.address?.state} />
                 </div>
 
                 <div className={styles.inputGroup}>
+                    <InfoField label="State" value={user.address?.state} />
                     <InfoField label="State code" value={user.address?.stateCode} />
+                </div>
+
+                <div className={styles.inputGroup}>
                     <InfoField label="Postal code" value={user.address?.postalCode} />
                 </div>
             </div>

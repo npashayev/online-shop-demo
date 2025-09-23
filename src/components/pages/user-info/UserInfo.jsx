@@ -1,5 +1,5 @@
 import { useCurrentUser } from "hooks/useUser"
-import styles from "/src/styles/resource-form.module.scss";
+import styles from "styles/resource-form.module.scss";
 import UserInfoReadOnly from "./UserInfoReadOnly";
 import { useState } from "react";
 import EditUserInfo from "./EditUserInfo";

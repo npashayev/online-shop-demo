@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import styles from "/src/styles/resource-form.module.scss";
+import styles from "styles/resource-form.module.scss";
 import { useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import { useUpdateCurrentUser } from "hooks/useUser";
@@ -81,13 +81,13 @@ const EditUserInfo = ({ user, setEditMode }) => {
                 <div className={styles.heading}>Address information</div>
                 <div className={styles.inputGroup}>
                     <RHFInput label="Address" name="address.address" register={register} />
-                </div>
-                <div className={styles.inputGroup}>
                     <RHFInput label="City" name="address.city" register={register} />
-                    <RHFInput label="State" name="address.state" register={register} />
                 </div>
                 <div className={styles.inputGroup}>
+                    <RHFInput label="State" name="address.state" register={register} />
                     <RHFInput label="State code" name="address.stateCode" register={register} />
+                </div>
+                <div className={styles.inputGroup}>
                     <RHFInput label="Postal code" name="address.postalCode" register={register} />
                 </div>
             </div>
