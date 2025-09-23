@@ -1,35 +1,39 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { useRegister } from '../../../hooks/useUser';
+import { useRegister } from 'hooks/useUser';
 import { Link, useNavigate } from 'react-router-dom';
-import styles from 'components/common/login-register-form.module.scss'
+import styles from 'components/common/login-register-form.module.scss';
 import { useForm } from 'react-hook-form';
-
+import { useToast } from 'contexts/ToastContext';
 
 const RegisterForm = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const password = watch("password");
     const watchAllFields = watch();
-    const [errorMessage, setErrorMessage] = useState('');
+
     const registerUser = useRegister();
     const navigate = useNavigate();
+    const { showToast } = useToast();
 
     const onSubmit = (data) => {
         setErrorMessage('');
         if (registerUser.error) registerUser.reset();
         const { confirmPassword, ...payload } = data;
-        console.log(payload)
+
         registerUser.mutate(payload, {
             onSuccess: () => {
+                showToast("You have registered successfully")
                 navigate('/login')
-            }
+            },
+            onError: (error) => setErrorMessage(error.message)
         });
     }
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <form className={`${styles.form} ${styles.registerForm}`} onSubmit={handleSubmit(onSubmit)} autoComplete='off'>
             <h1 className={styles.formHeaderText}>
                 Register
             </h1>
@@ -157,4 +161,4 @@ const RegisterForm = () => {
     )
 }
 
-export default RegisterForm
+export default RegisterForm;
