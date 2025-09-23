@@ -1,21 +1,19 @@
-import { useState } from 'react'
 import styles from './modal.module.scss'
 import usePreventScroll from 'hooks/usePreventScroll';
 
-const InformationModal = ({ children }) => {
-    const [isOpen, setIsOpen] = useState(true);
+const InformationModal = ({ isOpen, onClose, children }) => {
     usePreventScroll(isOpen)
 
     return (
         isOpen &&
         <div className={styles.main}>
-            <div onClick={() => setIsOpen(false)} className={styles.overlay}></div>
+            <div onClick={onClose} className={styles.overlay}></div>
             <div className={styles.modal}>
                 <div className={styles.body}>
                     {children}
                 </div>
                 <div className={styles.buttonsContainer}>
-                    <button onClick={() => setIsOpen(false)} className={styles.closeButton}>Close</button>
+                    <button onClick={onClose} className={styles.closeButton}>Close</button>
                 </div>
             </div>
         </div>
