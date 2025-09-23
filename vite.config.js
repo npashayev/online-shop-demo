@@ -18,6 +18,7 @@ export default defineConfig({
       store: path.resolve(__dirname, 'src', 'store'),
       services: path.resolve(__dirname, 'src', 'services'),
       contexts: path.resolve(__dirname, 'src', 'contexts'),
+      styles: path.resolve(__dirname, 'src', 'styles'),
     },
   },
 });
