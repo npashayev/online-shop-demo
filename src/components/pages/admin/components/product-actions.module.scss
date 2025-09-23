@@ -15,10 +15,14 @@
 
     .updateBtn,
     .addBtn {
-        background-color: green;
+        background-color: #1e7e34;
 
         &:hover {
-            background-color: rgb(2, 153, 2);
+            background-color: #19692c;
+        }
+
+        &:active {
+            background-color: #145c24;
         }
     }
 
