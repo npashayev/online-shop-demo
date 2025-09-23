@@ -2,17 +2,17 @@ import styles from "/src/styles/resource-form.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { useCategories, useUpdateProduct } from "hooks/useProducts";
 import Loading from "components/common/Loading";
 import { useQueryClient } from "@tanstack/react-query";
 import { RHFInput } from "components/common/form-fields/FormFields";
+import Select from 'react-select';
+
 
 
 const EditProductInfo = ({ product, setIsEditMode }) => {
-
-    const [newImageUrl, setNewImageUrl] = useState('')
-    const [newTag, setNewTag] = useState('')
+    const [newTag, setNewTag] = useState('');
 
     const { register, handleSubmit, reset, control, formState } = useForm({
         defaultValues: {
@@ -34,6 +34,10 @@ const EditProductInfo = ({ product, setIsEditMode }) => {
 
     const updateProduct = useUpdateProduct(product.id);
     const { data: categories } = useCategories();
+    const categoryOptions = categories?.map(cat => ({ value: cat.slug, label: cat.name }))
+    const defaultCategoryOption = categoryOptions?.find(
+        (opt) => opt.value === product.category
+    );
 
     const queryClient = useQueryClient();
 
@@ -47,21 +51,34 @@ const EditProductInfo = ({ product, setIsEditMode }) => {
         }
     }, [product, reset]);
 
+    const handleImageSelect = (e) => {
+        const files = Array.from(e.target.files);
+        const newImages = files.map(file => ({
+            url: URL.createObjectURL(file) // temporary URL for preview
+        }));
+
+        appendImage(newImages); // add to your useFieldArray
+        e.target.value = null;   // reset input
+    };
 
     const submitHandler = (data) => {
-        const { id, images, tags, ...rest } = data;
+        const { id, images, tags, category, ...rest } = data;
 
         const payload = {
             ...rest,
+            category: category?.value || product?.category || null,
             images: images?.map(img => img.url) || [],
             tags: tags?.map(t => t.tagName) || []
         };
 
         updateProduct.mutate(payload, {
-            onSuccess: (_, sentData) => queryClient.setQueryData(["products", String(id)], { id, ...sentData }),
+            onSuccess: (_, sentData) => {
+                queryClient.setQueryData(["products", String(id)], { id, ...sentData })
+                console.log(sentData)
+            },
             onError: (error) => console.log(error)
         });
-    }
+    };
 
 
 
@@ -91,26 +108,28 @@ const EditProductInfo = ({ product, setIsEditMode }) => {
                 <div className={styles.inputGroup}>
                     <RHFInput label="Title" name="title" register={register} />
                     <RHFInput label="Brand" name="brand" register={register} />
-                    <select {...register("category")}>
-                        {
-                            categories?.map(category =>
-                                <option
-                                    key={category.name}
-                                    value={category.name}
-                                >
-                                    {category.name}
-                                </option>)
-                        }
-                    </select>
+                    <Controller
+                        name="category"
+                        control={control} // RHF control object
+                        defaultValue={defaultCategoryOption}
+                        render={({ field }) => (
+                            <Select
+                                className={styles.selector}
+                                {...field}
+                                isSearchable={false}
+                                options={categoryOptions}
+                            />
+                        )}
+                    />
                 </div>
 
                 <div className={styles.inputGroup}>
-                    <div className={styles.inputCnr}>
+                    <div className={styles.textAreaCnr}>
                         <label>Description</label>
                         <textarea rows='6'
                             name="description"
                             {...register("description")}
-                            className={`${styles.info} ${styles.textarea}`}
+                            className={styles.textarea}
                         />
                     </div>
                 </div>
@@ -121,41 +140,47 @@ const EditProductInfo = ({ product, setIsEditMode }) => {
                 </div>
 
                 <div className={styles.inputGroup}>
-                    <label>Tags</label>
-                    <div className={styles.tagsCnr}>
-                        {
-                            tagFields.map((field, index) => <div key={field.id}>
-                                {field.tagName}
-                                <div className={styles.iconCnr}>
-                                    <FontAwesomeIcon
-                                        icon={faXmark}
-                                        onClick={() => removeTag(index)}
-                                        className={styles.xIcon} />
-                                </div>
-                            </div>)
-                        }
-                    </div>
+                    <div className={styles.tagCnr}>
+                        <label>Tags</label>
+                        <div className={styles.tagsCnr}>
+                            {
+                                tagFields.map((field, index) =>
+                                    <div key={field.id} className={styles.tag}>
+                                        <p className={styles.tagName}>
+                                            {field.tagName}
+                                        </p>
+                                        <button className={styles.xBtn}>
+                                            <FontAwesomeIcon
+                                                icon={faXmark}
+                                                onClick={() => removeTag(index)}
+                                                className={styles.xIcon}
+                                            />
+                                        </button>
+                                    </div>)
+                            }
+                        </div>
 
-                    <div className={`${styles.inputCnr} ${styles.addFieldCnr}`}>
-                        <input
-                            type="text"
-                            value={newTag}
-                            onChange={(e) => setNewTag(e.target.value)}
-                            className={styles.info}
-                            placeholder="New tag name" />
-                        <button
-                            type="button"
-                            onClick={() => {
-                                if (newTag.trim()) {
-                                    appendTag({ tagName: newTag.trim() });
-                                    setNewTag('');
-                                }
-                            }}
-                            className={styles.addFieldBtn}
-                            disabled={newTag.trim() === ""}
-                        >
-                            Add
-                        </button>
+                        <div className={`${styles.inputCnr} ${styles.addFieldCnr}`}>
+                            <input
+                                type="text"
+                                value={newTag}
+                                onChange={(e) => setNewTag(e.target.value)}
+                                className={styles.info}
+                                placeholder="New tag name" />
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    if (newTag.trim()) {
+                                        appendTag({ tagName: newTag.trim() });
+                                        setNewTag('');
+                                    }
+                                }}
+                                className={styles.addFieldBtn}
+                                disabled={newTag.trim() === ""}
+                            >
+                                Add
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -192,28 +217,17 @@ const EditProductInfo = ({ product, setIsEditMode }) => {
 
             <div className={styles.block}>
                 <div className={styles.heading}>Images</div>
-
                 <div className={styles.inputGroup}>
-                    <div className={`${styles.inputCnr} ${styles.addFieldCnr}`}>
+                    <div className={styles.inputCnr}>
+                        <label htmlFor="imagePicker" className={styles.imagePickerLabel}>Select images</label>
                         <input
-                            type="text"
-                            value={newImageUrl}
-                            onChange={(e) => setNewImageUrl(e.target.value)}
-                            className={styles.info}
-                            placeholder="Paste url to add a new image" />
-                        <button
-                            type="button"
-                            onClick={() => {
-                                if (newImageUrl.trim()) {
-                                    appendImage({ url: newImageUrl.trim() });
-                                    setNewImageUrl('');
-                                }
-                            }}
-                            disabled={newImageUrl.trim() === ""}
-                            className={styles.addFieldBtn}
-                        >
-                            Add
-                        </button>
+                            id="imagePicker"
+                            className={styles.imagePicker}
+                            type="file"
+                            accept="image/*"
+                            multiple
+                            onChange={handleImageSelect}
+                        />
                     </div>
                 </div>
 
