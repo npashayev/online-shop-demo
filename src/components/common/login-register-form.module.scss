@@ -1,4 +1,4 @@
-%inputActive {
+@mixin inputActive {
     top: -5px;
     font-size: 1.2rem;
     color: #007bff;
@@ -6,6 +6,7 @@
 }
 
 .form {
+    font-size: 1.6rem;
     width: 400px;
     border-radius: 3rem;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
@@ -45,7 +46,7 @@
                 &:focus~label,
                 &~.submitting,
                 &:is(:-webkit-autofill, :autofill)~label {
-                    @extend %inputActive;
+                    @include inputActive;
                 }
             }
 
@@ -74,14 +75,14 @@
 
         .filled {
             label {
-                @extend %inputActive;
+                @include inputActive;
             }
         }
 
         .loginInputCnr {
             input {
                 &:valid~label {
-                    @extend %inputActive;
+                    @include inputActive;
                 }
             }
         }
@@ -146,6 +147,25 @@
             }
         }
     }
+
+    .getAccountCnr {
+        text-align: center;
+        margin-top: 0.8rem;
+
+        .getAccountBtn {
+            font-size: 1.6rem;
+            color: #1D4ED8;
+            text-decoration: underline;
+
+            &:hover {
+                color: rgb(16, 50, 145)
+            }
+        }
+    }
+}
+
+.registerForm {
+    width: 460px;
 }
 
 .error {
