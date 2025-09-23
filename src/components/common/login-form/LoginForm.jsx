@@ -4,11 +4,13 @@ import styles from '../login-register-form.module.scss';
 import { useToast } from 'contexts/ToastContext';
 import { useLogin } from 'hooks/useUser';
 import { Link } from 'react-router-dom';
+import InformationModal from '../modal/InformationModal';
 
 const LoginForm = ({ navigate, onSuccess, children }) => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [loginData, setLoginData] = useState({ username: '', password: '' });
     const [errorMessage, setErrorMessage] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const { mutate, error, reset, isPending } = useLogin();
     const { showToast } = useToast();
@@ -49,19 +51,45 @@ const LoginForm = ({ navigate, onSuccess, children }) => {
     }
 
     return (
-        <form
-            className={styles.form}
-            onSubmit={handleSubmit}
-        >
+        <form className={styles.form} onSubmit={handleSubmit}>
+            {
+                isModalOpen &&
+                <InformationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                    This demo includes 3 user roles: <b>User</b>, <b>Moderator</b>, and <b>Admin</b>.
+                    Each role has different permissions:
+                    <ul style={{ marginTop: "1rem" }}>
+                        <li><b>User</b> – can browse and perform basic actions</li>
+                        <li><b>Moderator</b> – can add or update products</li>
+                        <li><b>Admin</b> – can add, update, and delete products</li>
+                    </ul>
+
+                    <div style={{ textAlign: "left", marginTop: "2rem" }}>
+                        <div style={{ marginTop: "1rem", paddingTop: "1rem", borderTop: "1px solid lightgray" }}>
+                            <b>Admin account:</b>
+                            <p>Username: <code>emilys</code></p>
+                            <p>Password: <code>emilyspass</code></p>
+                        </div>
+                        <div style={{ marginTop: "1rem", paddingTop: "1rem", borderTop: "1px solid lightgray" }}>
+                            <b>Moderator account:</b>
+                            <p>Username: <code>oliviaw</code></p>
+                            <p>Password: <code>oliviawpass</code></p>
+                        </div>
+                        <div style={{ marginTop: "1rem", paddingTop: "1rem", borderTop: "1px solid lightgray" }}>
+                            <b>User account:</b>
+                            <p>Username: <code>averyp</code></p>
+                            <p>Password: <code>averyppass</code></p>
+                        </div>
+                    </div>
+                </InformationModal>
+            }
+
             <h1 className={styles.formHeaderText}>
                 Login
             </h1>
 
             {
                 errorMessage &&
-                <div className={`${styles.error} ${styles.responseError}`}>
-                    {errorMessage}
-                </div>
+                <div className={`${styles.error} ${styles.responseError}`}>{errorMessage}</div>
             }
 
             <div className={styles.inputField}>
@@ -109,10 +137,21 @@ const LoginForm = ({ navigate, onSuccess, children }) => {
                 </button>
                 {children}
             </div>
+
             <div className={styles.linkCnr}>
                 Don't have an account? <Link to='/register' className={styles.link}>
                     Register
                 </Link>
+            </div>
+
+            <div className={styles.getAccountCnr}>
+                Click <button
+                    className={styles.getAccountBtn}
+                    type='button'
+                    onClick={() => setIsModalOpen(true)}
+                >
+                    here
+                </button> to get an account
             </div>
         </form>
     )
