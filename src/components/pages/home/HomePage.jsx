@@ -1,7 +1,7 @@
-import styles from './home-page.module.scss'
-import SlideShow from './SlideShow'
-import LightRays from '../../common/react-bits/light-rays/LightRays';
-import GradientText from '../../common/react-bits/gradient-text/GradientText'
+import styles from './home-page.module.scss';
+import SlideShow from './SlideShow';
+import LightRays from 'components/common/react-bits/light-rays/LightRays';
+import GradientText from 'components/common/react-bits/gradient-text/GradientText';
 import { Link } from 'react-router-dom';
 import TextType from 'components/common/react-bits/text-type/TextType';
 
@@ -54,4 +54,4 @@ const HomePage = () => {
     )
 }
 
-export default HomePage
+export default HomePage;
