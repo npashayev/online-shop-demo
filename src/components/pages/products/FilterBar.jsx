@@ -15,14 +15,13 @@ const options = [
 ];
 
 const FilterBar = ({ openCategories }) => {
-
     const [searchParams, setSearchParams] = useSearchParams();
     const [searchText, setSearchText] = useState('');
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        setSearchText(searchParams.get('q') || '')
+        setSearchText(searchParams.get('q') || '');
     }, [searchParams]);
 
     const selectorValue = searchParams.get('sortBy') && searchParams.get('order')
@@ -33,14 +32,11 @@ const FilterBar = ({ openCategories }) => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-
         const trimmed = searchText.trim();
-
         if (!trimmed) {
             navigate('/products');
             return;
         }
-
         const newParams = new URLSearchParams(searchParams);
         newParams.set('q', trimmed);
         navigate(`/products/search?${newParams.toString()}`);
