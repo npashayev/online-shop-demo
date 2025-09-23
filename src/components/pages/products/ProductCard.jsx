@@ -9,7 +9,7 @@ import LikeButton from 'components/common/products/LikeButton';
 const ProductCard = ({ product }) => {
     const discountPercentage = Math.floor(product.discountPercentage);
     const productRating = Math.round(product.rating * 10) / 10;
-    const discountedPrice = (product.price - product.price * product.discountPercentage / 100).toFixed(2)
+    const discountedPrice = (product.price - product.price * product.discountPercentage / 100).toFixed(2);
 
     return (
         <Link to={`/products/${product.id}`} className={styles.product}>
@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
                     {product.brand}
                 </p>
 
-                <LikeButton product={product} className={styles.likeBtn} />
+                <LikeButton className={styles.likeBtn} product={product} />
             </div>
             {
                 discountPercentage > 0 &&
@@ -36,8 +36,8 @@ const ProductCard = ({ product }) => {
             <div className={styles.info}>
                 <div className={styles.titleCnr}>
                     <p
-                        title={product.title}
                         className={styles.title}
+                        title={product.title}
                     >
                         {product.title}
                     </p>
@@ -62,8 +62,8 @@ const ProductCard = ({ product }) => {
                     </div>
 
 
-                    <AddToCartButton product={product} className={styles.addToCartBtn}>
-                        <FontAwesomeIcon icon={faBagShopping} className={styles.basketIcon} />
+                    <AddToCartButton className={styles.addToCartBtn} product={product} >
+                        <FontAwesomeIcon className={styles.basketIcon} icon={faBagShopping} />
                     </AddToCartButton>
                 </div>
             </div>
@@ -71,4 +71,4 @@ const ProductCard = ({ product }) => {
     )
 }
 
-export default ProductCard
+export default ProductCard;
