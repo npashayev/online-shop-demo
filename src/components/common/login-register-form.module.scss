@@ -1,3 +1,10 @@
+%inputActive {
+    top: -5px;
+    font-size: 1.2rem;
+    color: #007bff;
+    background-color: #f4f4f9;
+}
+
 .form {
     width: 400px;
     border-radius: 3rem;
@@ -16,54 +23,67 @@
     }
 
     .inputField {
-        position: relative;
-        font-size: 1.6rem;
         margin-bottom: 20px;
 
-        input {
-            width: 100%;
-            padding: 1.4rem 5rem 1.4rem 1.5rem;
-            border-radius: 1.2rem;
-            outline: none;
-            border: 1px solid #999;
-            transition: border-color 0.2s ease-in-out;
+        .inputCnr {
+            position: relative;
             font-size: 1.6rem;
 
-            &:focus {
-                border-color: #007bff;
+            input {
+                width: 100%;
+                padding: 1.4rem 5rem 1.4rem 1.5rem;
+                border-radius: 1.2rem;
+                outline: none;
+                border: 1px solid #999;
+                transition: border-color 0.2s ease-in-out;
+                font-size: 1.6rem;
+
+                &:focus {
+                    border-color: #007bff;
+                }
+
+                &:focus~label,
+                &~.submitting,
+                &:is(:-webkit-autofill, :autofill)~label {
+                    @extend %inputActive;
+                }
             }
 
-            &:focus~label,
-            &:valid~label,
-            &~.submitting,
-            &:is(:-webkit-autofill, :autofill)~label {
-                top: -5px;
-                font-size: 1.2rem;
-                color: #007bff;
-                background-color: #f4f4f9;
+            label {
+                padding: 0.3rem;
+                position: absolute;
+                top: 50%;
+                left: 1.8rem;
+                transform: translateY(-50%);
+                color: #666;
+                pointer-events: none;
+                transition: all 0.2s ease-in-out;
+                border-radius: 5px;
+            }
+
+            .toggleBtn {
+                display: flex;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 15px;
+                color: #555;
+                font-size: 1.6rem;
             }
         }
 
-        label {
-            padding: 0.3rem;
-            position: absolute;
-            top: 50%;
-            left: 1.8rem;
-            transform: translateY(-50%);
-            color: #666;
-            pointer-events: none;
-            transition: all 0.2s ease-in-out;
-            border-radius: 5px;
+        .filled {
+            label {
+                @extend %inputActive;
+            }
         }
 
-        .toggleBtn {
-            display: flex;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            right: 15px;
-            color: #555;
-            font-size: 1.6rem;
+        .loginInputCnr {
+            input {
+                &:valid~label {
+                    @extend %inputActive;
+                }
+            }
         }
     }
 
@@ -126,13 +146,17 @@
             }
         }
     }
+}
 
-    .error {
-        color: red;
-        font-size: 14px;
-        text-align: center;
-        margin-bottom: 15px;
-    }
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.responseError {
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 @media (max-width: 500px) {

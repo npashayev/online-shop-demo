@@ -59,44 +59,48 @@ const LoginForm = ({ navigate, onSuccess, children }) => {
 
             {
                 errorMessage &&
-                <div className={styles.error}>
+                <div className={`${styles.error} ${styles.responseError}`}>
                     {errorMessage}
                 </div>
             }
 
             <div className={styles.inputField}>
-                <input
-                    onChange={handleInputChange}
-                    value={loginData.username}
-                    type='text'
-                    name='username'
-                    disabled={isPending}
-                    placeholder=' '
-                    required
-                />
-                <label className={isPending ? styles.submitting : ''}>Username</label>
+                <div className={`${styles.inputCnr} ${styles.loginInputCnr}`}>
+                    <input
+                        onChange={handleInputChange}
+                        value={loginData.username}
+                        type='text'
+                        name='username'
+                        disabled={isPending}
+                        placeholder=' '
+                        required
+                    />
+                    <label className={isPending ? styles.submitting : ''}>Username</label>
+                </div>
             </div>
 
             <div className={styles.inputField}>
-                <input
-                    onChange={handleInputChange}
-                    value={loginData.password}
-                    name='password'
-                    required
-                    type={passwordVisible ? 'text' : 'password'}
-                    disabled={isPending}
-                    placeholder=' '
-                />
-                <label className={isPending ? styles.submitting : ''}>Password</label>
+                <div className={`${styles.inputCnr} ${styles.loginInputCnr}`}>
+                    <input
+                        onChange={handleInputChange}
+                        value={loginData.password}
+                        name='password'
+                        required
+                        type={passwordVisible ? 'text' : 'password'}
+                        disabled={isPending}
+                        placeholder=' '
+                    />
+                    <label className={isPending ? styles.submitting : ''}>Password</label>
 
-                <button
-                    className={`${styles.toggleBtn} ${styles.btn}`}
-                    type='button'
-                    disabled={isPending}
-                    onClick={() => setPasswordVisible(prev => !prev)}
-                >
-                    {passwordVisible ? <FaRegEye /> : <FaRegEyeSlash />}
-                </button>
+                    <button
+                        className={`${styles.toggleBtn} ${styles.btn}`}
+                        type='button'
+                        disabled={isPending}
+                        onClick={() => setPasswordVisible(prev => !prev)}
+                    >
+                        {passwordVisible ? <FaRegEye /> : <FaRegEyeSlash />}
+                    </button>
+                </div>
             </div>
 
             <div className={styles.buttonsCnr}>
