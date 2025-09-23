@@ -1,25 +1,25 @@
 import { useDeleteProduct } from 'hooks/useAdminActions'
 import styles from './product-actions.module.scss'
-import { useQueryClient } from '@tanstack/react-query';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import ConfirmationModal from 'components/common/modal/ConfirmationModal';
 import LoadingModal from 'components/common/modal/LoadingModal';
 import RoleOnly from './RoleOnly';
+import { useToast } from 'contexts/ToastContext';
 
 const ProductActions = ({ product }) => {
     const [productToDelete, setProductToDelete] = useState(null);
     const deleteProduct = useDeleteProduct();
-    const queryClient = useQueryClient();
-    const nav = useNavigate();
+    const navigate = useNavigate();
+    const { showToast } = useToast();
 
     const handleProductDelete = (productId) => {
         deleteProduct.mutate(productId, {
             onSuccess: () => {
-                queryClient.invalidateQueries({ queryKey: ['products'] })
-                nav('/products')
+                showToast("Product successfully deleted")
+                navigate('/products');
             },
-
+            onError: (error) => showToast(`${error.message || "Something went wrong"}`),
             onSettled: () => setProductToDelete(null)
         })
     }
@@ -33,8 +33,9 @@ const ProductActions = ({ product }) => {
                     onConfirm={() => handleProductDelete(productToDelete)}
                     onCancel={() => setProductToDelete(null)}
                 >
-                    Are you sure to delete this product?
-                    (Deleting a product will not delete it into the server)
+                    Are you sure you want to delete this product?
+                    (This is a demo action: the product will not be removed from the server.
+                    After confirming, you will be redirected to the products page.)
                 </ConfirmationModal>
             }
 

@@ -100,6 +100,22 @@
                         overflow: hidden;
                         text-overflow: ellipsis;
                     }
+
+                    .addToCartBtn {
+                        margin-top: 0.8rem;
+                        font-size: 1.4rem;
+                        padding: 0.5rem 1.2rem;
+                        border-radius: 0.5rem;
+                        background-color: #FF0000;
+
+                        &:hover {
+                            background-color: #CC0000;
+                        }
+
+                        &:active {
+                            background-color: #ad0303;
+                        }
+                    }
                 }
             }
 

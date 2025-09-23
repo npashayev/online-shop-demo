@@ -69,10 +69,14 @@
             gap: 0.5em;
             padding: 0.55em 1em;
             border-radius: 0.55em;
-            background-color: red;
+            background-color: #FF0000;
 
             &:hover {
-                background-color: rgb(221, 2, 2);
+                background-color: #CC0000;
+            }
+
+            &:active {
+                background-color: #ad0303;
             }
         }
     }

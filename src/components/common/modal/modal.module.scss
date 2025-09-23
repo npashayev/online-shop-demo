@@ -36,29 +36,35 @@
         .buttonsContainer {
             display: flex;
             justify-content: center;
-            gap: 2.5rem;
+            gap: 3rem;
 
             button {
                 padding: 1rem 2rem;
                 border-radius: 1rem;
-                border: none;
                 color: white;
-                cursor: pointer;
             }
 
             .confirmButton {
-                background-color: blue;
+                background-color: #1E88E5;
 
                 &:hover {
-                    background-color: rgb(59, 59, 255);
+                    background-color: #1565C0;
+                }
+
+                &:active {
+                    background-color: #0D47A1;
                 }
             }
 
             .closeButton {
-                background-color: red;
+                background-color: #E53935;
 
                 &:hover {
-                    background-color: rgb(250, 64, 64);
+                    background-color: #D32F2F;
+                }
+
+                &:active {
+                    background-color: #B71C1C;
                 }
             }
         }

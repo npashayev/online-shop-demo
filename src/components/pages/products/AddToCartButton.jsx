@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useToast } from 'contexts/ToastContext';
 import { addProduct, isProductExist } from 'store/cartSlice';
 
-const AddToCartButton = ({ product, style, children, className }) => {
-
+const AddToCartButton = ({ product, children, className }) => {
     const { showToast } = useToast();
     const dispatch = useDispatch();
     const exists = useSelector(state => isProductExist(state, product))
@@ -27,13 +26,12 @@ const AddToCartButton = ({ product, style, children, className }) => {
             discountPercentage: product.discountPercentage,
             thumbnail: product.thumbnail
         }))
-        showToast("Product added to the cart!")
+        showToast("Product successfully added to your cart")
     }
 
     return (
         <button
             className={`${styles.addCartBtn} ${className}`}
-            style={style}
             onClick={handleAddToCart}
         >
             {children}

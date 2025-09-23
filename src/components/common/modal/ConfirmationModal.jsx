@@ -4,7 +4,7 @@ import usePreventScroll from 'hooks/usePreventScroll';
 
 const ConfirmationModal = ({ children, onConfirm, onCancel }) => {
     const [isOpen, setIsOpen] = useState(true);
-    usePreventScroll(isOpen)
+    usePreventScroll(isOpen);
 
     return (
         isOpen &&
@@ -51,4 +51,4 @@ const ConfirmationModal = ({ children, onConfirm, onCancel }) => {
     )
 }
 
-export default ConfirmationModal
+export default ConfirmationModal;

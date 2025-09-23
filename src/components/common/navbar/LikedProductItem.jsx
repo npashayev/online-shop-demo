@@ -1,11 +1,11 @@
-import AddToCartButton from 'components/pages/products/AddToCartButton'
 import styles from './liked-products.module.scss'
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch } from 'react-redux';
 import { toggleLike } from 'store/likedProductsSlice';
 import Loading from '../Loading';
 import { Link } from 'react-router-dom';
+import AddToCartButton from 'components/pages/products/AddToCartButton';
 
 const LikedProductItem = ({ product, onClose }) => {
 
@@ -25,7 +25,9 @@ const LikedProductItem = ({ product, onClose }) => {
 
                 <div className={styles.productMain}>
                     <div className={styles.productTitle} title={product.title}>{product.title}</div>
-                    <AddToCartButton product={product} style={{ fontSize: "12px", marginTop: "1rem" }} />
+                    <AddToCartButton className={styles.addToCartBtn} product={product}>
+                        <FontAwesomeIcon icon={faCartShopping} className={styles.basketIcon} />
+                    </AddToCartButton>
                 </div>
             </div>
 

@@ -1,4 +1,10 @@
-.main {
+.pageError {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-top: 3rem;
+}
+
+.page {
     padding: 3rem clamp(2rem, 6vw, 14rem);
     font-size: 1.6rem;
     background-color: white;
