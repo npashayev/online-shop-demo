@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useProducts } from '../../../hooks/useProducts';
 import ProductsList from './ProductsList';
 import { useMemo } from 'react';
+import styles from './products.module.scss'
 
 
 const AllProducts = () => {
@@ -10,7 +11,7 @@ const AllProducts = () => {
 
     const allProducts = useProducts(params);
 
-    if (allProducts.error) return <main>An error occurred while fetching products</main>
+    if (allProducts.error) return <main className={styles.errorMessage}>An error occurred while loading products.</main>
 
     return <ProductsList productsData={allProducts} />
 }

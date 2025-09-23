@@ -20,28 +20,24 @@ const ProductsList = ({ productsData }) => {
         <Loading style={{ fontSize: '42px' }} />
     </main>
 
+    const allProducts = data?.pages?.flatMap(page => page?.products ?? []) ?? [];
+
     return (
         <main className={styles.main}>
             <div className={styles.productsCnr}>
                 {
-                    data?.pages?.length > 0
-                        // flatMap flattens the array of pages into a single array of products for rendering
-                        ? data?.pages?.flatMap((page) => page?.products?.map(product =>
-                            <ProductCard
-                                key={product.id}
-                                product={product}
-                            />))
-                        : <p>No products found</p>
+                    allProducts.length > 0
+                        ? allProducts.map(product => (
+                            <ProductCard key={product.id} product={product} />
+                        ))
+                        : <p className={styles.noProductsText}>No products found</p>
                 }
             </div>
 
-            {
-                isFetchingNextPage && <Loading style={{ fontSize: '30px' }} />
-            }
-
+            {isFetchingNextPage && <Loading style={{ fontSize: '30px' }} />}
             <div ref={ref} style={{ height: 1, width: 1 }} />
-        </main >
-    )
+        </main>
+    );
 }
 
 export default ProductsList

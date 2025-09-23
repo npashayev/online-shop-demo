@@ -1,3 +1,9 @@
+.errorMessage {
+    font-size: 1.6rem;
+    text-align: center;
+    width: 100%
+}
+
 .main {
     padding: 2.5rem;
     padding-top: 0;
@@ -6,12 +12,19 @@
     align-items: center;
     width: 100%;
     gap: 7rem;
+    font-size: 1.6rem;
 
     .productsCnr {
         width: 100%;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
         gap: 2rem;
+
+        .noProductsText {
+            grid-column: 1 / -1; // span from first to last column
+            width: 100%;
+            text-align: center;
+        }
     }
 }
 
