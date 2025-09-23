@@ -11,7 +11,7 @@ const AllProducts = () => {
 
     const allProducts = useProducts(params);
 
-    if (allProducts.error) return <main className={styles.errorMessage}>An error occurred while loading products.</main>
+    if (allProducts.error) return <main className={styles.errorMessage}>{allProducts.error.message || "An error occurred while loading products."}</main>
 
     return <ProductsList productsData={allProducts} />
 }

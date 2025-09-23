@@ -12,7 +12,7 @@ const SearchProducts = () => {
 
     const searchProducts = useSearchProducts(params);
 
-    if (searchProducts.error) return <main className={styles.errorMessage}>An error occurred while searching for products</main>
+    if (searchProducts.error) return <main className={styles.errorMessage}>{searchProducts.error.message || "An error occurred while searching for products"}</main>
 
     return <ProductsList productsData={searchProducts} />
 }

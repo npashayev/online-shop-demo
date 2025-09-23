@@ -45,7 +45,7 @@ const LoginForm = ({ navigate, onSuccess, children }) => {
                     navigate?.();
                     onSuccess?.()
                 },
-                onError: (error) => setErrorMessage(error.message)
+                onError: (error) => setErrorMessage(error.message || "Something went wrong")
             }
         );
     }

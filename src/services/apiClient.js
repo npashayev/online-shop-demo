@@ -28,7 +28,7 @@ apiClient.interceptors.response.use(
     },
 
     (error) => {
-        let message = "Something went wrong"
+        let message = ""
 
         if (error.response) {
             // Server responded with a status code outside 2xx

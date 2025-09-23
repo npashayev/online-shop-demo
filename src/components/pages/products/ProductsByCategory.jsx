@@ -11,9 +11,9 @@ const ProductsByCategory = () => {
     const { productCategory } = useParams();
     const productsByCategory = useProductsByCategory(productCategory, params);
 
-    if (productsByCategory.error) return <main className={styles.errorMessage}>
-        An error occurred while searching for products in '{productCategory}' category
-    </main>
+    if (productsByCategory.error) return (<main className={styles.errorMessage}>
+        {productsByCategory.error.message || `An error occurred while searching for products in '${productCategory}' category`}
+    </main>)
 
     return <ProductsList productsData={productsByCategory} />
 }

@@ -28,7 +28,7 @@ const RegisterForm = () => {
                 showToast("You have registered successfully")
                 navigate('/login')
             },
-            onError: (error) => setErrorMessage(error.message)
+            onError: (error) => setErrorMessage(error.message || "Something went wrong")
         });
     }
 
