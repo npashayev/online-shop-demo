@@ -11,7 +11,6 @@
     height: calc(100vh - 18rem);
     overflow: auto;
     overscroll-behavior: contain;
-    z-index: var(--categories-sidebar-index);
     border-right: 1px solid lightgray;
 
     .categoriesHeading {
@@ -64,6 +63,8 @@
         transition: transform 0.3s ease-in-out;
         height: calc(100vh - var(--navbar-height));
         border-radius: 0;
+        z-index: var(--categories-sidebar-index);
+
 
         .categoriesHeading {
             .closeBtn {

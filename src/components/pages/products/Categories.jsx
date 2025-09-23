@@ -6,13 +6,10 @@ import { useRef } from 'react';
 import CategoriesContent from './CategoriesContent';
 import useClickOutside from 'hooks/useClickOutside';
 
-
-
 const Categories = ({ isCategoriesOpen, closeCategories }) => {
     const { productCategory } = useParams();
     const activeCategory = productCategory ?? 'all';
     const categoriesRef = useRef(null);
-
 
     useClickOutside([
         {
