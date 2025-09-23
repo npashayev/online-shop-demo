@@ -16,13 +16,8 @@ export const useLogin = () => {
 }
 
 export const useRegister = () => {
-    const dispatch = useDispatch();
-
     return useMutation({
         mutationFn: (data) => register(data),
-        onSuccess: (data) => {
-            dispatch(setUser(data));
-        },
     })
 }
 
