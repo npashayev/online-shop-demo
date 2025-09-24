@@ -135,10 +135,11 @@
             }
 
             .addToCartBtn {
-                background-color: #E28513;
                 padding: 1rem;
                 border-radius: 1rem;
                 aspect-ratio: 1;
+                background-color: #E28513;
+                transition: background-color 0.1s ease-in-out;
 
                 &:hover {
                     background-color: #bd6d0c;
