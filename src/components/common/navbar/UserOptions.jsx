@@ -2,15 +2,15 @@ import styles from './user-options.module.scss'
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UserDropdown from './UserDropdown';
-import { useRef } from 'react';
 import useClickOutside from 'hooks/useClickOutside';
+import { useRef } from 'react';
 
-const UserOptions = ({ isDropdownOpen, setIsDropdownOpen, menuRef, user, handleLogout }) => {
-    const bigScreenRef = useRef(null);
+const UserOptions = ({ isDropdownOpen, setIsDropdownOpen, user, handleLogout }) => {
+    const menuRef = useRef(null);
 
     useClickOutside([
         {
-            contentRef: bigScreenRef,
+            contentRef: menuRef,
             onClickOutside: () => setIsDropdownOpen(false)
         }
     ]);
@@ -25,7 +25,7 @@ const UserOptions = ({ isDropdownOpen, setIsDropdownOpen, menuRef, user, handleL
 
         {
             isDropdownOpen &&
-            <div ref={bigScreenRef} className={styles.bigScreenDropdown}>
+            <div className={styles.bigScreenDropdown}>
                 <UserDropdown
                     user={user}
                     setIsDropdownOpen={setIsDropdownOpen}
