@@ -22,13 +22,11 @@ const ProductUpdatePage = () => {
             {
                 isEditMode
                     ? <EditProductInfo
-                        product={productData} W
-                        isEditMode={isEditMode}
+                        product={productData}
                         onClose={() => setIsEditMode(false)} />
 
                     : <UserInfoReadOnly
                         product={productData}
-                        isEditMode={isEditMode}
                         onOpen={() => setIsEditMode(true)}
                     />
             }
