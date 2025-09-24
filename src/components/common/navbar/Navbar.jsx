@@ -1,5 +1,5 @@
 import styles from "./navbar.module.scss";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import UserMenu from "./UserMenu";
 import UserBasket from "./UserBasket";
 import useAuth from "hooks/useAuth";
