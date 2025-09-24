@@ -12,16 +12,16 @@ const LikeButton = ({ product, className }) => {
     const isLiked = useSelector(state => !!state.likedProducts.byId[product.id])
 
     return <button
+        className={`${styles.likeButton} ${className}`}
         onClick={(e) => {
             e.preventDefault()
             dispatch(toggleLike(product))
         }}
-        className={`${styles.likeButton} ${className}`}
     >
         <FontAwesomeIcon
+            className={styles.likeIcon}
             icon={isLiked ? solidHeart : regularHeart}
             style={{ color: isLiked ? 'red' : 'black' }}
-            className={styles.likeIcon}
         />
     </button>
 

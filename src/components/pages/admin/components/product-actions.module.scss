@@ -15,19 +15,21 @@
 
     .updateBtn,
     .addBtn {
-        background-color: #1e7e34;
+        background-color: #4CAF50;
+        transition: background-color 0.1s ease-in-out;
 
         &:hover {
-            background-color: #19692c;
+            background-color: #419c44;
         }
 
         &:active {
-            background-color: #145c24;
+            background-color: #348136;
         }
     }
 
     .deleteBtn {
-        background-color: #FF0000;
+        background-color: red;
+        transition: background-color 0.1s ease-in-out;
 
         &:hover {
             background-color: #CC0000;

@@ -51,17 +51,17 @@ const ProductActions = ({ product }) => {
                     to={`/products/update-product/${product.id}`}
                     className={`${styles.updateBtn} ${styles.button}`}
                 >
-                    Update product
+                    Update
                 </Link>
             </RoleOnly>
 
             <RoleOnly roles={["admin"]}>
                 <button
-                    onClick={() => setProductToDelete(product.id)}
-                    disabled={deleteProduct.isPending}
                     className={`${styles.deleteBtn} ${styles.button}`}
+                    disabled={deleteProduct.isPending}
+                    onClick={() => setProductToDelete(product.id)}
                 >
-                    Delete product
+                    Delete
                 </button>
             </RoleOnly>
 
