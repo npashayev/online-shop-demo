@@ -15,9 +15,11 @@
             padding: 0.6rem 2rem;
             font-weight: bold;
             font-size: 1.6rem;
+            transition: background-color 0.1s ease-in-out;
 
             &:hover {
-                background-color: lightcyan;
+                background-color: rgb(134, 134, 134);
+                color: white;
             }
         }
 
