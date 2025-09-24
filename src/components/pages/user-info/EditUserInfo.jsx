@@ -58,9 +58,7 @@ const EditUserInfo = ({ user, onClose }) => {
     return (
         <>
             <InformationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                Updating a user won’t update it on the server.
-                It will only simulate the change and return the updated user with modified data.
-                If you refresh the page or log out and log back in, all changes will be lost.
+                Updating a user won’t affect the server. It only simulates the change and returns the updated user data.
             </InformationModal>
 
             {
