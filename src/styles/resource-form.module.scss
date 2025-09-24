@@ -186,6 +186,10 @@
                                 top: 50%;
                                 transform: translateY(-50%);
                                 font-size: 12px;
+
+                                &:hover {
+                                    color: rgb(53, 52, 52);
+                                }
                             }
                         }
                     }
@@ -278,6 +282,7 @@
                         right: 8%;
                         top: 8%;
                         cursor: pointer;
+                        background-color: white;
 
                         &:hover {
                             background-color: brown;

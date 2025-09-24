@@ -2,17 +2,18 @@ import styles from "/src/styles/resource-form.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useState } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { useAddNewProduct, useCategories } from "hooks/useProducts";
 import Loading from "components/common/Loading";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { RHFInput } from "components/common/form-fields/FormFields";
-
+import Select from 'react-select';
+import InformationModal from "components/common/modal/InformationModal";
+import { useToast } from "contexts/ToastContext";
 
 const AddProductPage = () => {
-
-    const [newImageUrl, setNewImageUrl] = useState('')
+    const [isModalOpen, setIsModalOpen] = useState(true);
     const [newTag, setNewTag] = useState('')
 
     const { register, handleSubmit, control, formState } = useForm({
@@ -34,7 +35,6 @@ const AddProductPage = () => {
         }
     });
 
-
     const { fields: imageFields, append: appendImage, remove: removeImage } = useFieldArray({
         control,
         name: 'images'
@@ -45,13 +45,25 @@ const AddProductPage = () => {
         name: 'tags'
     });
 
-    const addProduct = useAddNewProduct();
-    const { data: categories } = useCategories();
-    const queryClient = useQueryClient();
-
+    const { showToast } = useToast();
     const navigate = useNavigate();
 
+    const { mutate, isPending } = useAddNewProduct();
 
+    const { data: categories } = useCategories();
+    const categoryOptions = categories?.map(cat => ({ value: cat.slug, label: cat.name }))
+
+    const queryClient = useQueryClient();
+
+    const handleImageSelect = (e) => {
+        const files = Array.from(e.target.files);
+        const newImages = files.map(file => ({
+            url: URL.createObjectURL(file) // temporary URL for preview
+        }));
+
+        appendImage(newImages); // add to your useFieldArray
+        e.target.value = null;   // reset input
+    };
 
     const submitHandler = (data) => {
         const { images, tags, ...rest } = data;
@@ -62,19 +74,25 @@ const AddProductPage = () => {
             tags: tags?.map(t => t.tagName) || []
         };
 
-        addProduct.mutate(payload, {
+        mutate(payload, {
             onSuccess: (data, sentData) => {
-                queryClient.setQueryData(["products", String(data.id)], { id: data.id, ...sentData })
-                navigate(`/products/${data.id}`)
+                queryClient.setQueryData(["products", String(data.id)], { id: data.id, ...sentData });
+                showToast("Product added successfully");
+                navigate(`/products/${data.id}`);
             },
-            onError: (error) => console.log(error)
+            onError: (error) => showToast(error.message || "Something went wrong", false)
         });
     }
 
-
-
     return (
-        <div className={styles.main}>
+        <div className={styles.page}>
+            {
+                isModalOpen &&
+                <InformationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                    Adding this product will only simulate the action and will not affect the server. After a successful addition, you will be redirected to the product’s details page.
+                </InformationModal>
+            }
+
             <form onSubmit={handleSubmit(submitHandler)} className={styles.componentContainer}>
                 <div className={styles.buttonsCnr}>
                     <button
@@ -82,7 +100,7 @@ const AddProductPage = () => {
                         className={styles.updateBtn}
                         disabled={!formState.isDirty}
                     >
-                        {addProduct.isPending ? <Loading /> : "Add new product"}
+                        {isPending ? <Loading /> : "Add new product"}
                     </button>
                 </div>
 
@@ -92,17 +110,18 @@ const AddProductPage = () => {
                     <div className={styles.inputGroup}>
                         <RHFInput label="Title" name="title" register={register} />
                         <RHFInput label="Brand" name="brand" register={register} />
-                        <select {...register("category")}>
-                            {
-                                categories?.map(category =>
-                                    <option
-                                        key={category.name}
-                                        value={category.name}
-                                    >
-                                        {category.name}
-                                    </option>)
-                            }
-                        </select>
+                        <Controller
+                            name="category"
+                            control={control} // RHF control object
+                            render={({ field }) => (
+                                <Select
+                                    className={styles.selector}
+                                    {...field}
+                                    isSearchable={false}
+                                    options={categoryOptions}
+                                />
+                            )}
+                        />
                     </div>
 
                     <div className={styles.inputGroup}>
@@ -122,41 +141,47 @@ const AddProductPage = () => {
                     </div>
 
                     <div className={styles.inputGroup}>
-                        <label>Tags</label>
-                        <div className={styles.tagsCnr}>
-                            {
-                                tagFields.map((field, index) => <div key={field.id}>
-                                    {field.tagName}
-                                    <div className={styles.iconCnr}>
-                                        <FontAwesomeIcon
-                                            icon={faXmark}
-                                            onClick={() => removeTag(index)}
-                                            className={styles.xIcon} />
-                                    </div>
-                                </div>)
-                            }
-                        </div>
+                        <div className={styles.tagCnr}>
+                            <label>Tags</label>
+                            <div className={styles.tagsCnr}>
+                                {
+                                    tagFields.map((field, index) =>
+                                        <div key={field.id} className={styles.tag}>
+                                            <p className={styles.tagName}>
+                                                {field.tagName}
+                                            </p>
+                                            <button className={styles.xBtn}>
+                                                <FontAwesomeIcon
+                                                    icon={faXmark}
+                                                    onClick={() => removeTag(index)}
+                                                    className={styles.xIcon}
+                                                />
+                                            </button>
+                                        </div>)
+                                }
+                            </div>
 
-                        <div className={`${styles.inputCnr} ${styles.addFieldCnr}`}>
-                            <input
-                                type="text"
-                                value={newTag}
-                                onChange={(e) => setNewTag(e.target.value)}
-                                className={styles.info}
-                                placeholder="New tag name" />
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    if (newTag.trim()) {
-                                        appendTag({ tagName: newTag.trim() });
-                                        setNewTag('');
-                                    }
-                                }}
-                                className={styles.addFieldBtn}
-                                disabled={newTag.trim() === ""}
-                            >
-                                Add
-                            </button>
+                            <div className={`${styles.inputCnr} ${styles.addFieldCnr}`}>
+                                <input
+                                    type="text"
+                                    value={newTag}
+                                    onChange={(e) => setNewTag(e.target.value)}
+                                    className={`${styles.info} ${styles.tagInput}`}
+                                    placeholder="New tag name" />
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        if (newTag.trim()) {
+                                            appendTag({ tagName: newTag.trim() });
+                                            setNewTag('');
+                                        }
+                                    }}
+                                    className={styles.addFieldBtn}
+                                    disabled={newTag.trim() === ""}
+                                >
+                                    Add
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -193,28 +218,17 @@ const AddProductPage = () => {
 
                 <div className={styles.block}>
                     <div className={styles.heading}>Images</div>
-
                     <div className={styles.inputGroup}>
-                        <div className={`${styles.inputCnr} ${styles.addFieldCnr}`}>
+                        <div className={styles.inputCnr}>
+                            <label htmlFor="imagePicker" className={styles.imagePickerLabel}>Add images</label>
                             <input
-                                type="text"
-                                value={newImageUrl}
-                                onChange={(e) => setNewImageUrl(e.target.value)}
-                                className={styles.info}
-                                placeholder="Paste url to add a new image" />
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    if (newImageUrl.trim()) {
-                                        appendImage({ url: newImageUrl.trim() });
-                                        setNewImageUrl('');
-                                    }
-                                }}
-                                disabled={newImageUrl.trim() === ""}
-                                className={styles.addFieldBtn}
-                            >
-                                Add
-                            </button>
+                                id="imagePicker"
+                                className={styles.imagePicker}
+                                type="file"
+                                accept="image/*"
+                                multiple
+                                onChange={handleImageSelect}
+                            />
                         </div>
                     </div>
 
@@ -224,9 +238,10 @@ const AddProductPage = () => {
                                 <div key={field.id} className={styles.imageCnr}>
                                     <div className={styles.iconCnr}>
                                         <FontAwesomeIcon
+                                            className={styles.xIcon}
                                             icon={faXmark}
                                             onClick={() => removeImage(index)}
-                                            className={styles.xIcon} />
+                                        />
                                     </div>
                                     <img src={field.url} alt="image" className={styles.image} />
                                 </div>

@@ -17,17 +17,6 @@ const EditProductInfo = ({ product, onClose }) => {
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [newTag, setNewTag] = useState('');
 
-    const { showToast } = useToast();
-    const navigate = useNavigate();
-
-    const { mutate, isPending } = useUpdateProduct(product.id);
-
-    const { data: categories } = useCategories();
-    const categoryOptions = categories?.map(cat => ({ value: cat.slug, label: cat.name }))
-    const defaultCategoryOption = categoryOptions?.find(
-        (opt) => opt.value === product.category
-    );
-
     const { register, handleSubmit, reset, control, formState: { isDirty } } = useForm({
         defaultValues: {
             ...product,
@@ -45,6 +34,17 @@ const EditProductInfo = ({ product, onClose }) => {
         control,
         name: 'tags'
     });
+
+    const { showToast } = useToast();
+    const navigate = useNavigate();
+
+    const { mutate, isPending } = useUpdateProduct(product.id);
+
+    const { data: categories } = useCategories();
+    const categoryOptions = categories?.map(cat => ({ value: cat.slug, label: cat.name }))
+    const defaultCategoryOption = categoryOptions?.find(
+        (opt) => opt.value === product.category
+    );
 
     const queryClient = useQueryClient();
 
@@ -73,7 +73,7 @@ const EditProductInfo = ({ product, onClose }) => {
 
         const payload = {
             ...rest,
-            category: category?.value || product?.category || null,
+            category: category?.value || product?.category || null, // if category isn't changed send products own category or null
             images: images?.map(img => img.url) || [],
             tags: tags?.map(t => t.tagName) || []
         };
@@ -88,12 +88,10 @@ const EditProductInfo = ({ product, onClose }) => {
         });
     };
 
-
-
     return (
         <>
             <InformationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                Updating this product will only simulate the change and won’t affect the server. After a successful update, you’ll be redirected to the product’s page. Any changes will be lost if you refresh or log out.
+                Updating this product will only simulate the change and won’t affect the server. After a successful update, you’ll be redirected to the product’s details page.
             </InformationModal>
 
             <form onSubmit={handleSubmit(submitHandler)} className={styles.componentContainer}>
