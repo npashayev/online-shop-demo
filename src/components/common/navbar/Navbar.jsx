@@ -67,7 +67,7 @@ const Navbar = () => {
         <header className={styles.navbar}>
             <div className={styles.left}>
                 <img className={styles.logo} src="/logo.png" alt="logo" />
-                <div className={styles.name}>Aşağıyeri.com</div>
+                <div className={styles.name}>Online shop</div>
             </div>
 
             <button ref={menuToggleRef} className={styles.menuIconCnr}>
