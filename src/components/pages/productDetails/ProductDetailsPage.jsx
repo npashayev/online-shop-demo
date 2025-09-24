@@ -15,7 +15,7 @@ const ProductDetailsPage = () => {
 
     if (error) return <main className={styles.pageError}>{error.message || "An error occurred while loading the product. It may not exist or is unavailable."}</main>
 
-    if (isLoading) return <main className={styles.page}><Loading style={{ fontSize: '42px', marginTop: '6rem' }} /></main>
+    if (isLoading) return <main className={styles.page}><Loading style={{ fontSize: '4.2rem', marginTop: '6rem' }} /></main>
 
     return (
         product &&

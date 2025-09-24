@@ -17,7 +17,7 @@ const ProductsList = ({ productsData }) => {
     }, [inView])
 
     if (isLoading) return <main className={styles.main}>
-        <Loading style={{ fontSize: '42px' }} />
+        <Loading style={{ fontSize: '4.2rem' }} />
     </main>
 
     const allProducts = data?.pages?.flatMap(page => page?.products ?? []) ?? [];
@@ -34,7 +34,7 @@ const ProductsList = ({ productsData }) => {
                 }
             </div>
 
-            {isFetchingNextPage && <Loading style={{ fontSize: '30px' }} />}
+            {isFetchingNextPage && <Loading style={{ fontSize: '3rem' }} />}
             <div ref={ref} style={{ height: 1, width: 1 }} />
         </main>
     );

@@ -12,7 +12,7 @@ const ProductUpdatePage = () => {
     const { productId } = useParams();
     const { data: productData, isPending, error } = useProductById(productId);
 
-    if (isPending) return <main className={styles.page}><Loading style={{ fontSize: '32px' }} /></main>
+    if (isPending) return <main className={styles.page}><Loading style={{ fontSize: '3.2rem' }} /></main>
 
     if (error) return <main className={styles.pageError}>{error.message || "An error occurred while loading product info."}</main>
 

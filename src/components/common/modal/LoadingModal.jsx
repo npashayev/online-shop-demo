@@ -15,7 +15,7 @@ const LoadingModal = ({ children, isOpen }) => {
                     {children}
                 </div>
                 <div>
-                    <Loading style={{ fontSize: '32px' }} />
+                    <Loading style={{ fontSize: '3.2rem' }} />
                 </div>
             </div>
         </div>

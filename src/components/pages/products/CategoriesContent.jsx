@@ -9,7 +9,7 @@ const CategoriesContent = ({ activeCategory, closeCategories }) => {
 
     const { data: categories, isLoading, error } = useCategories();
 
-    if (isLoading) return <Loading style={{ fontSize: '20px', marginTop: '2rem' }} />;
+    if (isLoading) return <Loading style={{ fontSize: '2rem', marginTop: '2rem' }} />;
 
     if (error) return (
         <div className={styles.categories}>
