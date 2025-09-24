@@ -1,6 +1,6 @@
 .productGallery {
     flex-shrink: 0;
-    border: 1px solid darkcyan;
+    border: 1px solid lightgray;
     border-radius: 2rem;
     width: 54rem;
     position: relative;
@@ -19,7 +19,6 @@
         aspect-ratio: 1;
         overflow: hidden;
         border-radius: 2rem;
-        padding: 1.5rem;
 
         .mainImage {
             background-color: white;
@@ -36,7 +35,7 @@
         align-items: center;
         justify-content: space-between;
         padding: 2rem;
-        border-top: 1px solid lightgrey;
+        border-top: 1px solid lightgray;
 
 
         .arrowButton {
@@ -48,9 +47,10 @@
             justify-content: center;
             border-radius: 50%;
             border: 1px solid lightgray;
+            transition: background-color 0.1s ease-in-out;
 
             &:hover {
-                background-color: lightgrey;
+                background-color: lightgray;
             }
 
             .arrowIcon {
@@ -68,7 +68,7 @@
             user-select: none;
 
             .thumbnailWrp {
-                width: clamp(55px, 5vw, 100px);
+                width: clamp(55px, 10vw, 100px);
                 flex-shrink: 0;
                 aspect-ratio: 1;
                 overflow: hidden;
@@ -76,7 +76,6 @@
                 border-radius: 1rem;
                 font-size: 8px;
                 overflow: hidden;
-                padding: 1rem;
 
                 .thumbnail {
                     object-fit: cover;
