@@ -13,8 +13,8 @@
         flex-direction: column;
 
         .pageHeading {
-            padding: 5rem;
-            padding-bottom: 2rem;
+            padding-inline: clamp(2rem, 3vw, 5rem);
+            padding-block: 5rem 2rem;
 
             .backBtnCnr {
                 font-weight: bold;
@@ -33,12 +33,23 @@
                 border-top: 2px solid lightgray;
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
 
                 .goBtn {
                     display: none;
                     padding: 0.8rem 1rem;
-                    border: 1px solid black;
                     border-radius: 0.6rem;
+                    color: white;
+                    background-color: #4CAF50;
+                    transition: background-color 0.1s ease-in-out;
+
+                    &:hover {
+                        background-color: #419c44;
+                    }
+
+                    &:active {
+                        background-color: #348136;
+                    }
                 }
             }
         }
@@ -51,8 +62,8 @@
             min-height: 0;
 
             .productsCnr {
-                padding: 5rem;
-                padding-top: 1rem;
+                padding-inline: clamp(2rem, 3vw, 5rem);
+                padding-block: 1rem 5rem;
                 border-radius: 15px;
                 display: flex;
                 flex-direction: column;
@@ -83,16 +94,15 @@
                         .imageCnr {
                             border: 1px solid lightgrey;
                             border-radius: 0.8rem;
-                            height: 8rem;
                             width: 8rem;
+                            aspect-ratio: 1;
                             flex-shrink: 0;
                             overflow: hidden;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
 
                             .productImage {
                                 height: 100%;
+                                width: 100%;
+                                object-fit: cover;
                             }
                         }
 
@@ -110,7 +120,7 @@
                                 align-items: center;
                                 gap: 6px;
                                 margin-top: 8px;
-                                font-size: 18px;
+                                font-size: 1.6rem;
                             }
 
                             .counterButton {
@@ -163,6 +173,37 @@
                 .headingText {
                     .goBtn {
                         display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .page {
+        .cartCnr {
+            .cart {
+                .productsCnr {
+                    padding-inline: 0;
+
+                    .product {
+                        box-shadow: none;
+                        border-block: 1px solid lightgray;
+                        border-radius: 0;
+                        font-size: 14px;
+
+                        .left {
+                            .imageCnr {
+                                width: 6.5rem;
+                            }
+
+                            .productMain {
+                                .productQuantityCnr {
+                                    font-size: 14px;
+                                }
+                            }
+                        }
                     }
                 }
             }

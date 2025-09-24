@@ -56,7 +56,8 @@ const ProductItem = ({ product }) => {
                         </button>
 
                         <div className={styles.productQuantity}>
-                            {quantity}
+                            {/* {quantity} */}
+                            10000
                         </div>
 
                         <button
@@ -71,7 +72,8 @@ const ProductItem = ({ product }) => {
 
             <div className={styles.right}>
                 <div className={styles.totalPrice}>
-                    ${totalPrice}
+                    {/* ${totalPrice} */}
+                    $1000000
                 </div>
 
                 <button

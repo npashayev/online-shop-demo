@@ -1,3 +1,11 @@
+@mixin disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
 .main {
     padding-inline: 5rem;
     padding-block: 3rem;
@@ -79,6 +87,19 @@
         align-items: center;
         gap: 1rem;
         justify-content: center;
+        transition: background-color 0.1s ease-in-out;
+
+        &:disabled {
+            @include disabled
+        }
+
+        &:hover {
+            background-color: #45d1b3;
+        }
+
+        &:active {
+            background-color: #36aa91;
+        }
     }
 }
 
@@ -86,6 +107,11 @@
     .main {
         width: 100%;
         padding-block: 5rem;
-        padding-inline: 18rem;
+        align-items: center;
+
+        .form {
+            width: 100%;
+            max-width: 450px;
+        }
     }
 }

@@ -1,15 +1,18 @@
-import styles from './card-details.module.scss'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import LoginModal from 'components/common/modal/LoginModal'
-import { useToast } from 'contexts/ToastContext'
-import useAuth from 'hooks/useAuth'
-import { forwardRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { resetCart } from 'store/cartSlice'
+import styles from './card-details.module.scss';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ConfirmationModal from 'components/common/modal/ConfirmationModal';
+import LoginModal from 'components/common/modal/LoginModal';
+import { useToast } from 'contexts/ToastContext';
+import useAuth from 'hooks/useAuth';
+import { forwardRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { resetCart } from 'store/cartSlice';
 
 const CardDetails = forwardRef(({ cart }, ref) => {
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [cardToCheckout, setCardToCheckout] = useState(false);
+
     const [formData, setFormData] = useState({
         name: '',
         cardNumber: '',
@@ -17,11 +20,11 @@ const CardDetails = forwardRef(({ cart }, ref) => {
         cvv: ''
     })
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const { isAuthenticated } = useAuth();
     const { showToast } = useToast();
-    const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const isCheckoutDisabled = Object.values(formData).some(value => value.trim() === "");
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -32,8 +35,7 @@ const CardDetails = forwardRef(({ cart }, ref) => {
         });
     }
 
-    const handleCheckout = (event) => {
-        event.preventDefault()
+    const handleCheckout = () => {
         const { name, cardNumber, expirationDate, cvv } = formData;
         if (!name.trim() || !cardNumber.trim() || !expirationDate.trim() || !cvv.trim()) {
             showToast("Please fill all the fields", false)
@@ -46,7 +48,7 @@ const CardDetails = forwardRef(({ cart }, ref) => {
         }
 
         if (!isAuthenticated) {
-            setIsModalOpen(true);
+            setIsLoginModalOpen(true);
             return;
         }
 
@@ -57,21 +59,32 @@ const CardDetails = forwardRef(({ cart }, ref) => {
             cvv: ''
         })
 
-        showToast("You ordered your products successfully");
+        showToast("Your order has been successfully completed");
         dispatch(resetCart());
-        navigate('/');
     }
 
     return (
         <div className={styles.main}>
             {
-                isModalOpen &&
-                <LoginModal isModalOpen={isModalOpen} onCancel={() => setIsModalOpen(false)} onSuccess={() => setIsModalOpen(false)} />
+                cardToCheckout &&
+                <ConfirmationModal onConfirm={handleCheckout} onCancel={() => setCardToCheckout(false)}>
+                    Are you sure you want to proceed with the checkout?
+                </ConfirmationModal>
+            }
+
+            {
+                isLoginModalOpen &&
+                <LoginModal isModalOpen={isLoginModalOpen} onCancel={() => setIsLoginModalOpen(false)} onSuccess={() => setIsLoginModalOpen(false)} />
             }
 
             <div className={styles.header}>Card Details</div>
 
-            <form className={styles.form} onSubmit={handleCheckout}>
+            <form className={styles.form}
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    setCardToCheckout(true);
+                }}
+            >
                 <div className={styles.inputCnr}>
                     <label>Name on card</label>
                     <input ref={ref} type="text" value={formData.name} placeholder='Name' name='name' onChange={handleInputChange} required />
@@ -106,7 +119,7 @@ const CardDetails = forwardRef(({ cart }, ref) => {
                     </div>
                 </div>
 
-                <button className={styles.checkoutBtn} disabled={cart.totalProducts === 0}>
+                <button className={styles.checkoutBtn} disabled={cart.totalProducts === 0 || isCheckoutDisabled}>
                     Checkout <FontAwesomeIcon icon={faArrowRight} />
                 </button>
             </form>
@@ -114,4 +127,4 @@ const CardDetails = forwardRef(({ cart }, ref) => {
     )
 })
 
-export default CardDetails
+export default CardDetails;

@@ -1,4 +1,4 @@
-import styles from './cart-page.module.scss'
+import styles from './cart-page.module.scss';
 import ProductItem from './ProductItem';
 
 const Cart = ({ cart }) => {
@@ -22,4 +22,4 @@ const Cart = ({ cart }) => {
     )
 }
 
-export default Cart
+export default Cart;
