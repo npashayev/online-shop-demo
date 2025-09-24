@@ -42,15 +42,15 @@ const TabContent = ({ activeTab, product }) => {
                 <div className={styles.detailsCnr}>
                     <div className={styles.detailRow}>
                         <div className={styles.detailName}>Brand:</div>
-                        <div className={styles.detailInfo}>{product.brand ?? '-'}</div>
+                        <div className={styles.detailInfo}>{product.brand || '-'}</div>
                     </div>
                     <div className={styles.detailRow}>
                         <div className={styles.detailName}>Stock:</div>
-                        <div className={styles.detailInfo}>{product.stock ?? '-'}</div>
+                        <div className={styles.detailInfo}>{product.stock || '-'}</div>
                     </div>
                     <div className={styles.detailRow}>
                         <div className={styles.detailName}>Minimum order quantity:</div>
-                        <div className={styles.detailInfo}>{product.minimumOrderQuantity ?? '-'}</div>
+                        <div className={styles.detailInfo}>{product.minimumOrderQuantity || '-'}</div>
                     </div>
                 </div>
             );
@@ -58,7 +58,7 @@ const TabContent = ({ activeTab, product }) => {
             return (
                 <div className={styles.detailsCnr}>
                     <div className={styles.detailRow}>
-                        <div className={styles.detailInfo}>{product.shippingInformation ?? '-'}</div>
+                        <div className={styles.detailInfo}>{product.shippingInformation || 'No information available'}</div>
                     </div>
                 </div>
             );
@@ -67,11 +67,11 @@ const TabContent = ({ activeTab, product }) => {
                 <div className={styles.detailsCnr}>
                     <div className={styles.detailRow}>
                         <div className={styles.detailName}>Warranty information:</div>
-                        <div className={styles.detailInfo}>{product.warrantyInformation ?? '-'}</div>
+                        <div className={styles.detailInfo}>{product.warrantyInformation || '-'}</div>
                     </div>
                     <div className={styles.detailRow}>
                         <div className={styles.detailName}>Return policy</div>
-                        <div className={styles.detailInfo}>{product.returnPolicy ?? '-'}</div>
+                        <div className={styles.detailInfo}>{product.returnPolicy || '-'}</div>
                     </div>
                 </div>
             );

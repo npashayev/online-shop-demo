@@ -11,6 +11,7 @@ import Select from 'react-select';
 import InformationModal from "components/common/modal/InformationModal";
 import { useToast } from "contexts/ToastContext";
 import { useNavigate } from "react-router-dom";
+import LoadingModal from "components/common/modal/LoadingModal";
 
 
 const EditProductInfo = ({ product, onClose }) => {
@@ -94,6 +95,13 @@ const EditProductInfo = ({ product, onClose }) => {
                 Updating this product will only simulate the change and won’t affect the server. After a successful update, you’ll be redirected to the product’s details page.
             </InformationModal>
 
+            {
+                isPending &&
+                <LoadingModal isOpen={isPending}>
+                    Product is being updated...
+                </LoadingModal>
+            }
+
             <form onSubmit={handleSubmit(submitHandler)} className={styles.componentContainer}>
                 <div className={styles.buttonsCnr}>
                     <button
@@ -109,7 +117,7 @@ const EditProductInfo = ({ product, onClose }) => {
                         type="submit"
                         disabled={!isDirty || isPending}
                     >
-                        {isPending ? <Loading /> : "Update"}
+                        Update
                     </button>
                 </div>
 

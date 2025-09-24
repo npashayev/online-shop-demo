@@ -12,6 +12,7 @@ import Loading from "components/common/Loading";
 import { RHFInput } from "components/common/form-fields/FormFields";
 import { useToast } from "contexts/ToastContext";
 import InformationModal from "components/common/modal/InformationModal";
+import LoadingModal from "components/common/modal/LoadingModal";
 
 const EditUserInfo = ({ user, onClose }) => {
     const [isModalOpen, setIsModalOpen] = useState(true);
@@ -62,12 +63,33 @@ const EditUserInfo = ({ user, onClose }) => {
                 If you refresh the page or log out and log back in, all changes will be lost.
             </InformationModal>
 
-            <form className={styles.componentContainer}>
+            {
+                isPending &&
+                <LoadingModal isOpen={isPending}>
+                    User is being updated...
+                </LoadingModal>
+            }
+
+            <form
+                onSubmit={handleSubmit(handleUpdateUser)}
+                className={styles.componentContainer}
+            >
                 <div className={styles.buttonsCnr}>
-                    <button onClick={onClose} className={styles.crossBtn}>
+                    <button
+                        className={styles.crossBtn}
+                        type="button"
+                        onClick={onClose}
+                    >
                         <FontAwesomeIcon icon={faXmark} />
                     </button>
-                    <button type="button" onClick={handleSubmit(handleUpdateUser)} disabled={!isDirty || isPending} className={styles.updateBtn}>{isPending ? <Loading /> : "Update"}</button>
+
+                    <button
+                        className={styles.updateBtn}
+                        type="submit"
+                        disabled={!isDirty || isPending}
+                    >
+                        Update
+                    </button>
                 </div>
 
                 {/* General Information */}

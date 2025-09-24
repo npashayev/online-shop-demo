@@ -11,12 +11,13 @@ import { RHFInput } from "components/common/form-fields/FormFields";
 import Select from 'react-select';
 import InformationModal from "components/common/modal/InformationModal";
 import { useToast } from "contexts/ToastContext";
+import LoadingModal from "components/common/modal/LoadingModal";
 
 const AddProductPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [newTag, setNewTag] = useState('')
 
-    const { register, handleSubmit, control, formState } = useForm({
+    const { register, handleSubmit, control, formState: { isDirty } } = useForm({
         defaultValues: {
             title: "",
             brand: "",
@@ -93,14 +94,24 @@ const AddProductPage = () => {
                 </InformationModal>
             }
 
-            <form onSubmit={handleSubmit(submitHandler)} className={styles.componentContainer}>
+            {
+                isPending &&
+                <LoadingModal isOpen={isPending}>
+                    Product is being added...
+                </LoadingModal>
+            }
+
+            <form
+                onSubmit={handleSubmit(submitHandler)}
+                className={styles.componentContainer}
+            >
                 <div className={styles.buttonsCnr}>
                     <button
-                        type="submit"
                         className={styles.updateBtn}
-                        disabled={!formState.isDirty}
+                        type="submit"
+                        disabled={!isDirty || isPending}
                     >
-                        {isPending ? <Loading /> : "Add new product"}
+                        Add new product
                     </button>
                 </div>
 
