@@ -8,11 +8,25 @@ import Loading from "components/common/Loading";
 import { useQueryClient } from "@tanstack/react-query";
 import { RHFInput } from "components/common/form-fields/FormFields";
 import Select from 'react-select';
+import InformationModal from "components/common/modal/InformationModal";
+import { useToast } from "contexts/ToastContext";
+import { useNavigate } from "react-router-dom";
 
 
-
-const EditProductInfo = ({ product, setIsEditMode }) => {
+const EditProductInfo = ({ product, onClose }) => {
+    const [isModalOpen, setIsModalOpen] = useState(true);
     const [newTag, setNewTag] = useState('');
+
+    const { showToast } = useToast();
+    const navigate = useNavigate();
+
+    const updateProduct = useUpdateProduct(product.id);
+
+    const { data: categories } = useCategories();
+    const categoryOptions = categories?.map(cat => ({ value: cat.slug, label: cat.name }))
+    const defaultCategoryOption = categoryOptions?.find(
+        (opt) => opt.value === product.category
+    );
 
     const { register, handleSubmit, reset, control, formState } = useForm({
         defaultValues: {
@@ -31,13 +45,6 @@ const EditProductInfo = ({ product, setIsEditMode }) => {
         control,
         name: 'tags'
     });
-
-    const updateProduct = useUpdateProduct(product.id);
-    const { data: categories } = useCategories();
-    const categoryOptions = categories?.map(cat => ({ value: cat.slug, label: cat.name }))
-    const defaultCategoryOption = categoryOptions?.find(
-        (opt) => opt.value === product.category
-    );
 
     const queryClient = useQueryClient();
 
@@ -74,180 +81,186 @@ const EditProductInfo = ({ product, setIsEditMode }) => {
         updateProduct.mutate(payload, {
             onSuccess: (_, sentData) => {
                 queryClient.setQueryData(["products", String(id)], { id, ...sentData })
-                console.log(sentData)
+                navigate(`/products/${id}`)
             },
-            onError: (error) => console.log(error)
+            onError: (error) => showToast(error.message || "Something went wrong", false)
         });
     };
 
 
 
     return (
-        <form onSubmit={handleSubmit(submitHandler)} className={styles.componentContainer}>
-            <div className={styles.buttonsCnr}>
-                <button
-                    type="button"
-                    onClick={() => setIsEditMode(false)}
-                    className={styles.crossBtn}
-                >
-                    <FontAwesomeIcon icon={faXmark} />
-                </button>
+        <>
+            <InformationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                Updating this product will only simulate the change and won’t affect the server. After a successful update, you’ll be redirected to the product’s page. Any changes will be lost if you refresh or log out.
+            </InformationModal>
 
-                <button
-                    type="submit"
-                    className={styles.updateBtn}
-                    disabled={!formState.isDirty}
-                >
-                    {updateProduct.isPending ? <Loading /> : "Update"}
-                </button>
-            </div>
+            <form onSubmit={handleSubmit(submitHandler)} className={styles.componentContainer}>
+                <div className={styles.buttonsCnr}>
+                    <button
+                        className={styles.crossBtn}
+                        type="button"
+                        onClick={onClose}
+                    >
+                        <FontAwesomeIcon icon={faXmark} />
+                    </button>
 
-            {/* General Information */}
-            <div className={styles.block}>
-                <div className={styles.heading}>General information</div>
-                <div className={styles.inputGroup}>
-                    <RHFInput label="Title" name="title" register={register} />
-                    <RHFInput label="Brand" name="brand" register={register} />
-                    <Controller
-                        name="category"
-                        control={control} // RHF control object
-                        defaultValue={defaultCategoryOption}
-                        render={({ field }) => (
-                            <Select
-                                className={styles.selector}
-                                {...field}
-                                isSearchable={false}
-                                options={categoryOptions}
+                    <button
+                        className={styles.updateBtn}
+                        type="submit"
+                        disabled={!formState.isDirty}
+                    >
+                        {updateProduct.isPending ? <Loading /> : "Update"}
+                    </button>
+                </div>
+
+                {/* General Information */}
+                <div className={styles.block}>
+                    <div className={styles.heading}>General information</div>
+                    <div className={styles.inputGroup}>
+                        <RHFInput label="Title" name="title" register={register} />
+                        <RHFInput label="Brand" name="brand" register={register} />
+                        <Controller
+                            name="category"
+                            control={control} // RHF control object
+                            defaultValue={defaultCategoryOption}
+                            render={({ field }) => (
+                                <Select
+                                    className={styles.selector}
+                                    {...field}
+                                    isSearchable={false}
+                                    options={categoryOptions}
+                                />
+                            )}
+                        />
+                    </div>
+
+                    <div className={styles.inputGroup}>
+                        <div className={styles.textAreaCnr}>
+                            <label>Description</label>
+                            <textarea rows='6'
+                                name="description"
+                                {...register("description")}
+                                className={styles.textarea}
                             />
-                        )}
-                    />
+                        </div>
+                    </div>
+
+                    <div className={styles.inputGroup}>
+                        <RHFInput label="Price" name="price" register={register} />
+                        <RHFInput label="Discount percentage" name="discountPercentage" register={register} />
+                    </div>
+
+                    <div className={styles.inputGroup}>
+                        <div className={styles.tagCnr}>
+                            <label>Tags</label>
+                            <div className={styles.tagsCnr}>
+                                {
+                                    tagFields.map((field, index) =>
+                                        <div key={field.id} className={styles.tag}>
+                                            <p className={styles.tagName}>
+                                                {field.tagName}
+                                            </p>
+                                            <button className={styles.xBtn}>
+                                                <FontAwesomeIcon
+                                                    icon={faXmark}
+                                                    onClick={() => removeTag(index)}
+                                                    className={styles.xIcon}
+                                                />
+                                            </button>
+                                        </div>)
+                                }
+                            </div>
+
+                            <div className={`${styles.inputCnr} ${styles.addFieldCnr}`}>
+                                <input
+                                    type="text"
+                                    value={newTag}
+                                    onChange={(e) => setNewTag(e.target.value)}
+                                    className={styles.info}
+                                    placeholder="New tag name" />
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        if (newTag.trim()) {
+                                            appendTag({ tagName: newTag.trim() });
+                                            setNewTag('');
+                                        }
+                                    }}
+                                    className={styles.addFieldBtn}
+                                    disabled={newTag.trim() === ""}
+                                >
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
 
-                <div className={styles.inputGroup}>
-                    <div className={styles.textAreaCnr}>
-                        <label>Description</label>
-                        <textarea rows='6'
-                            name="description"
-                            {...register("description")}
-                            className={styles.textarea}
-                        />
+                {/* Physical Specifications */}
+                <div className={styles.block}>
+                    <div className={styles.heading}>Physical Specifications</div>
+                    <div className={styles.inputGroup}>
+                        <RHFInput label="Weight" name="weight" register={register} />
+                        <RHFInput label="Width" name="dimensions.width" register={register} />
+                    </div>
+
+                    <div className={styles.inputGroup}>
+                        <RHFInput label="Height" name="dimensions.height" register={register} />
+                        <RHFInput label="Depth" name="dimensions.depth" register={register} />
                     </div>
                 </div>
 
-                <div className={styles.inputGroup}>
-                    <RHFInput label="Price" name="price" register={register} />
-                    <RHFInput label="Discount percentage" name="discountPercentage" register={register} />
+                {/* Additional Information */}
+                <div className={styles.block}>
+                    <div className={styles.heading}>Additional Information</div>
+                    <div className={styles.inputGroup}>
+                        <RHFInput label="Warranty information" name="warrantyInformation" register={register} />
+                        <RHFInput label="Shipping information" name="shippingInformation" register={register} />
+                    </div>
+
+                    <div className={styles.inputGroup}>
+                        <RHFInput label="Return policy" name="returnPolicy" register={register} />
+                        <RHFInput label="Minimum order quantity" name="minimumOrderQuantity" register={register} />
+                    </div>
                 </div>
 
-                <div className={styles.inputGroup}>
-                    <div className={styles.tagCnr}>
-                        <label>Tags</label>
-                        <div className={styles.tagsCnr}>
-                            {
-                                tagFields.map((field, index) =>
-                                    <div key={field.id} className={styles.tag}>
-                                        <p className={styles.tagName}>
-                                            {field.tagName}
-                                        </p>
-                                        <button className={styles.xBtn}>
-                                            <FontAwesomeIcon
-                                                icon={faXmark}
-                                                onClick={() => removeTag(index)}
-                                                className={styles.xIcon}
-                                            />
-                                        </button>
-                                    </div>)
-                            }
-                        </div>
-
-                        <div className={`${styles.inputCnr} ${styles.addFieldCnr}`}>
+                <div className={styles.block}>
+                    <div className={styles.heading}>Images</div>
+                    <div className={styles.inputGroup}>
+                        <div className={styles.inputCnr}>
+                            <label htmlFor="imagePicker" className={styles.imagePickerLabel}>Select images</label>
                             <input
-                                type="text"
-                                value={newTag}
-                                onChange={(e) => setNewTag(e.target.value)}
-                                className={styles.info}
-                                placeholder="New tag name" />
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    if (newTag.trim()) {
-                                        appendTag({ tagName: newTag.trim() });
-                                        setNewTag('');
-                                    }
-                                }}
-                                className={styles.addFieldBtn}
-                                disabled={newTag.trim() === ""}
-                            >
-                                Add
-                            </button>
+                                id="imagePicker"
+                                className={styles.imagePicker}
+                                type="file"
+                                accept="image/*"
+                                multiple
+                                onChange={handleImageSelect}
+                            />
                         </div>
                     </div>
-                </div>
 
-
-            </div>
-
-            {/* Physical Specifications */}
-            <div className={styles.block}>
-                <div className={styles.heading}>Physical Specifications</div>
-                <div className={styles.inputGroup}>
-                    <RHFInput label="Weight" name="weight" register={register} />
-                    <RHFInput label="Width" name="dimensions.width" register={register} />
-                </div>
-
-                <div className={styles.inputGroup}>
-                    <RHFInput label="Height" name="dimensions.height" register={register} />
-                    <RHFInput label="Depth" name="dimensions.depth" register={register} />
-                </div>
-            </div>
-
-            {/* Additional Information */}
-            <div className={styles.block}>
-                <div className={styles.heading}>Additional Information</div>
-                <div className={styles.inputGroup}>
-                    <RHFInput label="Warranty information" name="warrantyInformation" register={register} />
-                    <RHFInput label="Shipping information" name="shippingInformation" register={register} />
-                </div>
-
-                <div className={styles.inputGroup}>
-                    <RHFInput label="Return policy" name="returnPolicy" register={register} />
-                    <RHFInput label="Minimum order quantity" name="minimumOrderQuantity" register={register} />
-                </div>
-            </div>
-
-            <div className={styles.block}>
-                <div className={styles.heading}>Images</div>
-                <div className={styles.inputGroup}>
-                    <div className={styles.inputCnr}>
-                        <label htmlFor="imagePicker" className={styles.imagePickerLabel}>Select images</label>
-                        <input
-                            id="imagePicker"
-                            className={styles.imagePicker}
-                            type="file"
-                            accept="image/*"
-                            multiple
-                            onChange={handleImageSelect}
-                        />
-                    </div>
-                </div>
-
-                <div className={styles.imageList}>
-                    {
-                        imageFields.map((field, index) =>
-                            <div key={field.id} className={styles.imageCnr}>
-                                <div className={styles.iconCnr}>
-                                    <FontAwesomeIcon
+                    <div className={styles.imageList}>
+                        {
+                            imageFields.map((field, index) =>
+                                <div key={field.id} className={styles.imageCnr}>
+                                    <div className={styles.iconCnr}>
+                                        <FontAwesomeIcon
+                                            className={styles.xIcon} />
                                         icon={faXmark}
                                         onClick={() => removeImage(index)}
-                                        className={styles.xIcon} />
+                                    </div>
+                                    <img src={field.url} alt="image" className={styles.image} />
                                 </div>
-                                <img src={field.url} alt="image" className={styles.image} />
-                            </div>
-                        )
-                    }
+                            )
+                        }
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </>
     )
 }
 

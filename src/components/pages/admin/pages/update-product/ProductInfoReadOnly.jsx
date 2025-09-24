@@ -1,13 +1,13 @@
 import { InfoField } from "components/common/form-fields/FormFields";
 import styles from "/src/styles/resource-form.module.scss";
 
-const ProductInfoReadOnly = ({ product, setIsEditMode }) => {
+const ProductInfoReadOnly = ({ product, onOpen }) => {
     return (
         <div className={styles.componentContainer}>
             <div className={styles.buttonsCnr}>
                 <button
-                    onClick={() => setIsEditMode(true)}
                     className={styles.editBtn}
+                    onClick={onOpen}
                 >
                     Edit
                 </button>
