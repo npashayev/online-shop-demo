@@ -7,35 +7,30 @@ import InformationModal from "components/common/modal/InformationModal";
 import Loading from "components/common/Loading";
 
 const UserInfo = () => {
-
-    const [editMode, setEditMode] = useState(false);
+    const [isEditMode, setIsEditMode] = useState(false);
     const { data: userData, isPending, error } = useCurrentUser();
 
+    if (isPending) return <main className={styles.page}><Loading style={{ fontSize: '32px' }} /></main>
 
-    if (isPending) return <main className={styles.main}><Loading style={{ fontSize: '32px' }} /></main>
-
-    if (error) return <main className={styles.main}>An error occurred while getting user info</main>
+    if (error) return <main className={styles.pageError}>{error.message || "An error occurred while loading product info."}</main>
 
     return (
-        <>
-            <InformationModal>
-                Updating a user will not update it into the server.
-                It will simulate a PUT/PATCH request and will return updated user with modified data.
-                If you refresh the page or log out and log back in, all changes will be lost.
-            </InformationModal>
-
+        userData &&
+        <main className={styles.page}>
             {
-                editMode
-                    ? <main className={styles.main}>
-                        <EditUserInfo user={userData} setEditMode={setEditMode} />
-                    </main>
+                isEditMode
+                    ? <EditUserInfo
+                        user={userData}
+                        onClose={() => setIsEditMode(false)}
+                    />
 
-                    : <main className={styles.main}>
-                        <UserInfoReadOnly user={userData} setEditMode={setEditMode} />
-                    </main>
-            }
-        </>
+                    : <UserInfoReadOnly
+                        user={userData}
+                        onOpen={() => setIsEditMode(true)}
+                    />}
+        </main>
+
     )
 }
 
-export default UserInfo
+export default UserInfo;
