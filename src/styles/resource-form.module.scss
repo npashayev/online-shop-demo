@@ -1,4 +1,10 @@
-.main {
+.pageError {
+    font-size: 1.6rem;
+    margin-top: 60px;
+    text-align: center;
+}
+
+.page {
     padding-top: 60px;
 
     .componentContainer {
@@ -22,25 +28,47 @@
             z-index: 1;
 
             button {
-                padding: 1rem 2rem;
-                background: none;
+                padding: 0.8rem 1.5rem;
                 font-weight: bold;
                 border-radius: 1rem;
-                border: none;
                 color: white;
-                cursor: pointer;
+                transition: background-color 0.1s ease-in-out;
             }
 
             .editBtn {
-                background-color: rgb(185, 102, 0);
+                background-color: green;
+
+                &:hover {
+                    background-color: rgb(1, 105, 1);
+                }
+
+                &:active {
+                    background-color: rgb(0, 83, 0);
+                }
             }
 
             .crossBtn {
-                background-color: blue;
+                background-color: red;
+
+                &:hover {
+                    background-color: #D32F2F;
+                }
+
+                &:active {
+                    background-color: #B71C1C;
+                }
             }
 
             .updateBtn {
-                background-color: darkgreen;
+                background-color: green;
+
+                &:hover {
+                    background-color: rgb(1, 105, 1);
+                }
+
+                &:active {
+                    background-color: rgb(0, 83, 0);
+                }
             }
         }
 
@@ -75,6 +103,8 @@
                 }
 
                 .inputCnr {
+                    flex-grow: 1;
+
                     label {
                         font-weight: 600;
                         display: block;
@@ -82,18 +112,24 @@
                     }
 
                     .textarea {
+                        width: 100%;
                         resize: none;
-                        width: 100% !important;
                         white-space: normal;
                         overflow: visible;
                         text-overflow: clip;
+                        resize: none;
+                        border: 1px solid lightgray;
+                        border-radius: 1rem;
+                        padding: 0.8rem 1.5rem;
+                        font-size: 1.6rem;
                     }
 
                     .info {
                         border: 1px solid lightgray;
                         border-radius: 1rem;
                         padding: 0.8rem 1.5rem;
-                        width: 300px;
+                        width: 100%;
+                        min-width: 300px;
                         min-height: 4rem;
                         white-space: nowrap;
                         overflow: hidden;
@@ -113,6 +149,7 @@
                     display: flex;
                     flex-direction: column;
                     gap: 2rem;
+                    width: 100%;
 
                     label {
                         font-weight: 600;
@@ -126,7 +163,6 @@
 
                         .tag {
                             position: relative;
-                            background-color: #FFF3E0;
                             border-radius: 0.5rem;
                             padding: 0.6rem 1rem;
                             padding-right: calc(1rem + 17px);
@@ -148,37 +184,46 @@
 
                 .imagePickerLabel {
                     padding: 0.5rem 1rem;
-                    background-color: goldenrod;
                     color: white;
                     border-radius: 1rem;
+                    width: max-content;
                     cursor: pointer;
+                    background-color: #E28513;
+                    transition: background-color 0.1s ease-in-out;
+
+                    &:hover {
+                        background-color: #bd6d0c;
+                    }
+
+                    &:active {
+                        background-color: #a15d09;
+                    }
                 }
 
                 .addFieldCnr {
                     display: flex;
+                    flex-wrap: wrap;
                     gap: 1rem;
                     align-items: center;
 
+                    .tagInput {
+                        max-width: 300px;
+                    }
+
                     .addFieldBtn {
                         padding: 0.8rem 1rem;
-                        background-color: goldenrod;
                         color: white;
-                        border: none;
                         border-radius: 1rem;
-                        cursor: pointer;
-                    }
-                }
+                        background-color: #E28513;
+                        transition: background-color 0.1s ease-in-out;
 
-                .textAreaCnr {
-                    width: 100%;
+                        &:hover {
+                            background-color: #bd6d0c;
+                        }
 
-                    .textarea {
-                        resize: none;
-                        width: 100% !important;
-                        border: 1px solid lightgray;
-                        border-radius: 1rem;
-                        padding: 0.8rem 1.5rem;
-                        font-size: 1.6rem;
+                        &:active {
+                            background-color: #a15d09;
+                        }
                     }
                 }
             }
@@ -205,6 +250,7 @@
                     }
 
                     .iconCnr {
+                        border: 1px solid lightgray;
                         height: 2.5rem;
                         width: 2.5rem;
                         display: flex;
@@ -216,8 +262,19 @@
                         top: 8%;
                         cursor: pointer;
 
+                        &:hover {
+                            background-color: brown;
+                            color: white;
+                            border-color: transparent;
+                        }
+
+                        &:active {
+                            background-color: rgb(139, 31, 31);
+                        }
+
                         .xIcon {
                             display: block;
+                            font-size: 1.4rem;
                         }
                     }
                 }
@@ -227,22 +284,19 @@
 }
 
 @media (max-width: 450px) {
-    .main {
+    .page {
         .componentContainer {
-            margin: 3rem 1.5rem 1.5rem;
+            margin: 3rem 1.5rem;
 
             .block {
                 padding: 2rem;
 
                 .inputGroup {
-                    width: 100%;
                     margin-top: 2rem;
-                    display: flex;
-                    flex-direction: column;
 
                     .inputCnr {
                         .info {
-                            width: 100%;
+                            min-width: 0;
                             white-space: wrap;
                             word-break: break-word;
                             overflow-wrap: break-word;

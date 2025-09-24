@@ -136,12 +136,12 @@ const EditProductInfo = ({ product, onClose }) => {
                     </div>
 
                     <div className={styles.inputGroup}>
-                        <div className={styles.textAreaCnr}>
+                        <div className={styles.inputCnr}>
                             <label>Description</label>
                             <textarea rows='6'
+                                className={styles.textarea}
                                 name="description"
                                 {...register("description")}
-                                className={styles.textarea}
                             />
                         </div>
                     </div>
@@ -177,7 +177,7 @@ const EditProductInfo = ({ product, onClose }) => {
                                     type="text"
                                     value={newTag}
                                     onChange={(e) => setNewTag(e.target.value)}
-                                    className={styles.info}
+                                    className={`${styles.info} ${styles.tagInput}`}
                                     placeholder="New tag name" />
                                 <button
                                     type="button"
@@ -195,8 +195,6 @@ const EditProductInfo = ({ product, onClose }) => {
                             </div>
                         </div>
                     </div>
-
-
                 </div>
 
                 {/* Physical Specifications */}
@@ -231,7 +229,7 @@ const EditProductInfo = ({ product, onClose }) => {
                     <div className={styles.heading}>Images</div>
                     <div className={styles.inputGroup}>
                         <div className={styles.inputCnr}>
-                            <label htmlFor="imagePicker" className={styles.imagePickerLabel}>Select images</label>
+                            <label htmlFor="imagePicker" className={styles.imagePickerLabel}>Add images</label>
                             <input
                                 id="imagePicker"
                                 className={styles.imagePicker}
@@ -249,9 +247,10 @@ const EditProductInfo = ({ product, onClose }) => {
                                 <div key={field.id} className={styles.imageCnr}>
                                     <div className={styles.iconCnr}>
                                         <FontAwesomeIcon
-                                            className={styles.xIcon} />
-                                        icon={faXmark}
-                                        onClick={() => removeImage(index)}
+                                            className={styles.xIcon}
+                                            icon={faXmark}
+                                            onClick={() => removeImage(index)}
+                                        />
                                     </div>
                                     <img src={field.url} alt="image" className={styles.image} />
                                 </div>
