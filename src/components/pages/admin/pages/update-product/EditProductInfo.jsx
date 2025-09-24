@@ -20,7 +20,7 @@ const EditProductInfo = ({ product, onClose }) => {
     const { showToast } = useToast();
     const navigate = useNavigate();
 
-    const updateProduct = useUpdateProduct(product.id);
+    const { mutate, isPending } = useUpdateProduct(product.id);
 
     const { data: categories } = useCategories();
     const categoryOptions = categories?.map(cat => ({ value: cat.slug, label: cat.name }))
@@ -28,7 +28,7 @@ const EditProductInfo = ({ product, onClose }) => {
         (opt) => opt.value === product.category
     );
 
-    const { register, handleSubmit, reset, control, formState } = useForm({
+    const { register, handleSubmit, reset, control, formState: { isDirty } } = useForm({
         defaultValues: {
             ...product,
             images: product.images?.map(url => ({ url })) || [],
@@ -78,10 +78,11 @@ const EditProductInfo = ({ product, onClose }) => {
             tags: tags?.map(t => t.tagName) || []
         };
 
-        updateProduct.mutate(payload, {
+        mutate(payload, {
             onSuccess: (_, sentData) => {
-                queryClient.setQueryData(["products", String(id)], { id, ...sentData })
-                navigate(`/products/${id}`)
+                queryClient.setQueryData(["products", String(id)], { id, ...sentData });
+                showToast("Product updated successfully");
+                navigate(`/products/${id}`);
             },
             onError: (error) => showToast(error.message || "Something went wrong", false)
         });
@@ -108,9 +109,9 @@ const EditProductInfo = ({ product, onClose }) => {
                     <button
                         className={styles.updateBtn}
                         type="submit"
-                        disabled={!formState.isDirty}
+                        disabled={!isDirty || isPending}
                     >
-                        {updateProduct.isPending ? <Loading /> : "Update"}
+                        {isPending ? <Loading /> : "Update"}
                     </button>
                 </div>
 
