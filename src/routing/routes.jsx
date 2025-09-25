@@ -9,11 +9,11 @@ import ProductDetails from "../components/pages/productDetails/ProductDetailsPag
 import LoginPage from "../components/pages/login/LoginPage";
 import RegisterPage from "../components/pages/register/RegisterPage";
 import PrivateRoutes from "../components/pages/PrivateRoutes";
-import UserInfo from "../components/pages/user-info/UserInfo";
+import UserInfo from "../components/pages/update-user/EditUserPage";
 import ErrorPage from "components/pages/error-page/ErrorPage";
 import CartsPage from "components/pages/cart/CartPage";
 import RoleRoutes from "components/pages/admin/components/RoleRoutes";
-import ProductUpdatePage from "components/pages/admin/pages/update-product/ProductUpdatePage";
+import ProductUpdatePage from "components/pages/admin/pages/update-product/EditProductPage";
 import AddProductPage from "components/pages/admin/pages/add-product/AddProductPage";
 
 
@@ -54,14 +54,14 @@ const router = createBrowserRouter([
                 element: <PrivateRoutes />,
                 children: [
                     {
-                        path: 'user-info/:userId',
+                        path: 'edit-user/:userId',
                         element: <UserInfo />
                     },
                     {
                         element: <RoleRoutes roles={["admin", "moderator"]} />,
                         children: [
                             {
-                                path: 'products/update-product/:productId',
+                                path: 'products/edit-product/:productId',
                                 element: <ProductUpdatePage />
                             },
                             {

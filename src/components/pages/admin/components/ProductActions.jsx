@@ -48,10 +48,10 @@ const ProductActions = ({ product }) => {
 
             <RoleOnly roles={["admin", "moderator"]}>
                 <Link
-                    to={`/products/update-product/${product.id}`}
+                    to={`/products/edit-product/${product.id}`}
                     className={`${styles.updateBtn} ${styles.button}`}
                 >
-                    Update
+                    Edit
                 </Link>
             </RoleOnly>
 
