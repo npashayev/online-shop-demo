@@ -1,6 +1,6 @@
 import Loading from '../../common/loading/Loading';
-import styles from './products.module.scss'
-import ProductCard from './ProductCard'
+import styles from './products.module.scss';
+import ProductCard from './ProductCard';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 
@@ -40,4 +40,4 @@ const ProductsList = ({ productsData }) => {
     );
 }
 
-export default ProductsList
+export default ProductsList;

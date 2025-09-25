@@ -1,5 +1,5 @@
-import styles from "./reviews.module.scss"
-import star from '/src/assets/star.png'
+import styles from "./reviews.module.scss";
+import star from '/src/assets/star.png';
 
 const Reviews = ({ reviews }) => {
 
@@ -17,7 +17,7 @@ const Reviews = ({ reviews }) => {
             <div className={styles.reviewsCnr}>
                 {
                     reviews
-                        ? reviews?.map((review, i) =>
+                        ? reviews.map((review, i) =>
                             <div key={i} className={styles.review}>
                                 <div className={styles.ratingCnr}>
                                     <img src={star} className={styles.star} />
@@ -43,4 +43,4 @@ const Reviews = ({ reviews }) => {
     )
 }
 
-export default Reviews
+export default Reviews;

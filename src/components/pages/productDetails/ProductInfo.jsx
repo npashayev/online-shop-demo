@@ -1,5 +1,5 @@
 import AdditionalInfo from './AdditionalInfo';
-import styles from './product-info.module.scss'
+import styles from './product-info.module.scss';
 
 
 const ProductInfo = ({ product }) => {
@@ -18,7 +18,7 @@ const ProductInfo = ({ product }) => {
                 <div className={styles.tagsHeading}>Tags:</div>
                 <div className={styles.tagsCnr}>
                     {
-                        product.tags.map((tag, i) => <div key={i} className={styles.tag}>{tag}</div>)
+                        product.tags?.map((tag, i) => <div key={i} className={styles.tag}>{tag}</div>)
                     }
                 </div>
 
@@ -30,4 +30,4 @@ const ProductInfo = ({ product }) => {
     )
 }
 
-export default ProductInfo
+export default ProductInfo;

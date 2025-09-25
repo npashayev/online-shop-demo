@@ -13,9 +13,13 @@ const ProductDetailsPage = () => {
     const { productId } = useParams();
     const { data: product, isLoading, error } = useProductById(productId);
 
-    if (error) return <main className={styles.pageError}>{error.message || "An error occurred while loading the product. It may not exist or is unavailable."}</main>
+    if (error) return <main className={styles.pageError}>
+        {error.message || "An error occurred while loading the product. It may not exist or is unavailable."}
+    </main>
 
-    if (isLoading) return <main className={styles.page}><Loading style={{ fontSize: '4.2rem', marginTop: '6rem' }} /></main>
+    if (isLoading) return <main className={styles.page}>
+        <Loading style={{ fontSize: '4.2rem', marginTop: '6rem' }} />
+    </main>
 
     return (
         product &&
@@ -53,4 +57,4 @@ const ProductDetailsPage = () => {
     )
 }
 
-export default ProductDetailsPage
+export default ProductDetailsPage;

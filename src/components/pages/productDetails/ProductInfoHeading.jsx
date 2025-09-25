@@ -1,5 +1,5 @@
-import styles from './product-info-heading.module.scss'
-import star from "/src/assets/star.png"
+import styles from './product-info-heading.module.scss';
+import star from "/src/assets/star.png";
 import AddToCartButton from '../products/AddToCartButton';
 import LikeButton from 'components/common/products/LikeButton';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +9,7 @@ const ProductInfoHeading = ({ product }) => {
 
     const productRating = Math.round(product.rating * 10) / 10;
     const discountPercentage = Math.floor(product.discountPercentage);
-    const newPrice = (product.price - (product?.price * product.discountPercentage / 100)).toFixed(2)
+    const newPrice = (product.price - (product.price * product.discountPercentage / 100)).toFixed(2)
 
     return (
         <div className={styles.infoHeading}>

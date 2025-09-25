@@ -17,8 +17,6 @@ const CategoriesContent = ({ activeCategory, closeCategories }) => {
         </div>
     );
 
-    if (categories?.length === 0) return <div className={styles.categories}>No categories found.</div>
-
     return (
         <div className={styles.categories}>
             <Link

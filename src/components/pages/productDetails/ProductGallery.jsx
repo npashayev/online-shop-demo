@@ -1,8 +1,8 @@
-import styles from './product-gallery.module.scss'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
-import { useState, useRef } from 'react'
+import styles from './product-gallery.module.scss';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { useState, useRef } from 'react';
 
 const ProductGallery = ({ product }) => {
 
@@ -28,11 +28,11 @@ const ProductGallery = ({ product }) => {
     const scrollThumbnails = (direction) => {
         setActiveImageIndex(prev => {
             const nextIndex = direction === "right"
-                ? (prev + 1) % product.images.length
-                : (prev - 1 + product.images.length) % product.images.length;
+                ? (prev + 1) % product.images?.length
+                : (prev - 1 + product.images?.length) % product.images?.length;
 
             // scroll the corresponding thumbnail into view
-            const thumbnail = thumbnailsRef.current.children[nextIndex];
+            const thumbnail = thumbnailsRef.current?.children[nextIndex];
             if (thumbnail) {
                 thumbnail.scrollIntoView({
                     behavior: "smooth",
@@ -76,7 +76,7 @@ const ProductGallery = ({ product }) => {
                     className={styles.thumbnailsContainer}
                 >
                     {
-                        product.images.map((image, i) =>
+                        product.images?.map((image, i) =>
                             <div
                                 key={i}
                                 className={`${styles.thumbnailWrp} ${i == activeImageIndex ? styles.activeThumbnailWrp : ""}`}
@@ -104,4 +104,4 @@ const ProductGallery = ({ product }) => {
     )
 }
 
-export default ProductGallery
+export default ProductGallery;

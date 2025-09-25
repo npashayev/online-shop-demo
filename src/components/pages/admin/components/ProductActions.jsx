@@ -1,5 +1,5 @@
-import { useDeleteProduct } from 'hooks/useAdminActions'
-import styles from './product-actions.module.scss'
+import { useDeleteProduct } from 'hooks/useAdminActions';
+import styles from './product-actions.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import ConfirmationModal from 'components/common/modal/ConfirmationModal';
@@ -69,4 +69,4 @@ const ProductActions = ({ product }) => {
     )
 }
 
-export default ProductActions
+export default ProductActions;
