@@ -12,7 +12,7 @@ import PrivateRoutes from "../components/pages/PrivateRoutes";
 import UserInfo from "../components/pages/user-info/UserInfo";
 import ErrorPage from "components/pages/error-page/ErrorPage";
 import CartsPage from "components/pages/cart/CartPage";
-import RoleRoutes from "components/pages/admin/pages/RoleRoutes";
+import RoleRoutes from "components/pages/admin/components/RoleRoutes";
 import ProductUpdatePage from "components/pages/admin/pages/update-product/ProductUpdatePage";
 import AddProductPage from "components/pages/admin/pages/add-product/AddProductPage";
 
