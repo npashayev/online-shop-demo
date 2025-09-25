@@ -22,4 +22,4 @@ const UserMenu = ({ user, isDropdownOpen, setIsDropdownOpen, logout, setIsMenuOp
     )
 }
 
-export default UserMenu
+export default UserMenu;

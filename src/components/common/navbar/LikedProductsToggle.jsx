@@ -20,4 +20,4 @@ const LikedProductsToggle = forwardRef(({ setIsMenuOpen, isLikedProductsOpen, se
     )
 })
 
-export default LikedProductsToggle
+export default LikedProductsToggle;

@@ -20,10 +20,10 @@ const UserDropdown = ({ user, setIsDropdownOpen = null, setIsMenuOpen = null, lo
             </Link>
 
             <button onClick={logout} className={styles.item}>
-                <FontAwesomeIcon icon={faRightFromBracket} /> Log out
+                <FontAwesomeIcon icon={faRightFromBracket} />Log out
             </button>
         </div>
     )
 }
 
-export default UserDropdown
+export default UserDropdown;
