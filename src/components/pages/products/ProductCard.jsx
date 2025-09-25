@@ -49,6 +49,15 @@ const ProductCard = ({ product }) => {
                 }
 
             </div>
+
+            <div className={styles.circleCnr}>
+                {
+                    [...Array(product.images?.length)].map((_, i) => (
+                        <div key={i} className={`${styles.circle} ${i === activeIndex ? styles.activeCircle : ''}`}></div>
+                    ))
+                }
+            </div>
+
             <div className={styles.info}>
                 <div className={styles.titleCnr}>
                     <p
@@ -60,9 +69,11 @@ const ProductCard = ({ product }) => {
                     <div className={styles.ratingCnr}>
                         <div className={styles.rating}>{productRating}</div>
                         <div className={styles.starsCnr} style={{ width: `${(productRating / 5) * 60}px` }}>
-                            {[...Array(5)].map((_, i) => (
-                                <img key={i} src={star} alt="star" className={styles.star} />
-                            ))}
+                            {
+                                [...Array(5)].map((_, i) => (
+                                    <img key={i} src={star} alt="star" className={styles.star} />
+                                ))
+                            }
                         </div>
                     </div>
                 </div>

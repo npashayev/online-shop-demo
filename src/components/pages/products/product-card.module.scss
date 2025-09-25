@@ -69,6 +69,27 @@
         }
     }
 
+    .circleCnr {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 1rem;
+        gap: 0.5rem;
+
+        .circle {
+            height: 1rem;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 1px solid lightgray;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .activeCircle {
+            background-color: #3b6952;
+        }
+    }
+
     .info {
         width: 100%;
         display: flex;
