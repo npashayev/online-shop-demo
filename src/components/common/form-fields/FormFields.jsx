@@ -1,4 +1,4 @@
-import styles from "/src/styles/resource-form.module.scss";
+import styles from "components/common/styles/resource-form.module.scss";
 
 export const InfoField = ({ label, value }) => (
     <div className={styles.inputCnr}>

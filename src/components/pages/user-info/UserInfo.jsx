@@ -1,9 +1,8 @@
 import { useCurrentUser } from "hooks/useUser"
-import styles from "styles/resource-form.module.scss";
+import styles from "components/common/styles/resource-form.module.scss";
 import UserInfoReadOnly from "./UserInfoReadOnly";
 import { useState } from "react";
 import EditUserInfo from "./EditUserInfo";
-import InformationModal from "components/common/modal/InformationModal";
 import Loading from "components/common/loading/Loading";
 
 const UserInfo = () => {

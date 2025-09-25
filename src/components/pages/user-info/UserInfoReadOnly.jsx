@@ -1,5 +1,5 @@
 import { InfoField } from "components/common/form-fields/FormFields";
-import styles from "styles/resource-form.module.scss";
+import styles from "components/common/styles/resource-form.module.scss";
 
 const UserInfoReadOnly = ({ user, onOpen }) => {
     return (

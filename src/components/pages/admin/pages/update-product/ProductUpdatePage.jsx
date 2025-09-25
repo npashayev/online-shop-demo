@@ -1,4 +1,4 @@
-import styles from "/src/styles/resource-form.module.scss";
+import styles from "components/common/styles/resource-form.module.scss";
 import UserInfoReadOnly from "./ProductInfoReadOnly";
 import { useState } from "react";
 import Loading from "components/common/loading/Loading";

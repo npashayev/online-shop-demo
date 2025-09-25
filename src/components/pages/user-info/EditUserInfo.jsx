@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import styles from "styles/resource-form.module.scss";
+import styles from "components/common/styles/resource-form.module.scss";
 import { useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import { useUpdateCurrentUser } from "hooks/useUser";
@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import { setUser } from "store/userSlice";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Loading from "components/common/loading/Loading";
 import { RHFInput } from "components/common/form-fields/FormFields";
 import { useToast } from "contexts/ToastContext";
 import InformationModal from "components/common/modal/InformationModal";

@@ -1,10 +1,9 @@
-import styles from "/src/styles/resource-form.module.scss";
+import styles from "components/common/styles/resource-form.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from "react";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { useCategories, useUpdateProduct } from "hooks/useProducts";
-import Loading from "components/common/loading/Loading";
 import { useQueryClient } from "@tanstack/react-query";
 import { RHFInput } from "components/common/form-fields/FormFields";
 import Select from 'react-select';
