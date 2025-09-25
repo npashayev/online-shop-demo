@@ -4,6 +4,11 @@ const useSlideshow = (length, time = 5000, isActive = true) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     useEffect(() => {
+        // reset activeIndex if isActive is false
+        if (!isActive) setActiveIndex(0);
+    }, [isActive]);
+
+    useEffect(() => {
         if (!isActive || length <= 1) return;
 
         const changeActiveIndex = () => {
