@@ -1,7 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import styles from './liked-products-toggle.module.scss'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import { forwardRef } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styles from './liked-products-toggle.module.scss';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { forwardRef } from 'react';
 
 const LikedProductsToggle = forwardRef(({ setIsMenuOpen, isLikedProductsOpen, setIsLikedProductsOpen }, ref) => {
 

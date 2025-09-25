@@ -1,4 +1,4 @@
-import styles from './liked-products.module.scss'
+import styles from './liked-products.module.scss';
 import { faCartShopping, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch } from 'react-redux';
@@ -51,4 +51,4 @@ const LikedProductItem = ({ product, onClose }) => {
     )
 }
 
-export default LikedProductItem
+export default LikedProductItem;

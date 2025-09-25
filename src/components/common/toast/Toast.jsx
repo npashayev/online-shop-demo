@@ -1,6 +1,6 @@
-import styles from "./toast.module.scss"
+import styles from "./toast.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleCheck, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
+import { faCircleCheck, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'l
 
 
 const Toast = ({ message, isSuccess }) => {
@@ -17,4 +17,4 @@ const Toast = ({ message, isSuccess }) => {
     )
 }
 
-export default Toast
+export default Toast;

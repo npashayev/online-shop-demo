@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom'
-import styles from './product-actions.module.scss'
-import RoleOnly from './RoleOnly'
+import { Link } from 'react-router-dom';
+import styles from './product-actions.module.scss';
+import RoleOnly from './RoleOnly';
 
 const AddProductAction = () => {
     return (
@@ -17,4 +17,4 @@ const AddProductAction = () => {
     )
 }
 
-export default AddProductAction
+export default AddProductAction;

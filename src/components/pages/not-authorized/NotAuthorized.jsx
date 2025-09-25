@@ -1,5 +1,3 @@
-import React from 'react'
-
 const NotAuthorized = () => {
 
     return (
@@ -7,4 +5,4 @@ const NotAuthorized = () => {
     )
 }
 
-export default NotAuthorized
+export default NotAuthorized;

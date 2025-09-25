@@ -1,9 +1,9 @@
-import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons'
-import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import styles from './like-button.module.scss'
-import { useDispatch, useSelector } from 'react-redux'
-import { toggleLike } from 'store/likedProductsSlice'
+import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styles from './like-button.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleLike } from 'store/likedProductsSlice';
 
 const LikeButton = ({ product, className }) => {
 
@@ -27,4 +27,4 @@ const LikeButton = ({ product, className }) => {
 
 }
 
-export default LikeButton
+export default LikeButton;

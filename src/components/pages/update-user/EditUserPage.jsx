@@ -1,4 +1,4 @@
-import { useCurrentUser } from "hooks/useUser"
+import { useCurrentUser } from "hooks/useUser";
 import styles from "components/common/styles/resource-form.module.scss";
 import UserInfoReadOnly from "./UserInfoReadOnly";
 import { useState } from "react";

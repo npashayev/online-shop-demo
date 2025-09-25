@@ -7,4 +7,4 @@ const RoleOnly = ({ children, roles }) => {
     return children;
 };
 
-export default RoleOnly
+export default RoleOnly;

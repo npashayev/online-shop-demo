@@ -13,4 +13,4 @@ const LoginButton = ({ setIsMenuOpen }) => {
     )
 }
 
-export default LoginButton
+export default LoginButton;
