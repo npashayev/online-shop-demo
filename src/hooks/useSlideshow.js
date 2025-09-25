@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react'
 
-const useSlideshow = (length) => {
+const useSlideshow = (length, time = 5000, isActive = true) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     useEffect(() => {
+        if (!isActive || length <= 1) return;
+
         const changeActiveIndex = () => {
             setActiveIndex(prev => (prev + 1) % length)
         }
-        const interval = setInterval(changeActiveIndex, 5000);
+        const interval = setInterval(changeActiveIndex, time);
 
         return () => clearInterval(interval);
-    }, [length]);
+    }, [length, time, isActive]);
 
     return activeIndex;
 }
