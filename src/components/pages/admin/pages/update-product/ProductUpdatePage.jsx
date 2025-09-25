@@ -1,5 +1,5 @@
 import styles from "components/common/styles/resource-form.module.scss";
-import UserInfoReadOnly from "./ProductInfoReadOnly";
+import ProductInfoReadOnly from "./ProductInfoReadOnly";
 import { useState } from "react";
 import Loading from "components/common/loading/Loading";
 import { useProductById } from "hooks/useProducts";
@@ -25,7 +25,7 @@ const ProductUpdatePage = () => {
                         product={productData}
                         onClose={() => setIsEditMode(false)} />
 
-                    : <UserInfoReadOnly
+                    : <ProductInfoReadOnly
                         product={productData}
                         onOpen={() => setIsEditMode(true)}
                     />
