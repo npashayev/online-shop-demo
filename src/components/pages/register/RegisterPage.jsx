@@ -3,7 +3,6 @@ import styles from 'components/common/login-register-page.module.scss';
 import RegisterForm from "./RegisterForm";
 import { useState } from "react";
 
-
 const RegisterPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(true);
 

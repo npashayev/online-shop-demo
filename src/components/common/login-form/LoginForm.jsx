@@ -51,7 +51,7 @@ const LoginForm = ({ navigate, onSuccess, children }) => {
     }
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.form}>
             {
                 isModalOpen &&
                 <InformationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
