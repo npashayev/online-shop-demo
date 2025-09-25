@@ -2,20 +2,41 @@ import { Link } from 'react-router-dom';
 import styles from './product-card.module.scss'
 import star from "/src/assets/star.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
+import { faBagShopping, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import AddToCartButton from './AddToCartButton';
 import LikeButton from 'components/common/products/LikeButton';
 import useSlideshow from 'hooks/useSlideshow';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ProductCard = ({ product }) => {
     const [isHovered, setIsHovered] = useState(false);
+    const [activeIndex, setActiveIndex] = useState(0)
+
+    const imageLength = product.images?.length || 0;
 
     const discountPercentage = Math.floor(product.discountPercentage);
     const productRating = Math.round(product.rating * 10) / 10;
     const discountedPrice = (product.price - product.price * product.discountPercentage / 100).toFixed(2);
 
-    const activeIndex = useSlideshow(product.images.length, 3000, isHovered);
+    const autoIndex = useSlideshow(imageLength, 3000, isHovered);
+
+    useEffect(() => {
+        if (isHovered) {
+            setActiveIndex(autoIndex); // start slideshow
+        } else {
+            setActiveIndex(0); // reset when unhovered
+        }
+    }, [autoIndex, isHovered]);
+
+    const handleActiveIndexChange = (e, direction) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        setActiveIndex(prev => direction === "right"
+            ? (prev + 1) % imageLength
+            : (prev - 1 + imageLength) % imageLength
+        )
+    }
 
     return (
         <Link
@@ -39,6 +60,21 @@ const ProductCard = ({ product }) => {
                 </div>
             }
             <div className={styles.imageCnr}>
+                <div className={styles.arrowBtnCnr}>
+                    <button
+                        className={styles.arrowBtn}
+                        onClick={(e) => handleActiveIndexChange(e, "left")}
+                    >
+                        <FontAwesomeIcon className={styles.arrowIcon} icon={faChevronLeft} />
+                    </button>
+
+                    <button
+                        className={styles.arrowBtn}
+                        onClick={(e) => handleActiveIndexChange(e, "right")}
+                    >
+                        <FontAwesomeIcon className={styles.arrowIcon} icon={faChevronRight} />
+                    </button>
+                </div>
                 {
                     product.images?.map((image, index) => <img
                         key={index}
@@ -52,7 +88,7 @@ const ProductCard = ({ product }) => {
 
             <div className={styles.circleCnr}>
                 {
-                    [...Array(product.images?.length)].map((_, i) => (
+                    [...Array(imageLength)].map((_, i) => (
                         <div key={i} className={`${styles.circle} ${i === activeIndex ? styles.activeCircle : ''}`}></div>
                     ))
                 }
@@ -94,7 +130,7 @@ const ProductCard = ({ product }) => {
                     </AddToCartButton>
                 </div>
             </div>
-        </Link>
+        </Link >
     )
 }
 
