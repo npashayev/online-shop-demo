@@ -59,7 +59,7 @@ const LoginForm = ({ navigate, onSuccess, children }) => {
                     Each role has different permissions:
                     <ul style={{ marginTop: "1rem" }}>
                         <li><b>User</b> – can browse and perform basic actions</li>
-                        <li><b>Moderator</b> – can add or update products</li>
+                        <li><b>Moderator</b> – can add or edit products</li>
                         <li><b>Admin</b> – can add, update, and delete products</li>
                     </ul>
 
