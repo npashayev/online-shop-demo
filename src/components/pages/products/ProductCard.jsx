@@ -5,14 +5,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
 import AddToCartButton from './AddToCartButton';
 import LikeButton from 'components/common/products/LikeButton';
+import useSlideshow from 'hooks/useSlideshow';
+import { useState } from 'react';
 
 const ProductCard = ({ product }) => {
+    const [isHovered, setIsHovered] = useState(false);
+
     const discountPercentage = Math.floor(product.discountPercentage);
     const productRating = Math.round(product.rating * 10) / 10;
     const discountedPrice = (product.price - product.price * product.discountPercentage / 100).toFixed(2);
 
+    const activeIndex = useSlideshow(product.images.length, 3000, isHovered);
+
     return (
-        <Link to={`/products/${product.id}`} className={styles.product}>
+        <Link
+            to={`/products/${product.id}`}
+            className={styles.product}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+
             <div className={styles.heading} title={product.brand}>
                 <p className={styles.brand}>
                     {product.brand}
@@ -27,11 +39,15 @@ const ProductCard = ({ product }) => {
                 </div>
             }
             <div className={styles.imageCnr}>
-                <img
-                    src={product.images[0]}
-                    className={styles.image}
-                    alt={product.title}
-                />
+                {
+                    product.images?.map((image, index) => <img
+                        key={index}
+                        src={image}
+                        className={`${styles.image} ${index === activeIndex ? styles.activeImage : ''}`}
+                        alt={product.title}
+                    />)
+                }
+
             </div>
             <div className={styles.info}>
                 <div className={styles.titleCnr}>
