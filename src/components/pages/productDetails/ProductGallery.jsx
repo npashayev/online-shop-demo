@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useState, useRef } from 'react';
+import { useSwipeable } from "react-swipeable";
 
 const ProductGallery = ({ product }) => {
 
@@ -45,6 +46,12 @@ const ProductGallery = ({ product }) => {
         });
     };
 
+    const swipeHandlers = useSwipeable({
+        onSwipedLeft: () => scrollThumbnails("right"),
+        onSwipedRight: () => scrollThumbnails("left"),
+    });
+
+
     return (
         <div className={styles.productGallery}>
             <div
@@ -55,7 +62,7 @@ const ProductGallery = ({ product }) => {
                     productStockInfo.availabilityStatus
                 }
             </div>
-            <div className={styles.mainImageContainer}>
+            <div className={styles.mainImageContainer} {...swipeHandlers}>
                 <img
                     src={product.images[activeImageIndex]}
                     alt={product.title}
