@@ -247,7 +247,7 @@ const AddProductPage = () => {
                         {
                             imageFields.map((field, index) =>
                                 <div key={field.id} className={styles.imageCnr}>
-                                    <div className={styles.iconCnr}>
+                                    <div className={styles.xBtn}>
                                         <FontAwesomeIcon
                                             className={styles.xIcon}
                                             icon={faXmark}

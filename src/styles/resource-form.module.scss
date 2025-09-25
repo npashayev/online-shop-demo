@@ -270,7 +270,7 @@
                         object-fit: cover;
                     }
 
-                    .iconCnr {
+                    .xBtn {
                         border: 1px solid lightgray;
                         height: 2.5rem;
                         width: 2.5rem;
@@ -281,8 +281,9 @@
                         position: absolute;
                         right: 8%;
                         top: 8%;
-                        cursor: pointer;
                         background-color: white;
+                        transition: all 0.1s ease-in-out;
+                        cursor: pointer;
 
                         &:hover {
                             background-color: brown;

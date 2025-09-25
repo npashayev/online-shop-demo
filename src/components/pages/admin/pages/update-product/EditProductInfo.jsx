@@ -252,13 +252,13 @@ const EditProductInfo = ({ product, onClose }) => {
                         {
                             imageFields.map((field, index) =>
                                 <div key={field.id} className={styles.imageCnr}>
-                                    <div className={styles.iconCnr}>
+                                    <button className={styles.xBtn}>
                                         <FontAwesomeIcon
                                             className={styles.xIcon}
                                             icon={faXmark}
                                             onClick={() => removeImage(index)}
                                         />
-                                    </div>
+                                    </button>
                                     <img src={field.url} alt="image" className={styles.image} />
                                 </div>
                             )

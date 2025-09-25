@@ -64,7 +64,6 @@
             gap: 1.5rem;
             overflow: auto;
             scrollbar-width: none;
-            cursor: pointer;
             user-select: none;
 
             .thumbnailWrp {
@@ -76,6 +75,7 @@
                 border-radius: 1rem;
                 font-size: 8px;
                 overflow: hidden;
+                cursor: pointer;
 
                 .thumbnail {
                     object-fit: cover;

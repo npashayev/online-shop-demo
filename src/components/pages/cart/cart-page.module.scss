@@ -128,11 +128,15 @@
                                 border: none;
 
                                 .counterIcon {
-                                    font-size: 18px;
-                                    cursor: pointer;
+                                    font-size: 1.8rem;
+                                    transition: color 0.1s ease-in-out;
 
                                     &:hover {
                                         color: lightslategray;
+                                    }
+
+                                    &:active {
+                                        color: rgb(93, 107, 121);
                                     }
                                 }
                             }
@@ -149,8 +153,14 @@
                         }
 
                         .deleteBtn {
+                            transition: color 0.1s ease-in-out;
+
                             &:hover {
-                                color: rgb(0, 78, 78);
+                                color: lightslategray;
+                            }
+
+                            &:active {
+                                color: rgb(93, 107, 121);
                             }
                         }
                     }
