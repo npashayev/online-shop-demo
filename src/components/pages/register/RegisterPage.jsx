@@ -1,5 +1,5 @@
 import InformationModal from "components/common/modal/InformationModal";
-import styles from 'components/common/login-register-page.module.scss';
+import styles from 'components/common/styles/login-register-page.module.scss';
 import RegisterForm from "./RegisterForm";
 import { useState } from "react";
 

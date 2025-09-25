@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useRegister } from 'hooks/useUser';
 import { Link, useNavigate } from 'react-router-dom';
-import styles from 'components/common/login-register-form.module.scss';
+import styles from 'components/common/styles/login-register-form.module.scss';
 import { useForm } from 'react-hook-form';
 import { useToast } from 'contexts/ToastContext';
 

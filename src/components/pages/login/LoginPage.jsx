@@ -1,5 +1,5 @@
 import LoginForm from 'components/common/login-form/LoginForm';
-import styles from 'components/common/login-register-page.module.scss';
+import styles from 'components/common/styles/login-register-page.module.scss';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {

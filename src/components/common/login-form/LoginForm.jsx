@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import styles from '../login-register-form.module.scss';
+import styles from 'components/common/styles/login-register-form.module.scss';
 import { useToast } from 'contexts/ToastContext';
 import { useLogin } from 'hooks/useUser';
 import { Link } from 'react-router-dom';
