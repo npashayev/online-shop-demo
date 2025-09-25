@@ -1,6 +1,6 @@
 .page {
     padding: 3rem max(5vw, 20px);
-    height: calc(100vh - var(--navbar-height));
+    min-height: calc(100vh - var(--navbar-height));
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11,12 +11,12 @@
         width: 70rem;
 
         .heading {
-            font-size: max(3rem, 1.9vw);
+            font-size: clamp(12px, 2vw, 30px);
             line-height: 1.2;
         }
 
         .body {
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             margin-top: 3rem;
             font-weight: 600;
             min-height: 4lh;
@@ -57,8 +57,6 @@
 
 @media (max-width: 896px) {
     .page {
-        min-height: calc(100vh - var(--navbar-height));
-        height: max-content;
         flex-direction: column;
         justify-content: center;
         gap: 4.5rem;
@@ -68,9 +66,8 @@
             width: 95%;
 
             .heading {
-                font-size: 1.6rem;
-                width: 340px;
                 text-align: center;
+                width: 80%;
             }
 
             .body {

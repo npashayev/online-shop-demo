@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom'
-import styles from './slide-show.module.scss'
-import headphone from '/src/assets/slideshow/headphone.webp'
-import asus from '/src/assets/slideshow/asus.webp'
-import chanel from '/src/assets/slideshow/chanel.webp'
-import iphone from '/src/assets/slideshow/iphone-13.webp'
-import rolex from '/src/assets/slideshow/rolex.webp'
-import useSlideshow from 'hooks/useSlideshow'
+import { Link } from 'react-router-dom';
+import styles from './slide-show.module.scss';
+import headphone from '/src/assets/slideshow/headphone.webp';
+import asus from '/src/assets/slideshow/asus.webp';
+import chanel from '/src/assets/slideshow/chanel.webp';
+import iphone from '/src/assets/slideshow/iphone-13.webp';
+import rolex from '/src/assets/slideshow/rolex.webp';
+import useSlideshow from 'hooks/useSlideshow';
 
 const slideShowImages = [
     { title: "Apple AirPods Max Silver", link: "/products/101", src: headphone },
