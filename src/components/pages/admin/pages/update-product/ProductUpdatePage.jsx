@@ -1,7 +1,7 @@
 import styles from "/src/styles/resource-form.module.scss";
 import UserInfoReadOnly from "./ProductInfoReadOnly";
 import { useState } from "react";
-import Loading from "components/common/Loading";
+import Loading from "components/common/loading/Loading";
 import { useProductById } from "hooks/useProducts";
 import { useParams } from "react-router-dom";
 import EditProductInfo from "./EditProductInfo";

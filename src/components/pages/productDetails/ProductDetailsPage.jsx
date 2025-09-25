@@ -1,7 +1,7 @@
 import { useProductById } from "hooks/useProducts";
 import { useParams } from "react-router-dom";
 import styles from './product-details-page.module.scss';
-import Loading from "components/common/Loading";
+import Loading from "components/common/loading/Loading";
 import ProductGallery from "./ProductGallery";
 import ProductInfo from "./ProductInfo";
 import Reviews from "./Reviews";

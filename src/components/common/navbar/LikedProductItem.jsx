@@ -3,7 +3,7 @@ import { faCartShopping, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch } from 'react-redux';
 import { toggleLike } from 'store/likedProductsSlice';
-import Loading from '../Loading';
+import Loading from '../loading/Loading';
 import { Link } from 'react-router-dom';
 import AddToCartButton from 'components/pages/products/AddToCartButton';
 

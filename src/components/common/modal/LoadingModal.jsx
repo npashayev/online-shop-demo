@@ -1,4 +1,4 @@
-import Loading from '../Loading'
+import Loading from '../loading/Loading'
 import styles from './modal.module.scss'
 import usePreventScroll from 'hooks/usePreventScroll';
 

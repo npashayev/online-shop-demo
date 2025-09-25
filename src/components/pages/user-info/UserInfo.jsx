@@ -4,7 +4,7 @@ import UserInfoReadOnly from "./UserInfoReadOnly";
 import { useState } from "react";
 import EditUserInfo from "./EditUserInfo";
 import InformationModal from "components/common/modal/InformationModal";
-import Loading from "components/common/Loading";
+import Loading from "components/common/loading/Loading";
 
 const UserInfo = () => {
     const [isEditMode, setIsEditMode] = useState(false);

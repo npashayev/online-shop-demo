@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { setUser } from "store/userSlice";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Loading from "components/common/Loading";
+import Loading from "components/common/loading/Loading";
 import { RHFInput } from "components/common/form-fields/FormFields";
 import { useToast } from "contexts/ToastContext";
 import InformationModal from "components/common/modal/InformationModal";

@@ -3,7 +3,7 @@ import styles from './categories.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useCategories } from 'hooks/useProducts';
-import Loading from 'components/common/Loading';
+import Loading from 'components/common/loading/Loading';
 
 const CategoriesContent = ({ activeCategory, closeCategories }) => {
 
