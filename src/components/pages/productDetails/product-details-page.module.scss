@@ -19,13 +19,16 @@
         justify-content: space-between;
         gap: 2rem;
 
-        .categoryName {
-            color: #39B856;
-            font-weight: bold;
-            text-decoration: none;
+        .categoryContainer {
 
-            &:hover {
-                text-decoration: underline;
+            .categoryName {
+                color: #39B856;
+                font-weight: bold;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
     }

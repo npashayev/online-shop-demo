@@ -7,8 +7,6 @@ const ProductInfo = ({ product }) => {
     return (
         <>
             <div className={styles.infoCnr}>
-
-
                 <div className={styles.separator} />
 
                 <div className={styles.description}>

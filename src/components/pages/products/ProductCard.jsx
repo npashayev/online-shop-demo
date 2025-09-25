@@ -55,10 +55,10 @@ const ProductCard = ({ product }) => {
                     <div className={styles.priceCnr}>
                         {discountPercentage > 0 &&
                             <p className={styles.oldPrice}>
-                                {product.price}$
+                                ${product.price}
                             </p>
                         }
-                        <p className={styles.newPrice}>{discountedPrice}$</p>
+                        <p className={styles.newPrice}>${discountedPrice}</p>
                     </div>
 
 

@@ -33,10 +33,10 @@ const ProductInfoHeading = ({ product }) => {
                 {
                     discountPercentage > 0 &&
                     <span className={styles.oldPrice}>
-                        {product.price}$
+                        ${product.price}
                     </span>
                 }
-                <span className={styles.newPrice}>{newPrice}$</span>
+                <span className={styles.newPrice}>${newPrice}</span>
             </div>
 
             <div className={styles.buttonsCnr}>
