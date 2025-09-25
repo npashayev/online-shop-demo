@@ -5,7 +5,7 @@ import UserDropdown from './UserDropdown';
 import useClickOutside from 'hooks/useClickOutside';
 import { useRef } from 'react';
 
-const UserOptions = ({ isDropdownOpen, setIsDropdownOpen, user, handleLogout }) => {
+const UserOptions = ({ isDropdownOpen, setIsDropdownOpen, user, logout }) => {
     const menuRef = useRef(null);
 
     useClickOutside([
@@ -29,7 +29,7 @@ const UserOptions = ({ isDropdownOpen, setIsDropdownOpen, user, handleLogout }) 
                 <UserDropdown
                     user={user}
                     setIsDropdownOpen={setIsDropdownOpen}
-                    handleLogout={handleLogout}
+                    logout={logout}
                 />
             </div>
         }

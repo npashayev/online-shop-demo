@@ -4,7 +4,7 @@ import LoginButton from './LoginButton';
 
 
 
-const UserMenu = ({ user, isDropdownOpen, setIsDropdownOpen, handleLogout, setIsMenuOpen }) => {
+const UserMenu = ({ user, isDropdownOpen, setIsDropdownOpen, logout, setIsMenuOpen }) => {
     return (
         <div className={styles.main}>
             {
@@ -13,7 +13,7 @@ const UserMenu = ({ user, isDropdownOpen, setIsDropdownOpen, handleLogout, setIs
                         isDropdownOpen={isDropdownOpen}
                         setIsDropdownOpen={setIsDropdownOpen}
                         user={user}
-                        handleLogout={handleLogout}
+                        logout={logout}
                     />
 
                     : <LoginButton setIsMenuOpen={setIsMenuOpen} />

@@ -8,15 +8,9 @@ import { useRef, useState } from "react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LikedProducts from "./LikedProducts";
-import { useDispatch } from 'react-redux';
-import { resetLikedProducts } from 'store/likedProductsSlice';
-import { persistor } from 'store/store';
-import { useNavigate } from "react-router-dom";
-import { setUser } from 'store/userSlice';
 import UserDropdown from "./UserDropdown";
-import { resetCart } from "store/cartSlice";
 import useClickOutside from "hooks/useClickOutside";
-
+import useLogout from "hooks/useLogout";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,15 +18,14 @@ const Navbar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const { user } = useAuth();
-
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const logout = useLogout(setIsDropdownOpen, setIsMenuOpen)
 
     const menuRef = useRef(null);
     const menuToggleRef = useRef(null);
     const likedProductsToggleRef = useRef(null);
     const likedProductsRef = useRef(null);
 
+    // handle click outside action for both menu and liked products using custom hook
     useClickOutside([
         {
             contentRef: menuRef,
@@ -46,22 +39,6 @@ const Navbar = () => {
         }
     ]);
 
-    const handleLogout = () => {
-        setIsDropdownOpen(false)
-        dispatch(setUser(null))
-        dispatch(resetLikedProducts())
-        dispatch(resetCart())
-
-        // clear persisted redux state
-        persistor.purge()
-
-        // clear tokens from localStorage
-        localStorage.removeItem("accessToken")
-        localStorage.removeItem("refreshToken")
-        setIsMenuOpen(false);
-
-        navigate('/')
-    }
 
     return (
         <header className={styles.navbar}>
@@ -83,7 +60,7 @@ const Navbar = () => {
                     <div className={styles.smallScreenDropdown}>
                         <UserDropdown
                             user={user}
-                            handleLogout={handleLogout}
+                            logout={logout}
                             setIsMenuOpen={setIsMenuOpen}
                         />
                     </div>
@@ -126,7 +103,7 @@ const Navbar = () => {
                             user={user}
                             isDropdownOpen={isDropdownOpen}
                             setIsDropdownOpen={setIsDropdownOpen}
-                            handleLogout={handleLogout}
+                            logout={logout}
                             setIsMenuOpen={setIsMenuOpen}
                         />
                     </div>
