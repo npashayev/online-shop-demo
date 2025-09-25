@@ -19,7 +19,8 @@
         background-color: white;
         max-width: 600px;
         min-width: 350px;
-        min-height: 200px;
+        min-height: 200;
+        max-height: 80%;
         font-size: 1.6rem;
         display: flex;
         flex-direction: column;
@@ -32,6 +33,7 @@
 
         .body {
             text-align: center;
+            overflow: auto;
         }
 
         .buttonsContainer {
