@@ -21,13 +21,47 @@ apiClient.interceptors.request.use(
     }
 )
 
-
 apiClient.interceptors.response.use(
     (response) => {
         return response;
     },
 
-    (error) => {
+    async (error) => {
+        const originalRequest = error.config;
+        const accessToken = localStorage.getItem("accessToken");
+        const refreshToken = localStorage.getItem("refreshToken");
+
+        if (error.response?.status === 401 && !originalRequest._retry) {
+
+            originalRequest._retry = true;
+
+            if (!accessToken && !refreshToken) {
+                return Promise.reject({ type: 'unauthorized', message: 'No tokens found' });
+            }
+
+            try {
+                // call refresh endpoint (adjust payload according to your backend)
+                const res = await axios.post('https://dummyjson.com/auth/refresh', {
+                    refreshToken
+                });
+
+                const newAccessToken = res.data.accessToken;
+                localStorage.setItem('accessToken', newAccessToken);
+
+                // update header and retry original request
+                originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+
+                return apiClient(originalRequest);
+
+            } catch (refreshError) {
+                // refresh failed → clear tokens and redirect to login
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('refreshToken');
+                window.location.href = '/login';
+                return Promise.reject(refreshError);
+            }
+        }
+
         let message = ""
 
         if (error.response) {
