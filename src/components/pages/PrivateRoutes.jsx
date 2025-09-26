@@ -1,4 +1,3 @@
-import NotAuthorized from './not-authorized/NotAuthorized';
 import useAuth from '/src/hooks/useAuth';
 import { Navigate, Outlet, useParams } from 'react-router-dom';
 
@@ -9,7 +8,7 @@ const PrivateRoutes = () => {
     if (!isAuthenticated) return <Navigate to="/login" replace />
 
     if (userId && userId !== String(user?.id)) {
-        return <NotAuthorized />;
+        return
     }
 
     return <Outlet />
