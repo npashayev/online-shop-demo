@@ -1,23 +1,20 @@
-import React from 'react'
-import { isRouteErrorResponse, useRouteError } from 'react-router-dom'
+import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
+import styles from './error-page.module.scss';
+import RouteError from './RouteError';
+import RuntimeError from './RuntimeError';
 
 const ErrorPage = () => {
 
     const error = useRouteError()
-
     return (
-        <p>
-            <h1>Oops...</h1>
-
-            <h2>
-                {
-                    isRouteErrorResponse(error)
-                        ? "Invalid Page"
-                        : "Unexpected Error"
-                }
-            </h2>
-        </p>
+        <main className={styles.page}>
+            {
+                isRouteErrorResponse(error)
+                    ? <RouteError status={error.status} />
+                    : <RuntimeError />
+            }
+        </main>
     )
 }
 
-export default ErrorPage
+export default ErrorPage;

@@ -1,0 +1,58 @@
+.page {
+    min-height: calc(100vh - var(--navbar-height));
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    .image {
+        height: clamp(250px, 35vw, 400px);
+    }
+
+    .headingText {
+        font-size: clamp(16px, 3vw, 42px);
+        font-weight: bold;
+        margin-top: 2rem;
+    }
+
+    .bodyText {
+        font-size: clamp(14px, 3vw, 24px);
+    }
+
+    .btn {
+        margin-top: 1rem;
+        border: 1px solid black;
+        padding: 1rem 2rem;
+        border-radius: 3rem;
+        font-size: clamp(14px, 2vw, 16px);
+
+        &:hover {
+            color: white;
+            background-color: #D07C1A;
+            border-color: transparent;
+        }
+
+        &:active {
+            background-color: #ad6614;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .page {
+        .notFoundImg {
+            height: auto;
+            width: 80%;
+        }
+
+        .btn {
+            margin-top: 1rem;
+            border: 1px solid black;
+            padding: 0.8rem 1.6rem;
+            border-radius: 3rem;
+            font-size: clamp(14px, 2vw, 16px);
+        }
+    }
+}
