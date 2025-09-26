@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
     const productRating = Math.round(product.rating * 10) / 10;
     const discountedPrice = (product.price - product.price * product.discountPercentage / 100).toFixed(2);
 
-    const autoIndex = useSlideshow(imageLength, 3000, isHovered);
+    const autoIndex = useSlideshow(imageLength, 2000, isHovered);
 
     useEffect(() => {
         if (isHovered) {

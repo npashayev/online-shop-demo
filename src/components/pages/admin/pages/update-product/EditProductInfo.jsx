@@ -12,7 +12,6 @@ import { useToast } from "contexts/ToastContext";
 import { useNavigate } from "react-router-dom";
 import LoadingModal from "components/common/modal/LoadingModal";
 
-
 const EditProductInfo = ({ product, onClose }) => {
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [newTag, setNewTag] = useState('');

@@ -9,12 +9,12 @@ import { useToast } from 'contexts/ToastContext';
 
 const ProductActions = ({ product }) => {
     const [productToDelete, setProductToDelete] = useState(null);
-    const deleteProduct = useDeleteProduct();
+    const { mutate, isPending } = useDeleteProduct();
     const navigate = useNavigate();
     const { showToast } = useToast();
 
     const handleProductDelete = (productId) => {
-        deleteProduct.mutate(productId, {
+        mutate(productId, {
             onSuccess: () => {
                 showToast("Product successfully deleted")
                 navigate('/products');
@@ -40,8 +40,8 @@ const ProductActions = ({ product }) => {
             }
 
             {
-                deleteProduct.isPending &&
-                <LoadingModal isOpen={deleteProduct.isPending}>
+                isPending &&
+                <LoadingModal isOpen={isPending}>
                     Product is being deleted...
                 </LoadingModal>
             }
@@ -58,7 +58,7 @@ const ProductActions = ({ product }) => {
             <RoleOnly roles={["admin"]}>
                 <button
                     className={`${styles.deleteBtn} ${styles.button}`}
-                    disabled={deleteProduct.isPending}
+                    disabled={isPending}
                     onClick={() => setProductToDelete(product.id)}
                 >
                     Delete
