@@ -2,12 +2,12 @@ import { useEffect } from "react";
 
 const useClickOutside = (elements) => {
     useEffect(() => {
-        const handleClickOutside = (event) => {
+        const handleClickOutside = (e) => {
             elements.forEach(({ contentRef, toggleRef, onClickOutside }) => {
                 if (
                     contentRef.current &&
-                    !contentRef.current.contains(event.target) &&
-                    (!toggleRef || !toggleRef.current.contains(event.target))
+                    !contentRef.current.contains(e.target) &&
+                    (!toggleRef || !toggleRef.current.contains(e.target))
                 ) {
                     onClickOutside();
                 }

@@ -13,15 +13,15 @@ const ProductItem = ({ product }) => {
     const dispatch = useDispatch();
     const { showToast } = useToast();
 
-    const handleProductDelete = (event) => {
-        event.stopPropagation();
-        event.preventDefault();
+    const handleProductDelete = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
         dispatch(deleteProduct(id));
     }
 
-    const handleQuantityChange = (event, isIncrease = false) => {
-        event.stopPropagation();
-        event.preventDefault();
+    const handleQuantityChange = (e, isIncrease = false) => {
+        e.stopPropagation();
+        e.preventDefault();
 
         const changeValue = isIncrease ? 1 : -1;
 
@@ -50,7 +50,7 @@ const ProductItem = ({ product }) => {
                         <button
                             className={styles.counterButton}
                             disabled={quantity === 1}
-                            onClick={(event) => handleQuantityChange(event)}
+                            onClick={(e) => handleQuantityChange(e)}
                         >
                             <FontAwesomeIcon className={styles.counterIcon} icon={faCircleMinus} />
                         </button>
@@ -61,7 +61,7 @@ const ProductItem = ({ product }) => {
 
                         <button
                             className={styles.counterButton}
-                            onClick={(event) => handleQuantityChange(event, true)}
+                            onClick={(e) => handleQuantityChange(e, true)}
                         >
                             <FontAwesomeIcon className={styles.counterIcon} icon={faCirclePlus} />
                         </button>

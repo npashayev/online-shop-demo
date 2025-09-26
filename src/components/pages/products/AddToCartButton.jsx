@@ -9,9 +9,9 @@ const AddToCartButton = ({ product, children, className }) => {
     const dispatch = useDispatch();
     const exists = useSelector(state => isProductExist(state, product))
 
-    const handleAddToCart = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
+    const handleAddToCart = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
 
         if (exists) {
             showToast("This product is already added to this cart!", false);
