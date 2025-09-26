@@ -127,7 +127,6 @@
             aspect-ratio: 1;
             border-radius: 50%;
             border: 1px solid lightgray;
-            transition: background-color 0.2s ease-in-out;
         }
 
         .activeCircle {
@@ -205,7 +204,6 @@
                 border-radius: 1rem;
                 aspect-ratio: 1;
                 background-color: #E28513;
-                transition: background-color 0.1s ease-in-out;
 
                 &:hover {
                     background-color: #bd6d0c;

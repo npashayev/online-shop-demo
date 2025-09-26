@@ -41,7 +41,6 @@
                     border-radius: 0.6rem;
                     color: white;
                     background-color: #4CAF50;
-                    transition: background-color 0.1s ease-in-out;
 
                     &:hover {
                         background-color: #419c44;
@@ -129,7 +128,6 @@
 
                                 .counterIcon {
                                     font-size: 1.8rem;
-                                    transition: color 0.1s ease-in-out;
 
                                     &:hover {
                                         color: lightslategray;
@@ -153,8 +151,6 @@
                         }
 
                         .deleteBtn {
-                            transition: color 0.1s ease-in-out;
-
                             &:hover {
                                 color: lightslategray;
                             }

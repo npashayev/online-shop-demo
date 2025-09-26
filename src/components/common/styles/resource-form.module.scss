@@ -40,7 +40,6 @@
                 font-weight: bold;
                 border-radius: 1rem;
                 color: white;
-                transition: background-color 0.1s ease-in-out;
 
                 &:disabled {
                     @include disabled
@@ -206,7 +205,6 @@
                     width: max-content;
                     cursor: pointer;
                     background-color: #E28513;
-                    transition: background-color 0.1s ease-in-out;
 
                     &:hover {
                         background-color: #bd6d0c;
@@ -232,7 +230,6 @@
                         color: white;
                         border-radius: 1rem;
                         background-color: #E28513;
-                        transition: background-color 0.1s ease-in-out;
 
                         &:disabled {
                             @include disabled
@@ -282,7 +279,6 @@
                         right: 8%;
                         top: 8%;
                         background-color: white;
-                        transition: all 0.1s ease-in-out;
                         cursor: pointer;
 
                         &:hover {
