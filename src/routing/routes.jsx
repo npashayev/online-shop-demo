@@ -9,19 +9,19 @@ import ProductDetails from "../components/pages/productDetails/ProductDetailsPag
 import LoginPage from "../components/pages/login/LoginPage";
 import RegisterPage from "../components/pages/register/RegisterPage";
 import PrivateRoutes from "../components/pages/PrivateRoutes";
-import UserInfo from "../components/pages/update-user/EditUserPage";
-import ErrorPage from "components/pages/error-page/ErrorPage";
+import EditUserPage from "../components/pages/update-user/EditUserPage";
 import CartsPage from "components/pages/cart/CartPage";
-import RoleRoutes from "components/pages/admin/components/RoleRoutes";
-import ProductUpdatePage from "components/pages/admin/pages/update-product/EditProductPage";
+import RoleRoutes from "components/pages/RoleRoutes";
+import EditProductPage from "components/pages/admin/pages/update-product/EditProductPage";
 import AddProductPage from "components/pages/admin/pages/add-product/AddProductPage";
+import ErrorLayout from "components/pages/ErrorLayout";
 
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Layout />,
-        // errorElement: <ErrorPage />,
+        errorElement: <ErrorLayout />,
         children: [
             { index: true, element: <HomePage /> },
             {
@@ -55,14 +55,14 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: 'edit-user/:userId',
-                        element: <UserInfo />
+                        element: <EditUserPage />
                     },
                     {
                         element: <RoleRoutes roles={["admin", "moderator"]} />,
                         children: [
                             {
                                 path: 'products/edit-product/:productId',
-                                element: <ProductUpdatePage />
+                                element: <EditProductPage />
                             },
                             {
                                 path: 'products/add-product',

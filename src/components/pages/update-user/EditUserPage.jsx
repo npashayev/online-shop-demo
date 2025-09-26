@@ -5,7 +5,7 @@ import { useState } from "react";
 import EditUserInfo from "./EditUserInfo";
 import Loading from "components/common/loading/Loading";
 
-const UserInfo = () => {
+const EditUserPage = () => {
     const [isEditMode, setIsEditMode] = useState(false);
     const { data: userData, isPending, error } = useCurrentUser();
 
@@ -32,4 +32,4 @@ const UserInfo = () => {
     )
 }
 
-export default UserInfo;
+export default EditUserPage;

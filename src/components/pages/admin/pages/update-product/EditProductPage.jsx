@@ -6,7 +6,7 @@ import { useProductById } from "hooks/useProducts";
 import { useParams } from "react-router-dom";
 import EditProductInfo from "./EditProductInfo";
 
-const ProductUpdatePage = () => {
+const EditProductPage = () => {
     const [isEditMode, setIsEditMode] = useState(false);
 
     const { productId } = useParams();
@@ -34,4 +34,4 @@ const ProductUpdatePage = () => {
     )
 }
 
-export default ProductUpdatePage
+export default EditProductPage;
