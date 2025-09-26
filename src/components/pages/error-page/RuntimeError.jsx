@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styles from './error-page.module.scss';
 
 const RuntimeError = () => {
-    console.log("Yeah")
+
     return (
         <>
             <div className={styles.headingText}>SOMETHING WENT WRONG</div>
