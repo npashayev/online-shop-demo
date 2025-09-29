@@ -1,4 +1,4 @@
-import Loading from '../../common/loading/Loading';
+import Loading from 'components/common/loading/Loading';
 import styles from './products.module.scss';
 import ProductCard from './ProductCard';
 import { useInView } from 'react-intersection-observer';
