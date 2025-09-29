@@ -14,10 +14,10 @@ import useLogout from "hooks/useLogout";
 import useResponsiveSidebar from "hooks/useResponsiveSidebar";
 
 const Navbar = () => {
-    const [isLikedProductsOpen, setIsLikedProductsOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const { isMobile: isMenuMobile, open: isMenuOpen, toggle: toggleMenu, closeSidebar: closeMenu } = useResponsiveSidebar('(max-width: 760px)');
+    const { open: isLikedProductsOpen, toggle: toggleLikedProducts, closeSidebar: closeLikedProducts } = useResponsiveSidebar();
 
     const { user } = useAuth();
     const logout = useLogout(setIsDropdownOpen, closeMenu)
@@ -37,14 +37,14 @@ const Navbar = () => {
         {
             contentRef: likedProductsRef,
             toggleRef: likedProductsToggleRef,
-            onClickOutside: () => setIsLikedProductsOpen(false)
+            onClickOutside: closeLikedProducts
         }
     ]);
 
     useEffect(() => {
-        console.log(isMenuMobile)
-        console.log(isMenuOpen)
-    }, [isMenuMobile, isMenuOpen])
+        console.log(isLikedProductsOpen)
+    }, [isLikedProductsOpen])
+
     return (
         <header className={styles.navbar}>
             <div className={styles.left}>
@@ -95,7 +95,7 @@ const Navbar = () => {
                         <LikedProductsToggle
                             closeMenu={closeMenu}
                             isLikedProductsOpen={isLikedProductsOpen}
-                            setIsLikedProductsOpen={setIsLikedProductsOpen}
+                            toggleLikedProducts={toggleLikedProducts}
                             ref={likedProductsToggleRef}
                         />
 
@@ -117,7 +117,7 @@ const Navbar = () => {
 
             <LikedProducts
                 isLikedProductsOpen={isLikedProductsOpen}
-                setIsLikedProductsOpen={setIsLikedProductsOpen}
+                closeLikedProducts={closeLikedProducts}
                 ref={likedProductsRef}
             />
         </header>

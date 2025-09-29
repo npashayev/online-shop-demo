@@ -7,13 +7,13 @@ import Loading from '../loading/Loading';
 import { Link } from 'react-router-dom';
 import AddToCartButton from 'components/pages/products/AddToCartButton';
 
-const LikedProductItem = ({ product, onClose }) => {
+const LikedProductItem = ({ product, closeLikedProducts }) => {
 
     const totalPrice = (product.price - product.price * product.discountPercentage / 100).toFixed(2)
     const dispatch = useDispatch();
 
     return (
-        <Link onClick={onClose} to={`/products/${product.id}`} className={styles.product}>
+        <Link onClick={closeLikedProducts} to={`/products/${product.id}`} className={styles.product}>
             <div className={styles.left}>
                 <div className={styles.imageCnr}>
                     {

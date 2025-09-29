@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { selectLikedProducts } from 'store/likedProductsSlice';
 import { forwardRef } from 'react';
 
-const LikedProducts = forwardRef(({ isLikedProductsOpen, setIsLikedProductsOpen }, ref) => {
+const LikedProducts = forwardRef(({ isLikedProductsOpen, closeLikedProducts }, ref) => {
 
     const likedProducts = useSelector(selectLikedProducts);
 
@@ -17,7 +17,7 @@ const LikedProducts = forwardRef(({ isLikedProductsOpen, setIsLikedProductsOpen 
             ref={ref}
         >
             <div className={styles.closeBtnCnr}>
-                <button onClick={() => setIsLikedProductsOpen(false)} className={styles.closeBtn}>
+                <button onClick={closeLikedProducts} className={styles.closeBtn}>
                     <FontAwesomeIcon icon={faXmark} className={styles.xIcon} />
                 </button>
             </div>
@@ -26,13 +26,13 @@ const LikedProducts = forwardRef(({ isLikedProductsOpen, setIsLikedProductsOpen 
                     likedProducts.length > 0
                         ? likedProducts.map(product => <LikedProductItem
                             key={product.id}
-                            onClose={setIsLikedProductsOpen}
+                            closeLikedProducts={closeLikedProducts}
                             product={product}
                         />)
 
                         : <div className={styles.messageCnr}>
                             <div className={styles.message}>You haven’t liked any products yet.</div>
-                            <Link to='/products' className={styles.exploreBtn} onClick={() => setIsLikedProductsOpen(false)}>
+                            <Link to='/products' className={styles.exploreBtn} onClick={closeLikedProducts}>
                                 Explore products
                                 <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchIcon} />
                             </Link>
