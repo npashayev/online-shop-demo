@@ -6,44 +6,38 @@ import { faBagShopping, faChevronLeft, faChevronRight } from '@fortawesome/free-
 import AddToCartButton from './AddToCartButton';
 import LikeButton from 'components/common/products/LikeButton';
 import useSlideshow from 'hooks/useSlideshow';
-import { useEffect, useState } from 'react';
 
 const ProductCard = ({ product }) => {
-    const [isHovered, setIsHovered] = useState(false);
-    const [activeIndex, setActiveIndex] = useState(0)
-
     const imageLength = product.images?.length || 0;
 
     const discountPercentage = Math.floor(product.discountPercentage);
     const productRating = Math.round(product.rating * 10) / 10;
     const discountedPrice = (product.price - product.price * product.discountPercentage / 100).toFixed(2);
 
-    const autoIndex = useSlideshow(imageLength, 2000, isHovered);
-
-    useEffect(() => {
-        if (isHovered) {
-            setActiveIndex(autoIndex); // start slideshow
-        } else {
-            setActiveIndex(0); // reset when unhovered
-        }
-    }, [autoIndex, isHovered]);
+    const { activeIndex, increaseIndex, decreaseIndex, setActive } = useSlideshow({
+        length: imageLength,
+        time: 2000,
+        initialIsActive: false,
+        resetOnInactive: true
+    });
 
     const handleActiveIndexChange = (e, direction) => {
         e.preventDefault();
         e.stopPropagation();
 
-        setActiveIndex(prev => direction === "right"
-            ? (prev + 1) % imageLength
-            : (prev - 1 + imageLength) % imageLength
-        )
+        if (direction === 'right') {
+            increaseIndex();
+        } else {
+            decreaseIndex();
+        }
     }
 
     return (
         <Link
             to={`/products/${product.id}`}
             className={styles.product}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            onMouseEnter={() => setActive(true)}
+            onMouseLeave={() => setActive(false)}
         >
 
             <div className={styles.heading} title={product.brand}>
