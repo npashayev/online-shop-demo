@@ -16,7 +16,9 @@ const slideShowImages = [
 ];
 
 const SlideShow = () => {
-    const activeIndex = useSlideshow(slideShowImages.length);
+    const { activeIndex } = useSlideshow({
+        length: slideShowImages.length
+    });
 
     return (
         <div className={styles.slideshowCnr}>
