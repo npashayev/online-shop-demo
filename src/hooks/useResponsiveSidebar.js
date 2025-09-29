@@ -2,13 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react'
 
 const useResponsiveSidebar = (query) => {
     const [isMobile, setIsMobile] = useState(() =>
-        typeof window !== 'undefined' ? window.matchMedia(query).matches : false
+        (query && typeof window !== 'undefined') ? window.matchMedia(query).matches : false
     );
 
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        if (typeof window === 'undefined') return;
+        if ((!query || typeof window === 'undefined')) return;
 
         const mql = window.matchMedia(query);
         const handleChange = (e) => setIsMobile(e.matches);
