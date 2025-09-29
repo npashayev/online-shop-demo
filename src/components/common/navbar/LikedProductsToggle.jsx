@@ -3,7 +3,7 @@ import styles from './liked-products-toggle.module.scss';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { forwardRef } from 'react';
 
-const LikedProductsToggle = forwardRef(({ setIsMenuOpen, isLikedProductsOpen, setIsLikedProductsOpen }, ref) => {
+const LikedProductsToggle = forwardRef(({ closeMenu, isLikedProductsOpen, setIsLikedProductsOpen }, ref) => {
 
     return (
         <button
@@ -11,7 +11,7 @@ const LikedProductsToggle = forwardRef(({ setIsMenuOpen, isLikedProductsOpen, se
             onClick={(e) => {
                 e.stopPropagation()
                 setIsLikedProductsOpen(prev => !prev)
-                setIsMenuOpen(false)
+                closeMenu
             }}
             className={`${styles.toggleBtn} ${isLikedProductsOpen ? styles.active : ""}`}
         >

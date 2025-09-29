@@ -4,21 +4,23 @@ import UserMenu from "./UserMenu";
 import UserBasket from "./UserBasket";
 import useAuth from "hooks/useAuth";
 import LikedProductsToggle from "./LikedProductsToggle";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LikedProducts from "./LikedProducts";
 import UserDropdown from "./UserDropdown";
 import useClickOutside from "hooks/useClickOutside";
 import useLogout from "hooks/useLogout";
+import useResponsiveSidebar from "hooks/useResponsiveSidebar";
 
 const Navbar = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLikedProductsOpen, setIsLikedProductsOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+    const { isMobile: isMenuMobile, open: isMenuOpen, toggle: toggleMenu, closeSidebar: closeMenu } = useResponsiveSidebar('(max-width: 760px)');
+
     const { user } = useAuth();
-    const logout = useLogout(setIsDropdownOpen, setIsMenuOpen)
+    const logout = useLogout(setIsDropdownOpen, closeMenu)
 
     const menuRef = useRef(null);
     const menuToggleRef = useRef(null);
@@ -30,7 +32,7 @@ const Navbar = () => {
         {
             contentRef: menuRef,
             toggleRef: menuToggleRef,
-            onClickOutside: () => setIsMenuOpen(false)
+            onClickOutside: closeMenu
         },
         {
             contentRef: likedProductsRef,
@@ -39,7 +41,10 @@ const Navbar = () => {
         }
     ]);
 
-
+    useEffect(() => {
+        console.log(isMenuMobile)
+        console.log(isMenuOpen)
+    }, [isMenuMobile, isMenuOpen])
     return (
         <header className={styles.navbar}>
             <div className={styles.left}>
@@ -50,18 +55,18 @@ const Navbar = () => {
             <button ref={menuToggleRef} className={styles.menuIconCnr}>
                 <FontAwesomeIcon
                     icon={faBars}
-                    onClick={() => setIsMenuOpen(prev => !prev)}
+                    onClick={toggleMenu}
                     className={styles.menuIcon}
                 />
             </button>
 
-            <div ref={menuRef} className={`${styles.right} ${isMenuOpen ? styles.activeRight : ''}`}>
+            <div ref={menuRef} className={`${styles.right} ${isMenuOpen && isMenuMobile ? styles.activeRight : ''}`}>
                 <div className={styles.rightItemsCnr}>
                     <div className={styles.smallScreenDropdown}>
                         <UserDropdown
                             user={user}
                             logout={logout}
-                            setIsMenuOpen={setIsMenuOpen}
+                            closeMenu={closeMenu}
                         />
                     </div>
 
@@ -70,7 +75,7 @@ const Navbar = () => {
                             <li>
                                 <NavLink
                                     to="/"
-                                    onClick={() => setIsMenuOpen(false)}
+                                    onClick={closeMenu}
                                     className={({ isActive }) => isActive ? `${styles.link} ${styles.active}` : styles.link}>
                                     Home
                                 </NavLink>
@@ -78,7 +83,7 @@ const Navbar = () => {
                             <li>
                                 <NavLink
                                     to="/products"
-                                    onClick={() => setIsMenuOpen(false)}
+                                    onClick={closeMenu}
                                     className={({ isActive }) => isActive ? `${styles.link} ${styles.active}` : styles.link}>
                                     Products
                                 </NavLink>
@@ -88,14 +93,14 @@ const Navbar = () => {
 
                     <div className={styles.userActionBtns}>
                         <LikedProductsToggle
-                            setIsMenuOpen={setIsMenuOpen}
+                            closeMenu={closeMenu}
                             isLikedProductsOpen={isLikedProductsOpen}
                             setIsLikedProductsOpen={setIsLikedProductsOpen}
                             ref={likedProductsToggleRef}
                         />
 
                         <UserBasket
-                            setIsMenuOpen={setIsMenuOpen}
+                            closeMenu={closeMenu}
                             user={user}
                         />
 
@@ -104,7 +109,7 @@ const Navbar = () => {
                             isDropdownOpen={isDropdownOpen}
                             setIsDropdownOpen={setIsDropdownOpen}
                             logout={logout}
-                            setIsMenuOpen={setIsMenuOpen}
+                            closeMenu={closeMenu}
                         />
                     </div>
                 </div>

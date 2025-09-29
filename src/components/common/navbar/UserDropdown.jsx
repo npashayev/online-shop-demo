@@ -3,14 +3,14 @@ import styles from './dropdown.module.scss'
 import { faRightFromBracket, faUserPen } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 
-const UserDropdown = ({ user, setIsDropdownOpen = null, setIsMenuOpen = null, logout }) => {
+const UserDropdown = ({ user, setIsDropdownOpen = null, closeMenu = null, logout }) => {
     return (
         <div className={styles.dropdown}>
             <Link
                 to={`/edit-user/${user?.id}`}
                 onClick={() => {
                     setIsDropdownOpen && setIsDropdownOpen(false)
-                    setIsMenuOpen && setIsMenuOpen(false)
+                    closeMenu && closeMenu
                 }
                 }
                 className={styles.item}
