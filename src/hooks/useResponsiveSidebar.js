@@ -23,10 +23,10 @@ const useResponsiveSidebar = (query) => {
     }, [query])
 
     useEffect(() => {
-        if (!isMobile && open) {
+        if (query && !isMobile && open) {
             setOpen(false);
         }
-    }, [isMobile, open]);
+    }, [isMobile, open, query]);
 
     const toggle = useCallback(() => setOpen(prev => !prev), []);
     const openSidebar = useCallback(() => setOpen(true), []);
