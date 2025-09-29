@@ -56,9 +56,8 @@
     .sidebar {
         position: fixed;
         top: var(--navbar-height);
-        left: 0;
+        right: 100%;
         margin-left: 0;
-        transform: translateX(-100%);
         transition: transform 0.3s ease-in-out;
         height: calc(100vh - var(--navbar-height));
         border-radius: 0;
@@ -73,6 +72,6 @@
     }
 
     .activeSidebar {
-        transform: translateX(0);
+        transform: translateX(100%);
     }
 }
