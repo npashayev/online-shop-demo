@@ -5,7 +5,7 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useCategories } from 'hooks/useProducts';
 import Loading from 'components/common/loading/Loading';
 
-const CategoriesContent = ({ activeCategory, closeCategories }) => {
+const CategoriesContent = ({ activeCategory, closeSidebar }) => {
 
     const { data: categories, isLoading, error } = useCategories();
 
@@ -26,7 +26,7 @@ const CategoriesContent = ({ activeCategory, closeCategories }) => {
                         : styles.category
                 }
                 to={'/products'}
-                onClick={closeCategories}
+                onClick={closeSidebar}
             >
                 <FontAwesomeIcon icon={faChevronRight} size='xs' /> All
             </Link>
@@ -41,7 +41,7 @@ const CategoriesContent = ({ activeCategory, closeCategories }) => {
                         }
                         key={category.slug}
                         to={`/products/category/${category.slug}`}
-                        onClick={closeCategories}
+                        onClick={closeSidebar}
                     >
                         <FontAwesomeIcon icon={faChevronRight} size='xs' /> {category.name}
                     </Link>

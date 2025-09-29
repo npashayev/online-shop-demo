@@ -2,7 +2,7 @@ import styles from './filter-bar.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import AddProductAction from '../admin/components/AddProductAction';
 import Select from 'react-select';
 
@@ -14,7 +14,7 @@ const options = [
     { value: 'rating-desc', label: 'Rating Descending' },
 ];
 
-const FilterBar = ({ openCategories }) => {
+const FilterBar = forwardRef(({ toggle }, ref) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [searchText, setSearchText] = useState('');
 
@@ -63,7 +63,7 @@ const FilterBar = ({ openCategories }) => {
     return (
         <div className={styles.main}>
             <div className={styles.left}>
-                <button className={styles.categoryBtn} onClick={openCategories}>
+                <button ref={ref} className={styles.categoryBtn} onClick={toggle}>
                     <FontAwesomeIcon className={styles.categoryIcon} icon={faList} />
                 </button>
 
@@ -100,6 +100,6 @@ const FilterBar = ({ openCategories }) => {
             </div>
         </div>
     )
-}
+})
 
 export default FilterBar;

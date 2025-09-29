@@ -2,40 +2,31 @@ import styles from './categories.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
-import { useRef } from 'react';
 import CategoriesContent from './CategoriesContent';
-import useClickOutside from 'hooks/useClickOutside';
+import { forwardRef } from 'react';
 
-const Categories = ({ isCategoriesOpen, closeCategories }) => {
+const Categories = forwardRef(({ open, closeSidebar, isMobile }, ref) => {
     const { productCategory } = useParams();
     const activeCategory = productCategory ?? 'all';
-    const categoriesRef = useRef(null);
-
-    useClickOutside([
-        {
-            contentRef: categoriesRef,
-            onClickOutside: closeCategories
-        }
-    ]);
 
     return (
         <aside
-            className={`${styles.sidebar} ${isCategoriesOpen ? styles.activeSidebar : ""}`}
-            ref={categoriesRef}
+            className={`${styles.sidebar} ${open && isMobile ? styles.activeSidebar : ""}`}
+            ref={ref}
         >
             <div className={styles.categoriesHeading}>
                 Categories
-                <button className={styles.closeBtn} onClick={closeCategories}>
+                <button className={styles.closeBtn} onClick={closeSidebar}>
                     <FontAwesomeIcon icon={faXmark} />
                 </button>
             </div>
 
             <CategoriesContent
                 activeCategory={activeCategory}
-                closeCategories={closeCategories}
+                closeSidebar={closeSidebar}
             />
         </aside>
     )
-};
+});
 
 export default Categories;
