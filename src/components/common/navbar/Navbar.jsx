@@ -4,7 +4,7 @@ import UserMenu from "./UserMenu";
 import UserBasket from "./UserBasket";
 import useAuth from "hooks/useAuth";
 import LikedProductsToggle from "./LikedProductsToggle";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LikedProducts from "./LikedProducts";
@@ -40,10 +40,6 @@ const Navbar = () => {
             onClickOutside: closeLikedProducts
         }
     ]);
-
-    useEffect(() => {
-        console.log(isLikedProductsOpen)
-    }, [isLikedProductsOpen])
 
     return (
         <header className={styles.navbar}>
