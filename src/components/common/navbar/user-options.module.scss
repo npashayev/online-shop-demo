@@ -3,10 +3,10 @@
     display: flex;
     align-items: center;
     height: 100%;
-    margin-left: 2.4rem;
 
     .userMenu {
         height: 100%;
+        margin-left: 2.4rem;
 
         .userNameCnr {
             font-weight: bold;
@@ -20,7 +20,8 @@
         }
     }
 
-    .btn {
+    .loginBtn {
+        margin-left: 2.4rem;
         height: 36px;
         aspect-ratio: 1;
         display: flex;
@@ -29,9 +30,6 @@
         border-radius: 50%;
         color: white;
         overflow: hidden;
-    }
-
-    .loginBtn {
         font-size: 18px;
         background-color: #1D4ED8;
 
