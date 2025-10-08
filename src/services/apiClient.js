@@ -36,6 +36,7 @@ apiClient.interceptors.response.use(
             originalRequest._retry = true;
 
             if (!accessToken && !refreshToken) {
+                window.location.href = '/login';
                 return Promise.reject({ type: 'unauthorized', message: 'No tokens found' });
             }
 
@@ -78,11 +79,13 @@ apiClient.interceptors.response.use(
             message = "No response from server. Please check your connection.";
         }
 
-        else {
-            // Something happened while setting up the request
-            message = error.message || "Request setup error";
+        else if (error.message) {
+            message = error.message;
         }
 
+        else {
+            message = "An unknown error occurred";
+        }
 
         return Promise.reject({ ...error, message });
     }
