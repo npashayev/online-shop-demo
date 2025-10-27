@@ -6,10 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { selectLikedProducts } from 'store/likedProductsSlice';
 import { forwardRef } from 'react';
+import useBodyScrollLock from 'hooks/useBodyScrollLock';
 
 const LikedProducts = forwardRef(({ isLikedProductsOpen, closeLikedProducts }, ref) => {
 
     const likedProducts = useSelector(selectLikedProducts);
+    useBodyScrollLock(isLikedProductsOpen);
 
     return (
         <aside

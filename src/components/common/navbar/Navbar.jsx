@@ -12,6 +12,7 @@ import UserDropdown from "./UserDropdown";
 import useClickOutside from "hooks/useClickOutside";
 import useLogout from "hooks/useLogout";
 import useResponsiveSidebar from "hooks/useResponsiveSidebar";
+import useBodyScrollLock from "hooks/useBodyScrollLock";
 
 const Navbar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -40,6 +41,9 @@ const Navbar = () => {
             onClickOutside: closeLikedProducts
         }
     ]);
+
+    useBodyScrollLock(isMenuOpen);
+
 
     return (
         <header className={styles.navbar}>
