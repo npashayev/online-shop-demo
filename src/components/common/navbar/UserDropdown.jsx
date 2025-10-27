@@ -4,7 +4,9 @@ import { faRightFromBracket, faUserPen } from '@fortawesome/free-solid-svg-icons
 import { Link } from 'react-router-dom'
 
 const UserDropdown = ({ user, setIsDropdownOpen = null, closeMenu = null, logout }) => {
+
     return (
+        user &&
         <div className={styles.dropdown}>
             <Link
                 to={`/edit-user/${user?.id}`}
