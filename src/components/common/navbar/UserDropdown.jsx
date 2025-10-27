@@ -10,7 +10,7 @@ const UserDropdown = ({ user, setIsDropdownOpen = null, closeMenu = null, logout
                 to={`/edit-user/${user?.id}`}
                 onClick={() => {
                     setIsDropdownOpen && setIsDropdownOpen(false)
-                    closeMenu && closeMenu
+                    closeMenu && closeMenu();
                 }
                 }
                 className={styles.item}
