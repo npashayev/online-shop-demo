@@ -139,6 +139,7 @@
                         border: 1px solid lightgray;
                         border-radius: 1rem;
                         padding: 0.8rem 1.5rem;
+                        flex-shrink: 0;
                         width: 100%;
                         min-width: 300px;
                         min-height: 4rem;
@@ -315,7 +316,7 @@
 
                     .inputCnr {
                         .info {
-                            min-width: 0;
+                            min-width: 100px;
                             white-space: wrap;
                             word-break: break-word;
                             overflow-wrap: break-word;
