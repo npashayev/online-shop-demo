@@ -54,21 +54,24 @@ const ProductCard = ({ product }) => {
                 </div>
             }
             <div className={styles.imageCnr}>
-                <div className={styles.arrowBtnCnr}>
-                    <button
-                        className={styles.arrowBtn}
-                        onClick={(e) => handleActiveIndexChange(e, "left")}
-                    >
-                        <FontAwesomeIcon className={styles.arrowIcon} icon={faChevronLeft} />
-                    </button>
+                {
+                    imageLength > 1 &&
+                    <div className={styles.arrowBtnCnr}>
+                        <button
+                            className={styles.arrowBtn}
+                            onClick={(e) => handleActiveIndexChange(e, "left")}
+                        >
+                            <FontAwesomeIcon className={styles.arrowIcon} icon={faChevronLeft} />
+                        </button>
 
-                    <button
-                        className={styles.arrowBtn}
-                        onClick={(e) => handleActiveIndexChange(e, "right")}
-                    >
-                        <FontAwesomeIcon className={styles.arrowIcon} icon={faChevronRight} />
-                    </button>
-                </div>
+                        <button
+                            className={styles.arrowBtn}
+                            onClick={(e) => handleActiveIndexChange(e, "right")}
+                        >
+                            <FontAwesomeIcon className={styles.arrowIcon} icon={faChevronRight} />
+                        </button>
+                    </div>
+                }
                 {
                     product.images?.map((image, index) => <img
                         key={index}
