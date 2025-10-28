@@ -19,7 +19,7 @@ const ProductActions = ({ product }) => {
                 showToast("Product successfully deleted")
                 navigate('/products');
             },
-            onError: (error) => showToast(`${error.message || "Something went wrong"}`),
+            onError: (error) => showToast(`${error.message || "Something went wrong"}`, false),
             onSettled: () => setProductToDelete(null)
         })
     }
