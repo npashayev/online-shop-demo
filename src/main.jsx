@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { Provider } from 'react-redux';
@@ -9,6 +9,7 @@ import router from './routing/routes.jsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { ToastProvider } from 'contexts/ToastContext';
+import Loading from 'components/common/loading/Loading';
 
 
 const queryClient = new QueryClient({
@@ -26,7 +27,9 @@ createRoot(document.getElementById('root')).render(
       <Provider store={store}>
         <ToastProvider>
           <PersistGate loading={null} persistor={persistor}>
-            <RouterProvider router={router} />
+            <Suspense fallback={<Loading style={{ fontSize: "3.2rem" }} />}>
+              <RouterProvider router={router} />
+            </Suspense>
           </PersistGate>
         </ToastProvider>
       </Provider>

@@ -1,20 +1,22 @@
 import { createBrowserRouter } from "react-router-dom";
-import HomePage from "../components/pages/home/HomePage";
-import ProductsPage from "../components/pages/products/ProductsPage";
-import Layout from "../components/pages/Layout";
-import AllProducts from "../components/pages/products/AllProducts";
-import SearchProducts from "../components/pages/products/SearchProducts";
-import ProductsByCategory from "../components/pages/products/ProductsByCategory";
-import ProductDetails from "../components/pages/productDetails/ProductDetailsPage";
-import LoginPage from "../components/pages/login/LoginPage";
-import RegisterPage from "../components/pages/register/RegisterPage";
-import PrivateRoutes from "../components/pages/PrivateRoutes";
-import EditUserPage from "../components/pages/update-user/EditUserPage";
-import CartsPage from "components/pages/cart/CartPage";
-import RoleRoutes from "components/pages/RoleRoutes";
-import EditProductPage from "components/pages/admin/pages/update-product/EditProductPage";
-import AddProductPage from "components/pages/admin/pages/add-product/AddProductPage";
-import ErrorLayout from "components/pages/ErrorLayout";
+import { lazy } from "react";
+
+const HomePage = lazy(() => import("../components/pages/home/HomePage"))
+const ProductsPage = lazy(() => import("../components/pages/products/ProductsPage"))
+const Layout = lazy(() => import("../components/pages/Layout"))
+const AllProducts = lazy(() => import("../components/pages/products/AllProducts"))
+const SearchProducts = lazy(() => import("../components/pages/products/SearchProducts"))
+const ProductsByCategory = lazy(() => import("../components/pages/products/ProductsByCategory"))
+const ProductDetails = lazy(() => import("../components/pages/productDetails/ProductDetailsPage"))
+const LoginPage = lazy(() => import("../components/pages/login/LoginPage"))
+const RegisterPage = lazy(() => import("../components/pages/register/RegisterPage"))
+const PrivateRoutes = lazy(() => import("../components/pages/PrivateRoutes"))
+const EditUserPage = lazy(() => import("../components/pages/update-user/EditUserPage"))
+const CartsPage = lazy(() => import("components/pages/cart/CartPage"))
+const RoleRoutes = lazy(() => import("components/pages/RoleRoutes"))
+const EditProductPage = lazy(() => import("components/pages/admin/pages/update-product/EditProductPage"))
+const AddProductPage = lazy(() => import("components/pages/admin/pages/add-product/AddProductPage"))
+const ErrorLayout = lazy(() => import("components/pages/ErrorLayout"))
 
 
 const router = createBrowserRouter([
