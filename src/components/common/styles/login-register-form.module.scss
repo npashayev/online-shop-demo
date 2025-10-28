@@ -181,10 +181,9 @@
 
 @media (max-width: 500px) {
     .form {
-        padding: 6rem 3rem;
-        width: 80%;
-        border-radius: 0;
+        padding: 6rem 2.5rem;
+        width: clamp(320px, 90%, 400px);
         box-shadow: none;
-        padding: 0;
+        flex-shrink: 0;
     }
 }
