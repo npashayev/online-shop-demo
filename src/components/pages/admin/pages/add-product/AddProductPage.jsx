@@ -140,7 +140,7 @@ const AddProductPage = () => {
                             <textarea rows='6'
                                 name="description"
                                 {...register("description")}
-                                className={`${styles.info} ${styles.textarea}`}
+                                className={styles.textarea}
                             />
                         </div>
                     </div>
