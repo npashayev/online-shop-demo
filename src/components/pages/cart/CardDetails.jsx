@@ -74,7 +74,11 @@ const CardDetails = forwardRef(({ cart }, ref) => {
 
             {
                 isLoginModalOpen &&
-                <LoginModal isModalOpen={isLoginModalOpen} onCancel={() => setIsLoginModalOpen(false)} onSuccess={() => setIsLoginModalOpen(false)} />
+                <LoginModal
+                    isModalOpen={isLoginModalOpen}
+                    onCancel={() => setIsLoginModalOpen(false)}
+                    onSuccess={() => setIsLoginModalOpen(false)}
+                />
             }
 
             <div className={styles.header}>Card Details</div>
