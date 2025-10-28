@@ -1,4 +1,5 @@
 .toast {
+    touch-action: none;
     position: fixed;
     top: 3rem;
     left: 50%;
@@ -13,8 +14,19 @@
     gap: 2rem;
     font-size: 1.6rem;
     z-index: var(--toast-index);
+    animation: slideIn 0.2s linear;
 
     .icon {
         font-size: 2.4rem;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        top: 2.5rem;
+    }
+
+    to {
+        top: 3rem;
     }
 }

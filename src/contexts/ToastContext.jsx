@@ -25,7 +25,14 @@ export function ToastProvider({ children }) {
     return (
         <ToastContext.Provider value={{ showToast }}>
             {children}
-            {toast && <Toast message={toast.message} isSuccess={toast.isSuccess} />}
+            {
+                toast &&
+                <Toast
+                    message={toast.message}
+                    isSuccess={toast.isSuccess}
+                    closeToast={() => setToast(null)}
+                />
+            }
         </ToastContext.Provider>
     );
 }
