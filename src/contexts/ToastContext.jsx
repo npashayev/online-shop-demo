@@ -5,34 +5,32 @@ const ToastContext = createContext();
 
 export function ToastProvider({ children }) {
     const [toast, setToast] = useState(null);
-    const timeoutRef = useRef(null);
+    const timeoutRef = useRef();
 
-    const showToast = (message, isSuccess = true) => {
-        setToast({ message, isSuccess });
+    const showToast = (message, isSuccess = true, duration = 3500) => {
+        const id = Date.now();
 
-        // clear any previous timeout
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-        }
+        setToast({ id, message, isSuccess });
 
-        // set new timeout
+        if (timeoutRef.current) clearTimeout(timeoutRef.current)
+
         timeoutRef.current = setTimeout(() => {
             setToast(null);
-            timeoutRef.current = null;
-        }, 5000);
+        }, duration);
     };
 
     return (
         <ToastContext.Provider value={{ showToast }}>
             {children}
-            {
-                toast &&
+
+            {toast && (
                 <Toast
+                    key={toast.id}
                     message={toast.message}
                     isSuccess={toast.isSuccess}
                     closeToast={() => setToast(null)}
                 />
-            }
+            )}
         </ToastContext.Provider>
     );
 }
