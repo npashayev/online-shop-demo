@@ -6,7 +6,7 @@
 
 :root {
     font-size: 10px;
-    font-family: "Nunito", sans-serif;
+    font-family: "Montserrat", sans-serif;
 
     /* index variables */
     --toast-index: 102;
@@ -40,7 +40,7 @@ body {
 input,
 button,
 textarea {
-    font-family: "Nunito", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 a {

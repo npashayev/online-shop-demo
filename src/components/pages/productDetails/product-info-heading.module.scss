@@ -3,14 +3,14 @@
 
     .title {
         font-size: 3em;
-        font-weight: bold;
+        font-weight: 500;
     }
 
     .ratingCnr {
         width: max-content;
         display: flex;
         gap: 0.6rem;
-        margin-top: 0.4rem;
+        margin-top: 0.8rem;
 
         .starsCnr {
             display: flex;
@@ -50,7 +50,7 @@
         .newPrice {
             font-size: 3.2em;
             color: #39B856;
-            font-weight: bold;
+            font-weight: 600;
             line-height: 1;
             display: block;
         }

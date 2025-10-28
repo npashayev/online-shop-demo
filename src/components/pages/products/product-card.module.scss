@@ -17,7 +17,7 @@
 
     .heading {
         width: 100%;
-        font-weight: bold;
+        font-weight: 600;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -43,7 +43,7 @@
         color: white;
         font-size: 14px;
         background-color: #D1001F;
-        font-weight: bold;
+        font-weight: 600;
         width: max-content;
         min-width: 50px;
         aspect-ratio: 1;
@@ -148,16 +148,16 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                font-weight: 600;
+                font-weight: 500;
             }
 
             .ratingCnr {
-                margin-top: 3px;
+                margin-top: 5px;
                 width: max-content;
                 display: flex;
                 gap: 4px;
                 align-items: flex-end;
-                font-size: 12px;
+                font-size: 12.5px;
 
                 .rating {
                     line-height: 1;
@@ -169,7 +169,7 @@
 
                     .star {
                         display: block;
-                        height: 12px;
+                        height: 12.5px;
                     }
                 }
             }
@@ -195,7 +195,7 @@
 
                 .newPrice {
                     color: darkred;
-                    font-weight: bold;
+                    font-weight: 600;
                 }
             }
 
