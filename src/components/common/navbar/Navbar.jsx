@@ -1,5 +1,5 @@
 import styles from "./navbar.module.scss";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import UserMenu from "./UserMenu";
 import UserBasket from "./UserBasket";
 import useAuth from "hooks/useAuth";
@@ -47,10 +47,10 @@ const Navbar = () => {
 
     return (
         <header className={styles.navbar}>
-            <div className={styles.left}>
+            <Link to='/' className={styles.left}>
                 <img className={styles.logo} src="/logo.png" alt="logo" />
                 <div className={styles.name}>Online shop</div>
-            </div>
+            </Link>
 
             <button ref={menuToggleRef} className={styles.menuIconCnr}>
                 <FontAwesomeIcon
