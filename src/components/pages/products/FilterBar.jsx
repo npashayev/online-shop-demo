@@ -7,7 +7,7 @@ import AddProductAction from '../admin/components/AddProductAction';
 import Select from 'react-select';
 
 const options = [
-    { value: 'default', label: 'Default' },
+    { value: 'default', label: 'Sort by' },
     { value: 'price-asc', label: 'Price Ascending' },
     { value: 'price-desc', label: 'Price Descending' },
     { value: 'rating-asc', label: 'Rating Ascending' },

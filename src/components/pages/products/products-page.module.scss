@@ -10,10 +10,18 @@
     }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 800px) {
     .page {
         .content {
-            padding-top: 15rem;
+            padding-top: 14.5rem;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .page {
+        .content {
+            padding-top: 12rem;
         }
     }
 }
