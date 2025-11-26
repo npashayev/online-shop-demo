@@ -40,16 +40,16 @@ const router = createBrowserRouter([
                 element: <ProductDetails />
             },
             {
-                path: '/cart',
+                path: 'cart',
                 element: <CartsPage />
             },
             {
-                path: '/login',
+                path: 'login',
                 element: <LoginPage />
             },
 
             {
-                path: '/register',
+                path: 'register',
                 element: <RegisterPage />
             },
             {
